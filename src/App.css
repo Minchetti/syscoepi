@@ -75,6 +75,7 @@
 .btn-dark:hover {background-color:#222;}
 .col {width:100%!important;}
 .w-32 {width:32%;}
+.text-shadow {text-shadow: 1px 1px 1px transparent;}
 
 
 
@@ -334,4 +335,5 @@ body {
 
 
 
+/* css login */
 
