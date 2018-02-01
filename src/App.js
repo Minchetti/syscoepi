@@ -29,6 +29,7 @@ class App extends Component {
     return (
       <div className="App">     
 
+      <Login />
 
         
         {/* <p className="App-intro">
@@ -61,7 +62,6 @@ class App extends Component {
             </div>
 
 
-            <Login />
 
             {/* <Company />
             <Request /> */}

@@ -15,8 +15,9 @@ import logo from '../../logo.svg';
 const Login = props => (
   // <span>{props.text}</span>
 
-<div>
+<div className="boxLogin pt-80">
   <link href='https://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'/>
+  
   <h1>
     <em>S</em>
     <em>y</em>
@@ -29,22 +30,23 @@ const Login = props => (
   </h1>
 
 
-  <form>
+  <form className="mt-80 text-left">
     <div className="form-group">
       <label for="exampleInputEmail1">Email address</label>
       <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"/>
-      <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+      {/* <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small> */}
     </div>
     <div className="form-group">
       <label for="exampleInputPassword1">Password</label>
       <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password"/>
     </div>
-    <div className="form-check">
+    {/* <div className="form-check">
       <input type="checkbox" className="form-check-input" id="exampleCheck1"/>
       <label className="form-check-label" for="exampleCheck1">Check me out</label>
-    </div>
-    <button type="submit" className="btn btn-primary">Submit</button>
+    </div> */}
+    <button id="logar" type="submit" className="btn btn-primary btn-block btn-large float-right">Submit</button>
   </form>
+
   </div>
 
 

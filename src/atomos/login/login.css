@@ -14,7 +14,23 @@ html {
     color: #ccc;
   }
   
-  
+  .boxLogin{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    width: 420px;
+    height: 550px;
+  }
+
+
+#logar{
+    padding: 8px !important;
+    margin-top:5px;
+}
+
   html::before,
   html::after,
   body::before,
@@ -30,7 +46,7 @@ html {
     color: transparent;
   }
   
-  /* html::before {
+  html::before {
     box-shadow: 93vw 63vh .3vmin rgba(255,255,255,.8),
                 3vw 17vh .3vmin rgba(255,255,255,.8),
                 28vw 85vh .3vmin rgba(255,255,255,.8),
@@ -140,12 +156,12 @@ html {
                 9vw 46vh .1vmin rgba(200,255,230,.7),
                 63vw 59vh .1vmin rgba(200,255,230,.7),
                 48vw 28vh .1vmin rgba(200,255,230,.7);
-  } */
+  }
   
   h1 {
     margin: 0;
     height: 12vmin;
-    width: 120vmin;
+    width: 100%;
     display: flex;
     justify-content: center;
     position: relative;
@@ -168,7 +184,7 @@ html {
     position: absolute;
     z-index: -1;
     top: -11vmin;
-    left: 63vmin;
+    left: 33vmin;
     width: 27vmin;
     height: 27vmin;
     border-radius: 50%;

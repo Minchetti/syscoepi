@@ -50,9 +50,10 @@
 .flex-wrap {flex-wrap: wrap;}
 .p-0 {padding: 0 !important;}
 .pl-10 {padding-left: 10px;}
+.pt-80 {padding-top: 80px;}
 .p-0 {padding:0;}
 .p-10 {padding:10px;}
-.p-20 {padding:20px;}
+.p-20 {padding:20px !important;}
 .p-30 {padding:30px;}
 .pr-30 {padding-right: 30px;}
 .pr-25 {padding-right: 25px;}
@@ -62,6 +63,7 @@
 .thead-dark {background:#343a40; color:white;}
 .mt-30 {margin-top:30px;}
 .mt-10 {margin-top:10px;}
+.mt-80 {margin-top:80px;}
 .m-0 {margin:0;}
 .mb-0 {margin-bottom:0;}
 .mb-20 {margin-bottom:20px;}
@@ -76,6 +78,7 @@
 .col {width:100%!important;}
 .w-32 {width:32%;}
 .text-shadow {text-shadow: 1px 1px 1px transparent;}
+.float-right {float:right;}
 
 
 
