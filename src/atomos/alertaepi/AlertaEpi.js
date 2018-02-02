@@ -25,7 +25,7 @@ const AlertaEpi = props => (
           <th className="text-center">CC</th>
           <th className="text-center">GH </th>
           <th className="text-center">Turno</th>
-          <th className="text-center">Funcionário</th>
+          <th className="text-center">Funcionário(s)</th>
           <th className="text-center">Validade</th>
           <th className="text-center">Qtd Estoque</th>
         </tr>
@@ -49,7 +49,7 @@ const AlertaEpi = props => (
           <td>201354</td>
           <td>Obras</td>
           <td>Diurno</td>
-          <td><i className="fa fa-info" aria-hidden="true"></i></td>
+          <td><i className="fa fa-users fa-lg" aria-hidden="true"></i></td>
           <td>01/01/2020</td>
           <td className="alerta">09</td>
         </tr>

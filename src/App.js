@@ -44,10 +44,8 @@ class App extends Component {
           ' and save to reload.'
         )} */}
 
-
         <Cabecalho/>
         <MenuLateral/>
-
 
         {/* começo do content */}
           <div className="boxField p-20">        
@@ -80,11 +78,6 @@ class App extends Component {
 
 
 export default App;
-
-
-
-
-
 
 
 // import React, { Component } from 'react'

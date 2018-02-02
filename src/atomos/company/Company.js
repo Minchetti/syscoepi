@@ -60,7 +60,7 @@ const Company = props => (
             <div className="col-md-12 p-0 select-company">
               <div className="col-md-11 p-0">
                 <select class="form-control">
-                  <option>Metrosult</option>
+                  <option>Metrosul</option>
                   <option>BrazOffice</option>
                   <option>Fitassul</option>
                   <option>Helibras</option>
