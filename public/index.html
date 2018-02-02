@@ -46,6 +46,7 @@
     -->
   </body>
   <script>
+
     $("#menu-toggle").click(function(e) {
       e.preventDefault();
       $(".nav-side-menu").toggleClass("active");
@@ -68,6 +69,18 @@
       $('#company').show(400);
       $('#request').hide(400);
       $('#dash').hide(400);
+    });
+
+
+    // window.onload = function() {
+    //   $('html').addClass('htmlL');
+    //   $('body').addClass('bodyL');
+    // }
+
+    $("#logar").click(function(e) {
+      e.preventDefault();
+      $('.Login').hide();     
+      
     });
   </script>
 </html>

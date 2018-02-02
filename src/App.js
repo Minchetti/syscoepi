@@ -29,8 +29,9 @@ class App extends Component {
     return (
       <div className="App">     
 
-      <Login />
 
+      <Login />
+      
         
         {/* <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
@@ -44,16 +45,15 @@ class App extends Component {
         )} */}
 
 
-
-        {/* <Cabecalho/>
-        <MenuLateral/> */}
+        <Cabecalho/>
+        <MenuLateral/>
 
 
         {/* começo do content */}
           <div className="boxField p-20">        
 
                   
-            <div id="dash" className="d-none justify-content-between flex-wrap">
+            <div id="dash" className="d-flex justify-content-between flex-wrap">
               <h3 className="text-shadow col mt-10"><i className="fa fa-dashboard" aria-hidden="true"></i> Dashboard</h3> 
               <AlertaEpi /> 
               <UltimaReq size="w-32" big="d-none"/>
@@ -61,22 +61,23 @@ class App extends Component {
               <ReqCancelada size="w-32" big="d-none"/>
             </div>
 
-
-
-            {/* <Company />
-            <Request /> */}
+            <Company />
+            <Request />
 
           </div>
           {/* fim do content */}
           {/* <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal3">login</button> */}
 
-            <Modal1/>  
+            {/* <Modal1/>   */}
+
             <Modal2/>  
+            
           {/* <Modal3/>  login */}
       </div>    
     );
   }  
 }
+
 
 export default App;
 

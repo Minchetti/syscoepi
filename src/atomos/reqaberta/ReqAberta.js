@@ -9,10 +9,9 @@ import Button from '../button';
 const ReqAberta = props => (
   // <span>{props.text}</span>
 
-<div className={props.size}>
+<div className={props.size + ' ReqAberta'}>
 
-
-  <div className={'ReqAberta panel ' + props.small}>
+  <div className={'panel ' + props.small}>
     <div className="panel-heading">
       <h5 className="text-left mb-0"><i className="fa fa-folder-open pr-10" aria-hidden="true"></i>Requisições em Aberto  </h5>
     </div>
@@ -52,7 +51,7 @@ const ReqAberta = props => (
 
 
   
-  <div className={'ReqAberta panel ' + props.big}>
+  <div className={'ReqAberta2 panel ' + props.big}>
     <div className="panel-heading">
       <h5 className="text-left mb-0"><i className="fa fa-folder-open pr-10" aria-hidden="true"></i>Requisições em Aberto  </h5>
     </div>

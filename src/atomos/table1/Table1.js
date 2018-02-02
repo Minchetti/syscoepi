@@ -6,8 +6,8 @@ const Table1 = props => (
   // <span>{props.text}</span>
 
 
-<div className="mb-20">
-  <h5 className="text-left"><i className="fa fa-users pr-10" aria-hidden="true"></i>Funcionários</h5>
+<div className="mb-30">
+  <h5 className="text-left"><i className="fa fa-user pr-10" aria-hidden="true"></i>Funcionários</h5>
   <table className="table table-striped ">
     <thead className="thead-dark">
       <tr>

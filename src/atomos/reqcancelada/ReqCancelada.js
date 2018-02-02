@@ -9,10 +9,11 @@ import Button from '../button';
 const ReqCancelada = props => (
   // <span>{props.text}</span>
 
-<div className={props.size}>
+
+<div className={props.size + ' ReqCancelada'}>
 
 
-  <div className={'ReqCancelada panel ' + props.small}>
+  <div className={'panel ' + props.small}>
     <div className="panel-heading">
       <h5 className="text-left mb-0"><i className="fa fa-trash pr-10" aria-hidden="true"></i>Requisições Canceladas  </h5>
     </div>

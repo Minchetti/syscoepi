@@ -1,9 +1,12 @@
-html {
+/* .htmlL {
     margin: 0;
     height: 100%;
-  }
+  } */
   
-  body {
+  /* .bodyL {
+  }
+   */
+  .Login{
     margin: 0;
     height: 100%;
     overflow: hidden;
@@ -12,8 +15,10 @@ html {
     align-items: center;
     background: black;
     color: #ccc;
+    top:0;
+    left:0;
+    
   }
-  
   .boxLogin{
     position: absolute;
     left: 0;
@@ -31,10 +36,10 @@ html {
     margin-top:5px;
 }
 
-  html::before,
-  html::after,
-  body::before,
-  body::after {
+  .htmlL::before,
+  .htmlL::after,
+  .bodyL::before,
+  .bodyL::after {
     content: "";
     position: absolute;
     top: 0;
@@ -46,7 +51,7 @@ html {
     color: transparent;
   }
   
-  html::before {
+  /* html::before {
     box-shadow: 93vw 63vh .3vmin rgba(255,255,255,.8),
                 3vw 17vh .3vmin rgba(255,255,255,.8),
                 28vw 85vh .3vmin rgba(255,255,255,.8),
@@ -156,9 +161,9 @@ html {
                 9vw 46vh .1vmin rgba(200,255,230,.7),
                 63vw 59vh .1vmin rgba(200,255,230,.7),
                 48vw 28vh .1vmin rgba(200,255,230,.7);
-  }
+  } */
   
-  h1 {
+  .h1L {
     margin: 0;
     height: 12vmin;
     width: 100%;
@@ -167,7 +172,7 @@ html {
     position: relative;
   }
   
-  h1::before {
+  .h1L::before {
     /* content: "";
     display: block;
     position: absolute;
@@ -212,12 +217,12 @@ html {
 }
   
   em.planet {
-    -webkit-animation: planet-rotate 4s linear infinite;
-    animation: planet-rotate 4s linear infinite;
-    position: relative;
+    /* -webkit-animation: planet-rotate 4s linear infinite;
+    animation: planet-rotate 4s linear infinite; */
+    position: relative;  
   }
   
-.App-logo{
+.App-logoL{
     position: relative;
     -webkit-animation: App-logo-spin infinite 20s linear;
     animation: App-logo-spin infinite 20s linear;
@@ -263,7 +268,7 @@ html {
     -webkit-transform-origin: 40vmin 5vmin;
     -ms-transform-origin: 40vmin 5vmin;
     transform-origin: 15.7vmin 2.5vmin;
-    background: yellow;
+    background: black;
     height: 40px;
     border-radius: 80px;
     width: 40px;
