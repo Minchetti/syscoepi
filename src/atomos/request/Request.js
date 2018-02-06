@@ -40,9 +40,9 @@ const Request = props => (
 
           {/* <Modal1/>            */}
           
-          <UltimaReq size="col" small="d-none"/> 
-          <ReqAberta size="col" small="d-none"/> 
-          <ReqCancelada size="col" small="d-none"/> 
+          <UltimaReq size="col" small="d-none "/> 
+          <ReqAberta size="col" small="d-none "/> 
+          <ReqCancelada size="col" small="d-none "/> 
           
           
         </div>      
