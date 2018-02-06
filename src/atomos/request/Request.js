@@ -14,7 +14,7 @@ const Request = props => (
   // <span>{props.text}</span>
 
 
-        <div id="request" className="d-none "> 
+        <div id="request" className="d "> 
          {/* <Button class="btn-dark" icon="fa-user-plus" text="Adicionar"/> */}
           <h3 className="mt-10"><i className="fa fa-clipboard" aria-hidden="true"></i> Requisições</h3> 
           
