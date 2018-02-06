@@ -25,7 +25,7 @@ const Login = props => (
       <em>y</em>
       <em>S</em>
       <em>C</em>
-      <em class="planet left"><img src={logo} className="App-logoL" alt="logo" /></em>
+      <em className="planet left"><img src={logo} className="App-logoL" alt="logo" /></em>
       <em>E</em>
       <em>P</em>
       <em>I</em>

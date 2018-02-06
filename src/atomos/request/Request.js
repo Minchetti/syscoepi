@@ -17,6 +17,7 @@ const Request = props => (
         <div id="request" className="d-none "> 
          {/* <Button class="btn-dark" icon="fa-user-plus" text="Adicionar"/> */}
           <h3 className="mt-10"><i className="fa fa-clipboard" aria-hidden="true"></i> Requisições</h3> 
+          
 
           {/* <ul className="nav nav-tabs" id="myTab" role="tablist">
             <li className="nav-item active">

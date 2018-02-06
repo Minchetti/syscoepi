@@ -10,7 +10,8 @@
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
-  height: 40px;
+  height: 33px;
+  margin-left: -10px;
 }
 
 .App-header {
@@ -26,6 +27,7 @@
 .App-title {
   /* font-size: 1.5em; */
   /* font-weight: bold; */
+  font-family: 'Josefin Sans', sans-serif;
   margin:0;
 }
 
@@ -56,6 +58,7 @@
 .p-fixed {position: fixed;}
 .p-absolute {position: absolute;}
 .d-flex {display:flex;}
+.flex-column {flex-direction:column;}
 .d-none {display:none; }
 .justify-content-between {justify-content: space-between;}
 .justify-content-center {justify-content: center;}
@@ -83,6 +86,7 @@
 .mb-30 {margin-bottom:30px;}
 .mr-20 {margin-right:20px;}
 .m-20 {margin:20px;}
+.mln-10 {margin-left: -10px;}
 .ml-10 {margin-left:10px;}
 .mr-10 {margin-right:10px;}
 .text-center {text-align:center;}
@@ -112,7 +116,7 @@
   font-size: 15px;
   font-weight: 200;
   background-color: #2e353d;
-  top: 56px;
+  top: 49px;
   width: 150px;
   transition: 1s;
   height: 100%;
@@ -295,7 +299,7 @@ body {
   margin-left: 150px;
   transition: 1s;
   /* width: (100% - 180px); */
-  margin-top: 56px;
+  margin-top: 49px;
   /* padding: 10px 20px 10px 20px; */
 }
 .boxField.active{
@@ -319,10 +323,12 @@ body {
   /* height:40px; */
 }
 .alerta{
-  color:red;
-  font-weight: bold;  
-  font-size: 0.9em !important;
-  border-top: 1px solid #ddd;
+  background: rgba(255,0,0,0.5);
+  /* background:red; */
+  /* color: white; */
+  /* font-weight: bold;   */
+  /* font-size: 0.9em !important; */
+  /* border-top: 10px solid #ddd; */
 }
 .white{
   background: white;

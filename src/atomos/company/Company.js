@@ -21,7 +21,7 @@ const Company = props => (
           {/* <Button class="btn-dark" icon="fa-user-plus" text="Adicionar"/> */}
           <div className="panel-heading">
           </div>
-          <div className="panel-body">
+          <div className="panel-body d-flex flex-column">
             {/* <ul className="nav nav-tabs" id="myTab" role="tablist">
               <li className="nav-item active">
                 <a className="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">
@@ -73,10 +73,12 @@ const Company = props => (
 
 
 
-            <div className="col-md-12 d-flex align-center justify-content-center mt-30 mb-20">
-              <h4 className="m-0">Metrosul</h4>
+            <h3 className="mt-30">Metrosul</h3>
+            <div className="col-md-12 d-flex align-center justify-content-center mb-20">
               <Button class="btn-dark m-0 ml-10" icon="fa-info pr-10" text="Dados da Empresa"/>
               <Button class="btn-dark m-0 ml-10" icon="fa-user-plus pr-10" text="Importar Funcionários"/> 
+              <Button class="btn-dark m-0 ml-10" icon="fa-plus pr-10" text="Criar GH"/> 
+              <Button class="btn-dark m-0 ml-10" icon="fa-plus pr-10" text="Criar CC"/> 
             </div>
 
             <Table1 />
