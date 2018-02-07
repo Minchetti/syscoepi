@@ -20,7 +20,7 @@ const Cabecalho = props => (
     <div className="d-flex ">
 
       <div className="pr-30">
-        <i className="fa fa-bell fa-lg" aria-hidden="true"></i> 
+        <i className="fa fa-bell " aria-hidden="true"></i> 
       </div>
 
       <div className="pr-20">

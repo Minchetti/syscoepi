@@ -14,9 +14,9 @@ const Request = props => (
   // <span>{props.text}</span>
 
 
-        <div id="request" className="d-none "> 
+        <div id="request" className=""> 
          {/* <Button class="btn-dark" icon="fa-user-plus" text="Adicionar"/> */}
-          <h3 className="mt-10"><i className="fa fa-clipboard" aria-hidden="true"></i> Requisições</h3> 
+          <h4 className="mt-10"><i className="fa fa-clipboard" aria-hidden="true"></i> Requisições</h4> 
           
 
           {/* <ul className="nav nav-tabs" id="myTab" role="tablist">
@@ -41,9 +41,9 @@ const Request = props => (
 
           {/* <Modal1/>            */}
           
-          {/* <UltimaReq size="col" small="d-none "/> 
+          <UltimaReq size="col" small="d-none "/> 
           <ReqAberta size="col" small="d-none "/> 
-          <ReqCancelada size="col" small="d-none "/>  */}
+          <ReqCancelada size="col" small="d-none "/> 
           
           
         </div>      

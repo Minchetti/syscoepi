@@ -14,8 +14,8 @@ const ReqCancelada = props => (
 
 
   <div className={'panel ' + props.small}>
-    <div className="panel-heading">
-      <h5 className="text-left mb-0"><i className="fa fa-trash pr-10" aria-hidden="true"></i>Requisições Canceladas  </h5>
+    <div className="panel-heading ">
+      <h6 className="text-left mb-0"><i className="fa fa-trash pr-10" aria-hidden="true"></i>Requisições Canceladas  </h6>
     </div>
     <div className="panel-body">
       <table className="table m-0">
@@ -52,9 +52,9 @@ const ReqCancelada = props => (
   </div> 
 
 
-  <div className={'ReqCancelada panel ' + props.big}>
+  <div className={'ReqCancelada panel mb-20 ' + props.big}>
     <div className="panel-heading">
-      <h5 className="text-left mb-0"><i className="fa fa-trash pr-10" aria-hidden="true"></i>Requisições Canceladas  </h5>
+      <h6 className="text-left mb-0"><i className="fa fa-trash pr-10" aria-hidden="true"></i>Requisições Canceladas  </h6>
     </div>
     <div className="panel-body">
       <table className="table m-0">

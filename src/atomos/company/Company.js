@@ -15,50 +15,17 @@ const Company = props => (
   // <span>{props.text}</span>
 
 
-  <div id="company" className="d-none">
-    <h3 className="mt-10"><i className="fa fa-building" aria-hidden="true"></i> Empresas</h3>        
+  <div id="company" className="">
+    <h4 className="mt-10"><i className="fa fa-building" aria-hidden="true"></i> Empresas</h4>        
 
-        <div className="panel"> 
+        <div className=""> 
           {/* <Button class="btn-dark" icon="fa-user-plus" text="Adicionar"/> */}
-          <div className="panel-heading">
+          <div className="">
           </div>
-          <div className="panel-body d-flex flex-column">
-            {/* <ul className="nav nav-tabs" id="myTab" role="tablist">
-              <li className="nav-item active">
-                <a className="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">
-                  Metrosul 
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">
-                  Empresa2
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" id="add-tab" data-toggle="tab" href="#add" role="tab" aria-controls="add" aria-selected="false">
-                  <i className="fa fa-plus" aria-hidden="true"></i>
-                </a>
-              </li>
-            </ul>
-            <div className="tab-content" id="myTabContent">
-              <div className="tab-pane  active" id="home" role="tabpanel" aria-labelledby="home-tab"> {/* fade show */}{/*}
-                <div className="d-flex align-center justify-content-center mt-30">
-                  <h4 className="m-0">Metrosul</h4>
-                  <Button class="btn-dark m-0 ml-10" icon="fa-info pr-10" text="Dados da Empresa"/>
-                  <Button class="btn-dark m-0 ml-10" icon="fa-user-plus pr-10" text="Importar Funcionários"/> 
-                </div>
-                <Table1 />
-                <Table2 />
-                <Table3 />
-
-              </div>   
-              <div className="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab"> <Form2 /> </div>
-              <div className="tab-pane fade" id="add" role="tabpanel" aria-labelledby="add-tab"> <Form2 /> </div>
-            </div>    */}
-
-            {/* <Modal1/>            */}    
+          <div className=" d-flex flex-column">
             
-            <div className="col-md-12 p-0 select-company">
+            
+            <div className="d-flex align-center p-0 select-company">
               <div className="col-md-11 p-0">
                 <select class="form-control">
                   <option>Metrosul</option>
@@ -76,10 +43,10 @@ const Company = props => (
 
             <h3 className="mt-30">Metrosul</h3>
             <div className="col-md-12 d-flex align-center justify-content-center mb-20">
-              <Button class="btn-dark m-0 ml-10" icon="fa-info pr-10" text="Dados da Empresa"/>
-              <Button class="btn-dark m-0 ml-10" icon="fa-user-plus pr-10" text="Importar Funcionários"/> 
-              <Button class="btn-dark m-0 ml-10" icon="fa-plus pr-10" text="Criar GH"/> 
-              <Button class="btn-dark m-0 ml-10" icon="fa-plus pr-10" text="Criar CC"/> 
+              <Button class="btn-dark" icon="fa-info pr-10" text="Dados da Empresa"/>
+              <Button class="btn-dark ml-10" icon="fa-user-plus pr-10" text="Importar Funcionários"/> 
+              <Button class="btn-dark ml-10" icon="fa-plus pr-10" text="Criar GH"/> 
+              <Button class="btn-dark ml-10" icon="fa-plus pr-10" text="Criar CC"/> 
             </div>
 
             <Table1 />

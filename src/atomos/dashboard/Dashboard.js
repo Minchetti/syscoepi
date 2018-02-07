@@ -23,16 +23,18 @@ const Dashboard = props => (
     <MenuLateral/>
     <div className="boxField p-20">            
 
-      <div id="dash" className="d-flex justify-content-between flex-wrap">
-        <h3 className="text-shadow col mt-10"><i className="fa fa-dashboard" aria-hidden="true"></i> Dashboard</h3> 
+      <div id="dash" className="">
+        <h4 className="text-shadow col mt-10"><i className="fa fa-dashboard" aria-hidden="true"></i> Dashboard</h4> 
         <AlertaEpi /> 
-        {/* <UltimaReq size="w-32" big="d-none "/> */}
-        {/* <ReqAberta size="w-32" big="d-none "/> */}
-        {/* <ReqCancelada size="w-32" big="d-none "/> */}
+        <div className="d-flex justify-content-between">
+          <UltimaReq size="w-32" big="d-none "/>
+          <ReqAberta size="w-32" big="d-none "/> 
+          <ReqCancelada size="w-32" big="d-none "/>
+        </div>
       </div>
 
-      {/* <Company /> */}
-      {/* <Request /> */}
+      <Company /> 
+      <Request />
 
       {/* <Modal2/>   */}
     </div>

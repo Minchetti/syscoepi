@@ -9,10 +9,11 @@ const MenuLateral = props => (
         <div className="nav-side-menu p-fixed">
           <div className="brand">
             <a id="menu-toggle" href="#" className="d-flex justify-content-between align-center pl-10 pr-20">Menu
-              <span id="main_icon" className="glyphicon glyphicon-align-justify"></span>
+              {/* <span id="main_icon" className="glyphicon glyphicon-align-justify"></span> */}
+              <i className="fa fa-bars "></i>
             </a>
           </div>          
-          <i className="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+          {/* <i className="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i> */}
         
             <div className="menu-list">      
               <ul id="menu-content" className="menu-content collapse out">
