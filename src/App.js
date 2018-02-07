@@ -3,8 +3,6 @@
 import React, { Component } from 'react';
 import './App.css';
 
-
-
 import Login from './atomos/login';
 import Dashboard from './atomos/dashboard';
 
@@ -14,7 +12,7 @@ class App extends Component {
       <div className="App">     
 
 
-      <Login />
+      {/* <Login /> */}
       <Dashboard/>
       
         

@@ -9,6 +9,7 @@ import Form2 from '../form2';
 import Modal2 from '../modal1';
 import Button from '../button';
 
+
 // @flow
 const Company = props => (
   // <span>{props.text}</span>

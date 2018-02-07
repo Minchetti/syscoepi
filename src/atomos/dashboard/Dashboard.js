@@ -26,15 +26,15 @@ const Dashboard = props => (
       <div id="dash" className="d-flex justify-content-between flex-wrap">
         <h3 className="text-shadow col mt-10"><i className="fa fa-dashboard" aria-hidden="true"></i> Dashboard</h3> 
         <AlertaEpi /> 
-        <UltimaReq size="w-32" big="d-none "/>
-        <ReqAberta size="w-32" big="d-none "/>
-        <ReqCancelada size="w-32" big="d-none "/>
+        {/* <UltimaReq size="w-32" big="d-none "/> */}
+        {/* <ReqAberta size="w-32" big="d-none "/> */}
+        {/* <ReqCancelada size="w-32" big="d-none "/> */}
       </div>
 
-      <Company />
-      <Request />
+      {/* <Company /> */}
+      {/* <Request /> */}
 
-      <Modal2/>  
+      {/* <Modal2/>   */}
     </div>
   </div>
 
