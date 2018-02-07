@@ -11,6 +11,7 @@ import AlertaEpi from '../alertaepi';
 import UltimaReq from '../ultimareq';
 import ReqAberta from '../reqaberta';
 import ReqCancelada from '../reqcancelada';
+// import CriarConta from '../criarconta';
 
 import Request from '../request';
 import Company from '../company';
@@ -18,10 +19,10 @@ import Company from '../company';
 // @flow
 const Dashboard = props => (
   <div>
-
     <Cabecalho/>
     <MenuLateral/>
     <div className="boxField p-20">            
+    {/* <p data-toggle="modal" data-target="#modal-criar-conta">Create Account</p>   */}
 
       <div id="dash" className="">
         <h4 className="text-shadow col mt-10"><i className="fa fa-dashboard" aria-hidden="true"></i> Dashboard</h4> 
@@ -37,6 +38,7 @@ const Dashboard = props => (
       <Request />
 
       {/* <Modal2/>   */}
+    {/* <CriarConta/> */}
     </div>
   </div>
 

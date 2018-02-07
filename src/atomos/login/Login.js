@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import capacete from '../../capacete.png';
-import bota2 from '../../bota2.png';
-import abafador from '../../abafador.png';
 import Button from '../button';
+import CriarConta from '../criarconta';
 import login from './login.css';
 
 import logo from '../../logo.svg';
@@ -16,7 +14,7 @@ const Login = props => (
   // <span>{props.text}</span>
 
 
-<div className="Login p-absolute z-99 col h-100 ">
+<div className="Login p-absolute z-90 col h-100 ">
   <div className="boxLogin pt-80 p-absolute">
     <link href='https://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'/>
     
@@ -34,7 +32,7 @@ const Login = props => (
 
     <form className="mt-80 text-left">
       <div className="form-group">
-        <label for="exampleInputEmail1">Email address</label>
+        <label for="exampleInputEmail1">User</label>
         <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"/>
         {/* <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small> */}
       </div>
@@ -47,9 +45,16 @@ const Login = props => (
         <label className="form-check-label" for="exampleCheck1">Check me out</label>
       </div> */}
       <button id="logar" type="submit" className="btn btn-primary btn-block btn-large float-right">Submit</button>
+      <p data-toggle="modal" data-target="#modal-criar-conta">Create Account</p>     
+      
+      {/* <Button class="btn-dark" icon="fa-info pr-10" text="Dados da Empresa"/> */}
     </form>
 
     </div>
+
+
+
+    <CriarConta/>
 </div>
 
 

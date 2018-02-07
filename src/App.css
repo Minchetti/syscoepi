@@ -19,7 +19,7 @@
   padding: 8px 20px 8px 20px;
   color: white;
   width: 100%;
-  z-index: 98;
+  z-index: 85;
   top:0;
   font-size: 14px;
 }
@@ -52,6 +52,7 @@
 
 /* classes bootstrap */
 .z-99 {z-index: 99;}
+.z-90 {z-index: 90;}
 .panel {box-shadow: 3px 3px 10px rgba(0,0,0,0.5); background: white;}
 .panel-body,
 .panel-heading {padding: 10px !important;}
