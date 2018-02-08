@@ -11,21 +11,9 @@ class App extends Component {
     return (
       <div className="App">     
 
-      <Login />
-      <Dashboard/>
-    
-
-
-
-
-
-
-
-
-
-
-
-    
+        <Login />
+        <Dashboard/>   
+   
       </div>    
     );
   }  

@@ -82,13 +82,30 @@
       // alert('asda');
       $('#company').hide();
       $('#request').hide();
+      $('.dashboard').hide();
     });
 
 
     $("#logar").click(function(e) {
       e.preventDefault();
-      $('.Login').hide();     
+      $('.Login').remove();     
+      $('.dashboard').show(); 
+
       
     });
+
+
+    // $.ajax({
+    //   url: 'http://192.168.200.68/api/novousuario',
+    //   success: function(data) {
+    //       $('div').html(data);
+    //   },
+    //   beforeSend: function(){
+    //     $('.loader').css({display:"block"});
+    //   },
+    //   complete: function(){
+    //     $('.loader').css({display:"none"});
+    //   }
+    // });
   </script>
 </html>

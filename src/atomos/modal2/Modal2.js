@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 const Modal2 = props => (
   // <span>{props.text}</span>
 
-
 <div className="p-30">
 
 <div className="modal fade md-lg" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

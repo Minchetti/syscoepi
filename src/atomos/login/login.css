@@ -14,12 +14,12 @@
     justify-content: center;
     align-items: center;
     background: black;
-    color: #ccc;
     top:0;
     left:0;
     
   }
   .boxLogin{
+    color: #ccc;
     position: absolute;
     left: 0;
     right: 0;
@@ -35,7 +35,7 @@
     padding: 8px !important;
     margin-top:5px;
 }
-
+/* 
   .htmlL::before,
   .htmlL::after,
   .bodyL::before,
@@ -49,7 +49,7 @@
     height: .5vmin;
     border-radius: 50%;
     color: transparent;
-  }
+  } */
   
   /* html::before {
     box-shadow: 93vw 63vh .3vmin rgba(255,255,255,.8),
@@ -184,7 +184,7 @@
     border-radius: 50%;
     border: 1.3vmin solid currentColor;
     box-sizing: border-box; */
-    content: "";
+    /* content: "";
     display: block;
     position: absolute;
     z-index: -1;
@@ -195,7 +195,7 @@
     border-radius: 50%;
     border: 1.3vmin solid currentColor;
     -webkit-box-sizing: border-box;
-    box-sizing: border-box;
+    box-sizing: border-box; */
   }
   
   em {
@@ -219,7 +219,7 @@
   em.planet {
     /* -webkit-animation: planet-rotate 4s linear infinite;
     animation: planet-rotate 4s linear infinite; */
-    position: relative;  
+    /* position: relative;   */
   }
   
 .App-logoL{
@@ -243,7 +243,7 @@
     border-radius: 50%;
     background: black; */
 
-    content: "";
+    /* content: "";
     position: absolute;
     top: 0vmin;
     left: 0vmin;
@@ -251,7 +251,7 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background: black;
+    background: black; */
 }
 
   
@@ -265,20 +265,20 @@
     border-radius: 80px;
     width: 50px; */
 
-    -webkit-transform-origin: 40vmin 5vmin;
+    /* -webkit-transform-origin: 40vmin 5vmin;
     -ms-transform-origin: 40vmin 5vmin;
     transform-origin: 15.7vmin 2.5vmin;
     background: black;
     height: 40px;
     border-radius: 80px;
-    width: 40px;
+    width: 40px; */
   }
   
-  em.planet.right {
+  /* em.planet.right {
     -webkit-transform-origin: -20vmin 5vmin;
     transform-origin: -20vmin 5vmin;
-  }
-  
+  } */
+/*   
   @-webkit-keyframes planet-rotate {
     to {
       -webkit-transform: rotate(1turn);
@@ -289,4 +289,4 @@
     to {
       transform: rotate(1turn);
     }
-  }
+  } */

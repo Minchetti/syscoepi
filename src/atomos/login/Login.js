@@ -11,10 +11,9 @@ import logo from '../../logo.svg';
 
 
 const Login = props => (
-  // <span>{props.text}</span>
 
 
-<div className="Login p-absolute z-90 col h-100 ">
+<div className="Login p-absolute col h-100 ">
   <div className="boxLogin pt-80 p-absolute">
     <link href='https://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'/>
     
@@ -30,7 +29,7 @@ const Login = props => (
     </h1>
 
 
-    <form className="mt-80 text-left">
+    <form className="mt-20 text-left">
       <div className="form-group">
         <label for="exampleInputEmail1">User</label>
         <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"/>
@@ -59,7 +58,6 @@ const Login = props => (
 
 
 
-   /* <span>FORMULARIO 1</span> */
 );
 
 Login.propTypes = {
