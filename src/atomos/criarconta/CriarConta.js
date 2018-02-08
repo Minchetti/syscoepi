@@ -25,7 +25,7 @@ const CriarConta = props => (
         <form className="text-left d-flex flex-wrap">
           <div className="form-group col-md-6">
             <label for="exampleInputPassword1" className="pr-10"><i className="fa fa-user pr-2" aria-hidden="true"/>CNPJ: </label>
-            <input type="text" className="form-control" id="input-cnpj" aria-describedby="emailHelp" placeholder="Ex: 10770546617"/>
+            <input type="text" className="form-control" id="input-cnpj" aria-describedby="emailHelp" placeholder="Ex: 71.340.830/0001-06"/>
           </div>
           <div className="form-group col-md-6">
             <label for="exampleInputPassword1" className="pr-10"><i className="fa fa-user pr-2" aria-hidden="true"/>Nome Amigável: </label>
@@ -61,15 +61,15 @@ const CriarConta = props => (
           </div>
           <div className="form-group col-md-6">
             <label for="exampleFormControlSelect1"><i className="fa fa-truck pr-2" aria-hidden="true"></i>CEP</label>
-            <input type="text" className="form-control" id="input-cep" aria-describedby="emailHelp" placeholder="Ex: 37530000"/>
+            <input type="text" className="form-control" id="input-cep" aria-describedby="emailHelp" placeholder="Ex: 37.501-143"/>
           </div>
           <div className="form-group col-md-6">
             <label for="exampleFormControlSelect1"><i className="fa fa-truck pr-2" aria-hidden="true"></i>IBGE</label>
-            <input type="text" className="form-control" id="input-ibge" aria-describedby="emailHelp" placeholder="EX: 012345"/>
+            <input type="text" className="form-control" id="input-ibge" aria-describedby="emailHelp" placeholder="EX: 31212121"/>
           </div>
           <div className="form-group col-md-6">
             <label for="exampleFormControlSelect1"><i className="fa fa-truck pr-2" aria-hidden="true"></i>Tipo de Endereço</label>
-            <input type="text" className="form-control" id="input-tipo-endereco" aria-describedby="emailHelp" placeholder="Ex: 01"/>
+            <input type="text" className="form-control" id="input-tipo-endereco" aria-describedby="emailHelp" placeholder="Ex: 0"/>
           </div>
           <div className="form-group col-md-6">
             <label for="exampleFormControlSelect1"><i className="fa fa-truck pr-2" aria-hidden="true"></i>Nome</label>
@@ -84,8 +84,8 @@ const CriarConta = props => (
             <input type="text" className="form-control" id="input-senha" aria-describedby="emailHelp" placeholder="Ex: 123456"/>
           </div>
           <div className="form-group col-md-6">
-            <label for="exampleFormControlSelect1"><i className="fa fa-truck pr-2" aria-hidden="true"></i>Confirmar Senha</label>
-            <input type="text" className="form-control" id="input-confirmar-senha" aria-describedby="emailHelp" placeholder="Ex: 123456"/>
+            <label for="exampleFormControlSelect1"><i className="fa fa-truck pr-2" aria-hidden="true"></i>Confirma Senha</label>
+            <input type="text" className="form-control" id="input-confirma-senha" aria-describedby="emailHelp" placeholder="Ex: 123456"/>
           </div>
           {/* <div className="form-group col-md-6">
             <label for="exampleFormControlSelect1">
@@ -107,7 +107,7 @@ const CriarConta = props => (
         <button type="button" className="btn btn-danger" data-dismiss="modal">
           <i className="fa fa-times pr-2" aria-hidden="true" />Fechar
         </button>
-        <button type="button" className="btn btn-primary">
+        <button id="criar-conta" type="button" className="btn btn-primary">
           <i className="fa fa-plus pr-2" aria-hidden="true"/>Salvar
         </button>
       </div>
