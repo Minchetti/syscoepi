@@ -152,8 +152,6 @@
         }
       });
   });
-
-
   
   $("#logar").click(function(e) {
       e.preventDefault();
@@ -167,10 +165,11 @@
         url: 'https://jsonplaceholder.typicode.com/users',
         dataType: 'json',
         data: data,
-        success: function(msg) {
-          alert('DEU!');
-            console.log(msg);
-            alert(msg.name);
+        success: function(dados) {
+          var retorno = dados;
+          // alert('DEU!');
+          console.log(retorno[0].name);
+          console.log(retorno);
         },
         error: function(){
           alert('NAO!');
