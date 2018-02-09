@@ -11,7 +11,7 @@ import AlertaEpi from '../alertaepi';
 import UltimaReq from '../ultimareq';
 import ReqAberta from '../reqaberta';
 import ReqCancelada from '../reqcancelada';
-import CriarConta from '../criarconta';
+
 
 import Request from '../request';
 import Company from '../company';
@@ -28,7 +28,6 @@ const Dashboard = props => (
         <AlertaEpi /> 
         <div className="d-flex justify-content-between">
           <UltimaReq size="w-32" big="d-none "/>
-    {/* <p data-toggle="modal" data-target="#modal-criar-conta">Create Account</p>   */}
           <ReqAberta size="w-32" big="d-none "/> 
           <ReqCancelada size="w-32" big="d-none "/>
         </div>
@@ -38,7 +37,6 @@ const Dashboard = props => (
       <Request />
 
       <Modal2/>  
-    <CriarConta/>
     </div>
   </div>
 

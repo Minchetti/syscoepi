@@ -24,7 +24,7 @@ const Cabecalho = props => (
       </div>
 
       <div className="pr-20">
-        <i class="fa fa-user-circle" aria-hidden="true"></i> Usuário
+        <i className="fa fa-user-circle" aria-hidden="true"></i> Usuário
       </div>
       <div className="pr-20">
       <i className="fa fa-question-circle" aria-hidden="true"></i> Ajuda

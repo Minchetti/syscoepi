@@ -13,6 +13,11 @@ class App extends Component {
 
         <Login />        
         <Dashboard/>   
+        
+        <div className="modal-loading">
+          <i id="loading" className="fa fa-spinner" aria-hidden="true" ></i>
+        </div>
+        
    
       </div>    
     );

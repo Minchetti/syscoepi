@@ -47,10 +47,19 @@
   </body>
   <script>
 
+    // MENU
     $("#menu-toggle").click(function(e) {
       e.preventDefault();
       $(".nav-side-menu").toggleClass("active");
       $(".boxField").toggleClass("active");
+      // $("#menu-arrow").css('transform', 'rotate(-180deg)').animate(600);
+            
+      // $('#menu-arrow').toggle(function() {
+      //   $(this).rotate({ endDeg:180, persist:true });
+      // }, function() {
+      //   $(this).rotate({ endDeg:360 });
+      // });
+      
     });
     $(".dashboard").click(function(e) {
       e.preventDefault();
@@ -72,107 +81,103 @@
     });
 
 
-    // window.onload = function() {
-    //   $('html').addClass('htmlL');
-    //   $('body').addClass('bodyL');
-    // }
 
-    
+
+
+    // QNDO ABRIR 
     $(document).ready(function() {
-      // alert('asda');
+      // window.onload = function() {
       $('#company').hide();
       $('#request').hide();
       $('.dashboard').hide();
     });
+    
+    
+    
+    
+    // LOGAR
+    $("#logar").click(function(e) {
+        e.preventDefault();
+
+        $('.Login').remove();     
+        $('.dashboard').show();   
+
+        const data = {        
+          username: $('#user-login').val(),
+          email: $('#email-login').val()
+        }   
+        $.ajax({
+            type: "GET",
+            // url: 'https://jsonplaceholder.typicode.com/users',
+            url: 'http://192.168.200.68:49204/api/novousuario',
+            dataType: 'json',
+            data: data,
+            beforeSend: function(){
+              $('.modal-loading').show();
+              $('#loading').show();
+            },
+            success: function(dados) {
+              // console.log(retorno[0].name);
+              // console.log(retorno);             
+              $('.modal-loading').hide();
+              $('#loading').hide();
+              $('.Login').remove();     
+              $('.dashboard').show();   
+            },
+            error: function(){
+              $('.modal-loading').hide();
+              $('#loading').hide();
+              alert('Erro!');
+            }
+          });
+        });
 
 
-    // $("#logar").click(function(e) {
-    //   e.preventDefault();
-    //   $('.Login').remove();     
-    //   $('.dashboard').show(); 
-
-      
-    // });
 
 
+
+    // CRIAR CONTA
     $("#criar-conta").click(function(e) {
       e.preventDefault();
-
-      // const data = {
-      //    Cnpj: $('#input-cnpj').val(),
-      //    NomeAmigavel: $('#input-nome-amigavel').val(),
-      //    RazaoSocial:  $('#input-razao-social').val(),
-      //    Logradouro: $('#input-logradouro').val(),
-      //    Complemento: $('#input-complemento').val(),
-      //    Numero: $('#input-numero').val(),
-      //    Bairro: $('#input-bairro').val(),
-      //    Municipio: $('#input-municipio').val(),
-      //    UF: $('#input-uf').val(),
-      //    Cep: $('#input-cep').val(),
-      //    Ibge: $('#input-ibge').val(),
-      //    TipoEndereco: $('#input-tipo-endereco').val(),
-      //    Nome: $('#input-nome').val(),
-      //    Email: $('#input-email').val(),
-      //    Senha: $('#input-senha').val(),
-      //    ConfirmaSenha: $('#input-confirma-senha').val()
-      //  }
-       
-      //  console.log(data);
-
-
-    //   $.ajax({
-    //     type: "POST",
-    //     url: 'http://192.168.200.68:49204/api/novousuario',
-    //     dataType: 'json',
-    //     data: data,
-    //     success: function() {
-    //         alert('DEU!');
-    //     },
-    //     error: function(){
-    //       alert('NAO!');
-    //     }
-    //   });
       const data = {
-        title: 'Marcello',
-        body: 'MINCHETTI',
-        userId: 1
-      } 
-
-  $.ajax({
+         Cnpj: $('#input-cnpj').val(),
+         NomeAmigavel: $('#input-nome-amigavel').val(),
+         RazaoSocial:  $('#input-razao-social').val(),
+         Logradouro: $('#input-logradouro').val(),
+         Complemento: $('#input-complemento').val(),
+         Numero: $('#input-numero').val(),
+         Bairro: $('#input-bairro').val(),
+         Municipio: $('#input-municipio').val(),
+         UF: $('#input-uf').val(),
+         Cep: $('#input-cep').val(),
+         Ibge: $('#input-ibge').val(),
+         TipoEndereco: $('#input-tipo-endereco').val(),
+         Nome: $('#input-nome').val(),
+         Email: $('#input-email').val(),
+         Senha: $('#input-senha').val(),
+         ConfirmaSenha: $('#input-confirma-senha').val()
+       }     
+      $.ajax({
         type: "POST",
-        url: 'https://jsonplaceholder.typicode.com/posts',
+        url: 'http://192.168.200.68:49204/api/novousuario',
         dataType: 'json',
         data: data,
-        success: function(msg) {
-          alert('DEU!');
-            console.log(msg);
+        beforeSend: function(){
+          $('.modal-loading').show();
+          $('#loading').show();
+        },
+        success: function() {
+          $('.modal-loading').hide();
+          $('#loading').hide();
+          alert('Usuário Cadastrado!');
         },
         error: function(){
-          alert('NAO!');
-        }
-      });
-  });
-  
-  $("#logar").click(function(e) {
-      e.preventDefault();
-      const data = {        
-        username: $('#user-login').val(),
-        email: $('#email-login').val()
-      } 
-
-  $.ajax({
-        type: "GET",
-        url: 'https://jsonplaceholder.typicode.com/users',
-        dataType: 'json',
-        data: data,
-        success: function(dados) {
-          var retorno = dados;
-          // alert('DEU!');
-          console.log(retorno[0].name);
-          console.log(retorno);
+          $('.modal-loading').hide();
+          $('#loading').hide();
+          alert('Erro!');
         },
-        error: function(){
-          alert('NAO!');
+        complete: function(){
+          // $('.loader').css({display:"none"});
         }
       });
   });
@@ -180,13 +185,5 @@
 
 
 
-
-
-    // beforeSend: function(){
-    //   $('.loader').css({display:"block"});
-    // },
-    // complete: function(){
-    //   $('.loader').css({display:"none"});
-    // }
     </script>
 </html>

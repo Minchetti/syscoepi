@@ -8,7 +8,6 @@ import Form2 from '../form2';
 // import Modal1 from '../modal1';
 import Modal2 from '../modal1';
 import Button from '../button';
-import CriarConta from '../criarconta';
 
 
 // @flow
@@ -48,7 +47,6 @@ const Company = props => (
               <Button class="btn-dark ml-10" icon="fa-user-plus pr-10" text="Importar Funcionários"/> 
               <Button class="btn-dark ml-10" icon="fa-plus pr-10" text="Criar GH"/> 
               <Button class="btn-dark ml-10" icon="fa-plus pr-10" text="Criar CC"/> 
-              <p data-toggle="modal" data-target="#modal-criar-conta">Create Account</p>  
             </div>
 
             <Table1 />
@@ -60,7 +58,6 @@ const Company = props => (
         </div>
 
 
-        <CriarConta/>
         <Modal2/>  
 
       </div>

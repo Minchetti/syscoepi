@@ -7,7 +7,7 @@ const CriarConta = props => (
 
 <div className="p-30">
 
-<div className="modal fade md-lg" id="modal-criar-conta" tabindex="-1" role="dialog" aria-labelledby="modal-criar-conta-label" aria-hidden="true">
+<div className="modal fade md-lg" id="modal-criar-conta" tabIndex="-1" role="dialog" aria-labelledby="modal-criar-conta-label" aria-hidden="true">
   <div className="modal-dialog modal-lg" role="document">
     <div className="modal-content z-9999">
       <div className="modal-header d-flex justify-content-between align-center">
