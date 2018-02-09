@@ -86,54 +86,98 @@
     });
 
 
-    $("#logar").click(function(e) {
-      e.preventDefault();
-      $('.Login').remove();     
-      $('.dashboard').show(); 
+    // $("#logar").click(function(e) {
+    //   e.preventDefault();
+    //   $('.Login').remove();     
+    //   $('.dashboard').show(); 
 
       
-    });
+    // });
 
 
     $("#criar-conta").click(function(e) {
       e.preventDefault();
 
-      const data = {
-         Cnpj: $('#input-cnpj').val(),
-         NomeAmigavel: $('#input-nome-amigavel').val(),
-         RazaoSocial:  $('#input-razao-social').val(),
-         Logradouro: $('#input-logradouro').val(),
-         Complemento: $('#input-complemento').val(),
-         Numero: $('#input-numero').val(),
-         Bairro: $('#input-bairro').val(),
-         Municipio: $('#input-municipio').val(),
-         UF: $('#input-uf').val(),
-         Cep: $('#input-cep').val(),
-         Ibge: $('#input-ibge').val(),
-         TipoEndereco: $('#input-tipo-endereco').val(),
-         Nome: $('#input-nome').val(),
-         Email: $('#input-email').val(),
-         Senha: $('#input-senha').val(),
-         ConfirmaSenha: $('#input-confirma-senha').val()
-       }
+      // const data = {
+      //    Cnpj: $('#input-cnpj').val(),
+      //    NomeAmigavel: $('#input-nome-amigavel').val(),
+      //    RazaoSocial:  $('#input-razao-social').val(),
+      //    Logradouro: $('#input-logradouro').val(),
+      //    Complemento: $('#input-complemento').val(),
+      //    Numero: $('#input-numero').val(),
+      //    Bairro: $('#input-bairro').val(),
+      //    Municipio: $('#input-municipio').val(),
+      //    UF: $('#input-uf').val(),
+      //    Cep: $('#input-cep').val(),
+      //    Ibge: $('#input-ibge').val(),
+      //    TipoEndereco: $('#input-tipo-endereco').val(),
+      //    Nome: $('#input-nome').val(),
+      //    Email: $('#input-email').val(),
+      //    Senha: $('#input-senha').val(),
+      //    ConfirmaSenha: $('#input-confirma-senha').val()
+      //  }
        
-       console.log(data);
+      //  console.log(data);
 
 
-      $.ajax({
+    //   $.ajax({
+    //     type: "POST",
+    //     url: 'http://192.168.200.68:49204/api/novousuario',
+    //     dataType: 'json',
+    //     data: data,
+    //     success: function() {
+    //         alert('DEU!');
+    //     },
+    //     error: function(){
+    //       alert('NAO!');
+    //     }
+    //   });
+      const data = {
+        title: 'Marcello',
+        body: 'MINCHETTI',
+        userId: 1
+      } 
+
+  $.ajax({
         type: "POST",
-        url: 'http://192.168.200.68:49204/api/novousuario',
+        url: 'https://jsonplaceholder.typicode.com/posts',
         dataType: 'json',
         data: data,
-        success: function() {
-            alert('DEU!');
+        success: function(msg) {
+          alert('DEU!');
+            console.log(msg);
         },
         error: function(){
           alert('NAO!');
         }
       });
-    });
-    
+  });
+
+
+  
+  $("#logar").click(function(e) {
+      e.preventDefault();
+      const data = {        
+        username: $('#user-login').val(),
+        email: $('#email-login').val()
+      } 
+
+  $.ajax({
+        type: "GET",
+        url: 'https://jsonplaceholder.typicode.com/users',
+        dataType: 'json',
+        data: data,
+        success: function(msg) {
+          alert('DEU!');
+            console.log(msg);
+            alert(msg.name);
+        },
+        error: function(){
+          alert('NAO!');
+        }
+      });
+  });
+
 
 
 
