@@ -36,6 +36,10 @@ const CriarConta = props => (
             <input type="text" className="form-control" id="input-razao-social" aria-describedby="emailHelp" placeholder="Ex: Fitassul Comércio LTDFA"/>
           </div>
           <div className="form-group col-md-6">
+            <label for="exampleFormControlSelect1"><i className="fa fa-truck pr-2" aria-hidden="true"></i>CEP</label>
+            <input type="text" className="form-control" id="input-cep" aria-describedby="emailHelp" placeholder="Ex: 37.501-143"/>
+          </div>
+          <div className="form-group col-md-6">
             <label for="exampleInputPassword1" className="pr-10"><i className="fa fa-building pr-2" aria-hidden="true"/>Logradouro: </label>
             <input type="text" className="form-control" id="input-logradouro" aria-describedby="emailHelp" placeholder="Ex: Rua Silvestre Ferraz"/>
           </div>
@@ -58,10 +62,6 @@ const CriarConta = props => (
           <div className="form-group col-md-6">
             <label for="exampleFormControlSelect1"><i className="fa fa-truck pr-2" aria-hidden="true"></i>UF</label>
             <input type="text" className="form-control" id="input-uf" aria-describedby="emailHelp" placeholder="Ex: MG"/>
-          </div>
-          <div className="form-group col-md-6">
-            <label for="exampleFormControlSelect1"><i className="fa fa-truck pr-2" aria-hidden="true"></i>CEP</label>
-            <input type="text" className="form-control" id="input-cep" aria-describedby="emailHelp" placeholder="Ex: 37.501-143"/>
           </div>
           <div className="form-group col-md-6">
             <label for="exampleFormControlSelect1"><i className="fa fa-truck pr-2" aria-hidden="true"></i>IBGE</label>

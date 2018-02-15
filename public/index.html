@@ -46,39 +46,54 @@
     -->
   </body>
   <script>
+    var degree = 180;
 
     // MENU
     $("#menu-toggle").click(function(e) {
       e.preventDefault();
       $(".nav-side-menu").toggleClass("active");
       $(".boxField").toggleClass("active");
-      // $("#menu-arrow").css('transform', 'rotate(-180deg)').animate(600);
-            
+      $("#menu-arrow").css('transform', 'rotate(' + degree + 'deg)');
+      degree += 180;
+      // $("#menu-arrow").rotate(100);
       // $('#menu-arrow').toggle(function() {
       //   $(this).rotate({ endDeg:180, persist:true });
       // }, function() {
       //   $(this).rotate({ endDeg:360 });
-      // });
-      
+      // });      
     });
+
+
+    
     $(".dashboard").click(function(e) {
       e.preventDefault();
       $('#request').hide(400);
       $('#company').hide(400);
       $('#dash').show(400);
     });
+
     $(".request").click(function(e) {
-      e.preventDefault();
       $('#request').show(400);
       $('#company').hide(400);
       $('#dash').hide(400);
     });
-    $(".company").click(function(e) {
-      e.preventDefault();
-      $('#company').show(400);
-      $('#request').hide(400);
-      $('#dash').hide(400);
-    });
+
+    // $(".company").click(function(e) {
+    //   $('#company').show(400);
+    //   $('#request').hide(400);
+    //   $('#dash').hide(400);
+    // });
+    var visivel  = $('#company').is(':visible');
+      if (visivel){
+        $('#company').css('display','block');
+        $('#dash').css('display','none');
+        $('#company').css('display','none');
+      }
+      else {
+        $('#company').css('display','block');
+        $('#dash').css('display','none');
+        $('#company').css('display','none');
+      }
 
 
 
@@ -127,7 +142,7 @@
             error: function(){
               $('.modal-loading').hide();
               $('#loading').hide();
-              alert('Erro!');
+              // alert('Erro!');
             }
           });
         });
@@ -181,6 +196,75 @@
         }
       });
   });
+
+
+
+
+
+
+  // AUTOCOMPLETE CEP
+$(document).ready(function() {
+    function limpa_formulário_cep() {
+        // Limpa valores do formulário de cep.
+        $("#input-logradouro").val("");
+        $("#input-bairro").val("");
+        $("#input-municipio").val("");
+        $("#input-uf").val("");
+        $("#input-ibge").val("");
+    }
+    
+    //Quando o campo cep perde o foco.
+    $("#input-cep").blur(function() {
+
+        //Nova variável "cep" somente com dígitos.
+        var cep = $(this).val().replace(/\D/g, '');
+
+        //Verifica se campo cep possui valor informado.
+        if (cep != "") {
+
+            //Expressão regular para validar o CEP.
+            var validacep = /^[0-9]{8}$/;
+
+            //Valida o formato do CEP.
+            if(validacep.test(cep)) {
+
+                //Preenche os campos com "..." enquanto consulta webservice.
+                $("#input-logradouro").val("...");
+                $("#input-bairro").val("...");
+                $("#input-municipio").val("...");
+                $("#input-uf").val("...");
+                $("#input-ibge").val("...");
+
+                //Consulta o webservice viacep.com.br/
+                $.getJSON("https://viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
+
+                    if (!("erro" in dados)) {
+                        //Atualiza os campos com os valores da consulta.
+                        $("#input-logradouro").val(dados.logradouro);
+                        $("#input-bairro").val(dados.bairro);
+                        $("#input-municipio").val(dados.localidade);
+                        $("#input-uf").val(dados.uf);
+                        $("#input-ibge").val(dados.ibge);
+                    } //end if.
+                    else {
+                        //CEP pesquisado não foi encontrado.
+                        limpa_formulário_cep();
+                        alert("CEP não encontrado.");
+                    }
+                });
+            } //end if.
+            else {
+                //cep é inválido.
+                limpa_formulário_cep();
+                alert("Formato de CEP inválido.");
+            }
+        } //end if.
+        else {
+            //cep sem valor, limpa formulário.
+            limpa_formulário_cep();
+        }
+    });
+});
 
 
 
