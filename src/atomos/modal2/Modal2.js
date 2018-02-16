@@ -7,7 +7,7 @@ const Modal2 = props => (
 
 <div className="p-30">
 
-<div className="modal fade md-lg" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div className="modal fade md-lg" id="criar-conta" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div className="modal-dialog modal-lg" role="document">
     <div className="modal-content">
       <div className="modal-header d-flex justify-content-between align-center">

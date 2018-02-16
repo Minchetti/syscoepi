@@ -44,7 +44,7 @@ const Company = props => (
 
             <h3 className="mt-30">Metrosul</h3>
             <div className="col-md-12 d-flex align-center justify-content-center mb-20">
-              <Button class="btn-dark" icon="fa-info pr-10" text="Dados da Empresa" target="#criarConta"/>
+              <Button class="btn-dark" icon="fa-info pr-10" text="Dados da Empresa" target="#criar-conta"/>
               <Button class="btn-dark ml-10" icon="fa-user-plus pr-10" text="Importar Funcionários"/> 
               <Button class="btn-dark ml-10" icon="fa-plus pr-10" text="Criar GH"/> 
               <Button class="btn-dark ml-10" icon="fa-plus pr-10" text="Criar CC"/> 

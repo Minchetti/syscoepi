@@ -1,3 +1,3 @@
-import Modal1 from './Modal1';
+import Home from './Home';
 
-export default Modal1;
+export default Home;

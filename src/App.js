@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import './App.css';
 
 import Login from './atomos/login';
-import Dashboard from './atomos/dashboard';
+import Home from './atomos/home';
 
 class App extends Component {
   render() {
@@ -12,12 +12,14 @@ class App extends Component {
       <div className="App">     
 
         <Login />        
-        <Dashboard/>   
+        <Home />   
         
         <div className="modal-loading">
           <i id="loading" className="fa fa-spinner" aria-hidden="true" ></i>
         </div>
-        
+
+
+      
    
       </div>    
     );

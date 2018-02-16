@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from '../button';
+// import Button from '../button';
 import CriarConta from '../criarconta';
 import login from './login.css';
 
@@ -13,7 +13,7 @@ import logo from '../../logo.svg';
 const Login = props => (
 
 
-<div className="Login p-absolute col h-100 ">
+<div id="Login" className="p-absolute col h-100 ">
   <div className="boxLogin pt-80 p-absolute">
     <link href='https://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'/>
     

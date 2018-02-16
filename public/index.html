@@ -54,13 +54,7 @@
       $(".nav-side-menu").toggleClass("active");
       $(".boxField").toggleClass("active");
       $("#menu-arrow").css('transform', 'rotate(' + degree + 'deg)');
-      degree += 180;
-      // $("#menu-arrow").rotate(100);
-      // $('#menu-arrow').toggle(function() {
-      //   $(this).rotate({ endDeg:180, persist:true });
-      // }, function() {
-      //   $(this).rotate({ endDeg:360 });
-      // });      
+      degree += 180;   
     });
 
 
@@ -69,42 +63,29 @@
       e.preventDefault();
       $('#request').hide(400);
       $('#company').hide(400);
-      $('#dash').show(400);
+      $('#dashboard').show(400);
     });
 
     $(".request").click(function(e) {
+      e.preventDefault();
       $('#request').show(400);
       $('#company').hide(400);
-      $('#dash').hide(400);
+      $('#dashboard').hide(400);
     });
 
     $(".company").click(function(e) {
+      e.preventDefault();
+      $('#dashboard').hide(400);
       $('#company').show(400);
       $('#request').hide(400);
-      $('#dash').hide(400);
     });
-    var visivel  = $('#company').is(':visible');
-      if (visivel){
-        $('#company').css('display','block');
-        $('#dash').css('display','none');
-        $('#company').css('display','none');
-      }
-      else {
-        $('#company').css('display','block');
-        $('#dash').css('display','none');
-        $('#company').css('display','none');
-      }
-
 
 
 
 
     // QNDO ABRIR 
     $(document).ready(function() {
-      // window.onload = function() {
-      $('#company').hide();
-      $('#request').hide();
-      $('.dashboard').hide();
+      $('#home').hide();
     });
     
     
@@ -114,8 +95,10 @@
     $("#logar").click(function(e) {
         e.preventDefault();
 
-        $('.Login').remove();     
-        $('.dashboard').show();   
+        $('#Login').remove();     
+        $('#home').show();    
+        $('#request').hide(); 
+        $('#company').hide();   
 
         const data = {        
           username: $('#user-login').val(),
@@ -136,8 +119,8 @@
               // console.log(retorno);             
               $('.modal-loading').hide();
               $('#loading').hide();
-              $('.Login').remove();     
-              $('.dashboard').show();   
+              $('#Login').remove();     
+              $('#home').show();   
             },
             error: function(){
               $('.modal-loading').hide();
