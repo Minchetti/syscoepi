@@ -11,6 +11,7 @@ import Button from '../button';
 
 
 // @flow
+
 const Company = props => (
   // <span>{props.text}</span>
 
