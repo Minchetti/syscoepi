@@ -95,49 +95,58 @@
     $("#logar").click(function(e) {
         e.preventDefault();
 
-        $('#Login').remove();     
-        $('#home').show();    
-        $('#request').hide(); 
-        $('#company').hide();   
-
-        const data = {        
-          username: $('#user-login').val(),
-          email: $('#email-login').val()
+        const dados = {        
+          Email: $('#email-login').val(),
+          Password: $('#senha-login').val()
         }   
+
         $.ajax({
-            type: "GET",
+            type: "POST",
             // url: 'https://jsonplaceholder.typicode.com/users',
-            url: 'http://192.168.200.68:49204/api/novousuario',
-            dataType: 'json',
-            data: data,
+            url: 'http://192.168.10.30/v1/login',
+            dataType: 'JSON',
+            data: dados,
             beforeSend: function(){
               $('.modal-loading').show();
               $('#loading').show();
             },
-            success: function(dados) {
+            success: function() {
               // console.log(retorno[0].name);
               // console.log(retorno);             
               $('.modal-loading').hide();
-              $('#loading').hide();
+              $('#loading').hide(); 
+
               $('#Login').remove();     
-              $('#home').show();   
+              $('#home').show();    
+              $('#request').hide(); 
+              $('#company').hide();   
+
             },
-            error: function(){
+            error: function(txt){
               $('.modal-loading').hide();
               $('#loading').hide();
-              // alert('Erro!');
+              alert('Erro!');
+              console.log(txt);
             }
           });
         });
 
 
-
+// luciano@fitassul.com.br
+// Luciano123
 
 
     // CRIAR CONTA
     $("#criar-conta").click(function(e) {
       e.preventDefault();
-      const data = {
+
+       
+      $.ajax({
+        url: 'http://192.168.10.30/v1/novousuario',
+        type: "POST",
+        dataType: "json",
+        data:
+        {
          Cnpj: $('#input-cnpj').val(),
          NomeAmigavel: $('#input-nome-amigavel').val(),
          RazaoSocial:  $('#input-razao-social').val(),
@@ -154,12 +163,7 @@
          Email: $('#input-email').val(),
          Senha: $('#input-senha').val(),
          ConfirmaSenha: $('#input-confirma-senha').val()
-       }     
-      $.ajax({
-        type: "POST",
-        url: 'http://192.168.200.68:49204/api/novousuario',
-        dataType: 'json',
-        data: data,
+       },
         beforeSend: function(){
           $('.modal-loading').show();
           $('#loading').show();
@@ -169,14 +173,17 @@
           $('#loading').hide();
           alert('Usuário Cadastrado!');
         },
-        error: function(){
+        error: function(xhr, status, thrown){
           $('.modal-loading').hide();
           $('#loading').hide();
-          alert('Erro!');
-        },
-        complete: function(){
-          // $('.loader').css({display:"none"});
+          alert("erro!!!");
+          console.log(xhr);
+          console.log(status);
+          console.log(thrown);
         }
+        // complete: function(){
+        //   // $('.loader').css({display:"none"});
+        // }
       });
   });
 
