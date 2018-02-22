@@ -17,12 +17,15 @@ const Cabecalho = props => (
       {/* <h2 className="App-title">SySCOEPI</h2> */}
       {/* <img src={logofita} className="" alt="logo" /> */}
     </div>
-    <div className="d-flex ">
 
+    <div>
+      <span className="d-nonin msg-aviso"></span>
+    </div>
+
+    <div className="d-flex ">
       <div className="pr-30">
         <i className="fa fa-bell " aria-hidden="true"></i> 
       </div>
-
       <div className="pr-20">
         <i className="fa fa-user-circle" aria-hidden="true"></i> Usuário
       </div>

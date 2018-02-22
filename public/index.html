@@ -105,18 +105,68 @@
     
     
     // LOGAR
+    // $("#logar").click(function(e) {
+    //   e.preventDefault();
+      
+    //   const dados = {        
+    //     email: "luciano@fitassul.com.br",
+    //     password: "Luciano123"
+    //   }   
+      
+    //   $.ajax({
+    //     url: 'http://192.168.10.30/v1/login',
+    //     type: 'POST',
+    //     // dataType: 'json',
+    //     contentType: 'application/json',
+    //     crossDomain: true,
+    //     processData: false,
+    //     data: JSON.stringify(dados),
+    //     headers: {
+    //       'Access-Control-Allow-Origin': '*',
+    //       'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+    //       'Access-Control-Allow-Headers': 'Content-Type',
+    //       'Access-Control-Max-Age': '86400'
+    //     },
+    //         beforeSend: function(){
+    //           $('.modal-loading').show();
+    //           $('#loading').show();
+    //         },
+    //         success: function(deu) {      
+    //           alert("deu");
+    //           console.log(deu);      
+    //           $('.modal-loading').hide();
+    //           $('#loading').hide(); 
+
+    //           $('#Login').remove();     
+    //           $('#home').show();    
+    //           $('#request').hide(); 
+    //           $('#company').hide();   
+    //         },
+    //         error: function(err){
+    //           $('.modal-loading').hide();
+    //           $('#loading').hide();
+    //           alert('Erro!');
+    //         }
+    //       });
+    //     });
+
+
+
+
+
+
     $("#logar").click(function(e) {
       e.preventDefault();
       
-      const dados = {        
-        email: "luciano@fitassul.com.br",
-        password: "Luciano123"
+      const dados = {      
+        Email: $('#email-login').val(),
+        Password: $('#senha-login').val()
       }   
       
       $.ajax({
         url: 'http://192.168.10.30/v1/login',
         type: 'POST',
-        // dataType: 'json',
+        dataType: 'json',
         contentType: 'application/json',
         crossDomain: true,
         processData: false,
@@ -131,16 +181,33 @@
               $('.modal-loading').show();
               $('#loading').show();
             },
-            success: function(deu) {      
-              alert("deu");
-              console.log(deu);      
+            success: function(json) {    
               $('.modal-loading').hide();
               $('#loading').hide(); 
 
-              $('#Login').remove();     
-              $('#home').show();    
-              $('#request').hide(); 
-              $('#company').hide();   
+              if (json.success == true){
+                $('#Login').remove();     
+                $('#home').show();    
+                $('#request').hide(); 
+                $('#company').hide();
+                console.log(json);
+
+                // setTimeout(function(){
+                //   $('.msg-aviso').text('Bem Vindo '+json.data.nome+' !');
+                // }, 1000);
+                
+                $('.msg-aviso').text('Bem Vindo '+json.data.nome+' !');
+                $('.msg-aviso').fadeIn(1000);
+                $('.msg-aviso').fadeOut(6000);
+
+
+                
+
+              }  
+              else{
+                alert(json.message);
+              }
+
             },
             error: function(err){
               $('.modal-loading').hide();

@@ -60,7 +60,7 @@
 .d-flex {display:flex;}
 .flex-column {flex-direction:column;}
 .d-none {display:none; }
-/* .d-nonin {display:none; } */
+.d-nonin {display:none; }
 .justify-content-between {justify-content: space-between;}
 .justify-content-center {justify-content: center;}
 .align-center {align-items: center;}
