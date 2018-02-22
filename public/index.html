@@ -72,17 +72,17 @@
       $('#company').hide(400);
       $('#dashboard').hide(400);
     });
-
+    
     $(".company").click(function(e) {
       e.preventDefault();
       $('#dashboard').hide(400);
       $('#company').show(400);
       $('#request').hide(400);
     });
-
-
-
-
+    
+    
+    
+    
     // QNDO ABRIR 
     $(document).ready(function() {
       $('#home').hide();
@@ -91,28 +91,49 @@
     
     
     
+    
+    
+    
+    // headers: {
+    //     'Authorization':'Basic xxxxxxxxxxxxx',
+    //     'X_CSRF_TOKEN':'xxxxxxxxxxxxxxxxxxxx',
+    //     'Content-Type':'application/json'
+    // },    
+    
+    // url: 'https://jsonplaceholder.typicode.com/users',
+    
+    
+    
     // LOGAR
     $("#logar").click(function(e) {
-        e.preventDefault();
-
-        const dados = {        
-          Email: $('#email-login').val(),
-          Password: $('#senha-login').val()
-        }   
-
-        $.ajax({
-            type: "POST",
-            // url: 'https://jsonplaceholder.typicode.com/users',
-            url: 'http://192.168.10.30/v1/login',
-            dataType: 'JSON',
-            data: dados,
+      e.preventDefault();
+      
+      const dados = {        
+        email: "luciano@fitassul.com.br",
+        password: "Luciano123"
+      }   
+      
+      $.ajax({
+        url: 'http://192.168.10.30/v1/login',
+        type: 'POST',
+        // dataType: 'json',
+        contentType: 'application/json',
+        crossDomain: true,
+        processData: false,
+        data: JSON.stringify(dados),
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+          'Access-Control-Allow-Headers': 'Content-Type',
+          'Access-Control-Max-Age': '86400'
+        },
             beforeSend: function(){
               $('.modal-loading').show();
               $('#loading').show();
             },
-            success: function() {
-              // console.log(retorno[0].name);
-              // console.log(retorno);             
+            success: function(deu) {      
+              alert("deu");
+              console.log(deu);      
               $('.modal-loading').hide();
               $('#loading').hide(); 
 
@@ -120,13 +141,11 @@
               $('#home').show();    
               $('#request').hide(); 
               $('#company').hide();   
-
             },
-            error: function(txt){
+            error: function(err){
               $('.modal-loading').hide();
               $('#loading').hide();
               alert('Erro!');
-              console.log(txt);
             }
           });
         });
@@ -139,7 +158,6 @@
     // CRIAR CONTA
     $("#criar-conta").click(function(e) {
       e.preventDefault();
-
        
       $.ajax({
         url: 'http://192.168.10.30/v1/novousuario',
