@@ -22,10 +22,20 @@
     <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script>
+    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.13/jquery.mask.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
+    <!-- <link href="https://cdnjs.com/libraries/jquery.mask"/> -->
+    
+
+
+
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <!-- C:\laragon\www\fitassul\node_modules\react-bootstrap\es\utils -->
     <!-- https://cdnjs.cloudflare.com/ajax/libs/react-bootstrap/0.32.0/react-bootstrap.min.js -->
     
+
 
     <title>React App</title>
   </head>
@@ -65,7 +75,7 @@
       $('#company').hide(400);
       $('#dashboard').show(400);
     });
-
+    
     $(".request").click(function(e) {
       e.preventDefault();
       $('#request').show(400);
@@ -83,12 +93,25 @@
     
     
     
+    
     // QNDO ABRIR 
     $(document).ready(function() {
       $('#home').hide();
     });
     
+
+    // mascara form
+    $(document).ready(function() {
+      $('#input-celular').mask("(99) 9 9999-9999");
+      $('#input-cpf').mask("999.999.999-99");
+    });
     
+
+    // validar form
+    $(document).ready(function() {
+      $('#form-criar-conta').validate();
+    });
+
     
     
     
@@ -197,11 +220,8 @@
                 // }, 1000);
                 
                 $('.msg-aviso').text('Bem Vindo '+json.data.nome+' !');
-                $('.msg-aviso').fadeIn(1000);
-                $('.msg-aviso').fadeOut(6000);
-
-
-                
+                $('.msg-aviso').fadeIn(2000);
+                $('.msg-aviso').fadeOut(2000);               
 
               }  
               else{
@@ -232,28 +252,17 @@
         dataType: "json",
         data:
         {
-         Cnpj: $('#input-cnpj').val(),
-         NomeAmigavel: $('#input-nome-amigavel').val(),
-         RazaoSocial:  $('#input-razao-social').val(),
-         Logradouro: $('#input-logradouro').val(),
-         Complemento: $('#input-complemento').val(),
-         Numero: $('#input-numero').val(),
-         Bairro: $('#input-bairro').val(),
-         Municipio: $('#input-municipio').val(),
-         UF: $('#input-uf').val(),
-         Cep: $('#input-cep').val(),
-         Ibge: $('#input-ibge').val(),
-         TipoEndereco: $('#input-tipo-endereco').val(),
          Nome: $('#input-nome').val(),
+         Cpf: $('#input-cpf').val(),
+         Celular: $('#input-celular').val(),
          Email: $('#input-email').val(),
-         Senha: $('#input-senha').val(),
-         ConfirmaSenha: $('#input-confirma-senha').val()
+         Senha: $('#input-senha').val()
        },
         beforeSend: function(){
           $('.modal-loading').show();
           $('#loading').show();
         },
-        success: function() {
+        success: function(json) {
           $('.modal-loading').hide();
           $('#loading').hide();
           alert('Usuário Cadastrado!');
@@ -277,69 +286,71 @@
 
 
 
+
+
   // AUTOCOMPLETE CEP
-$(document).ready(function() {
-    function limpa_formulário_cep() {
-        // Limpa valores do formulário de cep.
-        $("#input-logradouro").val("");
-        $("#input-bairro").val("");
-        $("#input-municipio").val("");
-        $("#input-uf").val("");
-        $("#input-ibge").val("");
-    }
+// $(document).ready(function() {
+//     function limpa_formulário_cep() {
+//         // Limpa valores do formulário de cep.
+//         $("#input-logradouro").val("");
+//         $("#input-bairro").val("");
+//         $("#input-municipio").val("");
+//         $("#input-uf").val("");
+//         $("#input-ibge").val("");
+//     }
     
-    //Quando o campo cep perde o foco.
-    $("#input-cep").blur(function() {
+//     //Quando o campo cep perde o foco.
+//     $("#input-cep").blur(function() {
 
-        //Nova variável "cep" somente com dígitos.
-        var cep = $(this).val().replace(/\D/g, '');
+//         //Nova variável "cep" somente com dígitos.
+//         var cep = $(this).val().replace(/\D/g, '');
 
-        //Verifica se campo cep possui valor informado.
-        if (cep != "") {
+//         //Verifica se campo cep possui valor informado.
+//         if (cep != "") {
 
-            //Expressão regular para validar o CEP.
-            var validacep = /^[0-9]{8}$/;
+//             //Expressão regular para validar o CEP.
+//             var validacep = /^[0-9]{8}$/;
 
-            //Valida o formato do CEP.
-            if(validacep.test(cep)) {
+//             //Valida o formato do CEP.
+//             if(validacep.test(cep)) {
 
-                //Preenche os campos com "..." enquanto consulta webservice.
-                $("#input-logradouro").val("...");
-                $("#input-bairro").val("...");
-                $("#input-municipio").val("...");
-                $("#input-uf").val("...");
-                $("#input-ibge").val("...");
+//                 //Preenche os campos com "..." enquanto consulta webservice.
+//                 $("#input-logradouro").val("...");
+//                 $("#input-bairro").val("...");
+//                 $("#input-municipio").val("...");
+//                 $("#input-uf").val("...");
+//                 $("#input-ibge").val("...");
 
-                //Consulta o webservice viacep.com.br/
-                $.getJSON("https://viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
+//                 //Consulta o webservice viacep.com.br/
+//                 $.getJSON("https://viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
 
-                    if (!("erro" in dados)) {
-                        //Atualiza os campos com os valores da consulta.
-                        $("#input-logradouro").val(dados.logradouro);
-                        $("#input-bairro").val(dados.bairro);
-                        $("#input-municipio").val(dados.localidade);
-                        $("#input-uf").val(dados.uf);
-                        $("#input-ibge").val(dados.ibge);
-                    } //end if.
-                    else {
-                        //CEP pesquisado não foi encontrado.
-                        limpa_formulário_cep();
-                        alert("CEP não encontrado.");
-                    }
-                });
-            } //end if.
-            else {
-                //cep é inválido.
-                limpa_formulário_cep();
-                alert("Formato de CEP inválido.");
-            }
-        } //end if.
-        else {
-            //cep sem valor, limpa formulário.
-            limpa_formulário_cep();
-        }
-    });
-});
+//                     if (!("erro" in dados)) {
+//                         //Atualiza os campos com os valores da consulta.
+//                         $("#input-logradouro").val(dados.logradouro);
+//                         $("#input-bairro").val(dados.bairro);
+//                         $("#input-municipio").val(dados.localidade);
+//                         $("#input-uf").val(dados.uf);
+//                         $("#input-ibge").val(dados.ibge);
+//                     } //end if.
+//                     else {
+//                         //CEP pesquisado não foi encontrado.
+//                         limpa_formulário_cep();
+//                         alert("CEP não encontrado.");
+//                     }
+//                 });
+//             } //end if.
+//             else {
+//                 //cep é inválido.
+//                 limpa_formulário_cep();
+//                 alert("Formato de CEP inválido.");
+//             }
+//         } //end if.
+//         else {
+//             //cep sem valor, limpa formulário.
+//             limpa_formulário_cep();
+//         }
+//     });
+// });
 
 
 
