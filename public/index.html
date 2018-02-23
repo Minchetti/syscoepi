@@ -24,11 +24,11 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script>
     
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.13/jquery.mask.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
-    <!-- <link href="https://cdnjs.com/libraries/jquery.mask"/> -->
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.13/jquery.mask.min.js"></script>
 
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
+    
 
 
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
@@ -66,8 +66,6 @@
       $("#menu-arrow").css('transform', 'rotate(' + degree + 'deg)');
       degree += 180;   
     });
-
-
     
     $(".dashboard").click(function(e) {
       e.preventDefault();
@@ -107,12 +105,13 @@
     });
     
 
-    // validar form
-    $(document).ready(function() {
-      $('#form-criar-conta').validate();
-    });
+    // // validar form
+    // $(document).ready(function() {
+    //   $('#form-criar-conta').validate();
+    // });
 
-    
+
+   
     
     
     
