@@ -32,11 +32,11 @@ const CriarConta = props => (
           </div>
           <div className="form-group col-md-6">
             <label for="input-cpf"><i className="fa fa-id-card-o pr-2" aria-hidden="true"></i>CPF</label>
-            <input type="text" className="form-control" id="input-cpf" name="input-cpf" aria-describedby="emailHelp" required/>
+            <input type="text" className="form-control" id="input-cpf" name="input-cpf" aria-describedby="emailHelp" data-minlength="14" required />
             <div class="help-block with-errors"></div>
           </div>
           <div className="form-group col-md-6">
-            <label for="input-celular"><i className="fa fa-address-book pr-2" aria-hidden="true"></i>Celular</label>
+            <label for="input-celular"><i className="fa fa-address-book pr-2" aria-hidden="true" data-minlength="16"></i>Celular</label>
             <input type="text" className="form-control" id="input-celular" />
             <div class="help-block with-errors"></div>
           </div>
@@ -70,15 +70,17 @@ const CriarConta = props => (
         </form>        
       </div>
 
-
       <div className="modal-footer">
-        <button type="button" className="btn btn-danger" data-dismiss="modal">
-          <i className="fa fa-times pr-2" aria-hidden="true" />Fechar
-        </button>
-        <button id="criar-conta" type="button" className="btn btn-primary">
-          <i className="fa fa-plus pr-2" aria-hidden="true"/>Salvar
-        </button>
+        <div className="form-group mb-0">
+          <button type="button" className="btn btn-danger mr-10" data-dismiss="modal">
+            <i className="fa fa-times pr-2" aria-hidden="true" />Fechar
+          </button>
+          <button id="criar-conta" type="button" className="btn btn-primary" disabled>
+            <i className="fa fa-plus pr-2" aria-hidden="true"/>Salvar
+          </button>
+        </div>
       </div>
+
 
 
     </div>

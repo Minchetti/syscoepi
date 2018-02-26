@@ -103,6 +103,27 @@
       $('#input-celular').mask("(99) 9 9999-9999");
       $('#input-cpf').mask("999.999.999-99");
     });
+
+
+
+    // habilitar botao para cadastro
+    $( "#form-criar-conta input" ).keyup(function() {
+      if( $('#input-cpf').val().length == 14 && $('#input-nome').val()!="" && $('#input-email').val()!="" && $('#input-senha').val()!="" && $('.help-block ul li').val()!="" && $('#input-senha').val() == $('#input-confirma-senha').val() && ($('#input-celular').val().length == 16 || $('#input-celular').val().length == 0) ){
+        $("#criar-conta").attr("disabled", false);
+      }
+      else{
+        $("#criar-conta").attr("disabled", true);
+      }  
+
+      // if( $('#input-celular').val()!=""){
+      //   $("#input-celular").attr("required", true);    
+      //   $("#criar-conta").attr("disabled", true);  
+      // }
+      // else{
+      //   $("#input-celular").attr("required", false);
+      // }
+    });
+
     
 
     // // validar form
@@ -176,7 +197,7 @@
 
 
 
-
+    // LOGAR
     $("#logar").click(function(e) {
       e.preventDefault();
       
@@ -212,21 +233,14 @@
                 $('#home').show();    
                 $('#request').hide(); 
                 $('#company').hide();
-                console.log(json);
 
-                // setTimeout(function(){
-                //   $('.msg-aviso').text('Bem Vindo '+json.data.nome+' !');
-                // }, 1000);
-                
                 $('.msg-aviso').text('Bem Vindo '+json.data.nome+' !');
                 $('.msg-aviso').fadeIn(2000);
-                $('.msg-aviso').fadeOut(2000);               
-
+                $('.msg-aviso').fadeOut(2000);     
               }  
               else{
                 alert(json.message);
               }
-
             },
             error: function(err){
               $('.modal-loading').hide();
@@ -264,7 +278,7 @@
         success: function(json) {
           $('.modal-loading').hide();
           $('#loading').hide();
-          alert('Usuário Cadastrado!');
+          alert(json.message);
         },
         error: function(xhr, status, thrown){
           $('.modal-loading').hide();
