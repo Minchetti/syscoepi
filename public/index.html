@@ -236,7 +236,9 @@
 
                 $('.msg-aviso').text('Bem Vindo '+json.data.nome+' !');
                 $('.msg-aviso').fadeIn(2000);
-                $('.msg-aviso').fadeOut(2000);     
+                setTimeout(function(){
+                  $('.msg-aviso').fadeOut(2000);     
+                }, 2000);
               }  
               else{
                 alert(json.message);
