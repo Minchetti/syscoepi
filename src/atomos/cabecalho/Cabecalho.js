@@ -7,7 +7,7 @@ import logo from '../../logo.svg';
 
 // @flow
 const Cabecalho = props => (
-  
+
   <header className="App-header d-flex justify-content-between align-center p-fixed">
     <div className="d-flex align-center">  
       {/* <img src={logo} className="App-logo" alt="logo" /> */}
@@ -26,17 +26,20 @@ const Cabecalho = props => (
       <div className="pr-30">
         <i className="fa fa-bell " aria-hidden="true"></i> 
       </div>
-      <div className="pr-20">
-        <i className="fa fa-user-circle" aria-hidden="true"></i> Usuário
+      <div className="pr-20 c-pointer"  data-toggle="modal" data-target="#modal-usuario">
+        <i className="fa fa-user-circle" aria-hidden="true"></i> <span className="nome-usuario"></span>
       </div>
+      
       <div className="pr-20">
-      <i className="fa fa-question-circle" aria-hidden="true"></i> Ajuda
+        <i className="fa fa-question-circle" aria-hidden="true"></i> Ajuda
       </div>
-      <div className="pr-20">
-      <i className="fa fa-sign-out" aria-hidden="true"></i> Sair
+      <div className="pr-20" id="logout" >
+        <i className="fa fa-sign-out" aria-hidden="true"></i> Log Out
       </div>
+
     </div>
   </header>
+
 
 );
 

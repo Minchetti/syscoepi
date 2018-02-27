@@ -26,7 +26,6 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.13/jquery.mask.min.js"></script>
 
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
     
 
@@ -107,21 +106,24 @@
 
 
     // habilitar botao para cadastro
-    $( "#form-criar-conta input" ).keyup(function() {
+    // $( "#form-criar-conta input" ).keyup(function() {
+    //   if( $('#input-cpf').val().length == 14 && $('#input-nome').val()!="" && $('#input-email').val()!="" && $('#input-senha').val()!="" && $('.help-block ul li').val()!="" && $('#input-senha').val() == $('#input-confirma-senha').val() && ($('#input-celular').val().length == 16 || $('#input-celular').val().length == 0) ){
+    //     $("#criar-conta").attr("disabled", false);
+    //   }
+    //   else{
+    //     $("#criar-conta").attr("disabled", true);
+    //   } 
+    // });
+
+
+    // habilitar botao para cadastro
+    $( "#form-usuario input" ).keyup(function() {
       if( $('#input-cpf').val().length == 14 && $('#input-nome').val()!="" && $('#input-email').val()!="" && $('#input-senha').val()!="" && $('.help-block ul li').val()!="" && $('#input-senha').val() == $('#input-confirma-senha').val() && ($('#input-celular').val().length == 16 || $('#input-celular').val().length == 0) ){
-        $("#criar-conta").attr("disabled", false);
+        $("#btn-conta").attr("disabled", false);
       }
       else{
-        $("#criar-conta").attr("disabled", true);
-      }  
-
-      // if( $('#input-celular').val()!=""){
-      //   $("#input-celular").attr("required", true);    
-      //   $("#criar-conta").attr("disabled", true);  
-      // }
-      // else{
-      //   $("#input-celular").attr("required", false);
-      // }
+        $("#btn-conta").attr("disabled", true);
+      } 
     });
 
     
@@ -194,7 +196,11 @@
     //     });
 
 
-
+    // LOGOUT    
+    $("#logout").click(function(e) {
+      $('#Login').append();     
+      $('#home').remove();    
+    });
 
 
     // LOGAR
@@ -228,17 +234,31 @@
               $('.modal-loading').hide();
               $('#loading').hide(); 
 
+
               if (json.success == true){
                 $('#Login').remove();     
                 $('#home').show();    
                 $('#request').hide(); 
                 $('#company').hide();
 
+
+                // json no layout do modal de usuario
+                $('#input-nome').val(json.data.nome);
+                // $('#input-cpf').val(json.data.cpf);
+                // $('#input-celular').val(json.data.celular);
+                // $('#input-email').val(json.data.email);
+                // $('#input-senha').val(json.data.senha);
+                // $('#input-confirma-senha').val(json.data.confirma-senha);
+
+                // json no layout do cabeçalho
+                $('.nome-usuario').text(json.data.nome);
+
+                // json msg boas vindas
                 $('.msg-aviso').text('Bem Vindo '+json.data.nome+' !');
                 $('.msg-aviso').fadeIn(2000);
-                setTimeout(function(){
-                  $('.msg-aviso').fadeOut(2000);     
-                }, 2000);
+                setTimeout(function() {$('.msg-aviso').fadeOut(2000);}, 2000);
+                
+
               }  
               else{
                 alert(json.message);
@@ -251,8 +271,7 @@
             }
           });
         });
-
-
+        
 // luciano@fitassul.com.br
 // Luciano123
 
@@ -263,6 +282,47 @@
        
       $.ajax({
         url: 'http://192.168.10.30/v1/novousuario',
+        type: "POST",
+        dataType: "json",
+        data:
+        {
+         Nome: $('#input-nome').val(),
+         Cpf: $('#input-cpf').val(),
+         Celular: $('#input-celular').val(),
+         Email: $('#input-email').val(),
+         Senha: $('#input-senha').val()
+       },
+        beforeSend: function(){
+          $('.modal-loading').show();
+          $('#loading').show();
+        },
+        success: function(json) {
+          $('.modal-loading').hide();
+          $('#loading').hide();
+          alert(json.message);
+        },
+        error: function(xhr, status, thrown){
+          $('.modal-loading').hide();
+          $('#loading').hide();
+          alert("erro!!!");
+          console.log(xhr);
+          console.log(status);
+          console.log(thrown);
+        }
+        // complete: function(){
+        //   // $('.loader').css({display:"none"});
+        // }
+      });
+  });
+
+
+
+  // EDITAR CONTA
+  $("#criar-conta").click(function(e) {
+      e.preventDefault();
+       
+      $.ajax({
+        url: 'http://192.168.10.30/v1/editarusuario',
         type: "POST",
         dataType: "json",
         data:
@@ -366,7 +426,6 @@
 //         }
 //     });
 // });
-
 
 
 

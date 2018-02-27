@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 // import Button from '../button';
-import CriarConta from '../criarconta';
+// import CriarConta from '../criarconta';
+import ModalUsuario from '../modalusuario';
 import login from './login.css';
 
 import logo from '../../logo.svg';
@@ -46,7 +47,7 @@ const Login = props => (
         <label className="form-check-label" for="exampleCheck1">Check me out</label>
       </div> */}
       <button id="logar" type="submit" className="btn btn-primary btn-block btn-large float-right">Submit</button>
-      <p data-toggle="modal" data-target="#modal-criar-conta">Create Account</p>     
+      <p data-toggle="modal" data-target="#modal-usuario">Create Account</p>     
       
       {/* <Button class="btn-dark" icon="fa-info pr-10" text="Dados da Empresa"/> */}
     </form>
@@ -55,7 +56,9 @@ const Login = props => (
 
 
 
-    <CriarConta/>
+
+    {/* <CriarConta/> */}
+    <ModalUsuario name="Criar Usuário"/>
 </div>
 
 

@@ -13,6 +13,7 @@ import ReqAberta from '../reqaberta';
 import ReqCancelada from '../reqcancelada';
 import Dashboard from '../dashboard';
 
+import ModalUsuario from '../modalusuario';
 
 import Request from '../request';
 import Company from '../company';
@@ -44,7 +45,9 @@ const Home = props => (
       <Company /> 
       <Request />
 
-      <Modal2/>  
+      {/* <Modal2/>   */}
+      <ModalUsuario/>  
+
     </div>
   </div>
 
