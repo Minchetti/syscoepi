@@ -29,7 +29,7 @@ const Home = props => (
     <MenuLateral/>
 
 
-    <div className="boxField p-20">      
+    <div id="Home" className="boxField p-20">      
 
       {/* <div id="dash" className="d-nonin">
         <h4 className="text-shadow col mt-10"><i className="fa fa-dashboard" aria-hidden="true"></i> Dashboard</h4> 
