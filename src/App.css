@@ -67,10 +67,8 @@
 .flex-wrap {flex-wrap: wrap;}
 .p-0 {padding: 0 !important;}
 .pb-0 {padding-bottom: 0 !important;}
-.pl-10 {padding-left: 10px;}
 .pt-80 {padding-top: 80px;}
 .p-0 {padding:0;}
-.p-10 {padding:10px;}
 .p-20 {padding:20px !important;}
 .p-30 {padding:30px;}
 .pr-30 {padding-right: 30px;}
@@ -84,7 +82,6 @@
 .mt-20 {margin-top:20px;}
 .m-0 {margin:0;}
 .mb-0 {margin-bottom:0;}
-.mb-20 {margin-bottom:20px;}
 .mb-30 {margin-bottom:30px;}
 .mr-20 {margin-right:20px;}
 .m-20 {margin:20px;}

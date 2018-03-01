@@ -6,7 +6,7 @@ const Table1 = props => (
   // <span>{props.text}</span>
 
 
-<div className="panel mb-20">
+<div className="panel mb-4">
   <div className="panel-heading">
     <h6 className="text-left mb-0"><i className="fa fa-user pr-10" aria-hidden="true"></i>Funcionários</h6>
   </div>

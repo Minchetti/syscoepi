@@ -17,7 +17,7 @@ const Company = props => (
 
 
   <div id="company" className="">
-    <h4 className="mt-10 mb-20"><i className="fa fa-building" aria-hidden="true"></i> Empresas</h4>        
+    <h4 className="mt-10 mb-4"><i className="fa fa-building" aria-hidden="true"></i> Empresas</h4>        
 
         <div className=""> 
           {/* <Button class="btn-dark" icon="fa-user-plus" text="Adicionar"/> */}
@@ -26,7 +26,7 @@ const Company = props => (
           <div className=" d-flex flex-column">
             
             
-            <div className="d-flex mb-20">
+            <div className="d-flex mb-4">
               <div className="col-md-4 d-flex align-center p-0">
                 <div className="col-md-11 p-0">
                   <select class="form-control">

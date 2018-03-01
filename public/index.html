@@ -65,21 +65,18 @@
       $("#menu-arrow").css('transform', 'rotate(' + degree + 'deg)');
       degree += 180;   
     });
-
     $(".dashboard").click(function(e) {
       e.preventDefault();
       $('#request').hide(400);
       $('#company').hide(400);
       $('#dashboard').show(400);
-    });
-    
+    });    
     $(".request").click(function(e) {
       e.preventDefault();
       $('#request').show(400);
       $('#company').hide(400);
       $('#dashboard').hide(400);
-    });
-    
+    });    
     $(".company").click(function(e) {
       e.preventDefault();
       $('#dashboard').hide(400);
@@ -95,6 +92,7 @@
     });
     
 
+
     // mascara form
     $(document).ready(function() {
       $('#input-celular').mask("(99) 9 9999-9999");
@@ -102,7 +100,8 @@
     });
 
 
-    // habilitar botao para cadastro
+
+    // habilitar botao para cadastro e edição
     $( "#form-usuario input" ).keyup(function() {
       if( $('#input-cpf').val().length == 14 && $('#input-nome').val()!="" && $('#input-email').val()!="" && $('#input-senha').val()!="" && $('.help-block ul li').val()!="" && $('#input-senha').val() == $('#input-confirma-senha').val() && ($('#input-celular').val().length == 16 || $('#input-celular').val().length == 0) ){
         $("#btn-conta").attr("disabled", false);
@@ -112,24 +111,40 @@
       } 
     });
 
-    
+
+
+    // QNDO CLICAR NO LINK PARA ABRIR O MODAL DE CADASTRAR CONTRA
+    $('#lnk-criar-conta').click(function(e) {
+      e.preventDefault();
+      $('#btn-conta').addClass('criar-conta');
+      $('#btn-conta').removeClass('editar-conta');
+    });
+
+
+
+    // QNDO CLICAR NO LINK PARA ABRIR O MODAL DE PERFIL DO USUARIO
+    $('#lnk-painel-usuario').click(function(e) {
+      e.preventDefault();
+      $('#btn-conta').addClass('editar-conta');
+      $('#btn-conta').removeClass('criar-conta');
+    });
+
+
 
     // LOGOUT    
     $("#logout").click(function(e) {
-      $('#Login').append();     
-      $('#home').remove();    
+      $('#Login').show();     
+      $('#home').remove();     //remove
     });
 
 
     // LOGAR
     $("#logar").click(function(e) {
-      e.preventDefault();
-
+      e.preventDefault();    
       const dados = {      
         Email: $('#email-login').val(),
         Senha: $('#senha-login').val()
-      }   
-      
+      }      
       $.ajax({
         url: 'http://192.168.10.30/v1/clientes/login',
         type: 'POST',
@@ -144,138 +159,143 @@
           'Access-Control-Allow-Headers': 'Content-Type',
           'Access-Control-Max-Age': '86400'
         },
-            beforeSend: function(){
-              $('.modal-loading').show();
-              $('#loading').show();
-            },
-            success: function(json) {    
-              $('.modal-loading').hide();
-              $('#loading').hide(); 
+        beforeSend: function(){
+          $('.modal-loading').show();
+          $('#loading').show();
+        },
+        success: function(json) {    
+          $('.modal-loading').hide();
+          $('#loading').hide(); 
 
-              if (json.success == true){
-                $('#Login').remove();     
-                $('#home').show();    
-                $('#request').hide(); 
-                $('#company').hide();
+          if (json.success == true){
+            $('#Login').remove(); //remove    
+            $('#home').show();    
+            $('#request').hide(); 
+            $('#company').hide(); 
+            
+            // json no link para painel do usuario
+            $('.nome-usuario').text(json.data.nome);
+            
+            // json no cabeçalho do modal do painel do usuario
+            $('.modal .nome-usuario').text('Painel do Usuário - '+json.data.nome);  
 
-                // json no layout do modal de usuario
-                $('#input-nome').val(json.data.nome);
-                $('#input-cpf').val(json.data.cpf);
-                $('#input-celular').val(json.data.celular);
-                $('#input-email').val(json.data.email);
-                $('#input-senha').val(json.data.senha);
-                $('#input-confirma-senha').val(json.data.confirma-senha);
+            // json msg boas vindas
+            $('.msg-aviso').text('Bem Vindo '+json.data.nome);
+            $('.msg-aviso').fadeIn(2000);
+            setTimeout(function() {$('.msg-aviso').fadeOut(2000);}, 2000); 
 
-                // json no layout do cabeçalho
-                $('.nome-usuario').text(json.data.nome);
-
-                // json msg boas vindas
-                $('.msg-aviso').text('Bem Vindo '+json.data.nome+' !');
-                $('.msg-aviso').fadeIn(2000);
-                setTimeout(function() {$('.msg-aviso').fadeOut(2000);}, 2000);    
-              }  
-              else{
-                alert(json.message);
-              }
-            },
-            error: function(err){
-              $('.modal-loading').hide();
-              $('#loading').hide();
-              alert('Erro!');
-            }
-          });
-        });
+            // json no layout do modal de usuario
+            $('#input-nome').val(json.data.nome);
+            $('#input-cpf').val(json.data.cpf);
+            $('#input-celular').val(json.data.celular);
+            $('#input-email').val(json.data.email);
+            $('#input-senha').val(json.data.senha);
+            $('#input-confirma-senha').val(json.data.confirma-senha); 
+          }  
+          else{
+            alert(json.message+', '+json.data[0].message);
+            console.log(json);
+          }
+        },
+        error: function(err){
+          $('.modal-loading').hide();
+          $('#loading').hide();
+          console.log(err)
+          alert('Não conseguimos conectar ao servidor, tente novamente em alguns segundos');
+        }
+      });
+    });
         
 
 
-      // CRIAR NOVA CONTA
-      $("#Login #btn-conta").click(function(e) {
-          e.preventDefault();
-          
-          const dados = {      
-            nome: $('#input-nome').val(),
-            cpf: $('#input-cpf').val(),
-            email: $('#input-email').val(),
-            senha: $('#input-senha').val(),
-            confirmaSenha: $('#input-confirma-senha').val()
-          }   
-          
-          $.ajax({
-            url: 'http://192.168.10.30/v1/clientes/novo',
-            type: 'POST',
-            dataType: 'json',
-            contentType: 'application/json',
-            crossDomain: true,
-            processData: false,
-            data: JSON.stringify(dados),
-            headers: {
-              'Access-Control-Allow-Origin': '*',
-              'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-              'Access-Control-Allow-Headers': 'Content-Type',
-              'Access-Control-Max-Age': '86400'
-            },
-            beforeSend: function(){
-              $('.modal-loading').show();
-              $('#loading').show();
-            },
-            success: function(json) {    
-              $('.modal-loading').hide();
-              $('#loading').hide(); 
+    // CRIAR NOVA CONTA
+    $(".criar-conta").click(function(e) {
+      e.preventDefault();
+      const dados = {      
+        nome: $('#input-nome').val(),
+        cpf: $('#input-cpf').val(),
+        email: $('#input-email').val(),
+        senha: $('#input-senha').val(),
+        confirmaSenha: $('#input-confirma-senha').val()
+      }             
+      $.ajax({
+        url: 'http://192.168.10.30/v1/clientes/novo',
+        type: 'POST',
+        dataType: 'json',
+        contentType: 'application/json',
+        crossDomain: true,
+        processData: false,
+        data: JSON.stringify(dados),
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+          'Access-Control-Allow-Headers': 'Content-Type',
+          'Access-Control-Max-Age': '86400'
+        },
+        beforeSend: function(){
+          $('.modal-loading').show();
+          $('#loading').show();
+        },
+        success: function(json) {    
+          $('.modal-loading').hide();
+          $('#loading').hide(); 
 
-              if (json.success == true){
-                alert("Conta criada com sucesso! Verifique seu email e valide sua conta para logar!")
-              }
-              else{
-                console.log(json.message);
-                console.log('asasd');
-                console.log(json);
-              }
-            },
-            error: function(err){
-              $('.modal-loading').hide();
-              $('#loading').hide();
-              console.log(err);
-            }
-          });
-        });
-
-
-
-      // EDITAR CONTA
-      $("#Home #btn-conta").click(function(e) {
-          e.preventDefault();
-          
-          $.ajax({
-            url: 'http://192.168.10.30/v1/editarusuario',
-            type: "POST",
-            dataType: "json",
-            data:
-            {
-            Nome: $('#input-nome').val(),
-            Cpf: $('#input-cpf').val(),
-            Celular: $('#input-celular').val(),
-            Email: $('#input-email').val(),
-            Senha: $('#input-senha').val()
-          },
-            beforeSend: function(){
-              $('.modal-loading').show();
-              $('#loading').show();
-            },
-            success: function(json) {
-              $('.modal-loading').hide();
-              $('#loading').hide();
-              alert(json.message);
-            },
-            error: function(xhr, status, thrown){
-              $('.modal-loading').hide();
-              $('#loading').hide();
-              alert("erro!!!");
-              console.log(xhr);
-              console.log(status);
-              console.log(thrown);
-            }
-          });
+          if (json.success == true){
+            alert("Conta criada com sucesso! Verifique seu email e valide sua conta para logar!")
+            alert(json.message+', '+json.data[0].message);
+            console.log(json);
+          }
+          else{
+            alert(json.message+', '+json.data[0].message);
+            console.log(json);
+          }
+        },
+        error: function(err){
+          $('.modal-loading').hide();
+          $('#loading').hide();
+          console.log(err);
+          alert('Não conseguimos conectar ao servidor, tente novamente em alguns segundos');
+        }
       });
+    });
+
+
+
+    // EDITAR CONTA
+    $(".editar-conta").click(function(e) {
+      e.preventDefault();
+      
+      $.ajax({
+        url: 'http://192.168.10.30/v1/editarusuario',
+        type: "POST",
+        dataType: "json",
+        data:
+        {
+        Nome: $('#input-nome').val(),
+        Cpf: $('#input-cpf').val(),
+        Celular: $('#input-celular').val(),
+        Email: $('#input-email').val(),
+        Senha: $('#input-senha').val()
+      },
+        beforeSend: function(){
+          $('.modal-loading').show();
+          $('#loading').show();
+        },
+        success: function(json) {
+          $('.modal-loading').hide();
+          $('#loading').hide();
+          alert(json.message);
+        },
+        error: function(xhr, status, thrown){
+          $('.modal-loading').hide();
+          $('#loading').hide();
+          alert("erro!!!");
+          console.log(xhr);
+          console.log(status);
+          console.log(thrown);
+        }
+      });
+    });
 
 
 

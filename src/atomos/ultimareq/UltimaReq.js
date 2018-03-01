@@ -14,7 +14,7 @@ const UltimaReq = props => (
 <div className={props.size}>
 
 
-  <div className={'UltimaReq panel mb-20 ' + props.small}>
+  <div className={'UltimaReq panel mb-4 ' + props.small}>
     <div className="panel-heading ">
       <h6 className="text-left mb-0"><i className="fa fa-check-square-o pr-10" aria-hidden="true"></i>Ultimas Requisições  </h6>
     </div>
@@ -55,7 +55,7 @@ const UltimaReq = props => (
 
 
     
-  <div className={'UltimaReq panel mb-20 ' + props.big}>
+  <div className={'UltimaReq panel mb-4 ' + props.big}>
     <div className="panel-heading">
       <h6 className="text-left mb-0"><i className="fa fa-check-square-o pr-10" aria-hidden="true"></i>Últimas Requisições</h6>
     </div>

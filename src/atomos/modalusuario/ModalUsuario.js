@@ -7,8 +7,6 @@ import PropTypes from 'prop-types';
 
 
 
-
-
 // @flow
 const ModalUsuario = props => (
   

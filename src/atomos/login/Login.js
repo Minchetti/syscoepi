@@ -38,7 +38,7 @@ const Login = props => (
         {/* <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small> */}
       </div>
       <div className="form-group">
-        <label for="exampleInputPassword1">Password</label>
+        <label for="exampleInputPassword1">Senha</label>
         {/* <input type="password" className="form-control" id="senha-login" placeholder="Password"/> */}
         <input type="password" className="form-control" id="senha-login" aria-describedby="emailHelp" placeholder="Digite a senha"/>
       </div>
@@ -46,8 +46,12 @@ const Login = props => (
         <input type="checkbox" className="form-check-input" id="exampleCheck1"/>
         <label className="form-check-label" for="exampleCheck1">Check me out</label>
       </div> */}
-      <button id="logar" type="submit" className="btn btn-primary btn-block btn-large float-right">Submit</button>
-      <p data-toggle="modal" data-target="#modal-usuario">Create Account</p>     
+      <button id="logar" type="submit" className="btn btn-primary btn-block btn-large mb-2">ENTRAR</button>
+      <div className="d-flex justify-content-between w-100">
+        <span id="lnk-criar-conta" className="c-pointer" data-toggle="modal" data-target="#modal-usuario">Criar Conta</span> 
+        <span className="c-pointer">Esqueci a Senha</span>     
+      </div>
+
       
       {/* <Button class="btn-dark" icon="fa-info pr-10" text="Dados da Empresa"/> */}
     </form>

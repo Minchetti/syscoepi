@@ -11,7 +11,7 @@ const AlertaEpi = props => (
 
 
 
-<div className="AlertaEpi panel col p-0 mb-20">
+<div className="AlertaEpi panel col p-0 mb-4">
   <div className="panel-heading ">
     <h6 className="text-left mb-0"><i className="fa fa-exclamation-triangle pr-10" aria-hidden="true"></i>EPI's em Alerta  </h6>
   </div>

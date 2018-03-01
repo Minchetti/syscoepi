@@ -44,6 +44,7 @@ const Home = props => (
           <ReqCancelada size="w-32" big="d-none "/>
         </div>
       </div> */}
+      
 
       <Dashboard /> 
       <Company /> 
