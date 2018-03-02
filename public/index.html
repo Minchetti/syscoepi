@@ -56,6 +56,22 @@
   </body>
   <script>
     var degree = 180;
+    // 189.84.193.74 url da api
+
+    // TESTAR URL PARA VALIDAR EMAIL
+    // $(document).ready(function() {
+    //   var url = 'http://localhost:3000';
+    //   var url_atual = window.location.href;
+
+    //   if (url != url_atual){
+    //     var parametrosDaUrl = url.split("?")[1];
+    //     var listaDeParametros = parametrosDaUrl.split("&");
+    //     alert(listaDeParametros);
+    //   }
+    // });
+
+
+
 
     // MENU
     $("#menu-toggle").click(function(e) {
@@ -146,7 +162,7 @@
         Senha: $('#senha-login').val()
       }      
       $.ajax({
-        url: 'http://192.168.10.30/v1/clientes/login',
+        url: 'http://189.84.193.74/v1/clientes/login',
         type: 'POST',
         dataType: 'json',
         contentType: 'application/json',
