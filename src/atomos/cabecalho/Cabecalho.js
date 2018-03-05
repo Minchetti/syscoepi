@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import logo from '../../logo.svg';
 
 <link href='https://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'/>
@@ -10,7 +10,6 @@ const Cabecalho = props => (
 
   <header className="App-header d-flex justify-content-between align-center p-fixed">
     <div className="d-flex align-center">  
-      {/* <img src={logo} className="App-logo" alt="logo" /> */}
 
       <h2 className="App-title d-flex align-center"><span>SySC</span><img src={logo} className="App-logo " alt="logo" /><span className="mln-10">EPI</span></h2>
 
@@ -43,8 +42,8 @@ const Cabecalho = props => (
 
 );
 
-Cabecalho.propTypes = {
-  nome: PropTypes.string.isRequired,
-};
+// Cabecalho.propTypes = {
+//   nome: PropTypes.string.isRequired,
+// };
 
 export default Cabecalho;

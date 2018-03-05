@@ -1,13 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import capacete from '../../capacete.png';
 import bota2 from '../../bota2.png';
 import abafador from '../../abafador.png';
-import Button from '../button';
 
 // @flow
 const ReqAberta = props => (
-  // <span>{props.text}</span>
 
 <div className={props.size + ' ReqAberta'}>
 
@@ -119,16 +117,10 @@ const ReqAberta = props => (
 
 
 
-
-
-
-
-
-   /* <span>FORMULARIO 1</span> */
 );
 
-ReqAberta.propTypes = {
-  text: PropTypes.string.isRequired,
-};
+// ReqAberta.propTypes = {
+//   text: PropTypes.string.isRequired,
+// };
 
 export default ReqAberta;

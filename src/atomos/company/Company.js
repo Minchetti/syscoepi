@@ -1,10 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import Table1 from '../table1';
 import Table2 from '../table2';
 import Table3 from '../table3';
-import Form1 from '../form1';
-import Form2 from '../form2';
 // import Modal1 from '../modal1';
 import Modal2 from '../modal1';
 import Button from '../button';
@@ -13,14 +11,12 @@ import Button from '../button';
 // @flow
 
 const Company = props => (
-  // <span>{props.text}</span>
 
 
   <div id="company" className="">
     <h4 className="mt-10 mb-4"><i className="fa fa-building" aria-hidden="true"></i> Empresas</h4>        
 
         <div className=""> 
-          {/* <Button class="btn-dark" icon="fa-user-plus" text="Adicionar"/> */}
           <div className="">
           </div>
           <div className=" d-flex flex-column">
@@ -29,7 +25,7 @@ const Company = props => (
             <div className="d-flex mb-4">
               <div className="col-md-4 d-flex align-center p-0">
                 <div className="col-md-11 p-0">
-                  <select class="form-control">
+                  <select className="form-control">
                     <option>Metrosul</option>
                     <option>BrazOffice</option>
                     <option>Fitassul</option>
@@ -66,9 +62,9 @@ const Company = props => (
 
 );
 
-Company.propTypes = {
-  text: PropTypes.string.isRequired,
-};
+// Company.propTypes = {
+//   text: PropTypes.string.isRequired,
+// };
 
 export default Company;
 

@@ -58,17 +58,61 @@
     var degree = 180;
     // 189.84.193.74 url da api
 
-    // TESTAR URL PARA VALIDAR EMAIL
-    // $(document).ready(function() {
-    //   var url = 'http://localhost:3000';
-    //   var url_atual = window.location.href;
 
-    //   if (url != url_atual){
-    //     var parametrosDaUrl = url.split("?")[1];
-    //     var listaDeParametros = parametrosDaUrl.split("&");
-    //     alert(listaDeParametros);
-    //   }
-    // });
+
+
+
+    // TESTAR URL PARA VALIDAR EMAIL
+    $(document).ready(function() {
+      var url = 'http://localhost:3000/';
+      var url_atual = window.location.href;
+
+      if (url != url_atual){
+        var parametrosDaUrl = url_atual.split("?")[1];
+        var listaDeParametros = parametrosDaUrl.split("&");
+        var dados1 = listaDeParametros[0].split("=");
+        var dados2 = listaDeParametros[1].split("=");
+        
+        const dados = {
+          id: dados1[1],
+          token: dados2[1]
+        }
+        $.ajax({
+          url: 'http://192.168.10.30/v1/clientes/email/valida',
+          type: 'POST',
+          dataType: 'json',
+          contentType: 'application/json',
+          crossDomain: true,
+          processData: false,
+          data: JSON.stringify(dados),
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+            'Access-Control-Allow-Headers': 'Content-Type',
+            'Access-Control-Max-Age': '86400'
+          },
+          beforeSend: function(){
+            $('.modal-loading').show();
+            $('#loading').show();
+          },
+          success: function(json) {    
+            $('.modal-loading').hide();
+            $('#loading').hide();            
+            if (json.success == true){                         
+              console.log(json);
+            }             
+            else{
+              console.log(json);
+            }
+          },
+          error: function(json){
+            $('.modal-loading').hide();
+            $('#loading').hide();
+            alert('Não conseguimos conectar ao servidor, tente novamente em alguns segundos');
+          }
+        });
+      }
+    });
 
 
 
@@ -162,7 +206,8 @@
         Senha: $('#senha-login').val()
       }      
       $.ajax({
-        url: 'http://189.84.193.74/v1/clientes/login',
+        url: 'http://192.168.10.30/v1/clientes/login',
+        // url: 'http://189.84.193.74/v1/clientes/login',
         type: 'POST',
         dataType: 'json',
         contentType: 'application/json',

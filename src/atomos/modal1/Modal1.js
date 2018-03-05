@@ -1,16 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 // @flow
 const Modal1 = props => (
-  // <span>{props.text}</span>
-
 
 
 <div className="p-30">
 
 
-<div className="modal fade md-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div className="modal fade md-lg" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div className="modal-dialog modal-lg" role="document">
     <div className="modal-content">
       <div className="modal-header d-flex justify-content-between align-center">
@@ -32,15 +30,15 @@ const Modal1 = props => (
             </div>
           </div>
           <div className="form-group col-md-6">
-            <label for="exampleInputPassword1" className="pr-10"><i className="fa fa-user pr-5" aria-hidden="true"/>Nome: </label>
+            <label htmlFor="exampleInputPassword1" className="pr-10"><i className="fa fa-user pr-5" aria-hidden="true"/>Nome: </label>
             <span>Adriano</span>
           </div>
           <div className="form-group col-md-6">
-            <label for="exampleInputPassword1" className="pr-10"><i className="fa fa-building pr-5" aria-hidden="true"/>Setor: </label>
+            <label htmlFor="exampleInputPassword1" className="pr-10"><i className="fa fa-building pr-5" aria-hidden="true"/>Setor: </label>
             <span>Produção</span>
           </div>
           <div className="form-group col-md-6">
-            <label for="exampleFormControlSelect1">
+            <label htmlFor="exampleFormControlSelect1">
               <i className="fa fa-truck pr-5" aria-hidden="true"></i>Local da Entrega
             </label>
             <select className="form-control" id="exampleFormControlSelect1">
@@ -52,7 +50,7 @@ const Modal1 = props => (
             </select>
           </div>
           <div className="form-group col-md-6">
-            <label for="exampleFormControlSelect1">
+            <label htmlFor="exampleFormControlSelect1">
               <i className="fa fa-clock-o pr-5" aria-hidden="true"></i>Turno
             </label>
             <select className="form-control" id="exampleFormControlSelect1">
@@ -88,8 +86,8 @@ const Modal1 = props => (
 
 );
 
-Modal1.propTypes = {
-  text: PropTypes.string.isRequired,
-};
+// Modal1.propTypes = {
+//   text: PropTypes.string.isRequired,
+// };
 
 export default Modal1;

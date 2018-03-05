@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 
 
@@ -29,47 +29,35 @@ const ModalUsuario = props => (
           <div className="modal-body ">
             <form id="form-usuario" className="text-left d-flex flex-wrap" method="post" action="" data-toggle="validator" role="form">
               <div className="form-group col-md-6">
-                <label for="input-nome"><i className="fa fa-user pr-2" aria-hidden="true"></i>Nome</label>
+                <label htmlFor="input-nome"><i className="fa fa-user pr-2" aria-hidden="true"></i>Nome</label>
                 <input type="text" className="form-control" id="input-nome" aria-describedby="emailHelp" required />
-                <div class="help-block with-errors"></div>
+                <div className="help-block with-errors"></div>
               </div>
               <div className="form-group col-md-6">
-                <label for="input-cpf"><i className="fa fa-id-card-o pr-2" aria-hidden="true"></i>CPF</label>
+                <label htmlFor="input-cpf"><i className="fa fa-id-card-o pr-2" aria-hidden="true"></i>CPF</label>
                 <input type="text" className="form-control" id="input-cpf" name="input-cpf" aria-describedby="emailHelp" data-minlength="14" required />
-                <div class="help-block with-errors"></div>
+                <div className="help-block with-errors"></div>
               </div>
               <div className="form-group col-md-6">
-                <label for="input-celular"><i className="fa fa-address-book pr-2" aria-hidden="true" data-minlength="16"></i>Celular</label>
+                <label htmlFor="input-celular"><i className="fa fa-address-book pr-2" aria-hidden="true" data-minlength="16"></i>Celular</label>
                 <input type="text" className="form-control" id="input-celular" />
-                <div class="help-block with-errors"></div>
+                <div className="help-block with-errors"></div>
               </div>
               <div className="form-group col-md-6">
-                <label for="input-email"><i className="fa fa-envelope pr-2" aria-hidden="true"></i>Email</label>
+                <label htmlFor="input-email"><i className="fa fa-envelope pr-2" aria-hidden="true"></i>Email</label>
                 <input type="email" className="form-control" id="input-email" aria-describedby="emailHelp" required/>
-                <div class="help-block with-errors"></div>
+                <div className="help-block with-errors"></div>
               </div>
               <div className="form-group col-md-6">
-                <label for="input-senha"><i className="fa fa-key pr-2" aria-hidden="true"></i>Senha</label>
+                <label htmlFor="input-senha"><i className="fa fa-key pr-2" aria-hidden="true"></i>Senha</label>
                 <input type="password" className="form-control" id="input-senha" aria-describedby="emailHelp" required/>
-                <div class="help-block with-errors"></div>
+                <div className="help-block with-errors"></div>
               </div>
               <div className="form-group col-md-6">
-                <label for="input-confirma-senha"><i className="fa fa-key pr-2" aria-hidden="true"></i>Confirma Senha</label>
+                <label htmlFor="input-confirma-senha"><i className="fa fa-key pr-2" aria-hidden="true"></i>Confirma Senha</label>
                 <input type="password" className="form-control" id="input-confirma-senha" aria-describedby="emailHelp" data-match="#input-senha" data-match-error="Atenção! As senhas não estão iguais." required/>
-                <div class="help-block with-errors"></div>
+                <div className="help-block with-errors"></div>
               </div>
-              {/* <div className="form-group col-md-6">
-                <label for="exampleFormControlSelect1">
-                <i className="fa fa-clock-o pr-2" aria-hidden="true"></i>Turno
-                </label>
-                <select className="form-control" id="exampleFormControlSelect1">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-                </select>
-              </div> */}
             </form>        
           </div>
 
@@ -97,8 +85,8 @@ const ModalUsuario = props => (
 
 );
 
-ModalUsuario.propTypes = {
-  name: PropTypes.string.isRequired,
-};
+// ModalUsuario.propTypes = {
+//   name: PropTypes.string.isRequired,
+// };
 
 export default ModalUsuario;

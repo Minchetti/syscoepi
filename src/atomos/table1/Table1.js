@@ -1,10 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 // @flow
 const Table1 = props => (
-  // <span>{props.text}</span>
-
 
 <div className="panel mb-4">
   <div className="panel-heading">
@@ -35,7 +33,7 @@ const Table1 = props => (
           <td>Noturno</td>
           <td>1231233</td>
           <td>31231233</td>
-          <td><i class="fa fa-times" aria-hidden="true"></i></td>
+          <td><i className="fa fa-times" aria-hidden="true"></i></td>
         </tr>
         <tr>
           <th scope="row">2</th>
@@ -46,7 +44,7 @@ const Table1 = props => (
           <td>Diurno</td>
           <td>1231233</td>
           <td>31231233</td>
-          <td><i class="fa fa-times" aria-hidden="true"></i></td>
+          <td><i className="fa fa-times" aria-hidden="true"></i></td>
         </tr>
         <tr>
           <th scope="row">3</th>
@@ -57,7 +55,7 @@ const Table1 = props => (
           <td>Matutino</td>
           <td>1231233</td>
           <td>31231233</td>
-          <td><i class="fa fa-times" aria-hidden="true"></i></td>
+          <td><i className="fa fa-times" aria-hidden="true"></i></td>
         </tr>
       </tbody>
     </table>
@@ -65,13 +63,10 @@ const Table1 = props => (
 </div> 
 
 
-
-
-   /* <span>FORMULARIO 1</span> */
 );
 
-Table1.propTypes = {
-  text: PropTypes.string.isRequired,
-};
+// Table1.propTypes = {
+//   text: PropTypes.string.isRequired,
+// };
 
 export default Table1;

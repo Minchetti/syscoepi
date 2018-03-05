@@ -1,9 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-// import Button from '../button';
-// import CriarConta from '../criarconta';
+// import PropTypes from 'prop-types';
 import ModalUsuario from '../modalusuario';
-import login from './login.css';
+import './login.css';
 
 import logo from '../../logo.svg';
 
@@ -32,28 +30,21 @@ const Login = props => (
 
     <form className="mt-20 text-left">
       <div className="form-group">
-        <label for="exampleInputEmail1">Email</label>
+        <label htmlFor="exampleInputEmail1">Email</label>
         <input type="email" className="form-control" id="email-login" aria-describedby="emailHelp" placeholder="Digite o email"/>
-        {/* <input type="text" className="form-control" id="user-login" aria-describedby="emailHelp" placeholder="Enter user"/> */}
-        {/* <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small> */}
       </div>
       <div className="form-group">
-        <label for="exampleInputPassword1">Senha</label>
-        {/* <input type="password" className="form-control" id="senha-login" placeholder="Password"/> */}
+        <label htmlFor="exampleInputPassword1">Senha</label>
         <input type="password" className="form-control" id="senha-login" aria-describedby="emailHelp" placeholder="Digite a senha"/>
       </div>
-      {/* <div className="form-check">
-        <input type="checkbox" className="form-check-input" id="exampleCheck1"/>
-        <label className="form-check-label" for="exampleCheck1">Check me out</label>
-      </div> */}
-      <button id="logar" type="submit" className="btn btn-primary btn-block btn-large mb-2">ENTRAR</button>
+      <button id="logar" type="submit" className="btn btn-primary btn-block btn-large mb-2">
+        <i className="fa fa-sign-in pr-2" aria-hidden="true"/>Entrar
+      </button>
       <div className="d-flex justify-content-between w-100">
         <span id="lnk-criar-conta" className="c-pointer" data-toggle="modal" data-target="#modal-usuario">Criar Conta</span> 
         <span className="c-pointer">Esqueci a Senha</span>     
       </div>
 
-      
-      {/* <Button class="btn-dark" icon="fa-info pr-10" text="Dados da Empresa"/> */}
     </form>
 
     </div>
@@ -61,7 +52,6 @@ const Login = props => (
 
 
 
-    {/* <CriarConta/> */}
     <ModalUsuario name="Criar Usuário"/>
 </div>
 
@@ -69,8 +59,8 @@ const Login = props => (
 
 );
 
-Login.propTypes = {
-  text: PropTypes.string.isRequired,
-};
+// Login.propTypes = {
+//   text: PropTypes.string.isRequired,
+// };
 
 export default Login;

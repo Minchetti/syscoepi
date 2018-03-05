@@ -1,9 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import capacete from '../../capacete.png';
 import bota2 from '../../bota2.png';
 import abafador from '../../abafador.png';
-import Button from '../button';
 
 // @flow
 const ReqCancelada = props => (
@@ -116,18 +115,13 @@ const ReqCancelada = props => (
 
 
 
-
-
 </div>
 
 
-
-
-   /* <span>FORMULARIO 1</span> */
 );
 
-ReqCancelada.propTypes = {
-  text: PropTypes.string.isRequired,
-};
+// ReqCancelada.propTypes = {
+//   text: PropTypes.string.isRequired,
+// };
 
 export default ReqCancelada;

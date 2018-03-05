@@ -1,14 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import capacete from '../../capacete.png';
 import bota2 from '../../bota2.png';
 import abafador from '../../abafador.png';
-import Button from '../button';
 
 // @flow
 const UltimaReq = props => (
-  // <span>{props.text}</span>
-
 
 
 <div className={props.size}>
@@ -128,11 +125,10 @@ const UltimaReq = props => (
 
 
 
-   /* <span>FORMULARIO 1</span> */
 );
 
-UltimaReq.propTypes = {
-  text: PropTypes.string.isRequired,
-};
+// UltimaReq.propTypes = {
+//   text: PropTypes.string.isRequired,
+// };
 
 export default UltimaReq;

@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 // @flow
 const Button = props => (
@@ -9,11 +9,11 @@ const Button = props => (
   </button>
 );
 
-Button.propTypes = {
-  class: PropTypes.string.isRequired,
-  target: PropTypes.string.isRequired,
-  icon: PropTypes.string.isRequired,
-  text: PropTypes.string.isRequired
-};
+// Button.propTypes = {
+//   class: PropTypes.string.isRequired,
+//   target: PropTypes.string.isRequired,
+//   icon: PropTypes.string.isRequired,
+//   text: PropTypes.string.isRequired
+// };
 
 export default Button;

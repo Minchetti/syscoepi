@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 import AlertaEpi from '../alertaepi';
 import UltimaReq from '../ultimareq';
@@ -9,7 +9,6 @@ import ReqCancelada from '../reqcancelada';
 
 // @flow
 const Dashboard = props => (
-  // <span>{props.text}</span>
 
   <div id="dashboard" className="">
     <h4 className="text-shadow col mt-10"><i className="fa fa-dashboard" aria-hidden="true"></i> Dashboard</h4> 
@@ -22,14 +21,10 @@ const Dashboard = props => (
   </div>
 
 
-
-
-
-   /* <span>FORMULARIO 1</span> */
 );
 
-Dashboard.propTypes = {
-  text: PropTypes.string.isRequired,
-};
+// Dashboard.propTypes = {
+//   text: PropTypes.string.isRequired,
+// };
 
 export default Dashboard;
