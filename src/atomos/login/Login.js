@@ -15,6 +15,9 @@ const Login = props => (
 <div id="Login" className="p-absolute col h-100 ">
   <div className="boxLogin pt-80 p-absolute">
     <link href='https://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'/>
+    <div className="t-0 l-0 r-0 p-absolute d-nonin" id="msg-validou">
+      <i className="fa fa-check" aria-hidden="true"></i> Email validado com sucesso. Faça seu login.
+    </div>
     
     <h1 className="h1L">
       <em>S</em>

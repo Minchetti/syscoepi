@@ -12,9 +12,6 @@ class App extends Component {
       <div className="App">     
 
 
-
-
-
         <Login />        
         <Home />   
         

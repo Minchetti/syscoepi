@@ -60,8 +60,6 @@
 
 
 
-
-
     // TESTAR URL PARA VALIDAR EMAIL
     $(document).ready(function() {
       var url = 'http://localhost:3000/';
@@ -97,9 +95,14 @@
           },
           success: function(json) {    
             $('.modal-loading').hide();
-            $('#loading').hide();            
+            $('#loading').hide();  
+                      
             if (json.success == true){                         
               console.log(json);
+
+              // mostrar msg de confirmação de validação do email
+              $('#msg-validou').fadeIn(2000);
+              setTimeout(function() {$('#msg-validou').fadeOut(2000);}, 2000);  
             }             
             else{
               console.log(json);
