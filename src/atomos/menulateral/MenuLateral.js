@@ -4,7 +4,6 @@ import React from 'react';
 // @flow
 const MenuLateral = props => (
 
-
         <div className="nav-side-menu p-fixed">
           <div className="brand">
             <a id="menu-toggle"  className="d-flex justify-content-between align-center pl-2 pr-20">Menu
