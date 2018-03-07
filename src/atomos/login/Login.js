@@ -11,7 +11,6 @@ import logo from '../../logo.svg';
 
 const Login = props => (
 
-
 <div id="Login" className="p-absolute col h-100 ">
   <div className="boxLogin pt-80 p-absolute">
     <link href='https://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'/>
