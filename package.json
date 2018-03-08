@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "fetch-api": "0.0.2",
     "font-awesome": "^4.7.0",
     "jquery-mask-plugin": "^1.14.13",
     "react": "^16.2.0",
