@@ -205,63 +205,63 @@
 
 
     // LOGAR
-    $("#logar").click(function(e) {
-      e.preventDefault();    
-      const dados = {      
-        Email: $('#email-login').val(),
-        Senha: $('#senha-login').val()
-      }      
-      $.ajax({
-        url: 'http://192.168.10.30/v1/clientes/login',
-        type: 'POST',
-        contentType: 'application/json',
-        data: JSON.stringify(dados),
-        beforeSend: function(){
-          $('.modal-loading').show();
-          $('#loading').show();
-        },
-        success: function(json) {    
-          $('.modal-loading').hide();
-          $('#loading').hide(); 
+    // $("#logar").click(function(e) {
+    //   e.preventDefault();    
+    //   const dados = {      
+    //     Email: $('#email-login').val(),
+    //     Senha: $('#senha-login').val()
+    //   }      
+    //   $.ajax({
+    //     url: 'http://192.168.10.30/v1/clientes/login',
+    //     type: 'POST',
+    //     contentType: 'application/json',
+    //     data: JSON.stringify(dados),
+    //     beforeSend: function(){
+    //       $('.modal-loading').show();
+    //       $('#loading').show();
+    //     },
+    //     success: function(json) {    
+    //       $('.modal-loading').hide();
+    //       $('#loading').hide(); 
 
-          if (json.success == true){
-            $('#Login').remove(); //remove    
-            $('#home').show();    
-            $('#request').hide(); 
-            $('#company').hide(); 
+    //       if (json.success == true){
+    //         $('#Login').remove(); //remove    
+    //         $('#home').show();    
+    //         $('#request').hide(); 
+    //         $('#company').hide(); 
             
-            // json no link para painel do usuario
-            $('.nome-usuario').text(json.data.nome);
+    //         // json no link para painel do usuario
+    //         $('.nome-usuario').text(json.data.nome);
             
-            // json no cabeçalho do modal do painel do usuario
-            $('.modal .nome-usuario').text('Painel do Usuário - '+json.data.nome);  
+    //         // json no cabeçalho do modal do painel do usuario
+    //         $('.modal .nome-usuario').text('Painel do Usuário - '+json.data.nome);  
 
-            // json msg boas vindas
-            $('.msg-aviso').text('Bem Vindo '+json.data.nome);
-            $('.msg-aviso').fadeIn(2000);
-            setTimeout(function() {$('.msg-aviso').fadeOut(2000);}, 2000); 
+    //         // json msg boas vindas
+    //         $('.msg-aviso').text('Bem Vindo '+json.data.nome);
+    //         $('.msg-aviso').fadeIn(2000);
+    //         setTimeout(function() {$('.msg-aviso').fadeOut(2000);}, 2000); 
 
-            // json no layout do modal de usuario
-            $('#input-nome').val(json.data.nome);
-            $('#input-cpf').val(json.data.cpf);
-            $('#input-celular').val(json.data.celular);
-            $('#input-email').val(json.data.email);
-            $('#input-senha').val(json.data.senha);
-            $('#input-confirma-senha').val(json.data.confirma-senha); 
-          }  
-          else{
-            alert(json.message+', '+json.data[0].message);
-            console.log(json);
-          }
-        },
-        error: function(err){
-          $('.modal-loading').hide();
-          $('#loading').hide();
-          console.log(err)
-          alert('Não conseguimos conectar ao servidor, tente novamente em alguns segundos');
-        }
-      });
-    });
+    //         // json no layout do modal de usuario
+    //         $('#input-nome').val(json.data.nome);
+    //         $('#input-cpf').val(json.data.cpf);
+    //         $('#input-celular').val(json.data.celular);
+    //         $('#input-email').val(json.data.email);
+    //         $('#input-senha').val(json.data.senha);
+    //         $('#input-confirma-senha').val(json.data.confirma-senha); 
+    //       }  
+    //       else{
+    //         alert(json.message+', '+json.data[0].message);
+    //         console.log(json);
+    //       }
+    //     },
+    //     error: function(err){
+    //       $('.modal-loading').hide();
+    //       $('#loading').hide();
+    //       console.log(err)
+    //       alert('Não conseguimos conectar ao servidor, tente novamente em alguns segundos');
+    //     }
+    //   });
+    // });
         
 
 
