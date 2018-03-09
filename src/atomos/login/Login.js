@@ -75,38 +75,38 @@ import logo from '../../logo.svg';
 class Login extends React.Component {
       state = {
         email : '',
-        senha : ''
+        senha : '',
+        redirectToReferrer: false
       }
 
 
-  onSubmit = e => {         
-    fetch("http://192.168.10.30/v1/clientes/login",{ 
-      method: 'post',
-      body: JSON.stringify(this.state),
-      headers: {
-        'content-type': 'application/json'
-      },
-    })
-    .then(function(response){
-        response.json().then(function(data){
-          console.log(data);
-
-          if (data.success == true){
-            alert(data.message);
-          }
-          else{
-            alert(data.message);
-
-          }
-          
+      onSubmit = e => {        
+        fetch("http://192.168.10.30/v1/clientes/login",{
+          method: 'post',
+          body: JSON.stringify(this.state),
+          headers: {
+            'content-type': 'application/json'
+          },
+        })
+        .then((response) =>{
+            response.json().then((data) =>{
+              console.log(data);
+     
+              if (data.success == true){
+                alert(data.message);
+                  this.setState({ redirectToReferrer: true });
+              }
+              else{
+                alert(data.message);
+     
+              }          
+            });
+        })
+        .catch((err) =>{
+          console.error('Failed retrieving information', err);
+          alert('nao deu');
         });
-    })
-    .catch(function(err){
-      console.error('Failed retrieving information', err);
-      alert('nao deu');
-    });
-
-  }
+      }
 
 
   render(){
