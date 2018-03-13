@@ -90,37 +90,6 @@ class Login extends React.Component {
       this.setState({ logged: false });
     });
   };
-
-
-  // onSubmit = e => {
-  //   localStorage.setItem('logged', true);
-  //   this.setState({ logged: true });
-  //   debugger;
-    // fetch("http://192.168.10.30/v1/clientes/login",{
-    //   method: 'post',
-    //   body: JSON.stringify(this.state),
-    //   headers: {
-    //     'content-type': 'application/json'
-    //   },
-    // })
-    // .then((response) =>{
-    //     response.json().then((data) =>{
-    //       console.log(data);
-
-    //       if (data.success == true){
-    //         alert(data.message);
-    //         localStorage.setItem('logged', true);
-    //       }
-    //       else{
-    //         alert(data.message);
-
-    //       }
-    //     });
-    // })
-    // .catch((err) =>{
-    //   console.error('Failed retrieving information', err);
-    //   alert('nao deu');
-    // });
   
 
   render() {
@@ -128,7 +97,7 @@ class Login extends React.Component {
       return (
         <Redirect
           to={{
-            pathname: '/protected',
+            pathname: '/home',
             state: { from: this.props.location },
           }}
         />
@@ -136,7 +105,7 @@ class Login extends React.Component {
     } else {
       return (
         <div>
-          <div className="boxLogin pt-80 p-absolute">
+          <div className="boxLogin pt-80 p-absolute t-30">
             <link
               href="https://fonts.googleapis.com/css?family=Josefin+Sans"
               rel="stylesheet"

@@ -18,6 +18,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+
+      <h1>PAGINA INSTITUCIONAL</h1>
         <Router>
           <div>
             <AuthButton />
@@ -31,7 +33,7 @@ class App extends Component {
             </ul>
             <Route path="/public" component={Public} />
             <Route path="/login" component={Login} />
-            <PrivateRoute path="/protected" component={Protected} />
+            <PrivateRoute path="/home" component={Home} />
           </div>
         </Router>
 
