@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 import './App.css';
 import Home from './atomos/home';
 import Login from './atomos/login';
-import API from 'fetch-api';
 // import $ from 'https://code.jquery.com/jquery-2.2.4.js';
 
 import {
@@ -12,18 +11,14 @@ import {
   Route,
   Link,
   Redirect,
-  withRouter
-} from "react-router-dom";
+  withRouter,
+} from 'react-router-dom';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">     
-
-      
-
-
-         <Router>
+      <div className="App">
+        <Router>
           <div>
             <AuthButton />
             <ul>
@@ -40,18 +35,14 @@ class App extends Component {
           </div>
         </Router>
 
+        {/* <Home />     */}
+        {/* <Login />         */}
 
-      {/* <Home />     */}
-      {/* <Login />         */}
-        
         <div className="modal-loading">
-          <i id="loading" className="fa fa-spinner" aria-hidden="true" ></i>
+          <i id="loading" className="fa fa-spinner" aria-hidden="true" />
         </div>
 
-
-
-
-{/* <div id="Login" className="p-absolute col h-100 ">
+        {/* <div id="Login" className="p-absolute col h-100 ">
   <div className="boxLogin pt-80 p-absolute">
     <link href='https://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'/>
     <div className="t-0 l-0 r-0 p-absolute d-nonin" id="msg-validou">
@@ -76,41 +67,34 @@ class App extends Component {
     </form>
   </div>
 </div>  */}
-
-
-
-
-
-
-      </div>    
+      </div>
     );
-  }  
+  }
 }
 
-const fakeAuth = {
-  isAuthenticated: false,
-  authenticate(cb) {
-    this.isAuthenticated = true;
-    setTimeout(cb, 100); // fake async
-  },
-  signout(cb) {
-    this.isAuthenticated = false;
-    setTimeout(cb, 100);
-  }
-};
-
-
-
-
+// const fakeAuth = {
+//   isAuthenticated: false,
+//   authenticate(cb) {
+//     this.isAuthenticated = true;
+//     setTimeout(cb, 100); // fake async
+//   },
+//   signout(cb) {
+//     this.isAuthenticated = false;
+//     setTimeout(cb, 100);
+//   },
+// };
 
 const AuthButton = withRouter(
   ({ history }) =>
-    fakeAuth.isAuthenticated ? (
+  localStorage.getItem('logged') ? (
       <p>
-        Welcome!{" "}
+        Welcome!{' '}
         <button
           onClick={() => {
-            fakeAuth.signout(() => history.push("/"));
+            // fakeAuth.signout(() => history.push('/'));
+            localStorage.removeItem('logged');
+            history.push('/login')
+            
           }}
         >
           Sign out
@@ -121,17 +105,15 @@ const AuthButton = withRouter(
     )
 );
 
-
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
     render={props =>
-      fakeAuth.isAuthenticated ? (
+      localStorage.getItem('logged') ? (
         <Component {...props} />
       ) : (
-        <Redirect
-          to={{
-            pathname: "/login",
+        <Redirect 
+          to={{pathname: '/login', 
             state: { from: props.location }
           }}
         />
@@ -140,24 +122,20 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
   />
 );
 
-
-
 const Public = () => <h3>Public</h3>;
 const Protected = () => <h3>Protected</h3>;
-
-
 
 // class Login extends React.Component {
 //   state = {
 //     redirectToReferrer: false
-//   };  
-  
+//   };
+
 //   login = () => {
 //     const dados = {
 //       Email: 'minchettimarcello@gmail.com',
 //       Senha: '123'
 //     }
-//     fetch("http://192.168.10.30/v1/clientes/login",{ 
+//     fetch("http://192.168.10.30/v1/clientes/login",{
 //       method: 'post',
 //       body: JSON.stringify(dados),
 //       headers: {
@@ -176,14 +154,13 @@ const Protected = () => <h3>Protected</h3>;
 //       console.error('Failed retrieving information', err);
 //       alert('nao deu');
 //     });
-    
+
 //     fakeAuth.authenticate(() => {
 //       this.setState({ redirectToReferrer: true });
 //     });
-    
+
 //   };
-  
-  
+
 //   render() {
 //     const { from } = this.props.location.state || { from: { pathname: "/" } };
 //     const { redirectToReferrer } = this.state;
@@ -202,71 +179,67 @@ const Protected = () => <h3>Protected</h3>;
 
 export default App;
 
+// const dados = {
+//   Email: $('#email-login').val(),
+//   Senha: $('#senha-login').val()
+// }
+// $.ajax({
+//   url: 'http://192.168.10.30/v1/clientes/login',
+//   type: 'POST',
+//   dataType: 'json',
+//   contentType: 'application/json',
+//   crossDomain: true,
+//   processData: false,
+//   data: JSON.stringify(dados),
+//   headers: {
+//     'Access-Control-Allow-Origin': '*',
+//     'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+//     'Access-Control-Allow-Headers': 'Content-Type',
+//     'Access-Control-Max-Age': '86400'
+//   },
+//   beforeSend: function(){
+//     $('.modal-loading').show();
+//     $('#loading').show();
+//   },
+//   success: function(json) {
+//     $('.modal-loading').hide();
+//     $('#loading').hide();
 
-       
-              
-              
-      // const dados = {      
-      //   Email: $('#email-login').val(),
-      //   Senha: $('#senha-login').val()
-      // }      
-      // $.ajax({
-      //   url: 'http://192.168.10.30/v1/clientes/login',
-      //   type: 'POST',
-      //   dataType: 'json',
-      //   contentType: 'application/json',
-      //   crossDomain: true,
-      //   processData: false,
-      //   data: JSON.stringify(dados),
-      //   headers: {
-      //     'Access-Control-Allow-Origin': '*',
-      //     'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-      //     'Access-Control-Allow-Headers': 'Content-Type',
-      //     'Access-Control-Max-Age': '86400'
-      //   },
-      //   beforeSend: function(){
-      //     $('.modal-loading').show();
-      //     $('#loading').show();
-      //   },
-      //   success: function(json) {    
-      //     $('.modal-loading').hide();
-      //     $('#loading').hide(); 
-          
-      //     if (json.success == true){
-      //       this.setState({ redirectToReferrer: true });
-      //       $('#Login').remove(); //remove    
-      //       $('#home').show();    
-      //       $('#request').hide(); 
-      //       $('#company').hide(); 
-            
-      //       // json no link para painel do usuario
-      //       $('.nome-usuario').text(json.data.nome);
-            
-      //       // json no cabeçalho do modal do painel do usuario
-      //       $('.modal .nome-usuario').text('Painel do Usuário - '+json.data.nome);  
-      
-      //       // json msg boas vindas
-      //       $('.msg-aviso').text('Bem Vindo '+json.data.nome);
-      //       $('.msg-aviso').fadeIn(2000);
-      //       setTimeout(function() {$('.msg-aviso').fadeOut(2000);}, 2000); 
-      
-      //       // json no layout do modal de usuario
-      //       // $('#input-nome').val(json.data.nome);
-      //       // $('#input-cpf').val(json.data.cpf);
-      //       // $('#input-celular').val(json.data.celular);
-      //       // $('#input-email').val(json.data.email);
-      //       // $('#input-senha').val(json.data.senha);
-      //       // $('#input-confirma-senha').val(json.data.confirma-senha); 
-      //     }  
-      //     else{
-      //       alert(json.message+', '+json.data[0].message);
-      //       console.log(json);
-      //     }
-      //   },
-      //   error: function(err){
-      //     $('.modal-loading').hide();
-      //     $('#loading').hide();
-      //     console.log(err)
-      //     alert('Não conseguimos conectar ao servidor, tente novamente em alguns segundos');
-      //   }
-      // });
+//     if (json.success == true){
+//       this.setState({ redirectToReferrer: true });
+//       $('#Login').remove(); //remove
+//       $('#home').show();
+//       $('#request').hide();
+//       $('#company').hide();
+
+//       // json no link para painel do usuario
+//       $('.nome-usuario').text(json.data.nome);
+
+//       // json no cabeçalho do modal do painel do usuario
+//       $('.modal .nome-usuario').text('Painel do Usuário - '+json.data.nome);
+
+//       // json msg boas vindas
+//       $('.msg-aviso').text('Bem Vindo '+json.data.nome);
+//       $('.msg-aviso').fadeIn(2000);
+//       setTimeout(function() {$('.msg-aviso').fadeOut(2000);}, 2000);
+
+//       // json no layout do modal de usuario
+//       // $('#input-nome').val(json.data.nome);
+//       // $('#input-cpf').val(json.data.cpf);
+//       // $('#input-celular').val(json.data.celular);
+//       // $('#input-email').val(json.data.email);
+//       // $('#input-senha').val(json.data.senha);
+//       // $('#input-confirma-senha').val(json.data.confirma-senha);
+//     }
+//     else{
+//       alert(json.message+', '+json.data[0].message);
+//       console.log(json);
+//     }
+//   },
+//   error: function(err){
+//     $('.modal-loading').hide();
+//     $('#loading').hide();
+//     console.log(err)
+//     alert('Não conseguimos conectar ao servidor, tente novamente em alguns segundos');
+//   }
+// });
