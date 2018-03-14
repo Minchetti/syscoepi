@@ -2,6 +2,15 @@ import React from 'react';
 // import PropTypes from 'prop-types';
 import logo from '../../logo.svg';
 
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Redirect,
+  withRouter,
+} from 'react-router-dom';
+
+
 <link href='https://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'/>
 
 
@@ -32,18 +41,39 @@ const Cabecalho = props => (
       <div className="pr-20">
         <i className="fa fa-question-circle" aria-hidden="true"></i> Ajuda
       </div>
-      <div className="pr-20 c-pointer" id="logout" >
-        <i className="fa fa-sign-out" aria-hidden="true"></i> Log Out
-      </div>
+
+     <AuthButton/>
 
     </div>
   </header>
-
-
 );
 
-// Cabecalho.propTypes = {
-//   nome: PropTypes.string.isRequired,
-// };
+
+const AuthButton = withRouter(
+  ({ history }) => (
+    <a className="pr-20 c-pointer" id="logout" onClick={() => {
+      localStorage.removeItem('logged');
+      history.push('/login')      
+      alert('flw fio de puta');
+      window.location.reload(true); //tirar isso e descobrir pq ele n muda a pagina depois de mudar a rota
+    }}>
+      <i className="fa fa-sign-out" aria-hidden="true"></i> Log Out
+    </a>         
+  )
+);
+
+// const AuthButton = withRouter(
+//   ({ history }) => localStorage.getItem('logged') ? (
+//       <p>
+//         Welcome!
+//         <button onClick={() => {localStorage.removeItem('logged'); history.push('/login')}}>
+//           Sign out
+//         </button>
+//       </p>
+//     ) : (
+//       <p>You are not logged in.</p>
+//     )
+// );
+
 
 export default Cabecalho;
