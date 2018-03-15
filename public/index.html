@@ -152,6 +152,7 @@
     
     // QNDO ABRIR 
     $(document).ready(function() {
+      // alert('asadddd');
       $('#home').hide();
     });
     
@@ -159,6 +160,7 @@
 
     // mascara form
     $(document).ready(function() {
+      console.log('mask');
       $('#input-celular').mask("(99) 9 9999-9999");
       $('#input-cpf').mask("999.999.999-99");
     });
@@ -166,8 +168,10 @@
 
 
     // habilitar botao para cadastro e edição
-    $( "#form-usuario input" ).keyup(function() {
+    $("#form-usuario input" ).keyup(function() {
+      console.log('keyup');
       if( $('#input-cpf').val().length == 14 && $('#input-nome').val()!="" && $('#input-email').val()!="" && $('#input-senha').val()!="" && $('.help-block ul li').val()!="" && $('#input-senha').val() == $('#input-confirma-senha').val() && ($('#input-celular').val().length == 16 || $('#input-celular').val().length == 0) ){
+        console.log('keyup pronto');
         $("#btn-conta").attr("disabled", false);
       }
       else{
@@ -263,58 +267,61 @@
     //   });
     // });
         
+        
 
 
     // CRIAR NOVA CONTA
-    $(".criar-conta").click(function(e) {
-      e.preventDefault();
-      const dados = {      
-        nome: $('#input-nome').val(),
-        cpf: $('#input-cpf').val(),
-        email: $('#input-email').val(),
-        senha: $('#input-senha').val(),
-        confirmaSenha: $('#input-confirma-senha').val()
-      }             
-      $.ajax({
-        url: 'http://192.168.10.30/v1/clientes/novo',
-        type: 'POST',
-        dataType: 'json',
-        contentType: 'application/json',
-        crossDomain: true,
-        processData: false,
-        data: JSON.stringify(dados),
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-          'Access-Control-Allow-Headers': 'Content-Type',
-          'Access-Control-Max-Age': '86400'
-        },
-        beforeSend: function(){
-          $('.modal-loading').show();
-          $('#loading').show();
-        },
-        success: function(json) {    
-          $('.modal-loading').hide();
-          $('#loading').hide(); 
+    // $(".criar-conta").click(function(e) {
+    //   console.log('assccv');
+    //   alert('aa');
+    //   e.preventDefault();
+    //   const dados = {      
+    //     nome: $('#input-nome').val(),
+    //     cpf: $('#input-cpf').val(),
+    //     email: $('#input-email').val(),
+    //     senha: $('#input-senha').val(),
+    //     confirmaSenha: $('#input-confirma-senha').val()
+    //   }             
+    //   $.ajax({
+    //     url: 'http://192.168.10.30/v1/clientes/novo',
+    //     type: 'POST',
+    //     dataType: 'json',
+    //     contentType: 'application/json',
+    //     crossDomain: true,
+    //     processData: false,
+    //     data: JSON.stringify(dados),
+    //     headers: {
+    //       'Access-Control-Allow-Origin': '*',
+    //       'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+    //       'Access-Control-Allow-Headers': 'Content-Type',
+    //       'Access-Control-Max-Age': '86400'
+    //     },
+    //     beforeSend: function(){
+    //       $('.modal-loading').show();
+    //       $('#loading').show();
+    //     },
+    //     success: function(json) {    
+    //       $('.modal-loading').hide();
+    //       $('#loading').hide(); 
 
-          if (json.success == true){
-            alert("Conta criada com sucesso! Verifique seu email e valide sua conta para logar!")
-            alert(json.message+', '+json.data[0].message);
-            console.log(json);
-          }
-          else{
-            alert(json.message+', '+json.data[0].message);
-            console.log(json);
-          }
-        },
-        error: function(err){
-          $('.modal-loading').hide();
-          $('#loading').hide();
-          console.log(err);
-          alert('Não conseguimos conectar ao servidor, tente novamente em alguns segundos');
-        }
-      });
-    });
+    //       if (json.success == true){
+    //         alert("Conta criada com sucesso! Verifique seu email e valide sua conta para logar!")
+    //         alert(json.message+', '+json.data[0].message);
+    //         console.log(json);
+    //       }
+    //       else{
+    //         alert(json.message+', '+json.data[0].message);
+    //         console.log(json);
+    //       }
+    //     },
+    //     error: function(err){
+    //       $('.modal-loading').hide();
+    //       $('#loading').hide();
+    //       console.log(err);
+    //       alert('Não conseguimos conectar ao servidor, tente novamente em alguns segundos');
+    //     }
+    //   });
+    // });
 
 
 

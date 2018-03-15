@@ -74,13 +74,13 @@ class Login extends React.Component {
     .then(response => {
       response.json().then(data => {
         if (data.success == true) {
-          // alert(data.message);
+          alert(data.message);
           console.log('CHEGOU');
           localStorage.setItem('logged', true);
           this.setState({ logged: true });
         } 
         else {
-          // alert(data.message);
+          alert(data.message);
           this.setState({ logged: false });
         }
       });
@@ -104,7 +104,7 @@ class Login extends React.Component {
       );
     } else {
       return (
-        <div>
+        <div id="Login" className="p-absolute col h-100 ">
           <div className="boxLogin pt-80 p-absolute t-30">
             <link
               href="https://fonts.googleapis.com/css?family=Josefin+Sans"
@@ -160,6 +160,7 @@ class Login extends React.Component {
               </div>
             </form>
           </div>
+          <ModalUsuario name="Criar Usuário"/>
         </div>
       );
     }
