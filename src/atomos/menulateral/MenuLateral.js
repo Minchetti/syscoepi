@@ -1,12 +1,56 @@
 import React from 'react';
+import $ from 'jquery'; 
 // import PropTypes from 'prop-types';
 
 // @flow
-const MenuLateral = props => (
 
+
+// var degree = 180;
+// $('#menu-toggle').click(function(e) {
+//   console.log('clicou');
+//   $(".nav-side-menu").toggleClass("active");
+//   $(".boxField").toggleClass("active");
+//   $("#menu-arrow").css('transform', 'rotate(' + degree + 'deg)');
+//   degree += 180;   
+// });
+// $(".dashboard").click(function(e) {
+//   e.preventDefault();
+//   $('#request').hide(400);
+//   $('#company').hide(400);
+//   $('#dashboard').show(400);
+// });    
+// $(".request").click(function(e) {
+//   e.preventDefault();
+//   $('#request').show(400);
+//   $('#company').hide(400);
+//   $('#dashboard').hide(400);
+// });    
+// $(".company").click(function(e) {
+//   e.preventDefault();
+//   $('#dashboard').hide(400);
+//   $('#company').show(400);
+//   $('#request').hide(400);
+// });
+
+
+
+  class MenuLateral extends React.Component {
+    state = {
+      escondido: false
+    };    
+
+    onClick = e => {
+      console.log('deu'); 
+      this.setState({ escondido: true });
+      console.log(this.state);
+    }
+    render() {
+      // if (this.state.escondido) {  
+      // }
+      return (
         <div className="nav-side-menu p-fixed">
           <div className="brand">
-            <a id="menu-toggle"  className="d-flex justify-content-between align-center pl-2 pr-20">Menu
+            <a id="menu-toggle" onClick={this.onClick} className="d-flex justify-content-between align-center pl-2 pr-20">Menu
               <i id="menu-arrow" className="fa fa-arrow-circle-left "></i>
             </a>
           </div>          
@@ -53,10 +97,10 @@ const MenuLateral = props => (
             </ul>
           </div>
         </div>
+      )
+    }
+  }
 
-
-
-);
 
 // MenuLateral.propTypes = {
 //   text: PropTypes.string.isRequired,

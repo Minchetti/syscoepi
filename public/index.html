@@ -56,7 +56,6 @@
     -->
   </body>
   <script>
-    var degree = 180;
     // 189.84.193.74 url da api
     // 189.84.193.78 url do banco
 
@@ -122,32 +121,32 @@
 
 
 
-    // MENU
-    $("#menu-toggle").click(function(e) {
-      console.log('clicou');
-      $(".nav-side-menu").toggleClass("active");
-      $(".boxField").toggleClass("active");
-      $("#menu-arrow").css('transform', 'rotate(' + degree + 'deg)');
-      degree += 180;   
-    });
-    $(".dashboard").click(function(e) {
-      e.preventDefault();
-      $('#request').hide(400);
-      $('#company').hide(400);
-      $('#dashboard').show(400);
-    });    
-    $(".request").click(function(e) {
-      e.preventDefault();
-      $('#request').show(400);
-      $('#company').hide(400);
-      $('#dashboard').hide(400);
-    });    
-    $(".company").click(function(e) {
-      e.preventDefault();
-      $('#dashboard').hide(400);
-      $('#company').show(400);
-      $('#request').hide(400);
-    });
+    // // MENU
+    // $("#menu-toggle").click(function(e) {
+    //   console.log('clicou');
+    //   $(".nav-side-menu").toggleClass("active");
+    //   $(".boxField").toggleClass("active");
+    //   $("#menu-arrow").css('transform', 'rotate(' + degree + 'deg)');
+    //   degree += 180;   
+    // });
+    // $(".dashboard").click(function(e) {
+    //   e.preventDefault();
+    //   $('#request').hide(400);
+    //   $('#company').hide(400);
+    //   $('#dashboard').show(400);
+    // });    
+    // $(".request").click(function(e) {
+    //   e.preventDefault();
+    //   $('#request').show(400);
+    //   $('#company').hide(400);
+    //   $('#dashboard').hide(400);
+    // });    
+    // $(".company").click(function(e) {
+    //   e.preventDefault();
+    //   $('#dashboard').hide(400);
+    //   $('#company').show(400);
+    //   $('#request').hide(400);
+    // });
     
     
     
