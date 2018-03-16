@@ -1,5 +1,5 @@
 import React from 'react';
-import $ from 'jquery'; 
+// import $ from 'jquery'; 
 // import PropTypes from 'prop-types';
 
 
@@ -27,12 +27,12 @@ class ModalUsuario extends React.Component {
     })
     .then(response => {
       response.json().then(data => {
-        if (data.success == true) {
+        if (data.success === true) {
           alert(data.message);
-          console.log('CHEGOU');
+          window.location.reload(true);
         } 
         else {
-          alert(data.message);
+          alert(data.message+' - '+data.data[0].message);
         }
       });
     })
@@ -46,13 +46,13 @@ class ModalUsuario extends React.Component {
     
     return (
       <div className="p-30">
-        <div className="modal fade" id="modal-usuario" tabIndex="-1" role="dialog" aria-labelledby="modal-usuario-label" aria-hidden="true">
+        <div className="modal fade" id="modal-criar-conta" tabIndex="-1" role="dialog" aria-labelledby="modal-usuario-label" aria-hidden="true">
           <div className="modal-dialog " role="document">
             <div className="modal-content z-9999">
               <div className="modal-header d-flex justify-content-between align-center">
                 <div className="d-flex align-center">
-                  <i className="fa fa-user-circle fa-lg pr-10" aria-hidden="true"/>
-                  <h6 className="nome-usuario modal-title">{/*props.name*/}</h6>
+                  <i className="fa fa-user-plus fa-lg pr-10" aria-hidden="true"/>
+                  <h6 className="modal-title">Criar Nova Conta</h6>
                 </div>
                 <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>

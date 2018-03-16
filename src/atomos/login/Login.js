@@ -1,6 +1,6 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
-import ModalUsuario from '../modalusuario';
+import ModalCriarConta from '../modalcriarconta';
 import './login.css';
 import { Redirect } from 'react-router-dom';
 import logo from '../../logo.svg';
@@ -75,12 +75,13 @@ class Login extends React.Component {
       response.json().then(data => {
         if (data.success == true) {
           alert(data.message);
-          console.log('CHEGOU');
+
           localStorage.setItem('logged', true);
           this.setState({ logged: true });
         } 
         else {
-          alert(data.message);
+          alert(data.message+' - '+data.data[0].message);
+
           this.setState({ logged: false });
         }
       });
@@ -149,10 +150,9 @@ class Login extends React.Component {
               </button>
               <div className="d-flex justify-content-between w-100">
                 <span
-                  id="lnk-criar-conta"
                   className="c-pointer"
                   data-toggle="modal"
-                  data-target="#modal-usuario"
+                  data-target="#modal-criar-conta"
                 >
                   Criar Conta
                 </span>
@@ -160,7 +160,7 @@ class Login extends React.Component {
               </div>
             </form>
           </div>
-          <ModalUsuario name="Criar Usuário"/>
+          <ModalCriarConta/>
         </div>
       );
     }

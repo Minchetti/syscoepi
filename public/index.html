@@ -58,6 +58,7 @@
   <script>
     var degree = 180;
     // 189.84.193.74 url da api
+    // 189.84.193.78 url do banco
 
 
 
@@ -123,7 +124,7 @@
 
     // MENU
     $("#menu-toggle").click(function(e) {
-      e.preventDefault();
+      console.log('clicou');
       $(".nav-side-menu").toggleClass("active");
       $(".boxField").toggleClass("active");
       $("#menu-arrow").css('transform', 'rotate(' + degree + 'deg)');
@@ -150,11 +151,11 @@
     
     
     
-    // QNDO ABRIR 
-    $(document).ready(function() {
-      // alert('asadddd');
-      $('#home').hide();
-    });
+    // // QNDO ABRIR 
+    // $(document).ready(function() {
+    //   // alert('asadddd');
+    //   $('#home').hide();
+    // });
     
 
 
@@ -181,29 +182,29 @@
 
 
 
-    // QNDO CLICAR NO LINK PARA ABRIR O MODAL DE CADASTRAR CONTRA
-    $('#lnk-criar-conta').click(function(e) {
-      e.preventDefault();
-      $('#btn-conta').addClass('criar-conta');
-      $('#btn-conta').removeClass('editar-conta');
-    });
+    // // QNDO CLICAR NO LINK PARA ABRIR O MODAL DE CADASTRAR CONTRA
+    // $('#lnk-criar-conta').click(function(e) {
+    //   e.preventDefault();
+    //   $('#btn-conta').addClass('criar-conta');
+    //   $('#btn-conta').removeClass('editar-conta');
+    // });
 
 
 
-    // QNDO CLICAR NO LINK PARA ABRIR O MODAL DE PERFIL DO USUARIO
-    $('#lnk-painel-usuario').click(function(e) {
-      e.preventDefault();
-      $('#btn-conta').addClass('editar-conta');
-      $('#btn-conta').removeClass('criar-conta');
-    });
+    // // QNDO CLICAR NO LINK PARA ABRIR O MODAL DE PERFIL DO USUARIO
+    // $('#lnk-painel-usuario').click(function(e) {
+    //   e.preventDefault();
+    //   $('#btn-conta').addClass('editar-conta');
+    //   $('#btn-conta').removeClass('criar-conta');
+    // });
 
 
 
-    // LOGOUT    
-    $("#logout").click(function(e) {
-      $('#Login').show();     
-      $('#home').remove();     //remove
-    });
+    // // LOGOUT    
+    // $("#logout").click(function(e) {
+    //   $('#Login').show();     
+    //   $('#home').remove();     //remove
+    // });
 
 
 

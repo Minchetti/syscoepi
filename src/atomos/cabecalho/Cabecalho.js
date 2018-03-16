@@ -20,7 +20,7 @@ const Cabecalho = props => (
   <header className="App-header d-flex justify-content-between align-center p-fixed">
     <div className="d-flex align-center">  
 
-      <h2 className="App-title d-flex align-center"><span>SySC</span><img src={logo} className="App-logo " alt="logo" /><span className="mln-10">EPI</span></h2>
+      <h2 className="App-title d-flex align-center"><span>SC</span><img src={logo} className="App-logo " alt="logo" /><span className="mln-10">EPI</span></h2>
 
       {/* <h2 className="App-title">SySCOEPI</h2> */}
       {/* <img src={logofita} className="" alt="logo" /> */}
