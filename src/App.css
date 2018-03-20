@@ -295,10 +295,10 @@ body {
   font-size: 18px;
   text-decoration: none;
 }
-.nav-side-menu.active {
+/* .nav-side-menu.active {
   margin-left: -95px !important;
   transition: 0.5s;
-}
+} */
 .boxField{
   margin-left: 150px;
   transition: 0.5s;
