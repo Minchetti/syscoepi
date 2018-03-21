@@ -11,24 +11,24 @@ import Request from '../request';
 import Company from '../company';
 
 
-
+// cantelmo
 const Home = props => (
 <Router>
-  <div id="home">
+  <div id="home" className="d-flex flex-wrap">
   
     <Cabecalho/>
-    <MenuLateral/>
 
-    {/* MENU LATERAL */}
-    
-      
-  
-    <div id="Home" className="boxField p-20">       
-      <Route path="/home/dashboard" component={Dashboard} /> 
-      <Route path="/home/request" component={Request} />
-      <Route path="/home/company" component={Company} />
-      <ModalUsuario/>  
+    <div className="d-flex w-100">
+      <MenuLateral/>
+      <div id="Home" className="boxField p-4 w-100">       
+        <Route path="/home/dashboard" component={Dashboard} /> 
+        <Route path="/home/request" component={Request} />
+        <Route path="/home/company" component={Company} />
+        {/* <ModalUsuario/>   */}
+      </div>
     </div>
+   
+      
 
 
   </div> 

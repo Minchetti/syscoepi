@@ -35,16 +35,18 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
   class MenuLateral extends React.Component {
     state = {
-      left: 0
+      width: 180
     };    
 
 
     onClick = () => {
-      if (this.state.left === 0){
-        this.setState({ left: -95 });
+      if (this.state.width === 180){
+        this.setState({ width: 55 });
+        this.setState({ display: 'none' });
       }
       else{
-        this.setState({ left: 0 });
+        this.setState({ width: 180 });
+        this.setState({ display: 'block' });
       }
       // console.log('deu'); 
       // console.log(this.state);
@@ -55,33 +57,38 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
       //   $()
       // }
       return (
-        <div className="nav-side-menu p-fixed" style={{marginLeft: this.state.left}}>
+        <div className="nav-side-menu" style={{width: this.state.width}}>
           <div className="brand">
-            <a id="menu-toggle" onClick={this.onClick} className="d-flex justify-content-between align-center pl-2 pr-20">Menu
+            <a id="menu-toggle" onClick={this.onClick} className="d-flex justify-content-between align-center p-15">
+              <span style={{display: this.state.display}}>Menu</span>
               <i id="menu-arrow" className="fa fa-arrow-circle-left "></i>
             </a>
           </div>      
           <div className="menu-list">      
             <ul id="menu-content" className="menu-content collapse out">
               <li>
-                  <Link className="p-relative d-flex justify-content-between align-center pl-2 pr-20" to="/home/dashboard">
-                  Dashboard <i className="fa fa-dashboard fa-lg"></i>                     
+                  <Link className="p-relative d-flex justify-content-between align-center p-15" to="/home/dashboard">
+                    <span style={{display: this.state.display}}>Dashboard</span>
+                    <i className="fa fa-dashboard fa-lg"></i>                     
                   </Link>               
               </li>
               <li>
-                  <Link className="p-relative d-flex justify-content-between align-center pl-2 pr-20" to="/home/request">
-                  Requisições <i className="fa fa-clipboard fa-lg"></i>                     
+                  <Link className="p-relative d-flex justify-content-between align-center p-15" to="/home/request">
+                    <span style={{display: this.state.display}}>Requisições</span> 
+                    <i className="fa fa-clipboard fa-lg"></i>                     
                   </Link>               
               </li>
               <li>
-                  <Link className="p-relative d-flex justify-content-between align-center pl-2 pr-20" to="/home/company">
-                  Empresas <i className="fa fa-building fa-lg"></i>                     
+                  <Link className="p-relative d-flex justify-content-between align-center p-15" to="/home/company">
+                    <span style={{display: this.state.display}}>Empresas</span> 
+                    <i className="fa fa-building fa-lg"></i>                     
                   </Link>               
               </li>
 
               <li data-toggle="collapse" data-target="#service" className="collapsed">
-                <a  className="p-relative d-flex justify-content-between align-center pl-2 pr-20">
-                  Templates <i className="fa fa-folder-open fa-lg" aria-hidden="true"></i>
+                <a  className="p-relative d-flex justify-content-between align-center p-15">
+                    <span style={{display: this.state.display}}>Templates</span>
+                    <i className="fa fa-folder-open fa-lg" aria-hidden="true"></i>
                   <span className="arrow p-absolute"></span>
                 </a>
               </li>  
@@ -92,8 +99,9 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
               </ul>
 
               <li data-toggle="collapse" data-target="#new" className="collapsed">
-                <a  className="p-relative d-flex justify-content-between align-center pl-2 pr-20">
-                  Relatórios <i className="fa fa-line-chart fa-lg" aria-hidden="true"></i>  
+                <a  className="p-relative d-flex justify-content-between align-center p-15">
+                  <span style={{display: this.state.display}}>Relatórios</span>
+                  <i className="fa fa-line-chart fa-lg" aria-hidden="true"></i>  
                 </a>
               </li>
             </ul>

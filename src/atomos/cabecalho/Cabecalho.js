@@ -17,7 +17,7 @@ import {
 // @flow
 const Cabecalho = props => (
 
-  <header className="App-header d-flex justify-content-between align-center p-fixed">
+  <header className="App-header d-flex justify-content-between align-center">
     <div className="d-flex align-center">  
 
       <h2 className="App-title d-flex align-center"><span>SC</span><img src={logo} className="App-logo " alt="logo" /><span className="mln-10">EPI</span></h2>
@@ -54,7 +54,7 @@ const AuthButton = withRouter(
     <a className="pr-20 c-pointer" id="logout" onClick={() => {
       localStorage.removeItem('logged');
       history.push('/')      
-      alert('flw fio de puta');
+      alert('flw fio');
       window.location.reload(true); //tirar isso e descobrir pq ele n muda a pagina depois de mudar a rota
     }}>
       <i className="fa fa-sign-out" aria-hidden="true"></i> Log Out

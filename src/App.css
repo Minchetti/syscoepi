@@ -69,6 +69,7 @@
 .pb-0 {padding-bottom: 0 !important;}
 .pt-80 {padding-top: 80px;}
 .p-0 {padding:0;}
+.p-15 {padding:15px !important;}
 .p-20 {padding:20px !important;}
 .p-30 {padding:30px;}
 .pr-30 {padding-right: 30px;}
@@ -120,14 +121,13 @@
   font-weight: 200;
   background-color: #2e353d;
   top: 49px;
-  width: 150px;
   transition: 0.5s;
   height: 100%;
   color: #e1ffff;
 }
 .nav-side-menu .brand {
   background-color: #23282e;
-  line-height: 50px;
+  /* line-height: 50px; */
   display: block;
   text-align: center;
   font-size: 14px;
@@ -140,7 +140,7 @@
   list-style: none;
   padding: 0px;
   margin: 0px;
-  line-height: 50px;
+  /* line-height: 50px; */
   cursor: pointer;
 }
 .nav-side-menu ul :not(collapsed) .arrow:before,
@@ -242,7 +242,7 @@
     text-align: left !important;
     font-size: 22px;
     padding-left: 20px;
-    line-height: 50px !important;
+    /* line-height: 50px !important; */
   }
 }
 @media (min-width: 767px) {
@@ -300,15 +300,13 @@ body {
   transition: 0.5s;
 } */
 .boxField{
-  margin-left: 150px;
+  /* margin-left: 150px; */
   transition: 0.5s;
-  /* width: (100% - 180px); */
-  margin-top: 49px;
   /* padding: 10px 20px 10px 20px; */
 }
-.boxField.active{
+/* .boxField.active{
   margin-left: 55px;
-}
+} */
 .nav>li>a {
   padding: 2px 6px !important;
 }

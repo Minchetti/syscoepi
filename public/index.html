@@ -155,29 +155,32 @@
     //   // alert('asadddd');
     //   $('#home').hide();
     // });
-    
+  
 
 
     // mascara form
     $(document).ready(function() {
+      
       console.log('mask');
+      $('#form-usuario').validator();
       $('#input-celular').mask("(99) 9 9999-9999");
       $('#input-cpf').mask("999.999.999-99");
     });
 
 
 
-    // habilitar botao para cadastro e edição
-    $("#form-usuario input" ).keyup(function() {
-      console.log('keyup');
-      if( $('#input-cpf').val().length == 14 && $('#input-nome').val()!="" && $('#input-email').val()!="" && $('#input-senha').val()!="" && $('.help-block ul li').val()!="" && $('#input-senha').val() == $('#input-confirma-senha').val() && ($('#input-celular').val().length == 16 || $('#input-celular').val().length == 0) ){
-        console.log('keyup pronto');
-        $("#btn-conta").attr("disabled", false);
-      }
-      else{
-        $("#btn-conta").attr("disabled", true);
-      } 
-    });
+    // // habilitar botao para cadastro e edição
+    // $("#form-usuario input" ).keyup(function() {
+    //   console.log('keyup');
+    //   if( $('#input-cpf').val().length == 14 && $('#input-nome').val()!="" && $('#input-email').val()!="" && $('#input-senha').val()!="" && $('.help-block ul li').val()!="" && $('#input-senha').val() == $('#input-confirma-senha').val() && ($('#input-celular').val().length == 16 || $('#input-celular').val().length == 0) ){
+    //     console.log('keyup pronto');
+    //     $("#btn-conta").attr("disabled", false);
+    //   }
+    //   else{
+    //     console.log('keyup errado');
+    //     $("#btn-conta").attr("disabled", true);
+    //   } 
+    // });
 
 
 
