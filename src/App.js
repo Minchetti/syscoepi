@@ -18,22 +18,19 @@ class App extends Component {
     return (
       <div className="App">
 
-      <h1>PAGINA INSTITUCIONAL</h1>
+     
       <Router>
-        <div>
-          {/* <AuthButton /> */}
+        <div className="h-100">
+          {/* <AuthButton />
           <ul>
             <li>
-              <Link to="/public">Public Page</Link>
+              <Link to="/public">Pagina Institucional</Link>
             </li>
-            <li>
-              <Link to="/home">Home</Link>
-              {/* <Link to="/protected">Protected Page</Link> */}
-            </li>
-          </ul>
+           
+          </ul> */}
           <Route path="/public" component={Public} />
           <Route path="/login" component={Login} />
-          <PrivateRoute path="/home" component={Home} />
+          <PrivateRoute path="/app" component={Home} />
         </div>
       </Router>
 
@@ -49,17 +46,7 @@ class App extends Component {
   }
 }
 
-// const fakeAuth = {
-//   isAuthenticated: false,
-//   authenticate(cb) {
-//     this.isAuthenticated = true;
-//     setTimeout(cb, 100); // fake async
-//   },
-//   signout(cb) {
-//     this.isAuthenticated = false;
-//     setTimeout(cb, 100);
-//   },
-// };
+
 
 // const AuthButton = withRouter(
 //   ({ history }) => localStorage.getItem('logged') ? (
@@ -93,8 +80,13 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
   />
 );
 
-const Public = () => <h3>Public</h3>;
-const Protected = () => <h3>Protected</h3>;
+const Public = () => 
+<div id='asdasd'>
+  <h1>
+    PAGINA INSTITUCIONAL
+  </h1>
+  <Link to="/app/dashboard">Entrar no sistema!</Link>
+</div>
 
 
 

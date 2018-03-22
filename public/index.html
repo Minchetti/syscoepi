@@ -27,7 +27,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.13/jquery.mask.min.js"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script> -->
     
 
 
@@ -61,62 +61,71 @@
 
 
 
-    // // TESTAR URL PARA VALIDAR EMAIL
-    // $(document).ready(function() {
-    //   var url = 'http://localhost:3000/';
-    //   var url_atual = window.location.href;
+    $(document).ready(function() { //QNDO ABRIR A PAGINA
+      
+      // MASCARA DE FORM
+      console.log('mask');
+      $('#input-celular').mask("(99) 9 9999-9999");
+      $('#input-cpf').mask("999.999.999-99");
 
-    //   if (url != url_atual){
-    //     var parametrosDaUrl = url_atual.split("?")[1];
-    //     var listaDeParametros = parametrosDaUrl.split("&");
-    //     var dados1 = listaDeParametros[0].split("=");
-    //     var dados2 = listaDeParametros[1].split("=");
+
+      // // TESTAR URL PARA VALIDAR EMAIL
+      // var url = 'http://localhost:3000/';
+      // var url_atual = window.location.href;
+
+      // if (url != url_atual){
+      //   var parametrosDaUrl = url_atual.split("?")[1];
+      //   var listaDeParametros = parametrosDaUrl.split("&");
+      //   var dados1 = listaDeParametros[0].split("=");
+      //   var dados2 = listaDeParametros[1].split("=");
         
-    //     const dados = {
-    //       id: dados1[1],
-    //       token: dados2[1]
-    //     }
-    //     $.ajax({
-    //       url: 'http://192.168.10.30/v1/clientes/email/valida',
-    //       type: 'POST',
-    //       dataType: 'json',
-    //       contentType: 'application/json',
-    //       crossDomain: true,
-    //       processData: false,
-    //       data: JSON.stringify(dados),
-    //       headers: {
-    //         'Access-Control-Allow-Origin': '*',
-    //         'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-    //         'Access-Control-Allow-Headers': 'Content-Type',
-    //         'Access-Control-Max-Age': '86400'
-    //       },
-    //       beforeSend: function(){
-    //         $('.modal-loading').show();
-    //         $('#loading').show();
-    //       },
-    //       success: function(json) {    
-    //         $('.modal-loading').hide();
-    //         $('#loading').hide();  
+      //   const dados = {
+      //     id: dados1[1],
+      //     token: dados2[1]
+      //   }
+      //   $.ajax({
+      //     url: 'http://192.168.10.30/v1/clientes/email/valida',
+      //     type: 'POST',
+      //     dataType: 'json',
+      //     contentType: 'application/json',
+      //     crossDomain: true,
+      //     processData: false,
+      //     data: JSON.stringify(dados),
+      //     headers: {
+      //       'Access-Control-Allow-Origin': '*',
+      //       'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+      //       'Access-Control-Allow-Headers': 'Content-Type',
+      //       'Access-Control-Max-Age': '86400'
+      //     },
+      //     beforeSend: function(){
+      //       $('.modal-loading').show();
+      //       $('#loading').show();
+      //     },
+      //     success: function(json) {    
+      //       $('.modal-loading').hide();
+      //       $('#loading').hide();  
 
-    //         if (json.success == true){                         
-    //           console.log(json);
+      //       if (json.success == true){                         
+      //         console.log(json);
 
-    //           // mostrar msg de confirmação de validação do email
-    //           $('#msg-validou').fadeIn(2000);
-    //           setTimeout(function() {$('#msg-validou').fadeOut(2000);}, 2000);  
-    //         }             
-    //         else{
-    //           console.log(json);
-    //         }
-    //       },
-    //       error: function(json){
-    //         $('.modal-loading').hide();
-    //         $('#loading').hide();
-    //         alert('Não conseguimos conectar ao servidor, tente novamente em alguns segundos');
-    //       }
-    //     });
-    //   }
-    // });
+      //         // mostrar msg de confirmação de validação do email
+      //         $('#msg-validou').fadeIn(2000);
+      //         setTimeout(function() {$('#msg-validou').fadeOut(2000);}, 2000);  
+      //       }             
+      //       else{
+      //         console.log(json);
+      //       }
+      //     },
+      //     error: function(json){
+      //       $('.modal-loading').hide();
+      //       $('#loading').hide();
+      //       alert('Não conseguimos conectar ao servidor, tente novamente em alguns segundos');
+      //     }
+      //   });
+      // }
+
+
+    });
 
 
 
@@ -156,16 +165,6 @@
     //   $('#home').hide();
     // });
   
-
-
-    // mascara form
-    $(document).ready(function() {
-      
-      console.log('mask');
-      $('#form-usuario').validator();
-      $('#input-celular').mask("(99) 9 9999-9999");
-      $('#input-cpf').mask("999.999.999-99");
-    });
 
 
 

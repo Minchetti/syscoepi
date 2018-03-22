@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import MenuLateral from '../menulateral';
 import Cabecalho from '../cabecalho';
 import Dashboard from '../dashboard';
-import ModalUsuario from '../modalusuario';
+// import ModalUsuario from '../modalusuario';
 import Request from '../request';
 import Company from '../company';
 
@@ -14,25 +14,24 @@ import Company from '../company';
 // cantelmo
 const Home = props => (
 <Router>
-  <div id="home" className="d-flex flex-wrap">
+  <div className="h-100">
   
     <Cabecalho/>
 
     <div className="d-flex w-100">
       <MenuLateral/>
-      <div id="Home" className="boxField p-4 w-100">       
-        <Route path="/home/dashboard" component={Dashboard} /> 
-        <Route path="/home/request" component={Request} />
-        <Route path="/home/company" component={Company} />
+      <div className="boxField p-4 w-100 p-fixed">       
+        <Route path="/app/dashboard" component={Dashboard} /> 
+        <Route path="/app/request" component={Request} />
+        <Route path="/app/company" component={Company} />
         {/* <ModalUsuario/>   */}
       </div>
-    </div>
-   
+    </div>  
       
 
 
   </div> 
-    </Router>
+</Router>
 );
 
 

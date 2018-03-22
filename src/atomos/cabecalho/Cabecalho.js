@@ -53,7 +53,7 @@ const AuthButton = withRouter(
   ({ history }) => (
     <a className="pr-20 c-pointer" id="logout" onClick={() => {
       localStorage.removeItem('logged');
-      history.push('/')      
+      history.push('/public')      
       alert('flw fio');
       window.location.reload(true); //tirar isso e descobrir pq ele n muda a pagina depois de mudar a rota
     }}>

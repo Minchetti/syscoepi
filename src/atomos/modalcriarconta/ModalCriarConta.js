@@ -1,15 +1,10 @@
 import React from 'react';
-import $ from 'jquery'; 
+// import $ from 'jquery'; 
 // import PropTypes from 'prop-types';
 
 
 // habilitar botao para cadastro e edição
 
-$(document).ready(function() {
-
-  console.log('mask');
-  $('#form-usuario').validator();
-})
     
     
     class ModalUsuario extends React.Component {
@@ -69,42 +64,36 @@ $(document).ready(function() {
 
 
               <div className="modal-body ">
-                <form id="form-usuario" onSubmit={this.onSubmit} className="text-left d-flex flex-wrap" method="post" action="" data-toggle="validator" role="form">
+                <form id="form-usuario" onSubmit={this.onSubmit} className="text-left d-flex flex-wrap" method="post" action="" >
                   <div className="form-group col-md-6">
                     <label htmlFor="input-nome"><i className="fa fa-user pr-2" aria-hidden="true"></i>Nome</label>
                     <input type="text" value={this.state.nome} onChange={e => this.setState({ nome: e.target.value })} className="form-control" id="input-nome" name="input-nome"aria-describedby="emailHelp" required />
-                    <div className="help-block with-errors"></div>
                   </div>
                   <div className="form-group col-md-6">
                     <label htmlFor="input-cpf"><i className="fa fa-id-card-o pr-2" aria-hidden="true"></i>CPF</label>
                     <input type="text" value={this.state.cpf} onChange={e => this.setState({ cpf: e.target.value })} className="form-control" id="input-cpf" name="input-cpf" aria-describedby="emailHelp" data-minlength="14" required />
-                    <div className="help-block with-errors"></div>
                   </div>
                   <div className="form-group col-md-6">
                     <label htmlFor="input-celular"><i className="fa fa-address-book pr-2" aria-hidden="true" data-minlength="16"></i>Celular</label>
-                    <input type="text" value={this.state.celular} onChange={e => this.setState({ celular: e.target.value })} className="form-control" id="input-celular" />
-                    <div className="help-block with-errors"></div>
+                    <input type="text" value={this.state.celular} onChange={e => this.setState({ celular: e.target.value })} className="form-control" id="input-celular" /> 
                   </div>
                   <div className="form-group col-md-6">
                     <label htmlFor="input-email"><i className="fa fa-envelope pr-2" aria-hidden="true"></i>Email</label>
                     <input type="email" value={this.state.email} onChange={e => this.setState({ email: e.target.value })} className="form-control" id="input-email" name="input-email" aria-describedby="emailHelp" required/>
-                    <div className="help-block with-errors"></div>
                   </div>
                   <div className="form-group col-md-6">
                     <label htmlFor="input-senha"><i className="fa fa-key pr-2" aria-hidden="true"></i>Senha</label>
                     <input type="password" value={this.state.senha} onChange={e => this.setState({ senha: e.target.value })} className="form-control" id="input-senha" name="input-senha" aria-describedby="emailHelp" required/>
-                    <div className="help-block with-errors"></div>
                   </div>
                   <div className="form-group col-md-6">
                     <label htmlFor="input-confirma-senha"><i className="fa fa-key pr-2" aria-hidden="true"></i>Confirma Senha</label>
-                    <input type="password" value={this.state.confirmaSenha} onChange={e => this.setState({ confirmaSenha: e.target.value })} className="form-control" id="input-confirma-senha" name="input-confirma-senha" aria-describedby="emailHelp" data-match="#input-senha" data-match-error="Atenção! As senhas não estão iguais." required/>
-                    <div className="help-block with-errors"></div>
+                    <input type="password" value={this.state.confirmaSenha} onChange={e => this.setState({ confirmaSenha: e.target.value })} className="form-control" id="input-confirma-senha" name="input-confirma-senha" aria-describedby="emailHelp" required/> 
                   </div>
                   <div className="form-group mb-0">
                   <button type="button" className="btn btn-danger mr-10" data-dismiss="modal">
                     <i className="fa fa-times pr-2" aria-hidden="true" />Fechar
                   </button>
-                  <button id="btn-conta" type="submit" className="btn btn-primary">
+                  <button id="btn-conta" type="submit" className="btn btn-primary" >
                     <i className="fa fa-plus pr-2" aria-hidden="true"/>Salvar
                   </button>
                 </div>

@@ -57,7 +57,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
       //   $()
       // }
       return (
-        <div className="nav-side-menu" style={{width: this.state.width}}>
+        <div className="nav-side-menu p-fixed" style={{width: this.state.width}}>
           <div className="brand">
             <a id="menu-toggle" onClick={this.onClick} className="d-flex justify-content-between align-center p-15">
               <span style={{display: this.state.display}}>Menu</span>
@@ -67,19 +67,19 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
           <div className="menu-list">      
             <ul id="menu-content" className="menu-content collapse out">
               <li>
-                  <Link className="p-relative d-flex justify-content-between align-center p-15" to="/home/dashboard">
+                  <Link className="p-relative d-flex justify-content-between align-center p-15" to="/app/dashboard">
                     <span style={{display: this.state.display}}>Dashboard</span>
                     <i className="fa fa-dashboard fa-lg"></i>                     
                   </Link>               
               </li>
               <li>
-                  <Link className="p-relative d-flex justify-content-between align-center p-15" to="/home/request">
+                  <Link className="p-relative d-flex justify-content-between align-center p-15" to="/app/request">
                     <span style={{display: this.state.display}}>Requisições</span> 
                     <i className="fa fa-clipboard fa-lg"></i>                     
                   </Link>               
               </li>
               <li>
-                  <Link className="p-relative d-flex justify-content-between align-center p-15" to="/home/company">
+                  <Link className="p-relative d-flex justify-content-between align-center p-15" to="/app/company">
                     <span style={{display: this.state.display}}>Empresas</span> 
                     <i className="fa fa-building fa-lg"></i>                     
                   </Link>               

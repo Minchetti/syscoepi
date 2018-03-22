@@ -4,6 +4,7 @@ import ModalCriarConta from '../modalcriarconta';
 import './login.css';
 import { Redirect } from 'react-router-dom';
 import logo from '../../logo.svg';
+import $ from 'jquery'; 
 
 // const Login = props => (
 
@@ -55,12 +56,18 @@ import logo from '../../logo.svg';
 //   text: PropTypes.string.isRequired,
 // };
 
+
+
+
+
 class Login extends React.Component {
   state = {
     email: '',
     senha: '',
     redirectToReferrer: false,
   };
+
+  
 
   onSubmit = e => {
     e.preventDefault(); 
@@ -94,11 +101,53 @@ class Login extends React.Component {
   
 
   render() {
+
+    var url = 'http://localhost:3000/login';
+    var url_atual = window.location.href;
+
+    if (url != url_atual){
+      var parametrosDaUrl = url_atual.split("?")[1];
+      var listaDeParametros = parametrosDaUrl.split("&");
+      var dados1 = listaDeParametros[0].split("=");
+      var dados2 = listaDeParametros[1].split("=");
+      
+      var dados = {
+        id: dados1[1],
+        token: dados2[1]
+      }
+
+      fetch('http://192.168.10.30/v1/clientes/email/valida', {
+        method: 'post',
+        body: JSON.stringify(dados),
+        headers: {
+          'content-type': 'application/json'
+        }
+      })
+      .then(response => {
+        response.json().then(data => {
+          if (data.success == true) {
+
+            // mostrar msg de confirmação de validação do email
+            $('#msg-validou').fadeIn(2000);
+            setTimeout(function() {$('#msg-validou').fadeOut(2000);}, 2000);            
+          } 
+          else {
+            alert(data.message+' - '+data.data[0].message);
+          }
+        });
+      })
+      .catch(err => {
+        console.error('Failed retrieving information', err);
+        this.setState({ logged: false });
+      });
+    }
+
+
     if (this.state.logged) {
       return (
         <Redirect
           to={{
-            pathname: '/home',
+            pathname: '/app/dashboard',
             state: { from: this.props.location },
           }}
         />
@@ -167,5 +216,13 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
 
+
+
+
+
+
+
+
+
+export default Login;
