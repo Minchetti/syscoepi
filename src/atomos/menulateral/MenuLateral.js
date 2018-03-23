@@ -33,6 +33,8 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 //   $('#request').hide(400);
 // });
 
+  var degree = 180;  
+  
   class MenuLateral extends React.Component {
     state = {
       width: 180
@@ -43,13 +45,15 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
       if (this.state.width === 180){
         this.setState({ width: 55 });
         this.setState({ display: 'none' });
+        $("#menu-arrow").css('transform', 'rotate(' + degree + 'deg)');
       }
       else{
         this.setState({ width: 180 });
         this.setState({ display: 'block' });
+        $("#menu-arrow").css('transform', 'rotate(' + degree + 'deg)');
       }
-      // console.log('deu'); 
-      // console.log(this.state);
+      
+      degree += 180;  
     }
 
     render() {
@@ -57,7 +61,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
       //   $()
       // }
       return (
-        <div className="nav-side-menu p-fixed" style={{width: this.state.width}}>
+        <div className="nav-side-menu" style={{width: this.state.width}}>
           <div className="brand">
             <a id="menu-toggle" onClick={this.onClick} className="d-flex justify-content-between align-center p-15">
               <span style={{display: this.state.display}}>Menu</span>

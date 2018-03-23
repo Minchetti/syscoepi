@@ -18,9 +18,9 @@ const Home = props => (
   
     <Cabecalho/>
 
-    <div className="d-flex w-100">
+    <div className="d-flex w-100 h-100">
       <MenuLateral/>
-      <div className="boxField p-4 w-100 p-fixed">       
+      <div className="boxField p-4 w-100 overflow-x">       
         <Route path="/app/dashboard" component={Dashboard} /> 
         <Route path="/app/request" component={Request} />
         <Route path="/app/company" component={Company} />
