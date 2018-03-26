@@ -81,10 +81,33 @@ class Login extends React.Component {
     .then(response => {
       response.json().then(data => {
         if (data.success == true) {
-          alert(data.message);
+          // alert(data.message);
 
+          // console.log(data);
+
+          
+          // // json no cabeçalho do modal do painel do usuario
+          // $('.modal .nome-usuario').text('Painel do Usuário - '+data.nome);  
+          
+          
+          // // json no layout do modal de usuario
+          // $('#input-nome').val(data.nome);
+          // $('#input-cpf').val(data.cpf);
+          // $('#input-celular').val(data.celular);
+          // $('#input-email').val(data.email);
+          // $('#input-senha').val(data.senha);
+          // $('#input-confirma-senha').val(data.confirma-senha); 
+          
           localStorage.setItem('logged', true);
           this.setState({ logged: true });
+
+          // json msg boas vindas
+          $('.msg-aviso').text('Bem Vindo '+data.data.nome);
+          $('.msg-aviso').fadeIn(2000);
+          setTimeout(function() {$('.msg-aviso').fadeOut(2000);}, 2000); 
+          
+          // json no link para painel do usuario
+          $('.nome-usuario').text(data.data.nome.split(" ")[0]);
         } 
         else {
           alert(data.message+' - '+data.data[0].message);
