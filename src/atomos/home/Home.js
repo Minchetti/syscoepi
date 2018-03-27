@@ -11,7 +11,6 @@ import Request from '../request';
 import Company from '../company';
 
 
-// cantelmo
 const Home = props => (
 <Router>
   <div className="h-100">

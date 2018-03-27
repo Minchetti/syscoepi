@@ -59,7 +59,6 @@ import $ from 'jquery';
 
 
 
-
 class Login extends React.Component {
   state = {
     email: '',
@@ -233,6 +232,7 @@ class Login extends React.Component {
             </form>
           </div>
           <ModalCriarConta/>
+          
         </div>
       );
     }
