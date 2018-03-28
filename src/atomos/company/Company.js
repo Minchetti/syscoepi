@@ -17,6 +17,7 @@ function handleFileSelect(evt) {
     header: true,
     dynamicTyping: true,
     complete: function(csv) {
+      alert('aaa');
       console.log(csv);
 
       var tam = csv.data.length;
@@ -33,10 +34,15 @@ function handleFileSelect(evt) {
     }    
   });
 }
+// $('.testeok').click(function(){
+//   // $("#csv-file").change(handleFileSelect);
+//   handleFileSelect(evt);
+// });
 
 $(document).ready(function(){
   $("#csv-file").change(handleFileSelect);
 });
+
 
 
 
@@ -73,13 +79,15 @@ class Company extends React.Component {
                 </div>
                 <div className="col-md-8 p-0 align-center">
                   <Button class="btn-dark" icon="fa-info pr-10" text="Dados" target="#criar-conta"/>
-                  <Button class="btn-dark ml-10" icon="fa-user-plus pr-10" text="Importar Funcionários"/> 
+                  {/* <Button class="btn-dark ml-10" icon="fa-user-plus pr-10" text="Importar Funcionários"/>  */}
+                  <input type="file" className="btn btn-dark ml-10" id="csv-file" name="files" value="TESTS"/>
+                  <Button class="testeok btn-dark ml-10" icon="fa-user-plus pr-10" text="OK"/> 
                   <Button class="btn-dark ml-10" icon="fa-plus pr-10" text="Criar GH"/> 
                   <Button class="btn-dark ml-10" icon="fa-plus pr-10" text="Criar CC"/>
                 </div>
               </div>
 
-    <input type="file" id="csv-file" name="files"/>
+    {/* <input type="file" id="csv-file" name="files"/> */}
     
                 <br/><br/><br/>
                 <table id="test">
