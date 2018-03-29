@@ -63,7 +63,7 @@ class Login extends React.Component {
   state = {
     email: '',
     senha: '',
-    redirectToReferrer: false,
+    redirectToReferrer: false
   };
 
   
@@ -117,6 +117,7 @@ class Login extends React.Component {
     })
     .catch(err => {
       console.error('Failed retrieving information', err);
+      alert(err);
       this.setState({ logged: false });
     });
   };
@@ -217,7 +218,7 @@ class Login extends React.Component {
                 type="submit"
                 className="btn btn-primary btn-block btn-large mb-2"
               >
-                <i className="fa fa-sign-in pr-2" aria-hidden="true" />Entrar
+                <i className="fa fa-sign-in-alt fa-lg pr-2" aria-hidden="true" />Entrar
               </button>
               <div className="d-flex justify-content-between w-100">
                 <span
@@ -232,7 +233,6 @@ class Login extends React.Component {
             </form>
           </div>
           <ModalCriarConta/>
-          
         </div>
       );
     }
