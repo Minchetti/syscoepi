@@ -30,7 +30,7 @@ class App extends Component {
           </ul> */}
           <Route path="/public" component={Public} />
           <Route path="/login" component={Login} />
-          <PrivateRoute path="/app" component={Home} />
+          <PrivateRoute path="/app" component={Home} />       {/*<PrivateRoute path="/app" component={Home} />*/}
         </div>
       </Router>
 

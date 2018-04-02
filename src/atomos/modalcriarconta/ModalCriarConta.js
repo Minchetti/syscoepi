@@ -10,6 +10,8 @@ import React from 'react';
     class ModalCriarConta extends React.Component {
       state = {
         cnpj: '',
+        nomeAmigavel: '',
+        razaoSocial: '',
         nome: '',
         cpf: '',
         email: '',
@@ -20,7 +22,6 @@ import React from 'react';
 
 
   onSubmit = e => {  
-    alert('asd');
     e.preventDefault(); 
     fetch('http://192.168.10.30/v1/clientes/novo', {
       method: 'post',
@@ -36,6 +37,7 @@ import React from 'react';
           window.location.reload(true);
         } 
         else {
+          alert('else');
           alert(data.message+' - '+data.data[0].message);
         }
       });

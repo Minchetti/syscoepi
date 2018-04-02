@@ -56,8 +56,7 @@ import $ from 'jquery';
 //   text: PropTypes.string.isRequired,
 // };
 
-
-
+let IdUsuarioLogado = 'test';
 
 class Login extends React.Component {
   state = {
@@ -66,7 +65,6 @@ class Login extends React.Component {
     redirectToReferrer: false
   };
 
-  
 
   onSubmit = e => {
     e.preventDefault(); 
@@ -79,10 +77,11 @@ class Login extends React.Component {
     })
     .then(response => {
       response.json().then(data => {
+        
         if (data.success == true) {
-          // alert(data.message);
-
-          // console.log(data);
+          alert(data.message);
+          
+          console.log(data);
 
           
           // // json no cabeçalho do modal do painel do usuario
@@ -101,23 +100,23 @@ class Login extends React.Component {
           this.setState({ logged: true });
 
           // json msg boas vindas
-          $('.msg-aviso').text('Bem Vindo '+data.data.nome);
-          $('.msg-aviso').fadeIn(2000);
-          setTimeout(function() {$('.msg-aviso').fadeOut(2000);}, 2000); 
+          // $('.msg-aviso').text('Bem Vindo '+data.data.nome);
+          // $('.msg-aviso').fadeIn(2000);
+          // setTimeout(function() {$('.msg-aviso').fadeOut(2000);}, 2000); 
           
           // json no link para painel do usuario
-          $('.nome-usuario').text(data.data.nome.split(" ")[0]);
+          // $('.nome-usuario').text(data.data.nome.split("")[0]);
         } 
         else {
           alert(data.message+' - '+data.data[0].message);
-
+          console.log(data);
           this.setState({ logged: false });
         }
       });
     })
     .catch(err => {
       console.error('Failed retrieving information', err);
-      alert(err);
+      console.log(err);
       this.setState({ logged: false });
     });
   };

@@ -8,26 +8,31 @@ import Modal2 from '../modal1';
 import Button from '../button';
 import * as Papa from 'papaparse';
 import $ from 'jquery'; 
+import IdUsuarioLogado from '../login/Login.js';
 
 
 var data;
+
+$(document).ready(function(){
+  $("#csv-file").change(handleFileSelect);
+  alert(IdUsuarioLogado);
+});
+
+
 function handleFileSelect(evt) {
   var file = evt.target.files[0];
   Papa.parse(file, {
     header: true,
     dynamicTyping: true,
     complete: function(csv) {
-      alert('aaa');
-      console.log(csv);
-
       var tam = csv.data.length;
-
+      JSONfunc = csv;
+      
       var i=0;
       while ( i != tam ){
         $('#test tbody').append(
           '<tr><td>'+ csv.data[i].Nome +'</td><td>'+ csv.data[i].Turno +'</td><td>'+ csv.data[i].Sexo +'</td><td>'+ csv.data[i].RG +'</td><td>'+ csv.data[i].CPF +'</td></tr>'
         );
-
         i++;
       }
       
@@ -39,10 +44,39 @@ function handleFileSelect(evt) {
 //   handleFileSelect(evt);
 // });
 
-$(document).ready(function(){
-  $("#csv-file").change(handleFileSelect);
-});
 
+
+let JSONfunc; //variavel para guardar o json do csv
+
+function EnviarFuncionarios(e) {
+  e.preventDefault(); 
+  var EmpresaSelecionada = $('#select-empresas').val();
+  // var JSONfuncOK = $.extend(JSONfunc,EmpresaSelecionada);
+  // console.log(JSONfuncOK/);
+  
+  fetch('http://192.168.10.30/v1/?', {
+    method: 'post',
+    body: JSON.stringify(),
+    headers: {
+      'content-type': 'application/json'
+    }
+  })
+  .then(response => {
+    response.json().then(data => {
+      if (data.success == true) {
+        
+      } 
+      else {
+        alert(data.message+' - '+data.data[0].message);
+
+      }
+    });
+  })
+  .catch(err => {
+    console.error('Failed retrieving information', err);
+    alert(err);
+  });
+};
 
 
 
@@ -53,7 +87,9 @@ class Company extends React.Component {
 
 
 
-  render() {
+
+  render() {   
+  
 
     return (
       <div id="company" className="">
@@ -66,7 +102,7 @@ class Company extends React.Component {
               <div className="d-flex mb-4">
                 <div className="col-md-4 d-flex align-center p-0">
                   <div className="col-md-11 p-0">
-                    <select className="form-control">
+                    <select id="select-empresas" className="form-control">
                       <option>Metrosul</option>
                       <option>BrazOffice</option>
                       <option>Fitassul</option>
@@ -78,7 +114,7 @@ class Company extends React.Component {
                   </div>
                 </div>
                 <div className="col-md-8 p-0 align-center">
-                  <Button class="btn-dark" icon="fa-info pr-10" text="Dados" target="#criar-conta"/>
+                  <Button class="btn-dark" icon=" pr-10" text="Dados" target="#criar-conta"/>
                   {/* <Button class="btn-dark ml-10" icon="fa-user-plus pr-10" text="Importar Funcionários"/>  */}
                   <input type="file" className="btn btn-dark ml-10" id="csv-file" name="files" value="TESTS"/>
                   <Button class="testeok btn-dark ml-10" icon="fa-user-plus pr-10" text="OK"/> 
@@ -104,11 +140,12 @@ class Company extends React.Component {
                     <tr>
                     </tr>
                   </tbody>
-                </table><br/><br/><br/>
-
-                <Table1 />
+                </table>
+                <button type="button" onClick={EnviarFuncionarios} class="btn btn-dark ml-10"> <i class="fa fa-share-square fa-lg pr-10"></i> Enviar Dados </button>
+                <br/><br/><br/>
+                {/* <Table1 />
                 <Table2 />
-                <Table3 />
+                <Table3 /> */}
 
               </div>      
             </div>

@@ -73,7 +73,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
               <li>
                   <Link className="p-relative d-flex justify-content-between align-center p-15" to="/app/dashboard">
                     <span style={{display: this.state.display}}>Dashboard</span>
-                    <i className="fa fa-dashboard fa-lg"></i>                     
+                    <i className="fa fa-clipboard-list fa-lg"></i>                     
                   </Link>               
               </li>
               <li>

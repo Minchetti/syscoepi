@@ -21,7 +21,7 @@ import {
         alert('flw fio');
         window.location.reload(true); //tirar isso e descobrir pq ele n muda a pagina depois de mudar a rota
       }}>
-        <i className="fa fa-sign-out" aria-hidden="true"></i> Log Out
+        <i className="fa fa-sign-out-alt" aria-hidden="true"></i> Log Out
       </a>         
     )
   )
