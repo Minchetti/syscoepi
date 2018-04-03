@@ -18,19 +18,18 @@ $(document).ready(function(){
   alert(IdUsuarioLogado);
 });
 
-
 function handleFileSelect(evt) {
   var file = evt.target.files[0];
   Papa.parse(file, {
     header: true,
     dynamicTyping: true,
     complete: function(csv) {
-      var tam = csv.data.length;
-      JSONfunc = csv;
+      var tam = csv.data.length;      
       
+      $('#preview-funcionarios').show();
       var i=0;
       while ( i != tam ){
-        $('#test tbody').append(
+        $('#preview-funcionarios tbody').append(
           '<tr><td>'+ csv.data[i].Nome +'</td><td>'+ csv.data[i].Turno +'</td><td>'+ csv.data[i].Sexo +'</td><td>'+ csv.data[i].RG +'</td><td>'+ csv.data[i].CPF +'</td></tr>'
         );
         i++;
@@ -39,20 +38,12 @@ function handleFileSelect(evt) {
     }    
   });
 }
-// $('.testeok').click(function(){
-//   // $("#csv-file").change(handleFileSelect);
-//   handleFileSelect(evt);
-// });
 
 
-
-let JSONfunc; //variavel para guardar o json do csv
 
 function EnviarFuncionarios(e) {
   e.preventDefault(); 
   var EmpresaSelecionada = $('#select-empresas').val();
-  // var JSONfuncOK = $.extend(JSONfunc,EmpresaSelecionada);
-  // console.log(JSONfuncOK/);
   
   fetch('http://192.168.10.30/v1/?', {
     method: 'post',
@@ -90,7 +81,6 @@ class Company extends React.Component {
 
   render() {   
   
-
     return (
       <div id="company" className="">
         <h4 className="mt-10 mb-4"><i className="fa fa-building" aria-hidden="true"></i> Empresas</h4>      
@@ -116,33 +106,37 @@ class Company extends React.Component {
                 <div className="col-md-8 p-0 align-center">
                   <Button class="btn-dark" icon=" pr-10" text="Dados" target="#criar-conta"/>
                   {/* <Button class="btn-dark ml-10" icon="fa-user-plus pr-10" text="Importar Funcionários"/>  */}
+
                   <input type="file" className="btn btn-dark ml-10" id="csv-file" name="files" value="TESTS"/>
+
                   <Button class="testeok btn-dark ml-10" icon="fa-user-plus pr-10" text="OK"/> 
                   <Button class="btn-dark ml-10" icon="fa-plus pr-10" text="Criar GH"/> 
                   <Button class="btn-dark ml-10" icon="fa-plus pr-10" text="Criar CC"/>
                 </div>
               </div>
 
-    {/* <input type="file" id="csv-file" name="files"/> */}
     
                 <br/><br/><br/>
-                <table id="test">
-                  <thead className="thead-dark">
-                    <tr>
-                      <th>Nome</th>
-                      <th>Turno</th>
-                      <th>Sexo</th>
-                      <th>RG</th>
-                      <th>CPF</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                    </tr>
-                  </tbody>
-                </table>
-                <button type="button" onClick={EnviarFuncionarios} class="btn btn-dark ml-10"> <i class="fa fa-share-square fa-lg pr-10"></i> Enviar Dados </button>
+                <div className="d-nonin" id="preview-funcionarios">
+                  <button type="button" onClick={EnviarFuncionarios} class="d-nonin btn btn-dark ml-10"> <i class="fa fa-share-square fa-lg pr-10"></i> Enviar Dados </button>
+                  <table>
+                    <thead className="thead-dark">
+                      <tr>
+                        <th>Nome</th>
+                        <th>Turno</th>
+                        <th>Sexo</th>
+                        <th>RG</th>
+                        <th>CPF</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                      </tr>
+                    </tbody>
+                  </table>                  
+                </div>
                 <br/><br/><br/>
+                
                 {/* <Table1 />
                 <Table2 />
                 <Table3 /> */}

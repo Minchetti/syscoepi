@@ -3,6 +3,7 @@ import React from 'react';
 // import PropTypes from 'prop-types';
 
 
+
 // habilitar botao para cadastro e edição
 
     
@@ -24,7 +25,7 @@ import React from 'react';
   onSubmit = e => {  
     e.preventDefault(); 
     fetch('http://192.168.10.30/v1/clientes/novo', {
-      method: 'post',
+      method: 'POST',
       body: JSON.stringify(this.state),
       headers: {
         'content-type': 'application/json'
@@ -33,17 +34,21 @@ import React from 'react';
     .then(response => {
       response.json().then(data => {
         if (data.success === true) {
+          console.log('if');
           alert(data.message);
           window.location.reload(true);
         } 
         else {
-          alert('else');
+          console.log('else');
           alert(data.message+' - '+data.data[0].message);
         }
-      });
+      })
+      // console.log(response);
+      // console.log(this.state);
     })
     .catch(err => {
-      console.error('Failed retrieving information', err);
+      // console.error('Failed retrieving information', err);
+      console.log('err');
       this.setState({ logged: false });
     });
   };
@@ -67,7 +72,7 @@ import React from 'react';
 
 
               <div className="modal-body ">
-                <form id="form-usuario" onSubmit={this.onSubmit} className="text-left d-flex flex-wrap needs-validation" method="post" action="" novalidate>
+                <form id="form-usuario" onSubmit={this.onSubmit} className="text-left d-flex flex-wrap" method="post" action="">
                   <div class="form-row"> 
                     <div className="form-group col-md-6">
                       <label htmlFor="input-cnpj"><i className="far fa-id-card fa-lg pr-2" ></i>CNPJ</label>

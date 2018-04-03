@@ -56,10 +56,11 @@ import $ from 'jquery';
 //   text: PropTypes.string.isRequired,
 // };
 
-let IdUsuarioLogado = 'test';
+// let IdUsuarioLogado = 'test';
 
 class Login extends React.Component {
   state = {
+    logged: '',
     email: '',
     senha: '',
     redirectToReferrer: false
@@ -67,6 +68,7 @@ class Login extends React.Component {
 
 
   onSubmit = e => {
+    console.log('aq');
     e.preventDefault(); 
     fetch('http://192.168.10.30/v1/clientes/login', {
       method: 'post',
@@ -79,14 +81,11 @@ class Login extends React.Component {
       response.json().then(data => {
         
         if (data.success == true) {
-          alert(data.message);
-          
+          alert(data.message);          
           console.log(data);
-
           
           // // json no cabeçalho do modal do painel do usuario
-          // $('.modal .nome-usuario').text('Painel do Usuário - '+data.nome);  
-          
+          // $('.modal .nome-usuario').text('Painel do Usuário - '+data.nome);           
           
           // // json no layout do modal de usuario
           // $('#input-nome').val(data.nome);
@@ -128,6 +127,7 @@ class Login extends React.Component {
     var url_atual = window.location.href;
 
     if (url != url_atual){
+      alert('URL DIFERENTE');
       var parametrosDaUrl = url_atual.split("?")[1];
       var listaDeParametros = parametrosDaUrl.split("&");
       var dados1 = listaDeParametros[0].split("=");
@@ -151,7 +151,10 @@ class Login extends React.Component {
 
             // mostrar msg de confirmação de validação do email
             $('#msg-validou').fadeIn(2000);
-            setTimeout(function() {$('#msg-validou').fadeOut(2000);}, 2000);            
+            setTimeout(function() {$('#msg-validou').fadeOut(2000);}, 2000);      
+            
+            
+            window.location.href = 'http://localhost:3000/login';
           } 
           else {
             alert(data.message+' - '+data.data[0].message);
