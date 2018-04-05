@@ -1,86 +1,81 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
 import Table1 from '../table1';
 import Table2 from '../table2';
 import Table3 from '../table3';
-// import Modal1 from '../modal1';
 import Modal2 from '../modal1';
 import Button from '../button';
+import PreviewFuncionarios from '../previewfuncionarios';
 import * as Papa from 'papaparse';
 import $ from 'jquery'; 
 import IdUsuarioLogado from '../login/Login.js';
 
+// var data;
 
-var data;
 
-$(document).ready(function(){
-  $("#csv-file").change(handleFileSelect);
-  alert(IdUsuarioLogado);
-});
+let PreviewComponent;
 
-function handleFileSelect(evt) {
-  var file = evt.target.files[0];
-  Papa.parse(file, {
-    header: true,
-    dynamicTyping: true,
-    complete: function(csv) {
-      var tam = csv.data.length;      
-      
-      $('#preview-funcionarios').show();
-      var i=0;
-      while ( i != tam ){
-        $('#preview-funcionarios tbody').append(
-          '<tr><td>'+ csv.data[i].Nome +'</td><td>'+ csv.data[i].Turno +'</td><td>'+ csv.data[i].Sexo +'</td><td>'+ csv.data[i].RG +'</td><td>'+ csv.data[i].CPF +'</td></tr>'
-        );
-        i++;
-      }
-      
-    }    
-  });
-}
+// $(document).ready(function(){
+//   $("#csv-file").change(handleFileSelect);
+//   alert(IdUsuarioLogado);
+// });
 
 
 
-function EnviarFuncionarios(e) {
-  e.preventDefault(); 
-  var EmpresaSelecionada = $('#select-empresas').val();
+// function EnviarFuncionarios(e) {
+  //   e.preventDefault(); 
+//   var EmpresaSelecionada = $('#select-empresas').val();
+
+//   fetch('http://192.168.10.30/v1/?', {
+//     method: 'post',
+//     body: JSON.stringify(),
+//     headers: {
+//       'content-type': 'application/json'
+//     }
+//   })
+//   .then(response => {
+//     response.json().then(data => {
+//       if (data.success == true) {
   
-  fetch('http://192.168.10.30/v1/?', {
-    method: 'post',
-    body: JSON.stringify(),
-    headers: {
-      'content-type': 'application/json'
-    }
-  })
-  .then(response => {
-    response.json().then(data => {
-      if (data.success == true) {
-        
-      } 
-      else {
-        alert(data.message+' - '+data.data[0].message);
+//       } 
+//       else {
+//         alert(data.message+' - '+data.data[0].message);
 
-      }
-    });
-  })
-  .catch(err => {
-    console.error('Failed retrieving information', err);
-    alert(err);
-  });
-};
+//       }
+//     });
+//   })
+//   .catch(err => {
+//     console.error('Failed retrieving information', err);
+//     alert(err);
+//   });
+// };
 
 
 
 
 class Company extends React.Component {
   state = {
+    csv:''
   };
-
-
-
-
-  render() {   
   
+  function handleFileSelect(evt) {
+    var file = evt.target.files[0];
+    Papa.parse(file, {
+      header: true,
+      dynamicTyping: true,
+      complete: function(csv) {
+        this.setState({ csv });
+        // PreviewComponent = <PreviewFuncionarios lista={csv}/> 
+      }    
+    });
+  }
+
+
+  
+  render() {   
+    // {(PreviewComponent? PreviewComponent : null)}
+    const preview = this.state.csv && (
+      <PreviewFuncionarios lista={this.state.csv} />
+    );
     return (
       <div id="company" className="">
         <h4 className="mt-10 mb-4"><i className="fa fa-building" aria-hidden="true"></i> Empresas</h4>      
@@ -107,7 +102,7 @@ class Company extends React.Component {
                   <Button class="btn-dark" icon=" pr-10" text="Dados" target="#criar-conta"/>
                   {/* <Button class="btn-dark ml-10" icon="fa-user-plus pr-10" text="Importar Funcionários"/>  */}
 
-                  <input type="file" className="btn btn-dark ml-10" id="csv-file" name="files" value="TESTS"/>
+                  <input type="file" className="btn btn-dark ml-10" id="csv-file" name="files" onInput={this.handleFileSelect.bind(this)}/>
 
                   <Button class="testeok btn-dark ml-10" icon="fa-user-plus pr-10" text="OK"/> 
                   <Button class="btn-dark ml-10" icon="fa-plus pr-10" text="Criar GH"/> 
@@ -118,7 +113,7 @@ class Company extends React.Component {
     
                 <br/><br/><br/>
                 <div className="d-nonin" id="preview-funcionarios">
-                  <button type="button" onClick={EnviarFuncionarios} class="d-nonin btn btn-dark ml-10"> <i class="fa fa-share-square fa-lg pr-10"></i> Enviar Dados </button>
+                  {/* <button type="button" onClick={EnviarFuncionarios} class="d-nonin btn btn-dark ml-10"> <i class="fa fa-share-square fa-lg pr-10"></i> Enviar Dados </button> */}
                   <table>
                     <thead className="thead-dark">
                       <tr>
@@ -136,7 +131,7 @@ class Company extends React.Component {
                   </table>                  
                 </div>
                 <br/><br/><br/>
-                
+
                 {/* <Table1 />
                 <Table2 />
                 <Table3 /> */}
