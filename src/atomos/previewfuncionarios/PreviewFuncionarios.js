@@ -6,20 +6,21 @@ class PreviewFuncionarios extends React.Component {
   };
 
   render() {  
-    console.log('chegou');
 
-    var V1 = this.props.lista;
-    var V2 = V1.map(function(value){
-        return (
-          <tr>
-            <td>{value.Nome}</td>
-            <td>{value.Turno}</td>
-            <td>{value.Sexo}</td>
-            <td>{value.RG}</td>
-            <td>{value.CPF}</td>
-          </tr>  
-         )
-      });
+    var V1 = this.props.lista.data;
+    console.log(V1);
+    console.log('V1');
+    var V2 = () => V1.map(function(value){
+      return (
+        <tr>
+          <td>{value.Nome}</td>
+          <td>{value.Turno}</td>
+          <td>{value.Sexo}</td>
+          <td>{value.RG}</td>
+          <td>{value.CPF}</td>
+        </tr>  
+        )
+    });
       
     return (
       <div>
@@ -35,7 +36,7 @@ class PreviewFuncionarios extends React.Component {
             </tr>
           </thead>
           <tbody>
-            {this.V2}
+            {V2()}
           </tbody>
         </table>                  
       </div>

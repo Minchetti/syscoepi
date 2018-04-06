@@ -12,7 +12,7 @@ import IdUsuarioLogado from '../login/Login.js';
 // var data;
 
 
-let PreviewComponent;
+// let PreviewComponent;
 
 // $(document).ready(function(){
 //   $("#csv-file").change(handleFileSelect);
@@ -54,10 +54,10 @@ let PreviewComponent;
 
 class Company extends React.Component {
   state = {
-    csv:''
+    csv: null
   };
   
-  function handleFileSelect(evt) {
+  handleFileSelect(evt) {
     var file = evt.target.files[0];
     Papa.parse(file, {
       header: true,
@@ -65,83 +65,64 @@ class Company extends React.Component {
       complete: function(csv) {
         this.setState({ csv });
         // PreviewComponent = <PreviewFuncionarios lista={csv}/> 
-      }    
-    });
+      }.bind(this)
+      });
   }
 
 
   
   render() {   
-    // {(PreviewComponent? PreviewComponent : null)}
-    const preview = this.state.csv && (
-      <PreviewFuncionarios lista={this.state.csv} />
-    );
+    const preview = this.state.csv;   
+    console.log(preview);
+    console.log('preview');
     return (
-      <div id="company" className="">
-        <h4 className="mt-10 mb-4"><i className="fa fa-building" aria-hidden="true"></i> Empresas</h4>      
-
-          <div className=""> 
-            <div className=""></div>
-            <div className=" d-flex flex-column">            
-              
-              <div className="d-flex mb-4">
-                <div className="col-md-4 d-flex align-center p-0">
-                  <div className="col-md-11 p-0">
-                    <select id="select-empresas" className="form-control">
-                      <option>Metrosul</option>
-                      <option>BrazOffice</option>
-                      <option>Fitassul</option>
-                      <option>Helibras</option>
-                    </select>
-                  </div>
-                  <div className="col-md-1 p-0">
-                    <Button class="btn-dark m-0 col" icon="fa-plus fa-lg"/>
-                  </div>
+      
+      <div id="company">
+        <h4 className="mt-10 mb-4"><i className="fa fa-building" aria-hidden="true"></i> Empresas</h4>  
+        <div className=""> 
+          <div className=" d-flex flex-column">              
+            <div className="d-flex mb-4">
+              <div className="col-md-4 d-flex align-center p-0">
+                <div className="col-md-11 p-0">
+                  <select id="select-empresas" className="form-control">
+                    <option>Metrosul</option>
+                    <option>BrazOffice</option>
+                    <option>Fitassul</option>
+                    <option>Helibras</option>
+                  </select>
                 </div>
-                <div className="col-md-8 p-0 align-center">
-                  <Button class="btn-dark" icon=" pr-10" text="Dados" target="#criar-conta"/>
-                  {/* <Button class="btn-dark ml-10" icon="fa-user-plus pr-10" text="Importar Funcionários"/>  */}
-
-                  <input type="file" className="btn btn-dark ml-10" id="csv-file" name="files" onInput={this.handleFileSelect.bind(this)}/>
-
-                  <Button class="testeok btn-dark ml-10" icon="fa-user-plus pr-10" text="OK"/> 
-                  <Button class="btn-dark ml-10" icon="fa-plus pr-10" text="Criar GH"/> 
-                  <Button class="btn-dark ml-10" icon="fa-plus pr-10" text="Criar CC"/>
+                <div className="col-md-1 p-0">
+                  <Button class="btn-dark m-0 col" icon="fa-plus fa-lg"/>
                 </div>
               </div>
+              <div className="col-md-8 p-0 align-center">
+                <Button class="btn-dark" icon=" pr-10" text="Dados" target="#criar-conta"/>
+                {/* <Button class="btn-dark ml-10" icon="fa-user-plus pr-10" text="Importar Funcionários"/>  */}
 
-    
-                <br/><br/><br/>
-                <div className="d-nonin" id="preview-funcionarios">
-                  {/* <button type="button" onClick={EnviarFuncionarios} class="d-nonin btn btn-dark ml-10"> <i class="fa fa-share-square fa-lg pr-10"></i> Enviar Dados </button> */}
-                  <table>
-                    <thead className="thead-dark">
-                      <tr>
-                        <th>Nome</th>
-                        <th>Turno</th>
-                        <th>Sexo</th>
-                        <th>RG</th>
-                        <th>CPF</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                      </tr>
-                    </tbody>
-                  </table>                  
-                </div>
-                <br/><br/><br/>
+                <input type="file" className="btn btn-dark ml-10" id="csv-file" name="files" onChange={this.handleFileSelect.bind(this)}/>
 
-                {/* <Table1 />
-                <Table2 />
-                <Table3 /> */}
-
-              </div>      
+                <Button class="testeok btn-dark ml-10" icon="fa-user-plus pr-10" text="OK"/> 
+                <Button class="btn-dark ml-10" icon="fa-plus pr-10" text="Criar GH"/> 
+                <Button class="btn-dark ml-10" icon="fa-plus pr-10" text="Criar CC"/>
+              </div>
             </div>
 
-            <Modal2/>           
+            
+            {preview && <PreviewFuncionarios lista={this.state.csv} />}
+  
+            <br/><br/><br/>
 
-          </div>
+
+            {/* <Table1 />
+            <Table2 />
+            <Table3 /> */}
+
+          </div>      
+        </div>
+
+        <Modal2/>           
+
+      </div>
 
     );
   }
