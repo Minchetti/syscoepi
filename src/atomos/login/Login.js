@@ -151,8 +151,7 @@ class Login extends React.Component {
 
             // mostrar msg de confirmação de validação do email
             $('#msg-validou').fadeIn(2000);
-            setTimeout(function() {$('#msg-validou').fadeOut(2000);}, 2000);      
-            
+            setTimeout(function() {$('#msg-validou').fadeOut(2000);}, 2000);                
             
             window.location.href = 'http://localhost:3000/login';
           } 

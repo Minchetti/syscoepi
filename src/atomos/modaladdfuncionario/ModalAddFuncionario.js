@@ -8,62 +8,59 @@ import React from 'react';
 
     
     
-    class ModalCriarConta extends React.Component {
+    class ModalAddFuncionario extends React.Component {
       state = {
-        cnpj: '',
-        nomeAmigavel: '',
-        razaoSocial: '',
         nome: '',
         cpf: '',
-        email: '',
-        senha: '',
-        confirmaSenha: ''
+        rg: '',
+        email: ''
       };
       
 
 
   onSubmit = e => {  
-    e.preventDefault(); 
-    fetch('http://192.168.10.30/v1/clientes/novo', {
-      method: 'POST',
-      body: JSON.stringify(this.state),
-      headers: {
-        'content-type': 'application/json'
-      }
-    })
-    .then(response => {
-      response.json().then(data => {
-        if (data.success === true) {
-          console.log('if');
-          alert(data.message);
-          window.location.reload(true);
-        } 
-        else {
-          console.log('else');
-          alert(data.message+' - '+data.data[0].message);
-        }
-      })
-      // console.log(response);
-      // console.log(this.state);
-    })
-    .catch(err => {
-      // console.error('Failed retrieving information', err);
-      console.log('err');
-      this.setState({ logged: false });
-    });
+    // e.preventDefault(); 
+    // fetch('http://192.168.10.30/v1/funcionarios', {
+    //   method: 'POST',
+    //   body: JSON.stringify(this.state),
+    //   headers: {
+    //     'content-type': 'application/json'
+    //   }
+    // })
+    // .then(response => {
+    //   response.json().then(data => {
+    //     if (data.success === true) {
+    //       console.log('if');
+    //       alert(data.message);
+    //       window.location.reload(true);
+    //     } 
+    //     else {
+    //       console.log('else');
+    //       alert(data.message+' - '+data.data[0].message);
+    //     }
+    //   })
+    //   // console.log(response);
+    //   // console.log(this.state);
+    // })
+    // .catch(err => {
+    //   // console.error('Failed retrieving information', err);
+    //   console.log('err');
+    //   this.setState({ logged: false });
+    // });
+    alert('Funcionário Avulso Adicionado')
   };
 
   render() {
     
     return (
       <div className="p-30">
-        <div className="modal fade" id="modal-criar-conta" tabIndex="-1" role="dialog" aria-labelledby="modal-usuario-label" >
+        <div className="modal fade" id="modal-add-funcionario" tabIndex="-1" role="dialog" aria-labelledby="modal-usuario-label" >
           <div className="modal-dialog " role="document">
             <div className="modal-content z-9999">
               <div className="modal-header d-flex justify-content-between align-center">
                 <div className="d-flex align-center">
                   <i className="fas fa-user-plus fa-lg pr-10" />
-                  <h6 className="modal-title">Criar Nova Conta</h6>
+                  <h6 className="modal-title">Adicionar Funcionário Avulso</h6>
                 </div>
                 <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                   <span >&times;</span>
@@ -142,4 +139,4 @@ import React from 'react';
 //   name: PropTypes.string.isRequired,
 // };
 
-export default ModalCriarConta;
+export default ModalAddFuncionario;
