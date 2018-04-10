@@ -37,8 +37,7 @@ class PreviewFuncionarios extends React.Component {
 
   render() {      
 
-    var ListaFuncionarios = this.props.lista.data;
-    var MontarLista = () => ListaFuncionarios.map(function(value){
+    var MontarLista = () => this.props.lista.data.map(function(value){
       return (
         <tr>
           <td>{value.Nome}</td>
