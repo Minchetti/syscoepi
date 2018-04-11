@@ -3,16 +3,24 @@ import React from 'react';
 
 class TableFuncionarios extends React.Component {
   state = {
+    lista: this.props.lista,
     search:null
   };
 
 
   onChange = e => {    
     e.preventDefault(); 
-    var search = this.state.search;
+    // var search = this.state.search;
+    this.setState({ lista: [ {Nome: "Marcello Minchetti", Turno: "Noturno", Sexo: "Masculino", RG: "16778405", CPF: "10770546617", GH: "123456", Email: "teste@gmail.com"}] });
     
-    // fetch('http://192.168.10.30/v1/?', {
-    //   method: 'post',
+    // console.log(document.getElementById("input-search-funcionario").value);
+    
+
+    // if(document.getElementById("input-search-funcionarios").value == ''){
+    //   window.location.reload(true);
+    // }
+    // fetch('http://192.168.10.30/v1/empresas/ID/funcionarios', {
+    //   method: 'get',
     //   body: JSON.stringify(),
     //   headers: {
       //     'content-type': 'application/json'
@@ -31,13 +39,16 @@ class TableFuncionarios extends React.Component {
       //   console.error('Failed retrieving information', err);
       //   alert(err);
       // });
+
+
+      
   }
 
 
 
   render(){
 
-    var MontarLista = () => this.props.lista.map(function(value, i){ //.data
+    var MontarLista = () => this.state.lista.map(function(value, i){ //.data
       return (
         <tr>          
           <td>{i}</td>
@@ -62,7 +73,7 @@ class TableFuncionarios extends React.Component {
           <h6 className="text-left mb-0"><i className="fa fa-user pr-10" aria-hidden="true"></i>Funcionários</h6>
         
           <form id="" onChange={this.onChange} className="text-left" method="post" action="">
-            <input type="text" value={this.state.search} onChange={e => this.setState({ search: e.target.value })} className="form-control" id="input-search-funcionario" name="input-search-funcionario" aria-describedby=""/>
+            <input type="text"  className="form-control" id="input-search-funcionario" name="input-search-funcionario" aria-describedby=""/> {/*value={this.state.search} onChange={e => this.setState({ search: e.target.value })}*/}
           </form>
 
 
