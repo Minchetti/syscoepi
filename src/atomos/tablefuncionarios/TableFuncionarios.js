@@ -4,16 +4,31 @@ import React from 'react';
 class TableFuncionarios extends React.Component {
   state = {
     lista: this.props.lista,
+    listaInicial: this.props.lista,
     search:null
   };
 
 
   onChange = e => {    
-    e.preventDefault(); 
+    e.preventDefault();  
     // var search = this.state.search;
-    this.setState({ lista: [ {Nome: "Marcello Minchetti", Turno: "Noturno", Sexo: "Masculino", RG: "16778405", CPF: "10770546617", GH: "123456", Email: "teste@gmail.com"}] });
-    
-    // console.log(document.getElementById("input-search-funcionario").value);
+    // this.setState({ lista: [ {Nome: "Marcello Minchetti", Turno: "Noturno", Sexo: "Masculino", RG: "16778405", CPF: "10770546617", GH: "123456", Email: "teste@gmail.com"}] });    
+    var campo_search = document.getElementById("input-search-funcionario").value;
+    // var campo_search = "Marcello Minchetti";
+    // console.log(campo_search + ' DIGITADO NO INPUT');
+    var funcionario_pesquisado = this.state.lista.filter((i) => i.Nome == campo_search);
+    // console.log(funcionario_pesquisado);
+
+    // {funcionario_pesquisado && this.setState({ lista: funcionario_pesquisado })};
+    if (funcionario_pesquisado.length > 0){
+      // console.log('asdwwwe');
+        this.setState({ lista: funcionario_pesquisado });
+    }
+    if (campo_search === ''){
+      console.log("CAMPO VAZIO");
+      console.log(this.state.listaInicial);
+      this.setState({ lista: this.state.listaInicial });
+    }
     
 
     // if(document.getElementById("input-search-funcionarios").value == ''){
@@ -38,10 +53,7 @@ class TableFuncionarios extends React.Component {
     // .catch(err => {
       //   console.error('Failed retrieving information', err);
       //   alert(err);
-      // });
-
-
-      
+      // });      
   }
 
 
