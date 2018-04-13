@@ -1,4 +1,5 @@
 import React from 'react';
+import $ from 'jquery';
 // import PropTypes from 'prop-types';
 
 class TableFuncionarios extends React.Component {
@@ -7,8 +8,7 @@ class TableFuncionarios extends React.Component {
     listaInicial: this.props.lista,
     search:null
   };
-
-
+  
   onChange = e => {    
     e.preventDefault();  
     // var search = this.state.search;
@@ -18,24 +18,22 @@ class TableFuncionarios extends React.Component {
     // console.log(campo_search + ' DIGITADO NO INPUT');
     var funcionario_pesquisado = this.state.lista.filter((i) => i.Nome == campo_search);
     // console.log(funcionario_pesquisado);
-
     // {funcionario_pesquisado && this.setState({ lista: funcionario_pesquisado })};
     if (funcionario_pesquisado.length > 0){
       // console.log('asdwwwe');
         this.setState({ lista: funcionario_pesquisado });
-    }
+      }
     if (campo_search === ''){
-      console.log("CAMPO VAZIO");
       console.log(this.state.listaInicial);
       this.setState({ lista: this.state.listaInicial });
     }
     
-
+    
     // if(document.getElementById("input-search-funcionarios").value == ''){
-    //   window.location.reload(true);
-    // }
-    // fetch('http://192.168.10.30/v1/empresas/ID/funcionarios', {
-    //   method: 'get',
+      //   window.location.reload(true);
+      // }
+      // fetch('http://192.168.10.30/v1/empresas/ID/funcionarios', {
+        //   method: 'get',
     //   body: JSON.stringify(),
     //   headers: {
       //     'content-type': 'application/json'
@@ -54,13 +52,42 @@ class TableFuncionarios extends React.Component {
       //   console.error('Failed retrieving information', err);
       //   alert(err);
       // });      
-  }
+    }
+    
+    
+    // deleteRow = e => {
+    //   e.preventDefault();  
+    //   e.deleteRow(e);
+    //   console.log('clicou');
+    //   // var id = this.parent().getAttribute(id);
+    // }
+    ClickDelete = (i) => {
+      
+
+      var newLista = this.state.lista;
+      console.log(newLista);
+      var newListaInicial = this.state.listaInicial;
+      // console.log(newListaInicial);
+
+      //remove 1 elemento do índice i
+      var removed = newLista.splice(i, 1);
+      console.log(newLista);
+      var removedInicial = newListaInicial.splice(i, 1);
+      // console.log(newListaInicial);
+
+      this.setState({ lista: newLista });
+      this.setState({ listaInicial: newListaInicial });
+      // console.log(this.state.lista);
+     }
+    
+    
+    render(){
+    
+      
 
 
 
-  render(){
-
-    var MontarLista = () => this.state.lista.map(function(value, i){ //.data
+    var MontarLista = () => this.state.lista.map((value, i) => { //.data
       return (
         <tr>          
           <td>{i}</td>
@@ -71,7 +98,7 @@ class TableFuncionarios extends React.Component {
           <td>{value.GH}</td>
           <td>{value.Turno}</td>
           <td>{value.Sexo}</td>
-          <td><i class="far fa-trash-alt"></i></td>
+          <td onClick={() => { this.ClickDelete(i) }}><i className="far fa-trash-alt c-pointer"></i></td>
         </tr>  
         )
     });
@@ -91,7 +118,7 @@ class TableFuncionarios extends React.Component {
 
         </div>
         <div className="panel-body">
-          <table className="table m-0 ">
+          <table id="table_funcionarios" className="table m-0 ">
             <thead className="thead-dark">
               <tr>
                 <th className="text-center">#</th>
