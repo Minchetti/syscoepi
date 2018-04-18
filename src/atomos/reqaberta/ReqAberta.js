@@ -11,7 +11,7 @@ const ReqAberta = props => (
 
   <div className={'panel mb-4 ' + props.small}>
     <div className="panel-heading ">
-      <h6 className="text-left mb-0"><i className="fa fa-folder-open pr-10" aria-hidden="true"></i>Requisições em Aberto  </h6>
+      <h6 className="text-left mb-0"><i className="fa fa-folder-open pr-2" aria-hidden="true"></i>Requisições em Aberto  </h6>
     </div>
     <div className="panel-body">
       <table className="table m-0">
@@ -51,7 +51,7 @@ const ReqAberta = props => (
   
   <div className={'ReqAberta2 panel mb-4 ' + props.big}>
     <div className="panel-heading ">
-      <h6 className="text-left mb-0"><i className="fa fa-folder-open pr-10" aria-hidden="true"></i>Requisições em Aberto  </h6>
+      <h6 className="text-left mb-0"><i className="fa fa-folder-open pr-2" aria-hidden="true"></i>Requisições em Aberto  </h6>
     </div>
     <div className="panel-body">
       <table className="table m-0">

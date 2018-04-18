@@ -11,12 +11,12 @@ import ReqCancelada from '../reqcancelada';
 const Dashboard = props => (
 
   <div id="dashboard" className="">
-    <h4 className="text-shadow col mt-10"><i className="fa fa-clipboard-list" aria-hidden="true"></i> Dashboard</h4> 
+    <h4 className="col mt-2"><i className="fa fa-clipboard-list" aria-hidden="true"></i> Dashboard</h4> 
     <AlertaEpi /> 
-    <div className="d-flex justify-content-between">
-      <UltimaReq size="w-32" big="d-none "/>
-      <ReqAberta size="w-32" big="d-none "/> 
-      <ReqCancelada size="w-32" big="d-none "/>
+    <div className="justify-content-between row">
+      <UltimaReq size="col-4" big="d-none"/>
+      <ReqAberta size="col-4" big="d-none"/> 
+      <ReqCancelada size="col-4" big="d-none"/>
     </div>
   </div>
 

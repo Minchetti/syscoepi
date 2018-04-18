@@ -30,7 +30,7 @@ class PreviewFuncionarios extends React.Component {
       //   alert(err);
       // });
       alert("Funcionarios adicionados!") ;
-      $('#JAJA').remove();
+      $('#JAJA').hide();
     };
     
     
@@ -51,7 +51,7 @@ class PreviewFuncionarios extends React.Component {
       
     return (
       <div id="JAJA">
-        <button onClick={this.AddFuncionarios} className="btn btn-dark ml-10"> <i className="fa fa-share-square fa-lg pr-10"></i> Enviar Dados </button>
+        <button onClick={this.AddFuncionarios} className="btn btn-dark ml-2"> <i className="fa fa-share-square fa-lg pr-2"></i> Enviar Dados </button>
         <table>
           <thead className="thead-dark">
             <tr>

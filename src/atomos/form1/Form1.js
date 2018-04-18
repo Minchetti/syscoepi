@@ -8,10 +8,10 @@ const Form1 = props => (
 
 
 
-      <div className="form1 p-30">
-        <button type="button" className="btn btn-dark mr-20" data-toggle="modal" data-target="#exampleModal"><i className="fa fa-user-plus pr-10" aria-hidden="true" ></i>Adicionar</button>
-        <button type="button" className="btn btn-dark mr-20"><i className="fa fa-users pr-10" aria-hidden="true"></i>Adicionar por Setor</button>
-        <button type="button" className="btn btn-dark"><i className="fa fa-folder-open pr-10" aria-hidden="true"></i>Template</button>
+      <div className="form1 p-4">
+        <button type="button" className="btn btn-dark mr-3" data-toggle="modal" data-target="#exampleModal"><i className="fa fa-user-plus pr-2" aria-hidden="true" ></i>Adicionar</button>
+        <button type="button" className="btn btn-dark mr-3"><i className="fa fa-users pr-2" aria-hidden="true"></i>Adicionar por Setor</button>
+        <button type="button" className="btn btn-dark"><i className="fa fa-folder-open pr-2" aria-hidden="true"></i>Template</button>
       </div>
 
 

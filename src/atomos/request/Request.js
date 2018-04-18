@@ -9,7 +9,7 @@ const Request = props => (
 
 
         <div id="request" className=""> 
-          <h4 className="mt-10"><i className="fa fa-clipboard" aria-hidden="true"></i> Requisições</h4>           
+          <h4 className="mt-2"><i className="fa fa-clipboard" aria-hidden="true"></i> Requisições</h4>           
           
           <UltimaReq size="col" small="d-none "/> 
           <ReqAberta size="col" small="d-none "/> 

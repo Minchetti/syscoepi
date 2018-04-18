@@ -32,11 +32,11 @@ class Company extends React.Component {
   state = {
     csv: null,
     listaFuncionarios: [
-      {Nome: "Marcello Minchetti", Turno: "Noturno", Sexo: "Masculino", RG: "16778405", CPF: "10770546617", GH: "123456", Email: "teste@gmail.com"},   
-      {Nome: "Leandro Santos", Turno: "vespertino", Sexo: "Masculino", RG: "16698405", CPF: "78970546617", GH: "123456", Email: "teste@gmail.com"}, 
-      {Nome: "Luciano Braga", Turno: "Matutino", Sexo: "Masculino", RG: "16771105", CPF: "11570546617", GH: "123456", Email: "teste@gmail.com"},
-      {Nome: "Rodolfo Augusto", Turno: "Vespertino", Sexo: "Masculino", RG: "16772605", CPF: "11980546617", GH: "123456", Email: "teste@gmail.com"},    
-      {Nome: "Susi Ribeiro", Turno: "Noturno", Sexo: "Feminino", RG: "16488405", CPF: "10770774617", GH: "123456", Email: "teste@gmail.com"}
+      {Id:"0123", Nome: "Marcello Minchetti", Turno: "Noturno", Sexo: "Masculino", RG: "16778405", CPF: "10770546617", GH: "123456", Email: "teste@gmail.com"},   
+      {Id:"1123", Nome: "Leandro Santos", Turno: "vespertino", Sexo: "Masculino", RG: "16698405", CPF: "78970546617", GH: "123456", Email: "teste@gmail.com"}, 
+      {Id:"2123", Nome: "Luciano Braga", Turno: "Matutino", Sexo: "Masculino", RG: "16771105", CPF: "11570546617", GH: "123456", Email: "teste@gmail.com"},
+      {Id:"3123", Nome: "Rodolfo Augusto", Turno: "Vespertino", Sexo: "Masculino", RG: "16772605", CPF: "11980546617", GH: "123456", Email: "teste@gmail.com"},    
+      {Id:"4123", Nome: "Susi Ribeiro", Turno: "Noturno", Sexo: "Feminino", RG: "16488405", CPF: "10770774617", GH: "123456", Email: "teste@gmail.com"}
     ]
   };
   
@@ -48,6 +48,8 @@ class Company extends React.Component {
       complete: function(csv) {
         this.setState({ csv });
         console.log(csv);
+        
+      $('#JAJA').show();
         // PreviewComponent = <PreviewFuncionarios lista={csv}/> 
       }.bind(this)
       });
@@ -78,7 +80,7 @@ class Company extends React.Component {
     //   console.error('Failed retrieving information', err);
     //   alert(err);
     // });
-    alert("Funcionarios carregados!") ;
+    // alert("Funcionarios carregados!") ;
   };
 
   
@@ -93,11 +95,11 @@ class Company extends React.Component {
       
       <div id="company">
       
-        <h4 className="mt-10 mb-4"><i className="fa fa-building" aria-hidden="true"></i> Empresas</h4>  
+        <h4 className="mt-2 mb-4"><i className="fa fa-building" aria-hidden="true"></i> Empresas</h4>  
         <div className=""> 
           <div className=" d-flex flex-column">              
             <div className="d-flex mb-4">
-              <div className="col-md-4 d-flex align-center p-0">
+              <div className="col-md-4 d-flex align-items-center p-0">
                 <div className="col-md-11 p-0">
                   <select id="select-empresas" className="form-control">
                     <option>Metrosul</option>
@@ -107,18 +109,18 @@ class Company extends React.Component {
                   </select>
                 </div>
                 <div className="col-md-1 p-0">
-                  <Button class="btn-dark pr-10" icon="fa-plus fa-lg" text="" target="#modal-criar-empresa"/>
+                  <Button class="btn-dark pr-2" icon="fa-plus fa-lg" text="" target="#modal-criar-empresa"/>
                 </div>
               </div>
-              <div className="col-md-8 p-0 align-center">
-                {/* <Button class="btn-dark ml-10" icon="fa-user-plus pr-10" text="Importar Funcionários"/>  */}
+              <div className="col-md-8 p-0 align-items-center">
+                {/* <Button class="btn-dark ml-2" icon="fa-user-plus pr-2" text="Importar Funcionários"/>  */}
 
-                <input type="file" className="btn btn-dark ml-10" id="csv-file" name="files" onChange={this.handleFileSelect.bind(this)}/>
-                <Button class="btn-dark pr-10" icon="fa-plus fa-lg" text="Adicionar Funcionário Avulso" target="#modal-add-funcionario"/>
+                <input type="file" className="btn btn-dark ml-2" id="csv-file" name="files" onChange={this.handleFileSelect.bind(this)}/>
+                <Button class="btn-dark pr-2" icon="fa-plus fa-lg" text="Adicionar Funcionário Avulso" target="#modal-add-funcionario"/>
 
-                {/* <Button class="testeok btn-dark ml-10" icon="fa-user-plus pr-10" text="OK"/>  */}
-                {/* <Button class="btn-dark ml-10" icon="fa-plus pr-10" text="Criar GH"/>  */}
-                {/* <Button class="btn-dark ml-10" icon="fa-plus pr-10" text="Criar CC"/> */}
+                {/* <Button class="testeok btn-dark ml-2" icon="fa-user-plus pr-2" text="OK"/>  */}
+                {/* <Button class="btn-dark ml-2" icon="fa-plus pr-2" text="Criar GH"/>  */}
+                {/* <Button class="btn-dark ml-2" icon="fa-plus pr-2" text="Criar CC"/> */}
               </div>
             </div>
 

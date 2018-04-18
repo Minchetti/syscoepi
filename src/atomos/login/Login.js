@@ -26,7 +26,7 @@ import $ from 'jquery';
 //       <em>I</em>
 //     </h1>
 
-//     <form className="mt-20 text-left">
+//     <form className="mt-3 text-left">
 //       <div className="form-group">
 //         <label htmlFor="exampleInputEmail1">Email</label>
 //         <input type="email" className="form-control" id="email-login" aria-describedby="emailHelp" placeholder="Digite o email"/>
@@ -189,7 +189,7 @@ class Login extends React.Component {
               <i className="fa fa-check" aria-hidden="true" /> Email validado
               com sucesso. Faça seu login.
             </div>
-            <form onSubmit={this.onSubmit} className="mt-20 text-left">
+            <form onSubmit={this.onSubmit} className="mt-3 text-left">
               <div className="form-group">
                 <label htmlFor="exampleInputEmail1">Email</label>
                 <input

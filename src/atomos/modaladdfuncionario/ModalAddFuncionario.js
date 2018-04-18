@@ -54,13 +54,13 @@ import React from 'react';
   render() {
     
     return (
-      <div className="p-30">
+      <div className="p-4">
         <div className="modal fade" id="modal-add-funcionario" tabIndex="-1" role="dialog" aria-labelledby="modal-usuario-label" >
           <div className="modal-dialog " role="document">
             <div className="modal-content z-9999">
-              <div className="modal-header d-flex justify-content-between align-center">
-                <div className="d-flex align-center">
-                  <i className="fas fa-user-plus fa-lg pr-10" />
+              <div className="modal-header d-flex justify-content-between align-items-center">
+                <div className="d-flex align-items-center">
+                  <i className="fas fa-user-plus fa-lg pr-2" />
                   <h6 className="modal-title">Adicionar Funcionário Avulso</h6>
                 </div>
                 <button type="button" className="close" data-dismiss="modal" aria-label="Close">
@@ -94,7 +94,7 @@ import React from 'react';
                       <input type="email" value={this.state.gh} onChange={e => this.setState({ gh: e.target.value })} className="form-control" id="input-gh" name="input-gh" aria-describedby="emailHelp" required/>
                     </div>
                     <div className="form-group mb-0">
-                      <button type="button" className="btn btn-danger mr-10" data-dismiss="modal">
+                      <button type="button" className="btn btn-danger mr-2" data-dismiss="modal">
                         <i className="fa fa-times  pr-2"  />Fechar
                       </button>
                       <button id="btn-conta" type="submit" className="btn btn-primary" >

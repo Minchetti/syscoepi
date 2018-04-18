@@ -40,13 +40,13 @@ onSubmit = e => {
 
 render(){
   return(
-    <div className="p-30">
+    <div className="p-4">
     <div className="modal fade" id="modal-criar-empresa" tabIndex="-1" role="dialog" aria-labelledby="modal-usuario-label" >
       <div className="modal-dialog " role="document">
         <div className="modal-content z-9999">
-          <div className="modal-header d-flex justify-content-between align-center">
-            <div className="d-flex align-center">
-              <i className="fas fa-user-plus fa-lg pr-10" />
+          <div className="modal-header d-flex justify-content-between align-items-center">
+            <div className="d-flex align-items-center">
+              <i className="fas fa-user-plus fa-lg pr-2" />
               <h6 className="modal-title">Criar Empresa</h6>
             </div>
             <button type="button" className="close" data-dismiss="modal" aria-label="Close">
@@ -71,7 +71,7 @@ render(){
                   <input type="text" value={this.state.razaoSocial} onChange={e => this.setState({ razaoSocial: e.target.value })} className="form-control" id="input-razao-social" name="input-razao-social" aria-describedby="razaoSocialHelp" required />
                 </div>
                 <div className="form-group mb-0">
-                  <button type="button" className="btn btn-danger mr-10" data-dismiss="modal">
+                  <button type="button" className="btn btn-danger mr-2" data-dismiss="modal">
                     <i className="fa fa-times fa-lg pr-2"  />Fechar
                   </button>
                   <button id="btn-conta" type="submit" className="btn btn-primary" >

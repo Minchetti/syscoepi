@@ -7,14 +7,14 @@ const Modal3 = props => (
   // .modal-backdrop.in     opacity: .5;
  
 
-<div className="p-30">
+<div className="p-4">
 
 <div>
   <div className="modal-dialog modal-sm" role="document">
     <div className="modal-content">
-      <div className="modal-header d-flex justify-content-between align-center">
-        <div className="d-flex align-center">
-          <i className="fa fa-user-plus fa-lg pr-10" aria-hidden="true"/>
+      <div className="modal-header d-flex justify-content-between align-items-center">
+        <div className="d-flex align-items-center">
+          <i className="fa fa-user-plus fa-lg pr-2" aria-hidden="true"/>
           <h5 className="modal-title" id="exampleModalLabel">LOGIN</h5>
         </div>
         <button type="button" className="close" data-dismiss="modal" aria-label="Close">
@@ -26,28 +26,28 @@ const Modal3 = props => (
 
         {/* <form className="text-left col">
           <div className="form-group col-md-6">
-            <label for="exampleInputPassword1" className="pr-10"><i className="fa fa-user pr-5" aria-hidden="true"/>CNPJ: </label>
+            <label for="exampleInputPassword1" className="pr-2"><i className="fa fa-user pr-1" aria-hidden="true"/>CNPJ: </label>
             <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="12054998817"/>
           </div>
           <div className="form-group col-md-6">
-            <label for="exampleInputPassword1" className="pr-10"><i className="fa fa-user pr-5" aria-hidden="true"/>Razão Social: </label>
+            <label for="exampleInputPassword1" className="pr-2"><i className="fa fa-user pr-1" aria-hidden="true"/>Razão Social: </label>
             <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Fitassul"/>
           </div>
           <div className="form-group col-md-6">
-            <label for="exampleInputPassword1" className="pr-10"><i className="fa fa-user pr-5" aria-hidden="true"/>Responsável: </label>
+            <label for="exampleInputPassword1" className="pr-2"><i className="fa fa-user pr-1" aria-hidden="true"/>Responsável: </label>
             <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Luciano"/>
           </div>
           <div className="form-group col-md-6">
-            <label for="exampleInputPassword1" className="pr-10"><i className="fa fa-building pr-5" aria-hidden="true"/>Setor: </label>
+            <label for="exampleInputPassword1" className="pr-2"><i className="fa fa-building pr-1" aria-hidden="true"/>Setor: </label>
             <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="A"/>
           </div>
           <div className="form-group col-md-6">
-            <label for="exampleFormControlSelect1"><i className="fa fa-truck pr-5" aria-hidden="true"></i>Local da Entrega</label>
+            <label for="exampleFormControlSelect1"><i className="fa fa-truck pr-1" aria-hidden="true"></i>Local da Entrega</label>
             <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Fitassul"/>
           </div>
           <div className="form-group col-md-6">
             <label for="exampleFormControlSelect1">
-              <i className="fa fa-clock-o pr-5" aria-hidden="true"></i>Turno
+              <i className="fa fa-clock-o pr-1" aria-hidden="true"></i>Turno
             </label>
             <select className="form-control" id="exampleFormControlSelect1">
               <option>1</option>
@@ -87,10 +87,10 @@ const Modal3 = props => (
       </div>
       {/* <div className="modal-footer">
         <button type="button" className="btn btn-danger" data-dismiss="modal">
-          <i className="fa fa-times pr-5" aria-hidden="true" />Fechar
+          <i className="fa fa-times pr-1" aria-hidden="true" />Fechar
         </button>
         <button type="button" className="btn btn-primary">
-          <i className="fa fa-plus pr-5" aria-hidden="true"/>Salvar
+          <i className="fa fa-plus pr-1" aria-hidden="true"/>Salvar
         </button>
       </div> */}
     </div>

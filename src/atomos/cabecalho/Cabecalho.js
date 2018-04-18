@@ -15,7 +15,7 @@ import {
 
   const AuthButton = withRouter(
     ({ history }) => (
-      <a className="pr-20 c-pointer" id="logout" onClick={() => {
+      <a className="pr-3 c-pointer" id="logout" onClick={() => {
         localStorage.removeItem('logged');
         history.push('/public')      
         alert('flw fio');
@@ -33,10 +33,10 @@ class Cabecalho extends React.Component {
   
   render() {    
     return (
-      <header className="App-header d-flex justify-content-between align-center">
-        <div className="d-flex align-center">  
+      <header className="App-header d-flex justify-content-between align-items-center">
+        <div className="d-flex align-items-center">  
 
-          <h2 className="App-title d-flex align-center"><span>SC</span><img src={logo} className="App-logo " alt="logo" /><span className="mln-10">EPI</span></h2>
+          <h2 className="App-title d-flex align-items-center"><span>SC</span><img src={logo} className="App-logo " alt="logo" /><span className="mln-10">EPI</span></h2>
 
           {/* <h2 className="App-title">SySCOEPI</h2> */}
           {/* <img src={logofita} className="" alt="logo" /> */}
@@ -47,21 +47,21 @@ class Cabecalho extends React.Component {
         </div>
 
         <div className="d-flex ">
-          <div className="pr-30">
+          <div className="pr-4">
             <i className="fa fa-bell " aria-hidden="true"></i> 
           </div>
-          <div id="lnk-painel-usuario" className="pr-20 c-pointer"  data-toggle="modal" data-target="#modal-usuario">
+          <div id="lnk-painel-usuario" className="pr-3 c-pointer"  data-toggle="modal" data-target="#modal-usuario">
             <i className="fa fa-user-circle" aria-hidden="true"></i> <span className="nome-usuario"></span>
           </div>
           
-          <div className="pr-20">
+          <div className="pr-3">
             <i className="fa fa-question-circle" aria-hidden="true"></i> Ajuda
           </div>
 
         <AuthButton/>
 
         </div>
-        {/* <ModalUsuario/> */}
+        <ModalUsuario/>
       </header>
     )  
   }

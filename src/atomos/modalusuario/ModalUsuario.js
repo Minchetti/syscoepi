@@ -1,5 +1,5 @@
 import React from 'react';
-import $ from 'jquery'; 
+// import $ from 'jquery'; 
 // import PropTypes from 'prop-types';
 
 
@@ -8,16 +8,45 @@ class ModalUsuario extends React.Component {
   state = {
     nome: '',
     cpf: '',
-    celular: '',
     email: '',
+    celular: '',
     senha: '',
     confirmaSenha: ''
   };
 
+
+  CarregarDados = () => {     
+    // var EmpresaSelecionada = document.getElementById("select-empresas").value;
+    
+    // fetch('http://192.168.10.30/v1/clientes/{id}', {
+    //   method: 'get',
+    //   body: JSON.stringify(),
+    //   headers: {
+      //     'content-type': 'application/json'
+      //   }
+      // })
+      // .then(response => {
+        //   response.json().then(data => {
+          //     if (data.success == true) {   
+        //        this.setState({ data });   
+    //          } 
+    //          else {
+      //       alert(data.message+' - '+data.data[0].message);    
+    //     }
+    //   });
+    // })
+    // .catch(err => {
+    //   console.error('Failed retrieving information', err);
+    //   alert(err);
+    // });
+    // alert("Funcionarios carregados!") ;
+  };
+
+
   onSubmit = e => {
   
     e.preventDefault(); 
-    fetch('http://192.168.10.30/v1/clientes/novo', {
+    fetch('http://192.168.10.30/v1/clientes/?', {
       method: 'post',
       body: JSON.stringify(this.state),
       headers: {
@@ -28,7 +57,6 @@ class ModalUsuario extends React.Component {
       response.json().then(data => {
         if (data.success == true) {
           alert(data.message);
-          console.log('CHEGOU');
         } 
         else {
           alert(data.message);
@@ -37,21 +65,23 @@ class ModalUsuario extends React.Component {
     })
     .catch(err => {
       console.error('Failed retrieving information', err);
-      this.setState({ logged: false });
+      // this.setState({ logged: false });
     });
   };
 
   render() {
     
+    this.CarregarDados();
+
     return (
-      <div className="p-30">
+      <div className="p-4 ">
         <div className="modal fade" id="modal-usuario" tabIndex="-1" role="dialog" aria-labelledby="modal-usuario-label" aria-hidden="true">
           <div className="modal-dialog " role="document">
-            <div className="modal-content z-9999">
-              <div className="modal-header d-flex justify-content-between align-center">
-                <div className="d-flex align-center">
-                  <i className="fa fa-user-circle fa-lg pr-10" aria-hidden="true"/>
-                  <h6 className="nome-usuario modal-title">{/*props.name*/}</h6>
+            <div className="modal-content text-dark z-9999">
+              <div className="modal-header d-flex justify-content-between align-items-center">
+                <div className="d-flex align-items-center">
+                  <i className="fa fa-user-circle fa-lg pr-2" aria-hidden="true"/>
+                  <h6 className="nome-usuario modal-title">Dados da Conta{/*props.name*/}</h6>
                 </div>
                 <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
@@ -92,7 +122,7 @@ class ModalUsuario extends React.Component {
                     
                   </div>
                   <div className="form-group mb-0">
-                  <button type="button" className="btn btn-danger mr-10" data-dismiss="modal">
+                  <button type="button" className="btn btn-danger mr-2" data-dismiss="modal">
                     <i className="fa fa-times pr-2" aria-hidden="true" />Fechar
                   </button>
                   <button id="btn-conta" type="submit" className="btn btn-primary" disabled>
