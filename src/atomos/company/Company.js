@@ -23,41 +23,17 @@ import IdUsuarioLogado from '../login/Login.js';
 
 
 
-
-
-
-
-
 class Company extends React.Component {
   state = {
-    csv: null,
-    listaFuncionarios: [
-      {Id:"0123", Nome: "Marcello Minchetti", Turno: "Noturno", Sexo: "Masculino", RG: "16778405", CPF: "10770546617", GH: "123456", Email: "teste@gmail.com"},   
-      {Id:"1123", Nome: "Leandro Santos", Turno: "vespertino", Sexo: "Masculino", RG: "16698405", CPF: "78970546617", GH: "123456", Email: "teste@gmail.com"}, 
-      {Id:"2123", Nome: "Luciano Braga", Turno: "Matutino", Sexo: "Masculino", RG: "16771105", CPF: "11570546617", GH: "123456", Email: "teste@gmail.com"},
-      {Id:"3123", Nome: "Rodolfo Augusto", Turno: "Vespertino", Sexo: "Masculino", RG: "16772605", CPF: "11980546617", GH: "123456", Email: "teste@gmail.com"},    
-      {Id:"4123", Nome: "Susi Ribeiro", Turno: "Noturno", Sexo: "Feminino", RG: "16488405", CPF: "10770774617", GH: "123456", Email: "teste@gmail.com"}
-    ]
+    cnpj: 'TESTE',
+    nomeAmigavel: 'TEST',
+    razaoSocial: 'TEST'    
   };
   
-  handleFileSelect(evt) {
-    var file = evt.target.files[0];
-    Papa.parse(file, {
-      header: true,
-      dynamicTyping: true,
-      complete: function(csv) {
-        this.setState({ csv });
-        console.log(csv);
-        
-      $('#JAJA').show();
-        // PreviewComponent = <PreviewFuncionarios lista={csv}/> 
-      }.bind(this)
-      });
-  }
-
-
-  CarregarFuncionarios = () => {     
-    // var EmpresaSelecionada = document.getElementById("select-empresas").value;
+  
+  
+  CarregarEmpresas = () => {   
+     // var EmpresaSelecionada = document.getElementById("select-empresas").value;
     
     // fetch('http://192.168.10.30/v1/?', {
     //   method: 'post',
@@ -81,67 +57,70 @@ class Company extends React.Component {
     //   alert(err);
     // });
     // alert("Funcionarios carregados!") ;
-  };
-
+  }
   
-  render() {   
+  render() {       
 
-    this.CarregarFuncionarios();
-    
-    
-
+    this.CarregarEmpresas();
 
     return (
       
       <div id="company">
-      
-        <h4 className="mt-2 mb-4"><i className="fa fa-building" aria-hidden="true"></i> Empresas</h4>  
-        <div className=""> 
-          <div className=" d-flex flex-column">              
-            <div className="d-flex mb-4">
-              <div className="col-md-4 d-flex align-items-center p-0">
-                <div className="col-md-11 p-0">
-                  <select id="select-empresas" className="form-control">
-                    <option>Metrosul</option>
-                    <option>BrazOffice</option>
-                    <option>Fitassul</option>
-                    <option>Helibras</option>
-                  </select>
+
+        <h4 className="mt-2 mb-4"><i className="fa fa-building" aria-hidden="true"></i> Empresas</h4> 
+        <div className="row">    
+          <div className="col-md-6">
+              <select id="select-empresas" className="form-control">
+                <option>Metrosul</option>
+                <option>BrazOffice</option>
+                <option>Fitassul</option>
+                <option>Helibras</option>
+              </select>
+          </div>
+          
+          <div className="col-md-6">        
+            <Button class="btn-dark" icon="fa-plus fa-lg mr-1" text="Adicionar Empresa" target="#modal-criar-empresa"/>
+            {/* <Button class="btn-dark ml-2" icon="fa-user-plus pr-2" text="Importar Funcionários"/>  */}
+
+            {/* <Button class="testeok btn-dark ml-2" icon="fa-user-plus pr-2" text="OK"/>  */}
+            {/* <Button class="btn-dark ml-2" icon="fa-plus pr-2" text="Criar GH"/>  */}
+            {/* <Button class="btn-dark ml-2" icon="fa-plus pr-2" text="Criar CC"/> */}
+          </div>
+
+        
+          <div className="col-md-12">  
+
+            <form id="form-usuario" onSubmit={this.onSubmit} className="text-left d-flex flex-wrap" method="post" action="">
+              <div class="form-row"> 
+                <div className="form-group col-md-6">
+                  <label htmlFor="input-cnpj"><i className="far fa-id-card fa-lg pr-2" ></i>CNPJ</label>
+                  <input type="text" value={this.state.cnpj} onChange={e => this.setState({ cnpj: e.target.value })} className="form-control" id="input-cnpj" name="input-cnpj" aria-describedby="cnpjHelp" required />
                 </div>
-                <div className="col-md-1 p-0">
-                  <Button class="btn-dark pr-2" icon="fa-plus fa-lg" text="" target="#modal-criar-empresa"/>
+                <div className="form-group col-md-6">
+                  <label htmlFor="input-nome-amigavel"><i className="far fa-user fa-lg pr-2" ></i>Nome Amigável</label>
+                  <input type="text" value={this.state.nomeAmigavel} onChange={e => this.setState({ nomeAmigavel: e.target.value })} className="form-control" id="input-nome-amigavel" name="input-nome-amigavel" aria-describedby="nomeAmigavelHelp" required />
+                </div>
+                <div className="form-group col-md-6">
+                  <label htmlFor="input-razao-social"><i className="far fa-user fa-lg pr-2" ></i>Razão Social</label>
+                  <input type="text" value={this.state.razaoSocial} onChange={e => this.setState({ razaoSocial: e.target.value })} className="form-control" id="input-razao-social" name="input-razao-social" aria-describedby="razaoSocialHelp" required />
+                </div>
+                <div className="form-group mb-0">
+                  <button type="button" className="btn btn-danger mr-2" data-dismiss="modal">
+                    <i className="fa fa-times fa-lg pr-2"  />Fechar
+                  </button>
+                  <button id="btn-conta" type="submit" className="btn btn-primary" >
+                    <i className="fa fa-plus fa-lg pr-2" />Salvar
+                  </button>
                 </div>
               </div>
-              <div className="col-md-8 p-0 align-items-center">
-                {/* <Button class="btn-dark ml-2" icon="fa-user-plus pr-2" text="Importar Funcionários"/>  */}
+            </form>   
+          </div>    
+        </div> 
 
-                <input type="file" className="btn btn-dark ml-2" id="csv-file" name="files" onChange={this.handleFileSelect.bind(this)}/>
-                <Button class="btn-dark pr-2" icon="fa-plus fa-lg" text="Adicionar Funcionário Avulso" target="#modal-add-funcionario"/>
-
-                {/* <Button class="testeok btn-dark ml-2" icon="fa-user-plus pr-2" text="OK"/>  */}
-                {/* <Button class="btn-dark ml-2" icon="fa-plus pr-2" text="Criar GH"/>  */}
-                {/* <Button class="btn-dark ml-2" icon="fa-plus pr-2" text="Criar CC"/> */}
-              </div>
-            </div>
-
-            
-            {this.state.csv && <PreviewFuncionarios lista={this.state.csv} />}
-
-            {this.state.listaFuncionarios && <TableFuncionarios lista={this.state.listaFuncionarios}  /> }
-
-
-             {/* <Table2 />
-            <Table3 />  */}
-
-          </div>      
-        </div>
-
-        {/* <Modal2/>    */}
-        <ModalCriarEmpresa/>
-        <ModalAddFuncionario/>           
-
+      <ModalCriarEmpresa/>        
       </div>
 
+            
     );
   }
 }

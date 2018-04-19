@@ -9,6 +9,7 @@ import Dashboard from '../dashboard';
 // import ModalUsuario from '../modalusuario';
 import Request from '../request';
 import Company from '../company';
+import Employees from '../employees';
 
 
 const Home = props => (
@@ -23,6 +24,7 @@ const Home = props => (
         <Route path="/app/dashboard" component={Dashboard} /> 
         <Route path="/app/request" component={Request} />
         <Route path="/app/company" component={Company} />
+        <Route path="/app/employees" component={Employees} />
         {/* <ModalUsuario/>   */}
       </div>
     </div>  

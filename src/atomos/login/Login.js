@@ -8,10 +8,10 @@ import $ from 'jquery';
 
 // const Login = props => (
 
-// <div id="Login" className="p-absolute col h-100 ">
-//   <div className="boxLogin pt-80 p-absolute">
+// <div id="Login" className="position-absolute col h-100 ">
+//   <div className="boxLogin pt-80 position-absolute">
 //     <link href='https://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'/>
-//     <div className="t-0 l-0 r-0 p-absolute d-nonin" id="msg-validou">
+//     <div className="t-0 l-0 r-0 position-absolute d-nonin" id="msg-validou">
 //       <i className="fa fa-check" aria-hidden="true"></i> Email validado com sucesso. Faça seu login.
 //     </div>
 
@@ -178,14 +178,14 @@ class Login extends React.Component {
       );
     } else {
       return (
-        <div id="Login" className="p-absolute col h-100 ">
-          <div className="boxLogin pt-80 p-absolute t-30">
+        <div id="Login" className="position-absolute col h-100 ">
+          <div className="boxLogin pt-80 position-absolute t-30">
             <link
               href="https://fonts.googleapis.com/css?family=Josefin+Sans"
               rel="stylesheet"
               type="text/css"
             />
-            <div className="t-0 l-0 r-0 p-absolute d-nonin" id="msg-validou">
+            <div className="t-0 l-0 r-0 position-absolute d-nonin" id="msg-validou">
               <i className="fa fa-check" aria-hidden="true" /> Email validado
               com sucesso. Faça seu login.
             </div>
