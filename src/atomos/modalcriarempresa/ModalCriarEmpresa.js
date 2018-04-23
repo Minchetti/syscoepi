@@ -75,7 +75,7 @@ render(){
                     <i className="fa fa-times fa-lg pr-2"  />Fechar
                   </button>
                   <button id="btn-conta" type="submit" className="btn btn-primary" >
-                    <i className="fa fa-plus fa-lg pr-2" />Salvar
+                    <i className="fa fa-plus fa-lg pr-2" />Salvar 
                   </button>
                 </div>
               </div>

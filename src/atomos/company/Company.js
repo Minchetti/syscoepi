@@ -14,30 +14,41 @@ import IdUsuarioLogado from '../login/Login.js';
 
 class Company extends React.Component {
   state = {
-    cnpj: '',
-    nomeAmigavel: '',
-    razaoSocial: '',
-    endereço: ''    ,
-    cep: '',
-    estado: '',
-    cidade: '',
-    numero: '',
-    bairro: '',
-    responsavel: '',
-    telefone: '',
-    email: '',
-    site: '',
-    codigoAtividade: '',
+    cnpj: null,
+    nomeAmigavel: null,
+    razaoSocial: null,
+    empresaSelecionada: null,
     arrayEmpresas: []
-
   };
 
 
-  componentWillMount (){
+  
+  // razaoSocial: '',
+  // endereço: ''    ,
+  // cep: '',
+  // estado: '',
+  // cidade: '',
+  // numero: '',
+  // bairro: '',
+  // responsavel: '',
+  // telefone: '',
+  // email: '',
+  // site: '',
+  // codigoAtividade: '',
+
+  componentWillMount(){
     this.CarregarEmpresas();
-    this.CarregarDadosEmpresa();
     this.MontarSelect();
+    
+  }
+  componentDidMount (){
+    this.CarregarDadosEmpresa();
   }  
+
+  // componentDidUpdate() {
+  //   this.CarregarDadosEmpresa();
+  // }
+
   
   
   CarregarEmpresas = () => {   
@@ -67,17 +78,20 @@ class Company extends React.Component {
 
     //TESTE
     var data = [
-      {cnpj:'123123123', nomeAmigavel:'Maoi3', razaoSocial: 'aw111eq.com'},
-      {cnpj:'123678123', nomeAmigavel:'Maoi2', razaoSocial: 'aw123eq.com'},
-      {cnpj:'123999123', nomeAmigavel:'Maoi1', razaoSocial: 'aw333eq.com'}    
+      {cnpj:'123999123', nomeAmigavel:'Empresa1', razaoSocial: 'Razao1'},    
+      {cnpj:'123678123', nomeAmigavel:'Empresa2', razaoSocial: 'Razao2'},
+      {cnpj:'123123123', nomeAmigavel:'Empresa3', razaoSocial: 'Razao3'}
     ]
     this.setState({ arrayEmpresas: data });  
+    this.setState({ empresaSelecionada: data[0].nomeAmigavel });  
     alert("Lista de empresas carregados!");
   }
 
 
   CarregarDadosEmpresa = () => {   
     // var EmpresaSelecionada = document.getElementById("select-empresas").value;
+
+    // var id = this.state.empresaSelecionada;
    
    // fetch('http://192.168.10.30/v1/empresa/{id}?', {
    //   method: 'get',
@@ -101,6 +115,32 @@ class Company extends React.Component {
    //   alert(err);
    // });
 
+   var data = [
+    {cnpj: '111111', nomeAmigavel:'Empresa1', razaoSocial: 'Razao1'} 
+  ]
+  var data2 = [
+    {cnpj: '222222', nomeAmigavel:'Empresa2', razaoSocial: 'Razao2'} 
+  ]
+  var data3 = [
+    {cnpj: '333333', nomeAmigavel:'Empresa3', razaoSocial: 'Razao3 '} 
+  ]
+  if (this.state.empresaSelecionada == 'Empresa1' ){
+    this.setState({ nomeAmigavel: data[0].nomeAmigavel });  
+    this.setState({ razaoSocial: data[0].razaoSocial });  
+    this.setState({ cnpj: data[0].cnpj });   
+  }
+  
+  if (this.state.empresaSelecionada == 'Empresa2' ){
+    this.setState({ nomeAmigavel: data2[0].nomeAmigavel });  
+    this.setState({ razaoSocial: data2[0].razaoSocial });  
+    this.setState({ cnpj: data2[0].cnpj });   
+  }
+  if (this.state.empresaSelecionada == 'Empresa3' ){
+    this.setState({ nomeAmigavel: data3[0].nomeAmigavel });  
+    this.setState({ razaoSocial: data3[0].razaoSocial });  
+    this.setState({ cnpj: data3[0].cnpj });   
+  }
+
    alert("Dados da empresa carregados!") ;
   }
 
@@ -111,15 +151,20 @@ class Company extends React.Component {
       )
   });
 
+  Teste = () => {console.log(this.state);}
+  
+
 
   render() {   
+
     return (      
       <div id="company">
+      <div onClick={this.Teste}>AQUI</div>
 
         <h4 className="mt-2 mb-4"><i className="fa fa-building" aria-hidden="true"></i> Empresas</h4> 
         <div className="row">    
           <div className="col-md-6">
-              <select id="select-empresas" className="form-control">
+              <select id="select-empresas" className="form-control" onChange={e => this.setState({ empresaSelecionada: e.target.value },this.CarregarDadosEmpresa())}>
                 {this.MontarSelect()}
               </select>
           </div>
@@ -134,7 +179,7 @@ class Company extends React.Component {
           </div>
 
         
-          <div className="col-md-12">  
+          <div className="col-md-12 mt-5">  
 
             <form id="form-usuario" onSubmit={this.onSubmit} className="text-left d-flex flex-wrap" method="post" action="">
               <div class="form-row"> 
@@ -142,54 +187,14 @@ class Company extends React.Component {
                   <label htmlFor="input-cnpj"><i className="far fa-id-card fa-lg pr-2" ></i>CNPJ</label>
                   <input type="text" value={this.state.cnpj} onChange={e => this.setState({ cnpj: e.target.value })} className="form-control" id="input-cnpj" name="input-cnpj" aria-describedby="cnpjHelp" required />
                 </div> 
-                <div className="form-group col-md-3">
-                  <label htmlFor="input-cep"><i className="far fa-id-card fa-lg pr-2" ></i>CEP</label>
-                  <input type="text" value={this.state.cep} onChange={e => this.setState({ cep: e.target.value })} className="form-control" id="input-cep" name="input-cep" aria-describedby="cepHelp" required />
-                </div>  
-                <div className="form-group col-md-3">
-                  <label htmlFor="input-cidade"><i className="far fa-id-card fa-lg pr-2" ></i>Cidade</label>
-                  <input type="text" value={this.state.cidade} onChange={e => this.setState({ cidade: e.target.value })} className="form-control" id="input-cidade" name="input-cidade" aria-describedby="cidadeHelp" required />
-                </div> 
-                <div className="form-group col-md-3">
-                  <label htmlFor="input-telefone"><i className="far fa-id-card fa-lg pr-2" ></i>Telefone</label>
-                  <input type="text" value={this.state.telefone} onChange={e => this.setState({ telefone: e.target.value })} className="form-control" id="input-telefone" name="input-telefone" aria-describedby="telefoneHelp" required />
-                </div>               
-                <div className="form-group col-md-3">
-                  <label htmlFor="input-estado"><i className="far fa-id-card fa-lg pr-2" ></i>Estado</label>
-                  <input type="text" value={this.state.estado} onChange={e => this.setState({ estado: e.target.value })} className="form-control" id="input-estado" name="input-estado" aria-describedby="estadoHelp" required />
-                </div> 
-                <div className="form-group col-md-3">
-                  <label htmlFor="input-endereço"><i className="far fa-id-card fa-lg pr-2" ></i>Endereço</label>
-                  <input type="text" value={this.state.endereço} onChange={e => this.setState({ endereço: e.target.value })} className="form-control" id="input-endereço" name="input-endereço" aria-describedby="endereçoHelp" required />
-                </div> 
-                <div className="form-group col-md-3">
-                  <label htmlFor="input-site"><i className="far fa-id-card fa-lg pr-2" ></i>site</label>
-                  <input type="text" value={this.state.site} onChange={e => this.setState({ site: e.target.value })} className="form-control" id="input-site" name="input-site" aria-describedby="siteHelp" required />
-                </div> 
-                <div className="form-group col-md-3">
-                  <label htmlFor="input-email"><i className="far fa-id-card fa-lg pr-2" ></i>email</label>
-                  <input type="text" value={this.state.email} onChange={e => this.setState({ email: e.target.value })} className="form-control" id="input-email" name="input-email" aria-describedby="emailHelp" required />
-                </div> 
-                <div className="form-group col-md-3">
-                  <label htmlFor="input-numero"><i className="far fa-id-card fa-lg pr-2" ></i>Numero</label>
-                  <input type="text" value={this.state.numero} onChange={e => this.setState({ numero: e.target.value })} className="form-control" id="input-numero" name="input-numero" aria-describedby="numeroHelp" required />
-                </div> 
-                <div className="form-group col-md-3">
-                  <label htmlFor="input-bairro"><i className="far fa-id-card fa-lg pr-2" ></i>bairro</label>
-                  <input type="text" value={this.state.bairro} onChange={e => this.setState({ bairro: e.target.value })} className="form-control" id="input-bairro" name="input-bairro" aria-describedby="bairroHelp" required />
-                </div> 
-                <div className="form-group col-md-3">
-                  <label htmlFor="input-responsavel"><i className="far fa-id-card fa-lg pr-2" ></i>responsavel</label>
-                  <input type="text" value={this.state.responsavel} onChange={e => this.setState({ responsavel: e.target.value })} className="form-control" id="input-responsavel" name="input-responsavel" aria-describedby="responsavelHelp" required />
-                </div> 
+               
+                
+               
                 <div className="form-group col-md-3">
                   <label htmlFor="input-nome-amigavel"><i className="far fa-user fa-lg pr-2" ></i>Nome Amigável</label>
                   <input type="text" value={this.state.nomeAmigavel} onChange={e => this.setState({ nomeAmigavel: e.target.value })} className="form-control" id="input-nome-amigavel" name="input-nome-amigavel" aria-describedby="nomeAmigavelHelp" required />
                 </div>
-                <div className="form-group col-md-3">
-                  <label htmlFor="input-codigoAtividade"><i className="far fa-id-card fa-lg pr-2" ></i>Codigo da atividade</label>
-                  <input type="text" value={this.state.codigoAtividade} onChange={e => this.setState({ codigoAtividade: e.target.value })} className="form-control" id="input-codigoAtividade" name="input-codigoAtividade" aria-describedby="codigoAtividadeHelp" required />
-                </div> 
+               
                 <div className="form-group col-md-3">
                   <label htmlFor="input-razao-social"><i className="far fa-user fa-lg pr-2" ></i>Razão Social</label>
                   <input type="text" value={this.state.razaoSocial} onChange={e => this.setState({ razaoSocial: e.target.value })} className="form-control" id="input-razao-social" name="input-razao-social" aria-describedby="razaoSocialHelp" required />
