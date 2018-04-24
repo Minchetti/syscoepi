@@ -96,6 +96,9 @@ class ModalUsuario extends React.Component {
   componentWillMount(){
     // this.MascaraCampos();
   }
+  componentDidMount(){
+    this.CarregarDadosConta();
+  }
 
   // MascaraCampos = () => {
   //   $('#input-celular').mask("(99) 9 9999-9999");
@@ -105,9 +108,7 @@ class ModalUsuario extends React.Component {
   // }
 
 
-  CarregarDados = () => {     
-    // var EmpresaSelecionada = document.getElementById("select-empresas").value;
-    
+  CarregarDadosConta = () => {        
     // fetch('http://192.168.10.30/v1/clientes/{id}', {
     //   method: 'get',
     //   body: JSON.stringify(),
@@ -129,9 +130,19 @@ class ModalUsuario extends React.Component {
     //   console.error('Failed retrieving information', err);
     //   alert(err);
     // });
-    // alert("Funcionarios carregados!") ;
-  };
+    var data = [
+      {cnpj: '12345678998765', nomeAmigavel:'Empresa 1', razaoSocial: 'Razao1', nome: 'Marcello', cpf: '10770546617', email: 'minchettimarcello@gmail.com'} 
+    ]
+      this.setState({ nomeAmigavel: data[0].nomeAmigavel });  
+      this.setState({ razaoSocial: data[0].razaoSocial });  
+      this.setState({ cnpj: data[0].cnpj });   
+      this.setState({ nome: data[0].nome});   
+      this.setState({ cpf: data[0].cnpj});   
+      this.setState({ email: data[0].email});   
 
+    // alert("Dados da conta carregados!") ;
+  }
+ 
 
   onSubmit = e => {
   
@@ -161,7 +172,12 @@ class ModalUsuario extends React.Component {
 
 
 
-
+  // CancelarEditar = () => {
+  //   this.setState({ nomeAmigavel: this.state.dadosIniciais.nomeAmigavel });  
+  //   this.setState({ razaoSocial: this.state.dadosIniciais.razaoSocial });  
+  //   this.setState({ cnpj: this.state.dadosIniciais.cnpj });    
+  //   document.getElementById("editarEmpresa").parentNode.style.display = "none";
+  // }
  
 
 
@@ -172,7 +188,6 @@ class ModalUsuario extends React.Component {
 
   render() {
     
-    this.CarregarDados();
 
     return (
       <div className="p-4 ">
@@ -198,7 +213,7 @@ class ModalUsuario extends React.Component {
                   </div>
                   <div className="form-group col-md-3 bg-light">
                     <label htmlFor="input-cpf"><i className="fa fa-id-card-o pr-2" aria-hidden="true"></i>CPF</label>
-                    <input type="text" value={this.state.cpf} onChange={e => this.setState({ cpf: e.target.value })} className="form-control" id="input-cpf" name="input-cpf" aria-describedby="emailHelp" data-minlength="14" required />
+                    <InputMask mask="999.999.999-99" type="text" value={this.state.cpf} onChange={e => this.setState({ cpf: e.target.value })} className="form-control" id="input-cpf" name="input-cpf" aria-describedby="emailHelp" data-minlength="14" required />
                   </div>
                   <div className="form-group col-md-3 bg-light">
                     <label htmlFor="input-email"><i className="far fa-id-card fa-lg pr-2" ></i>Email</label>
@@ -219,7 +234,7 @@ class ModalUsuario extends React.Component {
                   </div>
                   <div className="form-group col-md-3">
                     <label htmlFor="input-cnpj"><i className="fa fa-id-card-o pr-2" aria-hidden="true"></i>CNPJ</label>
-                    <input type="text" value={this.state.cnpj} onChange={e => this.setState({ cnpj: e.target.value })} className="form-control" id="input-cnpj" name="input-cnpj" aria-describedby="emailHelp" data-minlength="14" required />
+                    <InputMask mask="99.999.999/9999-99" type="text" value={this.state.cnpj} onChange={e => this.setState({ cnpj: e.target.value })} className="form-control" id="input-cnpj" name="input-cnpj" aria-describedby="emailHelp" data-minlength="14" required />
                   </div>
                   <div className="form-group col-md-3">
                     <label htmlFor="input-codigoAtividade"><i className="fa fa-id-card-o pr-2" aria-hidden="true"></i>Código da Atividade</label>
