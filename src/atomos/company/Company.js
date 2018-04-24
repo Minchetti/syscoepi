@@ -20,7 +20,7 @@ class Company extends React.Component {
     razaoSocial: null,
     empresaSelecionada: null,
     arrayEmpresas: [],
-    dadosIniciais: 's'
+    dadosIniciaisEmpresa: null
   };
 
 
@@ -36,7 +36,7 @@ class Company extends React.Component {
     
   }
   // componentDidUpdate () {
-  //   {this.state.dadosIniciais && this.MostrarEditar()}
+  //   {this.state.dadosIniciaisEmpresa && this.MostrarEditar()}
   // }
 
   // componentDidUpdate() {
@@ -44,9 +44,9 @@ class Company extends React.Component {
   // }
 
   onChange = () =>{
-    if(document.getElementById("company-cnpj").value.replace(/[./-]/g, "") !== this.state.dadosIniciais.cnpj || 
-       document.getElementById("company-nome-amigavel").value !== this.state.dadosIniciais.nomeAmigavel ||
-       document.getElementById("company-razao-social").value !== this.state.dadosIniciais.razaoSocial){
+    if(document.getElementById("company-cnpj").value.replace(/[./-]/g, "") !== this.state.dadosIniciaisEmpresa.cnpj || 
+       document.getElementById("company-nome-amigavel").value !== this.state.dadosIniciaisEmpresa.nomeAmigavel ||
+       document.getElementById("company-razao-social").value !== this.state.dadosIniciaisEmpresa.razaoSocial){
           document.getElementById("editarEmpresa").parentNode.style.display = "flex";
     }
     else{
@@ -132,19 +132,19 @@ class Company extends React.Component {
       this.setState({ nomeAmigavel: data[0].nomeAmigavel });  
       this.setState({ razaoSocial: data[0].razaoSocial });  
       this.setState({ cnpj: data[0].cnpj });   
-      this.setState({ dadosIniciais: data[0]});   
+      this.setState({ dadosIniciaisEmpresa: data[0]});   
     }    
     if (this.state.empresaSelecionada == 'Empresa 2' ){
       this.setState({ nomeAmigavel: data2[0].nomeAmigavel });  
       this.setState({ razaoSocial: data2[0].razaoSocial });  
       this.setState({ cnpj: data2[0].cnpj });   
-      this.setState({ dadosIniciais: data2[0]}); 
+      this.setState({ dadosIniciaisEmpresa: data2[0]}); 
     }
     if (this.state.empresaSelecionada == 'Empresa 3' ){
       this.setState({ nomeAmigavel: data3[0].nomeAmigavel });  
       this.setState({ razaoSocial: data3[0].razaoSocial });  
       this.setState({ cnpj: data3[0].cnpj });   
-      this.setState({ dadosIniciais: data3[0]}); 
+      this.setState({ dadosIniciaisEmpresa: data3[0]}); 
     }
     // alert("Dados da empresa carregados!") ;
   }
@@ -161,9 +161,9 @@ class Company extends React.Component {
   
   
   CancelarEditar = () => {
-    this.setState({ nomeAmigavel: this.state.dadosIniciais.nomeAmigavel });  
-    this.setState({ razaoSocial: this.state.dadosIniciais.razaoSocial });  
-    this.setState({ cnpj: this.state.dadosIniciais.cnpj });    
+    this.setState({ nomeAmigavel: this.state.dadosIniciaisEmpresa.nomeAmigavel });  
+    this.setState({ razaoSocial: this.state.dadosIniciaisEmpresa.razaoSocial });  
+    this.setState({ cnpj: this.state.dadosIniciaisEmpresa.cnpj });    
     document.getElementById("editarEmpresa").parentNode.style.display = "none";
   }
 

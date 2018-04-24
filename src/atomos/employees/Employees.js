@@ -106,8 +106,7 @@ class Employees extends React.Component {
 
                 <input type="file" className="btn btn-dark ml-2" id="csv-file" name="files" onChange={this.handleFileSelect.bind(this)}/>
                 <Button class="btn-dark pr-2" icon="fa-plus fa-lg" text="Adicionar Funcionário" target="#modal-add-funcionario"/>
-                <input type="file" value="asd"/>
-
+                
                 {/* <Button class="testeok btn-dark ml-2" icon="fa-user-plus pr-2" text="OK"/>  */}
                 {/* <Button class="btn-dark ml-2" icon="fa-plus pr-2" text="Criar GH"/>  */}
                 {/* <Button class="btn-dark ml-2" icon="fa-plus pr-2" text="Criar CC"/> */}
