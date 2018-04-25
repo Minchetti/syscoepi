@@ -227,6 +227,9 @@ svg{
   padding: 3px 10px !important;
   font-size: 0.85em;
 }
+.bg-whitesmoke {
+  background: whitesmoke;
+}
 
 
 /* LOADING */

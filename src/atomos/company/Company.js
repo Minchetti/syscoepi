@@ -209,7 +209,7 @@ class Company extends React.Component {
 
     return (      
       <div id="company">
-      <div onClick={this.Teste}>AQUI</div>
+      {/* <div onClick={this.Teste}>AQUI</div> */}
 
         <h4 className="mt-2 mb-4"><i className="fa fa-building" aria-hidden="true"></i> Empresas</h4> 
         <div className="row">    

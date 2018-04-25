@@ -26,6 +26,8 @@ import IdUsuarioLogado from '../login/Login.js';
 class Employees extends React.Component {
   state = {
     csv: null,
+    arrayEmpresas: [],
+    empresaSelecionada: null,
     listaFuncionarios: [
       {Id:"0123", Nome: "Marcello Minchetti", Turno: "Noturno", Sexo: "Masculino", RG: "16778405", CPF: "10770546617", GH: "123456", Email: "teste@gmail.com"},   
       {Id:"1123", Nome: "Leandro Santos", Turno: "vespertino", Sexo: "Masculino", RG: "16698405", CPF: "78970546617", GH: "123456", Email: "teste@gmail.com"}, 
@@ -35,6 +37,16 @@ class Employees extends React.Component {
     ]
   };
   
+
+
+  componentWillMount(){
+    this.CarregarEmpresas();
+    this.MontarSelect();
+    
+  }
+
+
+
   handleFileSelect(evt) {
     var file = evt.target.files[0];
     Papa.parse(file, {
@@ -49,6 +61,53 @@ class Employees extends React.Component {
       }.bind(this)
       });
   }
+
+
+
+
+
+  CarregarEmpresas = () => {   
+    // var EmpresaSelecionada = document.getElementById("select-empresas").value;
+    
+    // fetch('http://192.168.10.30/v1/cliente/{id}/empresas', {
+    //   method: 'get',
+    //   body: JSON.stringify(),
+    //   headers: {
+      //     'content-type': 'application/json'
+      //   }
+      // })
+      // .then(response => {
+        //   response.json().then(data => {
+          //     if (data.success == true) {   
+        //        this.setState({ arrayEmpresas: data });   
+    //          } 
+    //          else {
+      //       alert(data.message+' - '+data.data[0].message);    
+    //     }
+    //   });
+    // })
+    // .catch(err => {
+    //   console.error('Failed retrieving information', err);
+    //   alert(err);
+    // });
+
+    //TESTE
+    var data = [
+      {cnpj:'123999123', nomeAmigavel:'Empresa 1', razaoSocial: 'Razao1'},    
+      {cnpj:'123678123', nomeAmigavel:'Empresa 2', razaoSocial: 'Razao2'},
+      {cnpj:'123123123', nomeAmigavel:'Empresa 3', razaoSocial: 'Razao3'}
+    ]
+    this.setState({ arrayEmpresas: data });  
+    this.setState({ empresaSelecionada: data[0].nomeAmigavel });  
+    // alert("Lista de empresas carregados!");
+  }
+
+
+  MontarSelect = () => this.state.arrayEmpresas.map((value) => { //.data
+    return (
+      <option>{value.nomeAmigavel}</option>
+      )
+  });
 
 
   CarregarFuncionarios = () => {     
@@ -93,19 +152,16 @@ class Employees extends React.Component {
         <h4 className="mt-2 mb-4"><i className="fa fa-users mr-2" aria-hidden="true"></i>Funcionários</h4>  
           <div className=" d-flex flex-column">              
             <div className="d-flex mb-4">
-              <div className="col-md-4 d-flex align-items-center p-0">
+              <div className="col-md-6 d-flex align-items-center p-0">
                   <select id="select-empresas" className="form-control">
-                    <option>Metrosul</option>
-                    <option>BrazOffice</option>
-                    <option>Fitassul</option>
-                    <option>Helibras</option>
+                    {this.MontarSelect()}
                   </select>
               </div>
-              <div className="col-md-8 p-0 align-items-center">
+              <div className="col-md-6 p-0 align-items-center">
                 {/* <Button class="btn-dark ml-2" icon="fa-user-plus pr-2" text="Importar Funcionários"/>  */}
 
-                <input type="file" className="btn btn-dark ml-2" id="csv-file" name="files" onChange={this.handleFileSelect.bind(this)}/>
-                <Button class="btn-dark pr-2" icon="fa-plus fa-lg" text="Adicionar Funcionário" target="#modal-add-funcionario"/>
+                <input type="file" className="btn btn-dark" id="csv-file" name="files" onChange={this.handleFileSelect.bind(this)}/>
+                <Button class="btn-dark pr-2 ml-3" icon="fa-plus fa-lg mr-1" text="Adicionar Funcionário" target="#modal-add-funcionario"/>
                 
                 {/* <Button class="testeok btn-dark ml-2" icon="fa-user-plus pr-2" text="OK"/>  */}
                 {/* <Button class="btn-dark ml-2" icon="fa-plus pr-2" text="Criar GH"/>  */}
