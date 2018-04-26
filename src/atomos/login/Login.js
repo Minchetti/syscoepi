@@ -15,16 +15,7 @@ import $ from 'jquery';
 //       <i className="fa fa-check" aria-hidden="true"></i> Email validado com sucesso. Faça seu login.
 //     </div>
 
-//     <h1 className="h1L">
-//       <em>S</em>
-//       <em>y</em>
-//       <em>S</em>
-//       <em>C</em>
-//       <em className="planet left"><img src={logo} className="App-logoL" alt="logo" /></em>
-//       <em>E</em>
-//       <em>P</em>
-//       <em>I</em>
-//     </h1>
+
 
 //     <form className="mt-3 text-left">
 //       <div className="form-group">
@@ -81,8 +72,7 @@ class Login extends React.Component {
       response.json().then(data => {
         
         if (data.success == true) {
-          alert(data.message);          
-          console.log(data);
+          alert(data.message);       
           
           // // json no cabeçalho do modal do painel do usuario
           // $('.modal .nome-usuario').text('Painel do Usuário - '+data.nome);           
@@ -108,7 +98,6 @@ class Login extends React.Component {
         } 
         else {
           alert(data.message+' - '+data.data[0].message);
-          console.log(data);
           this.setState({ logged: false });
         }
       });
@@ -121,13 +110,11 @@ class Login extends React.Component {
   };
   
 
-  render() {
-
+  ValidarEmail = () =>{
     var url = 'http://localhost:3000/login';
     var url_atual = window.location.href;
 
     if (url != url_atual){
-      alert('URL DIFERENTE');
       var parametrosDaUrl = url_atual.split("?")[1];
       var listaDeParametros = parametrosDaUrl.split("&");
       var dados1 = listaDeParametros[0].split("=");
@@ -164,71 +151,44 @@ class Login extends React.Component {
         console.error('Failed retrieving information', err);
         this.setState({ logged: false });
       });
-    }
+    }    
+  }
+
+
+
+  render() {
+
+    this.ValidarEmail();
 
 
     if (this.state.logged) {
       return (
-        <Redirect
-          to={{
-            pathname: '/app/dashboard',
-            state: { from: this.props.location },
-          }}
-        />
+        <Redirect to={{ pathname: '/app/dashboard', state: { from: this.props.location } }}/>
       );
     } else {
       return (
         <div id="Login" className="position-absolute col h-100 ">
           <div className="boxLogin pt-80 position-absolute t-30">
-            <link
-              href="https://fonts.googleapis.com/css?family=Josefin+Sans"
-              rel="stylesheet"
-              type="text/css"
-            />
             <div className="t-0 l-0 r-0 position-absolute d-nonin" id="msg-validou">
-              <i className="fa fa-check" aria-hidden="true" /> Email validado
-              com sucesso. Faça seu login.
+              <i className="fa fa-check"/> Email validado com sucesso. Faça seu login.
             </div>
+
+            <h1><img src={logo} className="App-logo"/>SCEPI</h1>
+
             <form onSubmit={this.onSubmit} className="mt-3 text-left">
               <div className="form-group">
                 <label htmlFor="exampleInputEmail1">Email</label>
-                <input
-                  value={this.state.email}
-                  onChange={e => this.setState({ email: e.target.value })}
-                  type="email"
-                  className="form-control"
-                  id="email-login"
-                  aria-describedby="emailHelp"
-                  placeholder="Digite o email"
-                />
+                <input value={this.state.email} onChange={e => this.setState({ email: e.target.value })} type="email" className="form-control" id="email-login" placeholder="Digite o email" />
               </div>
               <div className="form-group">
                 <label htmlFor="exampleInputPassword1">Senha</label>
-                <input
-                  value={this.state.senha}
-                  onChange={e => this.setState({ senha: e.target.value })}
-                  type="password"
-                  className="form-control"
-                  id="senha-login"
-                  aria-describedby="emailHelp"
-                  placeholder="Digite a senha"
-                />
+                <input value={this.state.senha} onChange={e => this.setState({ senha: e.target.value })} type="password" className="form-control" id="senha-login" placeholder="Digite a senha" /> {/*aria-describedby="emailHelp"*/}
               </div>
-              <button
-                id="logar"
-                type="submit"
-                className="btn btn-primary btn-block btn-large mb-2"
-              >
-                <i className="fa fa-sign-in-alt fa-lg pr-2" aria-hidden="true" />Entrar
+              <button type="submit" className="btn btn-primary btn-block mb-2">
+                <i className="fa fa-sign-in-alt fa-lg pr-2" />Entrar
               </button>
               <div className="d-flex justify-content-between w-100">
-                <span
-                  className="c-pointer"
-                  data-toggle="modal"
-                  data-target="#modal-criar-conta"
-                >
-                  Criar Conta
-                </span>
+                <span className="c-pointer" data-toggle="modal" data-target="#modal-criar-conta" >Criar Conta</span>
                 <span className="c-pointer">Esqueci a Senha</span>
               </div>
             </form>

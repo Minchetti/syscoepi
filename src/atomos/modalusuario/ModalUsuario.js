@@ -264,7 +264,7 @@ class ModalUsuario extends React.Component {
     
 
     return (
-      <div className="p-4 ">
+      <div className="p-4 z-9999">
         <div className="modal fade" id="modal-usuario" tabIndex="-1" role="dialog" aria-labelledby="modal-usuario-label" aria-hidden="true">
           <div className="modal-dialog  modal-lg" role="document">
             <div className="modal-content text-dark z-9999">

@@ -106,7 +106,7 @@ class TableFuncionarios extends React.Component {
     return(  
 
       <div className="panel mb-4">
-        <div className="panel-heading d-flex justify-content-between">
+        <div className="panel-heading d-flex justify-content-between align-items-center">
           
           <h6 className="text-left mb-0"><i className="fa fa-user pr-2" aria-hidden="true"></i>Funcionários</h6>
         

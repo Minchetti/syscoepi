@@ -1,5 +1,6 @@
 import React from 'react';
 import TableFuncionarios from '../tablefuncionarios/TableFuncionarios';
+import InputMask from 'react-input-mask';
 // import $ from 'jquery'; 
 // import PropTypes from 'prop-types';
 
@@ -9,17 +10,29 @@ import TableFuncionarios from '../tablefuncionarios/TableFuncionarios';
 
     
     
-    class ModalCriarConta extends React.Component {
-      state = {
-        cnpj: '',
-        nomeAmigavel: '',
-        razaoSocial: '',
-        nome: '',
-        cpf: '',
-        email: '',
-        senha: '',
-        confirmaSenha: ''
-      };
+  class ModalCriarConta extends React.Component {
+    state = {
+      cnpj: '',
+      nomeAmigavel: '',
+      razaoSocial: '',
+      nome: '',
+      cpf: '',
+      email: '',
+      senha: '',
+      confirmaSenha: ''
+    };
+
+    
+    ValidarSenhas = () => {
+      if(document.getElementById("input-senha").value !== document.getElementById("input-confirma-senha").value){
+        document.getElementById("input-senha").style.border = "1px solid red";
+        document.getElementById("input-confirma-senha").style.border = "1px solid red";
+      }
+      else{
+        document.getElementById("input-senha").style.border = "1px solid green";
+        document.getElementById("input-confirma-senha").style.border = "1px solid green";
+      }
+    }
       
 
 
@@ -35,17 +48,13 @@ import TableFuncionarios from '../tablefuncionarios/TableFuncionarios';
     .then(response => {
       response.json().then(data => {
         if (data.success === true) {
-          console.log('if');
           alert(data.message);
           window.location.reload(true);
         } 
         else {
-          console.log('else');
           alert(data.message+' - '+data.data[0].message);
         }
       })
-      // console.log(response);
-      // console.log(this.state);
     })
     .catch(err => {
       // console.error('Failed retrieving information', err);
@@ -73,11 +82,11 @@ import TableFuncionarios from '../tablefuncionarios/TableFuncionarios';
 
 
               <div className="modal-body ">
-                <form id="form-usuario" onSubmit={this.onSubmit} className="text-left d-flex flex-wrap" method="post" action="">
+                <form id="form-usuario" onSubmit={this.onSubmit} onChange={this.ValidarSenhas} className="text-left d-flex flex-wrap" method="post" action="">
                   <div class="form-row"> 
                     <div className="form-group col-md-6">
                       <label htmlFor="input-cnpj"><i className="far fa-id-card  pr-2" ></i>CNPJ</label>
-                      <input type="text" value={this.state.cnpj} onChange={e => this.setState({ cnpj: e.target.value })} className="form-control" id="input-cnpj" name="input-cnpj" aria-describedby="cnpjHelp" required />
+                      <InputMask mask="99.999.999/9999-99" type="text" value={this.state.cnpj} onChange={e => this.setState({ cnpj: e.target.value })} className="form-control" id="input-cnpj" name="input-cnpj" aria-describedby="cnpjHelp" required />
                     </div>
                     <div className="form-group col-md-6">
                       <label htmlFor="input-nome-amigavel"><i className="far fa-user  pr-2" ></i>Nome Amigável</label>
@@ -94,7 +103,7 @@ import TableFuncionarios from '../tablefuncionarios/TableFuncionarios';
                     </div>
                     <div className="form-group col-md-6">
                       <label htmlFor="input-cpf"><i className="far fa-address-card  pr-2" ></i>CPF</label>
-                      <input type="text" value={this.state.cpf} onChange={e => this.setState({ cpf: e.target.value })} className="form-control" id="input-cpf" name="input-cpf" aria-describedby="cpfHelp" data-minlength="14" required />
+                      <InputMask mask="999.999.999-99" type="text" value={this.state.cpf} onChange={e => this.setState({ cpf: e.target.value })} className="form-control" id="input-cpf" name="input-cpf" aria-describedby="cpfHelp" data-minlength="14" required />
                     </div>
                     <div className="form-group col-md-6">
                       <label htmlFor="input-email"><i className="far fa-envelope  pr-2" ></i>Email</label>
@@ -112,7 +121,7 @@ import TableFuncionarios from '../tablefuncionarios/TableFuncionarios';
                       <button type="button" className="btn btn-danger mr-2" data-dismiss="modal">
                         <i className="fa fa-times  pr-2"  />Fechar
                       </button>
-                      <button id="btn-conta" type="submit" className="btn btn-primary" >
+                      <button id="btn-criar-conta" type="submit" className="btn btn-primary">
                         <i className="fa fa-plus  pr-2" />Salvar
                       </button>
                     </div>

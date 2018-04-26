@@ -34,31 +34,25 @@ class Cabecalho extends React.Component {
   render() {    
     return (
       <header className="App-header d-flex justify-content-between align-items-center">
-        <div className="d-flex align-items-center">  
 
-          <h2 className="App-title d-flex align-items-center"><span>SC</span><img src={logo} className="App-logo " alt="logo" /><span className="mln-10">EPI</span></h2>
+        <h2 className="m-0 d-flex align-items-center"><span><img src={logo} className="App-logo"/>SCEPI</span></h2>
 
-          {/* <h2 className="App-title">SySCOEPI</h2> */}
-          {/* <img src={logofita} className="" alt="logo" /> */}
-        </div>
+        <span className="d-nonin msg-aviso"></span>
 
-        <div>
-          <span className="d-nonin msg-aviso"></span>
-        </div>
-
-        <div className="d-flex ">
+        <div className="d-flex">
           <div className="pr-4">
-            <i className="fa fa-bell " aria-hidden="true"></i> 
+            <i className="fa fa-bell"></i> 
           </div>
           <div id="lnk-painel-usuario" className="pr-3 c-pointer"  data-toggle="modal" data-target="#modal-usuario">
-            <i className="fa fa-user-circle" aria-hidden="true"></i> <span className="nome-usuario"></span>
+            <i className="fa fa-user-circle"></i> 
+            <span className="nome-usuario"></span>
           </div>
           
           <div className="pr-3">
-            <i className="fa fa-question-circle" aria-hidden="true"></i> Ajuda
+            <i className="fa fa-question-circle"></i> Ajuda
           </div>
 
-        <AuthButton/>
+          <AuthButton/>
 
         </div>
         <ModalUsuario/>

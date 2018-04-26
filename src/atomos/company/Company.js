@@ -13,6 +13,9 @@ import IdUsuarioLogado from '../login/Login.js';
 import InputMask from 'react-input-mask';
 
 
+// CNPJ 28.061.033/0001-60
+
+
 class Company extends React.Component {
   state = {
     cnpj: null,
