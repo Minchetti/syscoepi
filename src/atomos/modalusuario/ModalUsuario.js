@@ -271,7 +271,7 @@ class ModalUsuario extends React.Component {
               <div className="modal-header d-flex justify-content-between align-items-center">
                 <div className="d-flex align-items-center">
                   <i className="fa fa-user-circle fa-lg pr-2" aria-hidden="true"/>
-                  <h6 className="nome-usuario modal-title">Dados da Conta{/*props.name*/}</h6>
+                  <h6 className="modal-title">Dados da Conta{/*props.name*/}</h6>
                 </div>
                 <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
@@ -283,52 +283,52 @@ class ModalUsuario extends React.Component {
               {/* <div onClick={this.Teste}>AQUI</div> */}
                 <form id="form-usuario" onSubmit={this.onSubmit} onChange={this.onChange} className="text-left d-flex flex-wrap" method="post" action="" role="form"> {/*data-toggle="validator"*/}
                   
-                  <div className=" p-3 col-md-4  d-flex align-items-center flex-wrap ">
+                  <div className=" p-2 col-md-4  d-flex align-items-center flex-wrap ">
                     <label htmlFor="conta-nome"><i className="fa fa-user pr-2" aria-hidden="true"></i>Nome</label>
                     <input type="text" value={this.state.nome} onChange={e => this.setState({ nome: e.target.value })} className="form-control" id="conta-nome" aria-describedby="emailHelp" required />
                   </div>
-                  <div className=" p-3 col-md-4  d-flex align-items-center flex-wrap">
+                  <div className=" p-2 col-md-4  d-flex align-items-center flex-wrap">
                     <label htmlFor="conta-email"><i className="far fa-id-card fa-lg pr-2" ></i>Email</label>
                     <input type="text" value={this.state.email} onChange={e => this.setState({ email: e.target.value })} className="form-control" id="conta-email" name="conta-email" aria-describedby="emailHelp" required />
                   </div>         
-                  <div className=" p-3 col-md-4  d-flex align-items-center flex-wrap">
+                  <div className=" p-2 col-md-4  d-flex align-items-center flex-wrap">
                     <label htmlFor="conta-cpf"><i className="fa fa-id-card-o pr-2" aria-hidden="true"></i>CPF</label>
                     <InputMask mask="999.999.999-99" type="text" value={this.state.cpf} onChange={e => this.setState({ cpf: e.target.value })} className="form-control" id="conta-cpf" name="conta-cpf" aria-describedby="emailHelp" data-minlength="14" required />
                   </div>
 
-                  <div className=" p-3 col-md-4  d-flex align-items-center flex-wrap ">
+                  <div className=" p-2 col-md-4  d-flex align-items-center flex-wrap ">
                     <label htmlFor="conta-nome-amigavel"><i className="far fa-id-card fa-lg pr-2" ></i>Nome Amigável</label>
                     <input type="text" value={this.state.nomeAmigavel} onChange={e => this.setState({ nomeAmigavel: e.target.value })} className="form-control" id="conta-nome-amigavel" name="conta-nome-amigavel" aria-describedby="nomeAmigavelHelp" required />
                   </div>        
-                  <div className=" p-3 col-md-4  d-flex align-items-center flex-wrap ">
+                  <div className=" p-2 col-md-4  d-flex align-items-center flex-wrap ">
                     <label htmlFor="conta-razao-social"><i className="far fa-id-card fa-lg pr-2" ></i>Razão Social</label>
                     <input type="text" value={this.state.razaoSocial} onChange={e => this.setState({ razaoSocial: e.target.value })} className="form-control" id="conta-razao-social" name="conta-razao-social" aria-describedby="razaoSocialHelp" required />
                   </div>
-                  <div className=" p-3 col-md-4  d-flex align-items-center flex-wrap ">
+                  <div className=" p-2 col-md-4  d-flex align-items-center flex-wrap ">
                     <label htmlFor="conta-cnpj"><i className="fa fa-id-card-o pr-2" aria-hidden="true"></i>CNPJ</label>
                     <InputMask mask="99.999.999/9999-99" type="text" value={this.state.cnpj} onChange={e => this.setState({ cnpj: e.target.value })} className="form-control" id="conta-cnpj" name="conta-cnpj" aria-describedby="emailHelp" data-minlength="14" required />
                   </div>
 
                 
-                  <div className=" p-3 col-md-4  d-flex align-items-center flex-wrap">
+                  <div className=" p-2 col-md-4  d-flex align-items-center flex-wrap">
                     <label htmlFor="conta-celular"><i className="far fa-id-card fa-lg pr-2" ></i>Celular</label>
                     <InputMask mask="(99)99999-9999" type="text" value={this.state.celular} onChange={e => this.setState({ celular: e.target.value })} className="form-control" id="conta-celular" name="conta-celular" aria-describedby="celularHelp" required />
                   </div>
-                  <div className=" p-3 col-md-4  d-flex align-items-center flex-wrap">
+                  <div className=" p-2 col-md-4  d-flex align-items-center flex-wrap">
                     <label htmlFor="conta-codigo-atividade"><i className="fa fa-id-card-o pr-2" aria-hidden="true"></i>Código da Atividade</label>
                     <input type="text" value={this.state.codigoAtividade} onChange={e => this.setState({ codigoAtividade: e.target.value })} className="form-control" id="conta-codigo-atividade" name="conta-codigo-atividade" aria-describedby="emailHelp" data-minlength="14" required />
                   </div>
-                  <div className=" p-3 col-md-4  d-flex align-items-center flex-wrap ">
+                  <div className=" p-2 col-md-4  d-flex align-items-center flex-wrap ">
                     <label htmlFor="conta-website"><i className="fa fa-id-card-o pr-2" aria-hidden="true"></i>WebSite</label>
                     <input type="text" value={this.state.website} onChange={e => this.setState({ website: e.target.value })} className="form-control" id="conta-website" name="conta-website" aria-describedby="emailHelp" data-minlength="14" required />
                   </div>
 
                 
-                  <div className=" p-3 col-md-4  d-flex align-items-center flex-wrap ">
+                  <div className=" p-2 col-md-4  d-flex align-items-center flex-wrap ">
                     <label htmlFor="conta-cep"><i className="far fa-id-card fa-lg pr-2"></i>CEP</label>
                     <InputMask mask="99999-999" type="text" value={this.state.cep} onChange={e => this.setState({ cep: e.target.value })} className="form-control" id="conta-cep" name="conta-cep" aria-describedby="cepHelp" required />
                   </div> 
-                  <div className=" p-3 col-md-4  d-flex align-items-center flex-wrap">
+                  <div className=" p-2 col-md-4  d-flex align-items-center flex-wrap">
                     <label htmlFor="conta-estado"><i className="far fa-id-card fa-lg pr-2" ></i>Estado</label>
                     <select id="conta-estado" className="form-control" onChange={e => this.setState({ estado: e.target.value })}>
                       <option></option>
@@ -341,31 +341,31 @@ class ModalUsuario extends React.Component {
                       <option>MT</option>
                     </select>
                   </div>
-                  <div className=" p-3 col-md-4  d-flex align-items-center flex-wrap">
+                  <div className=" p-2 col-md-4  d-flex align-items-center flex-wrap">
                     <label htmlFor="conta-cidade"><i className="far fa-id-card fa-lg pr-2" ></i>Cidade</label>
                     <input type="text" value={this.state.cidade} onChange={e => this.setState({ cidade: e.target.value })} className="form-control" id="conta-cidade" name="conta-cidade" aria-describedby="cidadeHelp" required />
                   </div> 
 
-                  <div className=" p-3 col-md-4  d-flex align-items-center flex-wrap">
+                  <div className=" p-2 col-md-4  d-flex align-items-center flex-wrap">
                     <label htmlFor="conta-bairro"><i className="far fa-id-card fa-lg pr-2" ></i>Bairro</label>
                     <input type="text" value={this.state.bairro} onChange={e => this.setState({ bairro: e.target.value })} className="form-control" id="conta-bairro" name="conta-bairro" aria-describedby="bairroHelp" required />
                   </div> 
-                  <div className=" p-3 col-md-4  d-flex align-items-center flex-wrap">
+                  <div className=" p-2 col-md-4  d-flex align-items-center flex-wrap">
                     <label htmlFor="conta-rua"><i className="far fa-id-card fa-lg pr-2" ></i>Rua</label>
                     <input type="text" value={this.state.rua} onChange={e => this.setState({ rua: e.target.value })} className="form-control" id="conta-rua" name="conta-rua" aria-describedby="ruaHelp" required />
                   </div> 
-                  <div className=" p-3 col-md-4  d-flex align-items-center flex-wrap">
+                  <div className=" p-2 col-md-4  d-flex align-items-center flex-wrap">
                     <label htmlFor="conta-numero"><i className="far fa-id-card fa-lg pr-2" ></i>Numero</label>
                     <input type="text" value={this.state.numero} onChange={e => this.setState({ numero: e.target.value })} className="form-control" id="conta-numero" name="conta-numero" aria-describedby="numeroHelp" required />
                   </div>
 
                 
                 
-                  <div className=" p-3 col-md-4  d-flex align-items-center flex-wrap">
+                  <div className=" p-2 col-md-4  d-flex align-items-center flex-wrap">
                     <label htmlFor="conta-senha"><i className="fa fa-key pr-2" aria-hidden="true"></i>Senha</label>
                     <input type="password" value={this.state.senha} onChange={e => this.setState({ senha: e.target.value })} className="form-control" id="conta-senha" aria-describedby="emailHelp" required/>
                   </div>
-                  <div className=" p-3 col-md-4  d-flex align-items-center flex-wrap">
+                  <div className=" p-2 col-md-4  d-flex align-items-center flex-wrap">
                     <label htmlFor="conta-confirma-senha"><i className="fa fa-key pr-2" aria-hidden="true"></i>Confirma Senha</label>
                     <input type="password" value={this.state.confirmaSenha} onChange={e => this.setState({ confirmaSenha: e.target.value })} className="form-control" id="conta-confirma-senha" aria-describedby="emailHelp" data-match="#conta-senha" data-match-error="Atenção! As senhas não estão iguais." required/> 
                   </div>

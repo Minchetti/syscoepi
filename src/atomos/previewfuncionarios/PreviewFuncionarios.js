@@ -51,21 +51,27 @@ class PreviewFuncionarios extends React.Component {
       
     return (
       <div id="JAJA">
-        <button onClick={this.AddFuncionarios} className="btn btn-dark ml-2"> <i className="fa fa-share-square fa-lg pr-2"></i> Enviar Dados </button>
-        <table>
-          <thead className="thead-dark">
-            <tr>
-              <th>Nome</th>
-              <th>Turno</th>
-              <th>Sexo</th>
-              <th>RG</th>
-              <th>CPF</th>
-            </tr>
-          </thead>
-          <tbody>
-            {MontarLista()}
-          </tbody>
-        </table>                  
+        <div className="panel mt-3 mb-3">
+          <div className="panel-heading">
+            <button onClick={this.AddFuncionarios} className="btn btn-dark ml-2"> <i className="fa fa-share-square fa-lg pr-2"></i> Enviar Dados </button>             
+          </div>
+          <div className="panel-body">
+            <table className="w-100">
+              <thead className="thead-dark">
+                <tr>
+                  <th>Nome</th>
+                  <th>Turno</th>
+                  <th>Sexo</th>
+                  <th>RG</th>
+                  <th>CPF</th>
+                </tr>
+              </thead>
+              <tbody>
+                {MontarLista()}
+              </tbody>
+            </table>                  
+          </div>                 
+        </div>                  
       </div>
     )
   }

@@ -47,8 +47,8 @@ header.App-header {
 /* classes bootstrap */
 .z-9999 {z-index: 9999;}
 .panel {box-shadow: 3px 3px 10px rgba(0,0,0,0.5); background: white;}
-.panel-body,
-.panel-heading {padding: 10px !important;}
+/* .panel-body, */
+.panel-heading {padding: 10px 20px 10px 20px !important;}
 .d-nonin {display:none; }
 .pt-80 {padding-top: 80px;}
 .thead-dark {background:#343a40; color:white;}

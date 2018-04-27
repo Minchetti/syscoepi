@@ -238,17 +238,17 @@ class Company extends React.Component {
               <div class="form-row w-100"> 
 
                 <div className="form-group col-md-3 mb-0 d-flex align-items-center flex-wrap col-md-3">
-                  <label htmlFor="company-cnpj"><i className="far fa-id-card pr-2" ></i>CNPJ</label>
+                  <label htmlFor="company-cnpj" className="pl-2"><i className="far fa-id-card pr-2" ></i>CNPJ</label>
                   <InputMask mask="99.999.999/9999-99" type="text" value={this.state.cnpj} onChange={e => this.setState({ cnpj: e.target.value })} className="form-control" id="company-cnpj" name="company-cnpj" aria-describedby="cnpjHelp" required />
                 </div>               
                
                 <div className="form-group col-md-3 mb-0 d-flex align-items-center flex-wrap col-md-3">
-                  <label htmlFor="company-nome-amigavel"><i className="far fa-user pr-2" ></i>Nome Amigável</label>
+                  <label htmlFor="company-nome-amigavel" className="pl-2"><i className="far fa-user pr-2" ></i>Nome Amigável</label>
                   <input type="text" value={this.state.nomeAmigavel} onChange={e => this.setState({ nomeAmigavel: e.target.value })} className="form-control" id="company-nome-amigavel" name="company-nome-amigavel" aria-describedby="nomeAmigavelHelp" required />
                 </div>
                
                 <div className="form-group col-md-3 mb-0 d-flex align-items-center flex-wrap col-md-3">
-                  <label htmlFor="company-razao-social"><i className="far fa-user pr-2" ></i>Razão Social</label>
+                  <label htmlFor="company-razao-social" className="pl-2"><i className="far fa-user pr-2" ></i>Razão Social</label>
                   <input type="text" value={this.state.razaoSocial} onChange={e => this.setState({ razaoSocial: e.target.value })} className="form-control" id="company-razao-social" name="company-razao-social" aria-describedby="razaoSocialHelp" required />
                 </div>
                 <div className="form-group mb-0 col-md-3 d-nonin align-items-center justify-content-center">

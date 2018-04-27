@@ -18,7 +18,7 @@ import {
       <a className="pr-3 c-pointer" id="logout" onClick={() => {
         localStorage.removeItem('logged');
         history.push('/public')      
-        alert('flw fio');
+        // alert('flw fio');
         window.location.reload(true); //tirar isso e descobrir pq ele n muda a pagina depois de mudar a rota
       }}>
         <i className="fa fa-sign-out-alt" aria-hidden="true"></i> Log Out
@@ -40,15 +40,11 @@ class Cabecalho extends React.Component {
         <span className="d-nonin msg-aviso"></span>
 
         <div className="d-flex">
-          <div className="pr-4">
-            <i className="fa fa-bell"></i> 
-          </div>
-          <div id="lnk-painel-usuario" className="pr-3 c-pointer"  data-toggle="modal" data-target="#modal-usuario">
-            <i className="fa fa-user-circle"></i> 
+          <div id="lnk-painel-usuario" className="mr-3 c-pointer"  data-toggle="modal" data-target="#modal-usuario">
+            <i className="fa fa-user-circle mr-2"></i> 
             <span className="nome-usuario"></span>
-          </div>
-          
-          <div className="pr-3">
+          </div>          
+          <div className="mr-3">
             <i className="fa fa-question-circle"></i> Ajuda
           </div>
 
