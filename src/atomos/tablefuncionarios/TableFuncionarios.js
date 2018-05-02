@@ -104,13 +104,13 @@ class TableFuncionarios extends React.Component {
 
 
     return(  
-
       <div className="panel mb-4">
         <div className="panel-heading d-flex justify-content-between align-items-center">
           
           <h6 className="text-left mb-0"><i className="fa fa-user pr-2" aria-hidden="true"></i>Funcionários</h6>
         
-          <form id="" onChange={this.onChange} className="text-left" method="post" action="">
+          <form id="" className="text-left d-flex align-items-center" onChange={this.onChange} method="post" action="">
+            <i class="fas fa-search fa-lg mr-2"></i>
             <input type="text"  className="form-control" id="input-search-funcionario" name="input-search-funcionario" aria-describedby=""/> {/*value={this.state.search} onChange={e => this.setState({ search: e.target.value })}*/}
           </form>
 

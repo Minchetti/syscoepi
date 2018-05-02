@@ -93,16 +93,16 @@ header.App-header {
   margin: 0px;
   cursor: pointer;
 }
-.nav-side-menu ul :not(collapsed) .arrow:before,
+/* .nav-side-menu ul :not(collapsed) .arrow:before,
 .nav-side-menu li :not(collapsed) .arrow:before {
   font-family: FontAwesome;
-  content: "\f078";
-}
+  content: "\f107";
+} */
 .arrow{
   top:0px !important;
   right:3px !important;
   line-height: initial;
-  font-size: 6px;  
+  font-size: 8px;  
 }
 .nav-side-menu ul .active,
 .nav-side-menu li .active {

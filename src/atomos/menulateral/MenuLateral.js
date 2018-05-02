@@ -85,7 +85,8 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
               <li data-toggle="collapse" data-target="#sub-company" className="collapsed">
                   <Link className="position-relative d-flex justify-content-between align-items-center p-3" to="/app/company">
                     <span style={{display: this.state.display}}>Empresas</span> 
-                    <i className="fa fa-building fa-lg"></i>                     
+                    <i className="fa fa-building fa-lg"></i>  
+                    <i className="arrow position-absolute fas fa-angle-down"></i>                   
                   </Link>               
               </li>
               <ul className="sub-menu collapse" id="sub-company">
@@ -95,10 +96,10 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
               </ul>
 
               <li data-toggle="collapse" data-target="#service" className="collapsed">
-                <a  className="position-relative d-flex justify-content-between align-items-center p-3">
-                    <span style={{display: this.state.display}}>Templates</span>
-                    <i className="fa fa-folder-open fa-lg" aria-hidden="true"></i>
-                  <span className="arrow position-absolute"></span>
+                <a className="position-relative d-flex justify-content-between align-items-center p-3">
+                  <span style={{display: this.state.display}}>Templates</span>
+                  <i className="fa fa-folder-open fa-lg"></i>
+                  <i className="arrow position-absolute fas fa-angle-down"></i>
                 </a>
               </li>  
               <ul className="sub-menu collapse" id="service">

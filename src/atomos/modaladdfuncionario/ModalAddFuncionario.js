@@ -1,4 +1,5 @@
 import React from 'react';
+import InputMask from 'react-input-mask';
 // import $ from 'jquery'; 
 // import PropTypes from 'prop-types';
 
@@ -60,7 +61,7 @@ import React from 'react';
             <div className="modal-content z-9999">
               <div className="modal-header d-flex justify-content-between align-items-center">
                 <div className="d-flex align-items-center">
-                  <i className="fas fa-user-plus fa-lg pr-2" />
+                  <i className="fa fa-user-plus fa-lg pr-2" />
                   <h6 className="modal-title">Adicionar Funcionário Avulso</h6>
                 </div>
                 <button type="button" className="close" data-dismiss="modal" aria-label="Close">
@@ -79,7 +80,7 @@ import React from 'react';
                     </div>
                     <div className="form-group col-md-6">
                       <label htmlFor="input-cpf"><i className="far fa-address-card  pr-2" ></i>CPF</label>
-                      <input type="text" value={this.state.cpf} onChange={e => this.setState({ cpf: e.target.value })} className="form-control" id="input-cpf" name="input-cpf" aria-describedby="cpfHelp" data-minlength="14" required />
+                      <InputMask mask="999.999.999-99" type="text" value={this.state.cpf} onChange={e => this.setState({ cpf: e.target.value })} className="form-control" id="input-cpf" name="input-cpf" aria-describedby="cpfHelp" data-minlength="14" required />
                     </div>
                     <div className="form-group col-md-6">
                       <label htmlFor="input-rg"><i className="far fa-address-card  pr-2" ></i>RG</label>
@@ -92,22 +93,19 @@ import React from 'react';
                     <div className="form-group col-md-6">
                       <label htmlFor="input-gh"><i className="far fa-envelope  pr-2" ></i>GH</label>
                       <input type="email" value={this.state.gh} onChange={e => this.setState({ gh: e.target.value })} className="form-control" id="input-gh" name="input-gh" aria-describedby="emailHelp" required/>
-                    </div>
-                    <div className="form-group mb-0">
-                      <button type="button" className="btn btn-danger mr-2" data-dismiss="modal">
-                        <i className="fa fa-times  pr-2"  />Fechar
-                      </button>
-                      <button id="btn-conta" type="submit" className="btn btn-primary" >
-                        <i className="fa fa-plus  pr-2" />Salvar
-                      </button>
-                    </div>
+                    </div>                   
                   </div>
                 </form>        
               </div>
 
-              {/* <div className="modal-footer">
-                
-              </div> */}
+              <div className="modal-footer">
+                <button type="button" className="btn btn-danger mr-2" data-dismiss="modal">
+                  <i className="fa fa-times pr-2"/>Fechar
+                </button>
+                <button id="btn-conta" type="submit" className="btn btn-primary" >
+                  <i className="fa fa-plus pr-2"/>Salvar
+                </button>
+              </div>
 
 
 
