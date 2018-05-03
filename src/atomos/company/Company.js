@@ -21,7 +21,8 @@ class Company extends React.Component {
     cnpj: null,
     nomeAmigavel: null,
     razaoSocial: null,
-    empresaSelecionada: null,
+    // empresaSelecionada: null,
+    nomeEmpresaSelecionada: null,
     arrayEmpresas: [],
     dadosIniciaisEmpresa: null
   };
@@ -90,7 +91,8 @@ class Company extends React.Component {
       {cnpj:'123123123', nomeAmigavel:'Empresa 3', razaoSocial: 'Razao3'}
     ]
     this.setState({ arrayEmpresas: data });  
-    this.setState({ empresaSelecionada: data[0].nomeAmigavel });  
+    this.setState({ empresaSelecionada: data[0] });  
+    this.setState({ nomeEmpresaSelecionada: data[0].nomeAmigavel });  
     // alert("Lista de empresas carregados!");
   }
 
@@ -131,19 +133,19 @@ class Company extends React.Component {
     var data3 = [
       {cnpj: '333333', nomeAmigavel:'Empresa 3', razaoSocial: 'Razao3 '} 
     ]
-    if (this.state.empresaSelecionada == 'Empresa 1' ){
+    if (this.state.nomeEmpresaSelecionada == 'Empresa 1' ){
       this.setState({ nomeAmigavel: data[0].nomeAmigavel });  
       this.setState({ razaoSocial: data[0].razaoSocial });  
       this.setState({ cnpj: data[0].cnpj });   
       this.setState({ dadosIniciaisEmpresa: data[0]});   
     }    
-    if (this.state.empresaSelecionada == 'Empresa 2' ){
+    if (this.state.nomeEmpresaSelecionada == 'Empresa 2' ){
       this.setState({ nomeAmigavel: data2[0].nomeAmigavel });  
       this.setState({ razaoSocial: data2[0].razaoSocial });  
       this.setState({ cnpj: data2[0].cnpj });   
       this.setState({ dadosIniciaisEmpresa: data2[0]}); 
     }
-    if (this.state.empresaSelecionada == 'Empresa 3' ){
+    if (this.state.nomeEmpresaSelecionada == 'Empresa 3' ){
       this.setState({ nomeAmigavel: data3[0].nomeAmigavel });  
       this.setState({ razaoSocial: data3[0].razaoSocial });  
       this.setState({ cnpj: data3[0].cnpj });   
@@ -212,12 +214,12 @@ class Company extends React.Component {
 
     return (      
       <div id="company">
-      {/* <div onClick={this.Teste}>AQUI</div> */}
+      <div onClick={this.Teste}>AQUI</div>
 
         <h4 className="mt-2 mb-4"><i className="fa fa-building" aria-hidden="true"></i> Empresas</h4> 
         <div className="row">    
           <div className="col-md-6">
-              <select id="select-empresas" className="form-control" onChange={e => this.setState({ empresaSelecionada: e.target.value },this.CarregarDadosEmpresa())}>
+              <select id="select-empresas" className="form-control" onChange={e => this.setState({ nomeEmpresaSelecionada: e.target.value },this.CarregarDadosEmpresa())}>
                 {this.MontarSelect()}
               </select>
           </div>

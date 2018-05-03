@@ -9,16 +9,22 @@ import InputMask from 'react-input-mask';
 
     
     
-    class ModalAddFuncionario extends React.Component {
-      state = {
-        nome: '',
-        cpf: '',
-        rg: '',
-        email: '', 
-        gh: ''
-      };
-      
+class ModalAddFuncionario extends React.Component {
+  state = {
+    nome: '',
+    cpf: '',
+    rg: '',
+    email: '', 
+    gh: '',
+    id: this.props.pid
+  };
 
+
+  
+
+  componentWillReceiveProps(){    
+    this.setState({ id: this.props.pid });      //verificar se realmente funcinoou pois esta com tempo errado
+  }
 
   onSubmit = e => {  
     // e.preventDefault(); 
@@ -52,10 +58,12 @@ import InputMask from 'react-input-mask';
     alert('Funcionário Avulso Adicionado')
   };
 
+  Teste = () => {console.log(this.state);}
   render() {
     
     return (
       <div className="p-4">
+      
         <div className="modal fade" id="modal-add-funcionario" tabIndex="-1" role="dialog" aria-labelledby="modal-usuario-label" >
           <div className="modal-dialog " role="document">
             <div className="modal-content z-9999">
@@ -63,6 +71,7 @@ import InputMask from 'react-input-mask';
                 <div className="d-flex align-items-center">
                   <i className="fa fa-user-plus fa-lg pr-2" />
                   <h6 className="modal-title">Adicionar Funcionário Avulso</h6>
+                  <div onClick={this.Teste}>AQUI</div>
                 </div>
                 <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                   <span >&times;</span>
@@ -74,20 +83,20 @@ import InputMask from 'react-input-mask';
                 <form id="form-usuario" onSubmit={this.onSubmit} className="text-left d-flex flex-wrap" method="post" action="">
                   <div class="form-row">
                     <div className="form-group col-md-6">
-                      <label htmlFor="input-nome"><i className="far fa-user  pr-2" ></i>Nome</label>
+                      <label htmlFor="input-nome"><i className="far fa-user pr-2" ></i>Nome</label>
                       <input type="text" value={this.state.nome} onChange={e => this.setState({ nome: e.target.value })} className="form-control" id="input-nome" name="input-nome" aria-describedby="nomeHelp" required />
                       <div class="valid-tooltip">Looks good!</div><div class="invalid-tooltip">Looks bad!</div>
                     </div>
                     <div className="form-group col-md-6">
-                      <label htmlFor="input-cpf"><i className="far fa-address-card  pr-2" ></i>CPF</label>
+                      <label htmlFor="input-cpf"><i className="far fa-address-card pr-2" ></i>CPF</label>
                       <InputMask mask="999.999.999-99" type="text" value={this.state.cpf} onChange={e => this.setState({ cpf: e.target.value })} className="form-control" id="input-cpf" name="input-cpf" aria-describedby="cpfHelp" data-minlength="14" required />
                     </div>
                     <div className="form-group col-md-6">
-                      <label htmlFor="input-rg"><i className="far fa-address-card  pr-2" ></i>RG</label>
+                      <label htmlFor="input-rg"><i className="far fa-address-card pr-2" ></i>RG</label>
                       <input type="text" value={this.state.rg} onChange={e => this.setState({ rg: e.target.value })} className="form-control" id="input-rg" name="input-rg" aria-describedby="rgHelp" data-minlength="10" required />
                     </div>
                     <div className="form-group col-md-6">
-                      <label htmlFor="input-email"><i className="far fa-envelope  pr-2" ></i>Email</label>
+                      <label htmlFor="input-email"><i className="far fa-envelope pr-2" ></i>Email</label>
                       <input type="email" value={this.state.email} onChange={e => this.setState({ email: e.target.value })} className="form-control" id="input-email" name="input-email" aria-describedby="emailHelp" required/>
                     </div>
                     <div className="form-group col-md-6">

@@ -28,6 +28,7 @@ class Employees extends React.Component {
     csv: null,
     arrayEmpresas: [],
     empresaSelecionada: null,
+    empresaSelecionadaId: '',
     listaFuncionarios: [
       {Id:"0123", Nome: "Marcello Minchetti", Turno: "Noturno", Sexo: "Masculino", RG: "16778405", CPF: "10770546617", GH: "123456", Email: "teste@gmail.com"},   
       {Id:"1123", Nome: "Leandro Santos", Turno: "vespertino", Sexo: "Masculino", RG: "16698405", CPF: "78970546617", GH: "123456", Email: "teste@gmail.com"}, 
@@ -93,13 +94,66 @@ class Employees extends React.Component {
 
     //TESTE
     var data = [
-      {cnpj:'123999123', nomeAmigavel:'Empresa 1', razaoSocial: 'Razao1'},    
-      {cnpj:'123678123', nomeAmigavel:'Empresa 2', razaoSocial: 'Razao2'},
-      {cnpj:'123123123', nomeAmigavel:'Empresa 3', razaoSocial: 'Razao3'}
+      {cnpj:'123999123', nomeAmigavel:'Empresa 1', razaoSocial: 'Razao1', empresaId: '111' },    
+      {cnpj:'123678123', nomeAmigavel:'Empresa 2', razaoSocial: 'Razao2', empresaId: '222' },
+      {cnpj:'123123123', nomeAmigavel:'Empresa 3', razaoSocial: 'Razao3', empresaId: '333' }
     ]
     this.setState({ arrayEmpresas: data });  
-    this.setState({ empresaSelecionada: data[0].nomeAmigavel });  
+    this.setState({ empresaSelecionada: data[0] });  
+    this.setState({ empresaSelecionadaId: data[0].empresaId });  
+    // this.setState({ .: data[0].nomeAmigavel });  
     // alert("Lista de empresas carregados!");
+  }
+
+
+
+
+  CarregarDadosEmpresa = () => {   
+    // var EmpresaSelecionada = document.getElementById("select-empresas").value;
+
+    // var id = this.state.empresaSelecionada;
+  
+    // fetch('http://192.168.10.30/v1/empresa/{id}?', {
+    //   method: 'get',
+    //   body: JSON.stringify(),
+    //   headers: {
+      //     'content-type': 'application/json'
+      //   }
+      // })
+      // .then(response => {
+        //   response.json().then(data => {
+          //     if (data.success == true) {   
+        //        this.setState({ data });   
+    //          } 
+    //          else {
+      //       alert(data.message+' - '+data.data[0].message);    
+    //     }
+    //   });
+    // })
+    // .catch(err => {
+    //   console.error('Failed retrieving information', err);
+    //   alert(err);
+    // });
+
+    var data = [
+      {cnpj: '12345678998765', nomeAmigavel:'Empresa 1', razaoSocial: 'Razao1', empresaId: '111'} 
+    ]
+    var data2 = [
+      {cnpj: '222222', nomeAmigavel:'Empresa 2', razaoSocial: 'Razao2', empresaId: '222'} 
+    ]
+    var data3 = [
+      {cnpj: '333333', nomeAmigavel:'Empresa 3', razaoSocial: 'Razao3', empresaId: '333'} 
+    ]
+    if (this.state.empresaSelecionada == 'Empresa 1' ){
+      this.setState({ empresaSelecionadaId: data[0].empresaId });  
+    }    
+    if (this.state.empresaSelecionada == 'Empresa 2' ){
+      this.setState({ empresaSelecionadaId: data2[0].empresaId });  
+    }
+    if (this.state.empresaSelecionada == 'Empresa 3' ){
+      this.setState({ empresaSelecionadaId: data3[0].empresaId });  
+    }
+    // alert("Dados da empresa carregados!") ;
   }
 
 
@@ -108,6 +162,7 @@ class Employees extends React.Component {
       <option>{value.nomeAmigavel}</option>
       )
   });
+
 
 
   CarregarFuncionarios = () => {     
@@ -136,24 +191,22 @@ class Employees extends React.Component {
     // });
     // alert("Funcionarios carregados!") ;
   };
-
+  Teste = () => {console.log(this.state);}
   
   render() {   
 
     this.CarregarFuncionarios();
     
-    
-
-
     return (
       
       <div id="Employees">
+      <div onClick={this.Teste}>AQUI</div>
       
         <h4 className="mt-2 mb-4"><i className="fa fa-users mr-2" aria-hidden="true"></i>Funcionários</h4>  
           <div className=" d-flex flex-column">              
             <div className="d-flex mb-4">
               <div className="col-md-6 d-flex align-items-center p-0">
-                  <select id="select-empresas" className="form-control">
+                  <select id="select-empresas" className="form-control" onChange={e => this.setState({ empresaSelecionada: e.target.value },this.CarregarDadosEmpresa())}>>
                     {this.MontarSelect()}
                   </select>
               </div>
@@ -181,8 +234,10 @@ class Employees extends React.Component {
           </div>      
 
         {/* <Modal2/>    */}
-        <ModalCriarEmpresa/>
-        <ModalAddFuncionario/>           
+        {/* <ModalCriarEmpresa/>  */}
+        
+        <ModalAddFuncionario pid={this.state.empresaSelecionadaId}  /> }
+
 
       </div>
 

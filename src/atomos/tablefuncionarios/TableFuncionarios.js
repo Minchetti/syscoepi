@@ -111,7 +111,7 @@ class TableFuncionarios extends React.Component {
         
           <form id="" className="text-left d-flex align-items-center" onChange={this.onChange} method="post" action="">
             <i class="fas fa-search fa-lg mr-2"></i>
-            <input type="text"  className="form-control" id="input-search-funcionario" name="input-search-funcionario" aria-describedby=""/> {/*value={this.state.search} onChange={e => this.setState({ search: e.target.value })}*/}
+            <input type="text" aria-describedby="inputGroup-sizing-sm" aria-label="Small" className="form-control" id="input-search-funcionario" name="input-search-funcionario" aria-describedby=""/> {/*value={this.state.search} onChange={e => this.setState({ search: e.target.value })}*/}
           </form>
 
 
