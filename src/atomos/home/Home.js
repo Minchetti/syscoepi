@@ -16,6 +16,7 @@ const Home = props => (
 <Router>
   <div className="h-100">
   
+  <div id="progress-bar"></div>
     <Cabecalho/>
 
     <div className="d-flex w-100 h-100">

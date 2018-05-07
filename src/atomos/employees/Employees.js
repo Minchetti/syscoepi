@@ -42,8 +42,7 @@ class Employees extends React.Component {
 
   componentWillMount(){
     this.CarregarEmpresas();
-    this.MontarSelect();
-    
+    this.MontarSelect();    
   }
 
 
@@ -96,7 +95,7 @@ class Employees extends React.Component {
     var data = [
       {cnpj:'123999123', nomeAmigavel:'Empresa 1', razaoSocial: 'Razao1', empresaId: '111' },    
       {cnpj:'123678123', nomeAmigavel:'Empresa 2', razaoSocial: 'Razao2', empresaId: '222' },
-      {cnpj:'123123123', nomeAmigavel:'Empresa 3', razaoSocial: 'Razao3', empresaId: '333' }
+      {cnpj:'123123123', nomeAmigavel:'Empresa 3', razaoSocial: 'Razao3', empresaId: '39e6158e-f2eb-894d-3bb4-530504615482' }
     ]
     this.setState({ arrayEmpresas: data });  
     this.setState({ empresaSelecionada: data[0] });  
@@ -110,6 +109,7 @@ class Employees extends React.Component {
 
   CarregarDadosEmpresa = () => {   
     // var EmpresaSelecionada = document.getElementById("select-empresas").value;
+    // this.setState({ empresaSelecionada: EmpresaSelecionada });
 
     // var id = this.state.empresaSelecionada;
   
@@ -142,7 +142,7 @@ class Employees extends React.Component {
       {cnpj: '222222', nomeAmigavel:'Empresa 2', razaoSocial: 'Razao2', empresaId: '222'} 
     ]
     var data3 = [
-      {cnpj: '333333', nomeAmigavel:'Empresa 3', razaoSocial: 'Razao3', empresaId: '333'} 
+      {cnpj: '333333', nomeAmigavel:'Empresa 3', razaoSocial: 'Razao3', empresaId: '39e6158ef2eb894d3bb4530504615482'} 
     ]
     if (this.state.empresaSelecionada == 'Empresa 1' ){
       this.setState({ empresaSelecionadaId: data[0].empresaId });  
@@ -178,6 +178,7 @@ class Employees extends React.Component {
       // .then(response => {
         //   response.json().then(data => {
           //     if (data.success == true) {   
+            
         //        this.setState({ listaFuncionarios });   
     //          } 
     //          else {
@@ -206,7 +207,7 @@ class Employees extends React.Component {
           <div className=" d-flex flex-column">              
             <div className="d-flex mb-4">
               <div className="col-md-6 d-flex align-items-center p-0">
-                  <select id="select-empresas" className="form-control" onChange={e => this.setState({ empresaSelecionada: e.target.value },this.CarregarDadosEmpresa())}>>
+                  <select id="select-empresas" className="form-control" onChange={e => this.setState({ empresaSelecionada: e.target.value },this.CarregarDadosEmpresa)}>
                     {this.MontarSelect()}
                   </select>
               </div>
@@ -236,7 +237,7 @@ class Employees extends React.Component {
         {/* <Modal2/>    */}
         {/* <ModalCriarEmpresa/>  */}
         
-        <ModalAddFuncionario pid={this.state.empresaSelecionadaId}  /> }
+        <ModalAddFuncionario empresaId={this.state.empresaSelecionadaId}  /> 
 
 
       </div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import InputMask from 'react-input-mask';
+import $ from 'jquery'; 
  
 // import PropTypes from 'prop-types';
 
@@ -173,7 +174,9 @@ class ModalUsuario extends React.Component {
     //   console.error('Failed retrieving information', err);
     //   alert(err);
     // });
-    alert("Empresa Alterada !");
+    $('#progress-bar').text('Dados alterados com sucesso!');
+    $('#progress-bar').fadeIn(2000);
+    setTimeout(function() {$('#progress-bar').fadeOut(2000);}, 2000); 
   }
  
   onChange = () =>{

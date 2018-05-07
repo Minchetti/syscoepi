@@ -195,6 +195,9 @@ body {
 .modal-header:before {
   content:initial !important;
 }
+.modal-dialog {
+  margin-top: 50px;
+}
 
 
 
@@ -288,4 +291,16 @@ svg{
 }
 .table td {
   padding: 10px !important;
+}
+
+
+/*classes de varios css*/
+#progress-bar{
+  height: 25px;
+  width:100%;
+  position: absolute;
+  background: green;
+  color:white;
+  z-index: 1060;
+  display: none;
 }
