@@ -27,7 +27,7 @@ class Employees extends React.Component {
   state = {
     csv: null,
     arrayEmpresas: [],
-    empresaSelecionada: null,
+    nomeEmpresaSelecionada: null,
     empresaSelecionadaId: '',
     listaFuncionarios: []
   };
@@ -36,7 +36,11 @@ class Employees extends React.Component {
   componentWillMount(){
     this.CarregarEmpresas();
     this.MontarSelect();     
+    this.CarregarDadosEmpresa();   
+  }
+  componentDidMount(){
     this.CarregarFuncionarios();   
+
   }
 
 
@@ -56,7 +60,7 @@ class Employees extends React.Component {
   }
 
 
-  CarregarEmpresas = () => {   
+  CarregarEmpresas = () => {   alert('CARREGAR EMPRESAS');
     // var EmpresaSelecionada = document.getElementById("select-empresas").value;
     
     // fetch('http://192.168.10.30/v1/cliente/{id}/empresas', {
@@ -91,17 +95,22 @@ class Employees extends React.Component {
 
     if(data != null){
       this.setState({ arrayEmpresas: data });  
-      this.setState({ empresaSelecionada: data[0] });  
+      this.setState({ nomeEmpresaSelecionada: data[0].nomeAmigavel });  
       this.setState({ empresaSelecionadaId: data[0].empresaId });  
-      // this.setState({ .: data[0].nomeAmigavel });  
       // alert("Lista de empresas carregados!");
     }
   }
 
 
+  Callback = () =>{
+    this.CarregarDadosEmpresa();
+    this.CarregarFuncionarios();
+  }
 
 
-  CarregarDadosEmpresa = () => {   
+
+
+  CarregarDadosEmpresa = () => {   alert('CARREGAR DADOS EMPRESA');
     // var EmpresaSelecionada = document.getElementById("select-empresas").value;
     // this.setState({ empresaSelecionada: EmpresaSelecionada });
 
@@ -159,7 +168,8 @@ class Employees extends React.Component {
 
 
 
-  CarregarFuncionarios = () => {     
+  CarregarFuncionarios = () => {   
+    alert('FUNCIONARIOS');
     // var EmpresaSelecionada = document.getElementById("select-empresas").value;
     
     // fetch('http://192.168.10.30/v1/?', {
@@ -225,9 +235,9 @@ class Employees extends React.Component {
 
     // var data = null;
 
-    if(data != null){
-      this.setState({ listaFuncionarios : data });
-    }  
+    // if(data != null){
+    //   this.setState({ listaFuncionarios : data });
+    // }  
   };
 
 
@@ -239,7 +249,7 @@ class Employees extends React.Component {
         <div className=" d-flex flex-column">              
         <div className="d-flex mb-4">
           <div className="col-md-6 d-flex align-items-center p-0">
-              <select id="select-empresas" className="form-control" onChange={e => this.setState({ nomeEmpresaSelecionada: e.target.value },this.CarregarFuncionarios, this.CarregarDadosEmpresa)}>
+              <select id="select-empresas" className="form-control" onChange={e => this.setState({ nomeEmpresaSelecionada: e.target.value },this.Callback)}>
                 {this.MontarSelect()}
               </select>
           </div>

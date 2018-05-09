@@ -4,8 +4,8 @@ import $ from 'jquery';
 
 class TableFuncionarios extends React.Component {
   state = {
-    lista: [...this.props.lista],
-    listaInicial: [...this.props.lista],
+    lista: this.props.lista,
+    listaInicial: this.props.lista,
     search:null
   };
   
@@ -55,6 +55,39 @@ class TableFuncionarios extends React.Component {
       console.log(this.state.listaInicial  + "FINAL ONCHANGE");
     }
     
+    componentDidMount(){    
+      this.MontarLista();
+    }
+
+    // componentWillReceiveProps(newProps){
+    //   console.log(newProps);
+    //   this.setState({ lista: newProps });
+    //   this.setState({ listaInicial: newProps });
+    // }
+
+
+    // componentWillReceiveProps(){
+    //   alert('prosp');
+    //   this.MontarLista();
+    // }
+    
+
+    MontarLista = () => this.state.lista.map((value, i) => { //.data
+      return (
+        <tr>          
+          <td>{i}</td>
+          <td>{value.Nome}</td>
+          <td>{value.RG}</td>
+          <td>{value.CPF}</td>
+          <td>{value.Email}</td>
+          <td>{value.GH}</td>
+          <td>{value.Turno}</td>
+          <td>{value.Sexo}</td>
+          <td onClick={() => { this.ClickDelete(value.Id) }}><i className="far fa-trash-alt c-pointer"></i></td>
+        </tr>  
+        )
+    });
+
     
   
     ClickDelete = (id) => {
@@ -83,24 +116,10 @@ class TableFuncionarios extends React.Component {
     render(){
     
       
+// this.props.lista;
 
 
-
-    var MontarLista = () => this.state.lista.map((value, i) => { //.data
-      return (
-        <tr>          
-          <td>{i}</td>
-          <td>{value.Nome}</td>
-          <td>{value.RG}</td>
-          <td>{value.CPF}</td>
-          <td>{value.Email}</td>
-          <td>{value.GH}</td>
-          <td>{value.Turno}</td>
-          <td>{value.Sexo}</td>
-          <td onClick={() => { this.ClickDelete(value.Id) }}><i className="far fa-trash-alt c-pointer"></i></td>
-        </tr>  
-        )
-    });
+    
 
 
     return(  
@@ -132,7 +151,7 @@ class TableFuncionarios extends React.Component {
               </tr>
             </thead>
             <tbody>              
-            {MontarLista()}
+            {this.MontarLista()}
             </tbody>
           </table>
         </div>
