@@ -4,10 +4,15 @@ import $ from 'jquery';
 
 class TableFuncionarios extends React.Component {
   state = {
-    lista: this.props.lista,
-    listaInicial: this.props.lista,
+    lista: [],
+    listaInicial: [],
     search:null
   };
+
+  componentWillReceiveProps (){
+    alert('asd');
+    this.setState({ lista: this.props.lista });
+  }
   
   onChange = e => {    
     e.preventDefault();  
@@ -70,47 +75,44 @@ class TableFuncionarios extends React.Component {
     //   alert('prosp');
     //   this.MontarLista();
     // }
-    
-
-    MontarLista = () => this.state.lista.map((value, i) => { //.data
-      return (
-        <tr>          
-          <td>{i}</td>
-          <td>{value.Nome}</td>
-          <td>{value.RG}</td>
-          <td>{value.CPF}</td>
-          <td>{value.Email}</td>
-          <td>{value.GH}</td>
-          <td>{value.Turno}</td>
-          <td>{value.Sexo}</td>
-          <td onClick={() => { this.ClickDelete(value.Id) }}><i className="far fa-trash-alt c-pointer"></i></td>
-        </tr>  
-        )
-    });
-
-    
   
-    ClickDelete = (id) => {
+    
+    MontarLista = () => this.state.lista.map((value, i) => { //.data
+        return (
+          <tr>          
+            <td>{i}</td>
+            <td>{value.Nome}</td>
+            <td>{value.RG}</td>
+            <td>{value.CPF}</td>
+            <td>{value.Email}</td>
+            <td>{value.GH}</td>
+            <td>{value.Turno}</td>
+            <td>{value.Sexo}</td>
+            <td onClick={() => { this.ClickDelete(value.Id) }}><i className="far fa-trash-alt c-pointer"></i></td>
+          </tr>  
+        )
+      });   
+
+      ClickDelete = (id) => {    
+
+        var newListaInicial = this.state.listaInicial;
+        var newLista = this.state.lista;        
+  
+            this.state.listaInicial.forEach((result, index) => {     
+              if(result.Id == id) {
+                newListaInicial.splice(index, 1);
+              }    
+            });
       
-
-      var newListaInicial = this.state.listaInicial;
-      var newLista = this.state.lista;
+            this.state.lista.forEach((result, index) => {
+              if(result.Id == id) {
+                newLista.splice(index, 1);
+              }    
+            });
+  
+        this.setState({ lista: newLista });      //descobrir pq n preciso setar o state listaInicial
+      }
       
-
-      this.state.listaInicial.forEach((result, index) => {     
-        if(result.Id == id) {
-          newListaInicial.splice(index, 1);
-        }    
-     });
-
-     this.state.lista.forEach((result, index) => {
-      if(result.Id == id) {
-        newLista.splice(index, 1);
-      }    
-   });
-
-      this.setState({ lista: newLista });      //descobrir pq n preciso setar o state listaInicial
-     }
     
     
     render(){
