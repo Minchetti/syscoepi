@@ -60,7 +60,8 @@ class Employees extends React.Component {
   }
 
 
-  CarregarEmpresas = () => {   alert('CARREGAR EMPRESAS');
+  CarregarEmpresas = () => {   
+    // alert('CARREGAR EMPRESAS');
     // var EmpresaSelecionada = document.getElementById("select-empresas").value;
     
     // fetch('http://192.168.10.30/v1/cliente/{id}/empresas', {
@@ -110,7 +111,8 @@ class Employees extends React.Component {
 
 
 
-  CarregarDadosEmpresa = () => {   alert('CARREGAR DADOS EMPRESA');
+  CarregarDadosEmpresa = () => {   
+    // alert('CARREGAR DADOS EMPRESA');
     // var EmpresaSelecionada = document.getElementById("select-empresas").value;
     // this.setState({ empresaSelecionada: EmpresaSelecionada });
 
@@ -169,7 +171,7 @@ class Employees extends React.Component {
 
 
   CarregarFuncionarios = () => {   
-    alert('FUNCIONARIOS');
+    // alert('FUNCIONARIOS');
     // var EmpresaSelecionada = document.getElementById("select-empresas").value;
     
     // fetch('http://192.168.10.30/v1/?', {
@@ -261,7 +263,7 @@ class Employees extends React.Component {
         
         {this.state.csv && <PreviewFuncionarios lista={this.state.csv} />}
         
-        {this.state.listaFuncionarios != 0 && <TableFuncionarios lista={this.state.listaFuncionarios}  /> }
+        {this.state.listaFuncionarios != 0 ? (<TableFuncionarios lista={this.state.listaFuncionarios}  />) : (<h1>TA VAZIO MANÉ</h1>) }
       </div>
       )
     }

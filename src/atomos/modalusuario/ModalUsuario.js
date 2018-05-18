@@ -331,11 +331,11 @@ class ModalUsuario extends React.Component {
 
                 
                   <div className=" p-2 col-md-4  d-flex align-items-center flex-wrap ">
-                    <label htmlFor="conta-cep"><i className="far fa-id-card  pr-2"></i>CEP</label>
+                    <label htmlFor="conta-cep"><i className="far fa-address-card  pr-2"></i>CEP</label>
                     <InputMask mask="99999-999" type="text" value={this.state.cep} onChange={e => this.setState({ cep: e.target.value })} className="form-control" id="conta-cep" name="conta-cep" aria-describedby="cepHelp" required />
                   </div> 
                   <div className=" p-2 col-md-4  d-flex align-items-center flex-wrap">
-                    <label htmlFor="conta-estado"><i className="far fa-id-card  pr-2" ></i>Estado</label>
+                    <label htmlFor="conta-estado"><i className="fas fa-id-card  pr-2" ></i>Estado</label>
                     <select id="conta-estado" className="form-control" value={this.state.estado} onChange={e => this.setState({ estado: e.target.value })}>
                       <option></option>
                       <option>SP</option>
@@ -348,7 +348,7 @@ class ModalUsuario extends React.Component {
                     </select>
                   </div>
                   <div className=" p-2 col-md-4  d-flex align-items-center flex-wrap">
-                    <label htmlFor="conta-cidade"><i className="far fa-id-card  pr-2" ></i>Cidade</label>
+                    <label htmlFor="conta-cidade"><i className="fas fa-address-card  pr-2" ></i>Cidade</label>
                     <input type="text" value={this.state.cidade} onChange={e => this.setState({ cidade: e.target.value })} className="form-control" id="conta-cidade" name="conta-cidade" aria-describedby="cidadeHelp" required />
                   </div> 
 

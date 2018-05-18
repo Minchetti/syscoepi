@@ -201,9 +201,6 @@ body {
 
 
 
-
-
-
 /* M */
 svg{
   width: auto !important; /*ARRUMAR PAU DOS ICONES GIGANTES*/
@@ -220,7 +217,7 @@ svg{
   transition: 0.5s;
 }
 .nav>li>a {
-  padding: 2px 6px !important;
+  /* padding: 2px 6px !important; */
 }
 .btn {
   padding: 3px 10px !important;
@@ -281,16 +278,20 @@ svg{
 .table{
   font-size: 0.7em !important;
 }
-
-
-
-
-/* css correcao */
+#table_funcionarios .form-control {
+  font-size: 1.1em;
+}
 .table th {
   padding: 3px !important;
 }
-.table td {
+/* .table td {
   padding: 10px !important;
+} */
+#table_funcionarios td {
+  padding: 10px !important;
+}
+#table_funcionarios input {
+  /* padding: 5px !important; */
 }
 
 
