@@ -1,5 +1,6 @@
 import React from 'react';
 import TableFuncionarios from '../tablefuncionarios';
+import TableFuncionarios2 from '../tablefuncionarios2';
 import Table2 from '../table2';
 import Table3 from '../table3';
 import Modal2 from '../modal1';
@@ -199,25 +200,25 @@ class Employees extends React.Component {
     // alert("Funcionarios carregados!") ;
 
     var data = [
-      {Id:"0123", Nome: "Marcello Minchetti1", Turno: "Noturno", Sexo: "Masculino", RG: "16778405", CPF: "10770546617", GH: "123456", Email: "teste@gmail.com"},   
-      {Id:"1123", Nome: "Leandro Santos1", Turno: "vespertino", Sexo: "Masculino", RG: "16698405", CPF: "78970546617", GH: "123456", Email: "teste@gmail.com"}, 
-      {Id:"2123", Nome: "Luciano Braga1", Turno: "Matutino", Sexo: "Masculino", RG: "16771105", CPF: "11570546617", GH: "123456", Email: "teste@gmail.com"},
-      {Id:"3123", Nome: "Rodolfo Augusto1", Turno: "Vespertino", Sexo: "Masculino", RG: "16772605", CPF: "11980546617", GH: "123456", Email: "teste@gmail.com"},    
-      {Id:"4123", Nome: "Susi Ribeiro1", Turno: "Noturno", Sexo: "Feminino", RG: "16488405", CPF: "10770774617", GH: "123456", Email: "teste@gmail.com"}
+      {id:"0123", nome: "Marcello Minchetti1", turno: "Noturno", sexo: "Masculino", rg: "16778405", cpf: "10770546617", gh: "123456", email: "teste@gmail.com"},   
+      {id:"1123", nome: "Leandro Santos1", turno: "vespertino", sexo: "Masculino", rg: "16698405", cpf: "78970546617", gh: "123456", email: "teste@gmail.com"}, 
+      {id:"2123", nome: "Luciano Braga1", turno: "Matutino", sexo: "Masculino", rg: "16771105", cpf: "11570546617", gh: "123456", email: "teste@gmail.com"},
+      {id:"3123", nome: "Rodolfo Augusto1", turno: "Vespertino", sexo: "Masculino", rg: "16772605", cpf: "11980546617", gh: "123456", email: "teste@gmail.com"},    
+      {id:"4123", nome: "Susi Ribeiro1", turno: "Noturno", sexo: "Feminino", rg: "16488405", cpf: "10770774617", gh: "123456", email: "teste@gmail.com"}
     ]
     var data2 = [
-      {Id:"0123", Nome: "Marcello Minchetti2", Turno: "Noturno", Sexo: "Masculino", RG: "16778405", CPF: "10770546617", GH: "123456", Email: "teste@gmail.com"},   
-      {Id:"1123", Nome: "Leandro Santos2", Turno: "vespertino", Sexo: "Masculino", RG: "16698405", CPF: "78970546617", GH: "123456", Email: "teste@gmail.com"}, 
-      {Id:"2123", Nome: "Luciano Braga2", Turno: "Matutino", Sexo: "Masculino", RG: "16771105", CPF: "11570546617", GH: "123456", Email: "teste@gmail.com"},
-      {Id:"3123", Nome: "Rodolfo Augusto2", Turno: "Vespertino", Sexo: "Masculino", RG: "16772605", CPF: "11980546617", GH: "123456", Email: "teste@gmail.com"},    
-      {Id:"4123", Nome: "Susi Ribeiro2", Turno: "Noturno", Sexo: "Feminino", RG: "16488405", CPF: "10770774617", GH: "123456", Email: "teste@gmail.com"}
+      {id:"0123", nome: "Marcello Minchetti2", turno: "Noturno", sexo: "Masculino", rg: "16778405", cpf: "10770546617", gh: "123456", email: "teste@gmail.com"},   
+      {id:"1123", nome: "Leandro Santos2", turno: "vespertino", sexo: "Masculino", rg: "16698405", cpf: "78970546617", gh: "123456", email: "teste@gmail.com"}, 
+      {id:"2123", nome: "Luciano Braga2", turno: "Matutino", sexo: "Masculino", rg: "16771105", cpf: "11570546617", gh: "123456", email: "teste@gmail.com"},
+      {id:"3123", nome: "Rodolfo Augusto2", turno: "Vespertino", sexo: "Masculino", rg: "16772605", cpf: "11980546617", gh: "123456", email: "teste@gmail.com"},    
+      {id:"4123", nome: "Susi Ribeiro2", turno: "Noturno", sexo: "Feminino", rg: "16488405", cpf: "10770774617", gh: "123456", email: "teste@gmail.com"}
     ]
     var data3 = [
-      {Id:"0123", Nome: "Marcello Minchetti3", Turno: "Noturno", Sexo: "Masculino", RG: "16778405", CPF: "10770546617", GH: "123456", Email: "teste@gmail.com"},   
-      {Id:"1123", Nome: "Leandro Santos3", Turno: "vespertino", Sexo: "Masculino", RG: "16698405", CPF: "78970546617", GH: "123456", Email: "teste@gmail.com"}, 
-      {Id:"2123", Nome: "Luciano Braga3", Turno: "Matutino", Sexo: "Masculino", RG: "16771105", CPF: "11570546617", GH: "123456", Email: "teste@gmail.com"},
-      {Id:"3123", Nome: "Rodolfo Augusto3", Turno: "Vespertino", Sexo: "Masculino", RG: "16772605", CPF: "11980546617", GH: "123456", Email: "teste@gmail.com"},    
-      {Id:"4123", Nome: "Susi Ribeiro3", Turno: "Noturno", Sexo: "Feminino", RG: "16488405", CPF: "10770774617", GH: "123456", Email: "teste@gmail.com"}
+      {id:"0123", nome: "Marcello Minchetti3", turno: "Noturno", sexo: "Masculino", rg: "16778405", cpf: "10770546617", gh: "123456", email: "teste@gmail.com"},   
+      {id:"1123", nome: "Leandro Santos3", turno: "vespertino", sexo: "Masculino", rg: "16698405", cpf: "78970546617", gh: "123456", email: "teste@gmail.com"}, 
+      {id:"2123", nome: "Luciano Braga3", turno: "Matutino", sexo: "Masculino", rg: "16771105", cpf: "11570546617", gh: "123456", email: "teste@gmail.com"},
+      {id:"3123", nome: "Rodolfo Augusto3", turno: "Vespertino", sexo: "Masculino", rg: "16772605", cpf: "11980546617", gh: "123456", email: "teste@gmail.com"},    
+      {id:"4123", nome: "Susi Ribeiro3", turno: "Noturno", sexo: "Feminino", rg: "16488405", cpf: "10770774617", gh: "123456", email: "teste@gmail.com"}
     ]    
 
 
@@ -264,6 +265,10 @@ class Employees extends React.Component {
         {this.state.csv && <PreviewFuncionarios lista={this.state.csv} />}
         
         {this.state.listaFuncionarios != 0 ? (<TableFuncionarios lista={this.state.listaFuncionarios}  />) : (<h1>TA VAZIO MANÉ</h1>) }
+        {this.state.listaFuncionarios != 0 ? (<TableFuncionarios2 lista={this.state.listaFuncionarios}  />) : (<h1>TA VAZIO MANÉ</h1>) }
+        {/* <TableFuncionarios2 /> */}
+
+
       </div>
       )
     }

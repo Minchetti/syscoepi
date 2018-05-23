@@ -16,6 +16,10 @@ class TableFuncionarios extends React.Component {
     gh: '',
     turno: '',
     sexo: ''
+
+    // primeiroRender: false
+
+
   };
 
   componentDidUpdate(){
@@ -23,71 +27,36 @@ class TableFuncionarios extends React.Component {
   }
   componentWillUpdate(){
     console.log('will update');
-    
   }
-  // shouldComponentUpdate(nextProps){
-  //   console.log('should')
-  //   // console.log(nextProps.lista);
-  //   // console.log(this.state.lista);
-  //   if(this.state.lista !== nextProps.lista || this.state.search === true){
-  //     console.log('TRUE CARAI');
-  //     return true;  
-  //   }
-  //   else{
-  //     console.log('FALSIN CARAI');
-  //     return false;  
-  //   }
-  // }
+
 
   componentWillReceiveProps(nextProps){
     if(this.state.lista !== nextProps.lista){
-      console.log(nextProps);
-      console.log(this.state.lista);
       this.setState({ lista : nextProps.lista});  
-
-    } 
-    
+    }     
   }
 
 
 
   
-  // componentDidUpdate(){    //entender melhor como esta funcionando e pq esta entranndo 3x aqui e esta barrando a busca
-  //   if(this.state.lista !== this.props.lista ){ 
-  //     console.log('did ');
-  //     this.setState({ lista: this.props.lista });   
-  //   }
 
-  //   // console.log(this.props.lista);   
-  //   // console.log(this.state.lista);  
-  // }
   
 
  
 
   // EditarFuncionario = () =>{
-  //   if(document.getElementById("conta-cnpj").value.replace(/[./-]/g, "") !== this.state.dadosIniciaisConta.cnpj || 
-  //   document.getElementById("conta-cpf").value.replace(/[.-]/g, "") !== this.state.dadosIniciaisConta.cpf || 
-  //   document.getElementById("conta-celular").value.replace(/[()-]/g, "") !== this.state.dadosIniciaisConta.celular ||
-  //   document.getElementById("conta-cep").value.replace(/[-]/g, "") !== this.state.dadosIniciaisConta.cep ||
-  //   document.getElementById("conta-nome").value !== this.state.dadosIniciaisConta.nome || 
-  //   document.getElementById("conta-website").value !== this.state.dadosIniciaisConta.website ||
-  //   document.getElementById("conta-codigo-atividade").value !== this.state.dadosIniciaisConta.codigoAtividade || 
-  //   document.getElementById("conta-email").value !== this.state.dadosIniciaisConta.email ||  
-  //   document.getElementById("conta-cidade").value !== this.state.dadosIniciaisConta.cidade ||
-  //   document.getElementById("conta-bairro").value !== this.state.dadosIniciaisConta.bairro || 
-  //   document.getElementById("conta-estado").value !== this.state.dadosIniciaisConta.estado || 
-  //   document.getElementById("conta-numero").value !== this.state.dadosIniciaisConta.numero || 
-  //   document.getElementById("conta-rua").value !== this.state.dadosIniciaisConta.rua || 
-  //   document.getElementById("conta-senha").value !== this.state.dadosIniciaisConta.senha ||  
-  //   document.getElementById("conta-confirma-senha").value !== this.state.dadosIniciaisConta.confirmaSenha || 
-  //   document.getElementById("conta-nome-amigavel").value !== this.state.dadosIniciaisConta.nomeAmigavel ||
-  //   document.getElementById("conta-razao-social").value !== this.state.dadosIniciaisConta.razaoSocial)
+  //   if(document.getElementById("funcionario-nome").value !== this.state.dadosIniciaisFuncionario.nome || 
+  //     document.getElementById("funcionario-rg").value.replace(/[.]/g, "") !== this.state.dadosIniciaisFuncionario.rg ||
+  //     document.getElementById("funcionario-cpf").value.replace(/[.-]/g, "") !== this.state.dadosIniciaisFuncionario.cpf || 
+  //     document.getElementById("funcionario-email").value !== this.state.dadosIniciaisFuncionario.email ||  
+  //     document.getElementById("funcionario-gh").value !== this.state.dadosIniciaisFuncionario.gh ||
+  //     document.getElementById("funcionario-turno").value !== this.state.dadosIniciaisFuncionario.turno ||
+  //     document.getElementById("funcionario-sexo").value !== this.state.dadosIniciaisFuncionario.sexo)
   //   {
-  //     document.getElementById("editarConta").parentNode.style.display = "flex";
+  //     document.getElementById("editarFuncionario").parentNode.style.display = "flex";
   //   }
   //   else{
-  //     document.getElementById("editarConta").parentNode.style.display = "none";
+  //     document.getElementById("editarFuncionario").parentNode.style.display = "none";
   //   }
   // }
   
@@ -97,7 +66,6 @@ class TableFuncionarios extends React.Component {
     // var search = this.state.search;
     // this.setState({ lista: [ {Nome: "Marcello Minchetti", Turno: "Noturno", Sexo: "Masculino", RG: "16778405", CPF: "10770546617", GH: "123456", Email: "teste@gmail.com"}] });    
     var campo_search = document.getElementById("input-search-funcionario").value;
-    
 
     // var campo_search = "Marcello Minchetti";
     // console.log(campo_search + ' DIGITADO NO INPUT');
@@ -137,21 +105,55 @@ class TableFuncionarios extends React.Component {
       //   alert(err);
       // });      
   }
-    
+
+  // shouldComponentUpdate(){
+  //   if(this.state.primeiroRender == false){
+  //     return true;  
+  //   }
+  //   else{
+  //     return false;  
+  //   }
+  // }
+
 
   MontarLista = () => this.state.lista.map((value, i) => { //.data
+
+    // this.setState({ nome : value.Nome});  
+    // this.setState({ rg : value.RG});  
+    // this.setState({ cpf : value.CPF});  
+    // this.setState({ email : value.Email});  
+    // this.setState({ gh : value.GH});  
+    // this.setState({ turno : value.Turno});  
+    // this.setState({ sexo : value.Sexo});  
+
+
     
+    // var nome3 = this.state.nome.concat(value.Nome);
+    // var nome2 = nome2.concat(nome3);
+    // console.log(nome2);
+    // this.setState({ primeiroRender : true});      
+
+
     return (
-      <tr>
-        <td>{i}</td>
-        <td><input onClick={e => this.setState({ nome: e.target.value })} type="text" value={value.Nome} className="form-control" id="" name="" aria-describedby="" data-minlength="" /></td>  
-        <td><InputMask onClick={e => this.setState({ rg: e.target.value })} mask="99.999.999" type="text" value={value.RG} className="form-control" id="" name="" aria-describedby="" data-minlength="" /></td>  
-        <td><InputMask onClick={e => this.setState({ cpf: e.target.value })} mask="999.999.999-99" type="text" value={value.CPF} className="form-control" id="" name="" aria-describedby="" data-minlength="" /></td>  
-        <td><input onClick={e => this.setState({ email: e.target.value })} type="text" value={value.Email} className="form-control" id="" name="" aria-describedby="" data-minlength="" /></td>  
-        <td><input onClick={e => this.setState({ gh: e.target.value })} type="text" value={value.GH} className="form-control" id="" name="" aria-describedby="" data-minlength="" /></td>  
-        <td><input onClick={e => this.setState({ turno : e.target.value })} type="text" value={value.Turno} className="form-control" id="" name="" aria-describedby="" data-minlength="" /></td>  
+      <tr onChange={this.EditarFuncionario}>
+        <td>{i}
+          <div className="d-nonin">
+            <button type="button" onClick={this.CancelarEditar} className="btn btn-danger mr-2" > {/*data-dismiss="modal"*/}
+              <i className="fa fa-times pr-2 " aria-hidden="true" />
+            </button>
+            <button onClick={this.EditarConta} id="editarFuncionario" type="submit" className="btn btn-primary" >
+              <i className="fa fa-check pr-2 " aria-hidden="true"/>
+            </button>
+          </div>
+        </td>
+        <td><input onClick={e => this.setState({ nome: e.target.value })} type="text" value={value.Nome} className="form-control" id="funcionario-nome" name="" aria-describedby="" data-minlength="" /></td>  
+        <td><InputMask onClick={e => this.setState({ rg: e.target.value })} mask="99.999.999" type="text" value={value.RG} className="form-control" id="funcionario-rg" name="" aria-describedby="" data-minlength="" /></td>  
+        <td><InputMask onClick={e => this.setState({ cpf: e.target.value })} mask="999.999.999-99" type="text" value={value.CPF} className="form-control" id="funcionario-cpf" name="" aria-describedby="" data-minlength="" /></td>  
+        <td><input onClick={e => this.setState({ email: e.target.value })} type="text" value={value.Email} className="form-control" id="funcionario-email" name="" aria-describedby="" data-minlength="" /></td>  
+        <td><input onClick={e => this.setState({ gh: e.target.value })} type="text" value={value.GH} className="form-control" id="funcionario-gh" name="" aria-describedby="" data-minlength="" /></td>  
+        <td><input onClick={e => this.setState({ turno : e.target.value })} type="text" value={value.Turno} className="form-control" id="funcionario-turno" name="" aria-describedby="" data-minlength="" /></td>  
         <td>
-          <select onClick={e => this.setState({ sexo: e.target.value })} type="text" className="form-control" id="" name="" aria-describedby="" data-minlength="">
+          <select onClick={e => this.setState({ sexo: e.target.value })} type="text" className="form-control" id="funcionario-sexo" name="" aria-describedby="" data-minlength="">
             <option>{value.Sexo}</option>
             <option>{value.Sexo == "Masculino" ? 'Feminino' : 'Masculino'}</option>
           </select>

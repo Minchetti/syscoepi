@@ -376,10 +376,6 @@ class ModalUsuario extends React.Component {
                     <input type="password" value={this.state.confirmaSenha} onChange={e => this.setState({ confirmaSenha: e.target.value })} className="form-control" id="conta-confirma-senha" aria-describedby="emailHelp" data-match="#conta-senha" data-match-error="Atenção! As senhas não estão iguais." required/> 
                   </div>
 
-                  
-                  
-
-
                 </form>        
               </div>
 
