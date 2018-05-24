@@ -146,16 +146,16 @@ class TableFuncionarios extends React.Component {
             </button>
           </div>
         </td>
-        <td><input onClick={e => this.setState({ nome: e.target.value })} type="text" value={value.Nome} className="form-control" id="funcionario-nome" name="" aria-describedby="" data-minlength="" /></td>  
-        <td><InputMask onClick={e => this.setState({ rg: e.target.value })} mask="99.999.999" type="text" value={value.RG} className="form-control" id="funcionario-rg" name="" aria-describedby="" data-minlength="" /></td>  
-        <td><InputMask onClick={e => this.setState({ cpf: e.target.value })} mask="999.999.999-99" type="text" value={value.CPF} className="form-control" id="funcionario-cpf" name="" aria-describedby="" data-minlength="" /></td>  
-        <td><input onClick={e => this.setState({ email: e.target.value })} type="text" value={value.Email} className="form-control" id="funcionario-email" name="" aria-describedby="" data-minlength="" /></td>  
-        <td><input onClick={e => this.setState({ gh: e.target.value })} type="text" value={value.GH} className="form-control" id="funcionario-gh" name="" aria-describedby="" data-minlength="" /></td>  
-        <td><input onClick={e => this.setState({ turno : e.target.value })} type="text" value={value.Turno} className="form-control" id="funcionario-turno" name="" aria-describedby="" data-minlength="" /></td>  
+        <td><input onClick={e => this.setState({ nome: e.target.value })} type="text" value={this.state.nome == '' ? (value.nome) : (this.state.nome)} className="form-control" id="funcionario-nome" name="" aria-describedby="" data-minlength="" /></td>  
+        <td><InputMask onClick={e => this.setState({ rg: e.target.value })} mask="99.999.999" type="text" value={this.state.rg == '' ? (value.rg) : (this.state.rg)} className="form-control" id="funcionario-rg" name="" aria-describedby="" data-minlength="" /></td>  
+        <td><InputMask onClick={e => this.setState({ cpf: e.target.value })} mask="999.999.999-99" type="text" value={this.state.cpf == '' ? (value.cpf) : (this.state.cpf)} className="form-control" id="funcionario-cpf" name="" aria-describedby="" data-minlength="" /></td>  
+        <td><input onClick={e => this.setState({ email: e.target.value })} type="text" value={this.state.email == '' ? (value.email) : (this.state.email)} className="form-control" id="funcionario-email" name="" aria-describedby="" data-minlength="" /></td>  
+        <td><input onClick={e => this.setState({ gh: e.target.value })} type="text" value={this.state.gh == '' ? (value.gh) : (this.state.gh)} className="form-control" id="funcionario-gh" name="" aria-describedby="" data-minlength="" /></td>  
+        <td><input onClick={e => this.setState({ turno : e.target.value })} type="text" value={this.state.turno == '' ? (value.turno) : (this.state.turno)} className="form-control" id="funcionario-turno" name="" aria-describedby="" data-minlength="" /></td>  
         <td>
           <select onClick={e => this.setState({ sexo: e.target.value })} type="text" className="form-control" id="funcionario-sexo" name="" aria-describedby="" data-minlength="">
-            <option>{value.Sexo}</option>
-            <option>{value.Sexo == "Masculino" ? 'Feminino' : 'Masculino'}</option>
+            <option>{this.state.sexo == '' ? (value.sexo) : (this.state.sexo)}</option>
+            <option>{(this.state.sexo == '' ? (value.sexo) : (this.state.sexo)) == "Masculino" ? 'Feminino' : 'Masculino'}</option>
           </select>
         </td>           
         {/* <td>{i}</td>
