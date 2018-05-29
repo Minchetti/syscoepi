@@ -4,13 +4,17 @@ import InputMask from 'react-input-mask';
 // import PropTypes from 'prop-types';
 
 class TableFuncionarios2 extends React.Component {
-state = {
+initialState = {
+  employeesInitial: []
+  // setInitial: false
+}
 
+state = {
   //  this.state.employees = [];
-  state : {},
+  // ...this.employeesInitial,
+  // state : {},
   filterText : "",
-  employees: this.props.lista,
-  employeesInitial: [...this.props.lista]
+  employees: this.props.lista
   // employees : [
   //   {
   //     id: 1,
@@ -68,34 +72,75 @@ state = {
   //     sexo: 'masc'
   //   }
   // ]
+
 }
+
+componentWillMount(){
+  console.log('WILL MOUNT');
+  this.initialState.employeesInitial = JSON.parse(JSON.stringify(this.props.lista));
+}
+
+
+
+componentWillUpdate(){
+  console.log('WILL UPDATE');
+
+  if(JSON.stringify(this.initialState.employeesInitial) !== JSON.stringify(this.state.employees)){
+    console.log('MEU PAU');
+    document.getElementById("table-buttons").style.display = "flex";
+  }
+  else{
+    console.log('meu CU');
+    document.getElementById("table-buttons").style.display = "none";
+  }
+}
+
+// shouldComponentUpdate(nextProps, nextState) {
+//   if (nextProps.lista === this.state.employees) {
+//     return false;
+//   }
+//   else{
+//     return true;
+//   }
+// }
+
+  componentWillReceiveProps(nextProps){    
+    console.log('WILL RECEIVE PROPS');
+    if(this.state.employees !== nextProps.lista){
+      this.setState({ employees : nextProps.lista});  
+      // this.initialState.employeesInitial = nextProps.lista;  
+    }     
+    if(this.initialState.employeesInitial !== nextProps.lista){
+      this.initialState.employeesInitial = JSON.parse(JSON.stringify(nextProps.lista));
+    }
+  }
 
 
   handleUserInput(filterText) {
     this.setState({filterText: filterText});
   };
+
   handleRowDel(employee) {
     var index = this.state.employees.indexOf(employee);
     this.state.employees.splice(index, 1);
     this.setState(this.state.employees);
   };
 
-  handleAddEvent(evt) {
-    var id = (+ new Date() + Math.floor(Math.random() * 999999)).toString(36);
-    var employee = {
-      id: id,
-      nome: "",
-      rg: "",
-      cpf: "",
-      email: "",
-      gh: "",
-      turno: "",
-      sexo: ""
-    }
-    this.state.employees.push(employee);
-    this.setState(this.state.employees);
-
-  }
+  // handleAddEvent(evt) {
+  //   var id = (+ new Date() + Math.floor(Math.random() * 999999)).toString(36);
+  //   var employee = {
+  //     id: id,
+  //     nome: "",
+  //     rg: "",
+  //     cpf: "",
+  //     email: "",
+  //     gh: "",
+  //     turno: "",
+  //     sexo: ""
+  //   }
+  //   this.state.employees.push(employee);
+  //   this.setState(this.state.employees);
+  // }
 
   handleProductTable(evt) {
     var item = {
@@ -103,58 +148,89 @@ state = {
       name: evt.target.name,
       value: evt.target.value
     };
-var employees = this.state.employees.slice();
-  var newProducts = employees.map(function(employee) {
+    var employees = this.state.employees.slice();
+    var newProducts = employees.map(function(employee) {
+      for (var key in employee) {
+        if (key == item.name && employee.id == item.id) {
+          employee[key] = item.value;
 
-    for (var key in employee) {
-      if (key == item.name && employee.id == item.id) {
-        employee[key] = item.value;
-
+        }
       }
-    }
-    return employee;
-  });
+      return employee;
+    });
     this.setState({employees:newProducts});
-  //  console.log(this.state.employees);
   };
 
 
-  Teste = () => {
-    if(this.state.employees == this.state.employeesInitial){
-      alert('IGUAL');
+  CancelarEditar = () =>{      
+    this.setState(
+      {employees : JSON.parse(JSON.stringify(this.initialState.employeesInitial))},
+      () => document.getElementById("table-buttons").style.display = "none"
+    );
+  }
+
+  SalvarEditar = () =>{
+    alert('DADOS MODIFICADOS SALVOS');
+  }
+
+  
+  teste = () =>{  
+    console.log(this.state.employees);
+    console.log(JSON.stringify(this.state.employees));
+  }
+  teste2 = () =>{  
+    console.log(this.initialState.employeesInitial);
+  }
+  teste3 = () =>{  
+    if(JSON.stringify(this.initialState.employeesInitial) === JSON.stringify(this.state.employees)){
+      console.log("IGUAL");
     }
     else{
-      alert('DIFERENTE');
+      console.log("DIFERENT")
     }
   }
-  Teste2 = () => {console.log(this.state); }
+
+
+
 
   render() {
-
+    
     return (
-      <div className="panel">
-        
-        <div onClick={this.Teste}>AQUI PROPS</div>
-        <div onClick={this.Teste2}>AQUI STATE</div>
+      <div className="panel">        
+      <div onClick={this.teste}>TEST</div>
+      <div onClick={this.teste2}>TEST2</div>
+      <div onClick={this.teste3}>TEST3</div>
         <div className="panel-heading d-flex justify-content-between align-items-center">
           <h6 className="text-left mb-0"><i className="fa fa-user pr-2" aria-hidden="true"></i>Funcionários({this.state.employees.length})</h6>
           
+          <div className="d-nonin" id="table-buttons">      
+            <button type="button" onClick={this.CancelarEditar} className="btn btn-danger mr-2" > {/*data-dismiss="modal"*/}
+              <i className="fa fa-times pr-2 " aria-hidden="true" />Cancelar
+            </button>
+            <button onClick={this.SalvarEditar} type="submit" className="btn btn-primary" >
+              <i className="fa fa-check pr-2 " aria-hidden="true"/>Salvar
+            </button>
+          </div>
           
-
           <div className="d-flex align-items-center">
             <i class="fas fa-search fa-lg mr-2"></i>
             <SearchBar filterText={this.state.filterText} onUserInput={this.handleUserInput.bind(this)}/>
           </div>
         </div>
         <div className="panel-body">
-          <ProductTable onEmployeeTableUpdate={this.handleProductTable.bind(this)} onRowAdd={this.handleAddEvent.bind(this)} onRowDel={this.handleRowDel.bind(this)} employees={this.state.employees} filterText={this.state.filterText}/>
+          <ProductTable onEmployeeTableUpdate={this.handleProductTable.bind(this)}  onRowDel={this.handleRowDel.bind(this)} employees={this.state.employees} filterText={this.state.filterText}/> {/*onRowAdd={this.handleAddEvent.bind(this)}*/}
         </div>
       </div>
     );
-
   }
-
 }
+
+
+
+
+
+
+
 class SearchBar extends React.Component {
   handleChange() {
     this.props.onUserInput(this.refs.filterTextInput.value);
@@ -162,19 +238,23 @@ class SearchBar extends React.Component {
   render() {
     return (
       <div>
-
         <input className="form-control" type="text" placeholder="Search..." value={this.props.filterText} ref="filterTextInput" onChange={this.handleChange.bind(this)}/>
-
       </div>
-
     );
   }
-
 }
+
+
+
+
+
+
+
 
 class ProductTable extends React.Component {
 
   render() {
+
     var onEmployeeTableUpdate = this.props.onEmployeeTableUpdate;
     var rowDel = this.props.onRowDel;
     var filterText = this.props.filterText;
@@ -182,13 +262,12 @@ class ProductTable extends React.Component {
       if (employee.nome.indexOf(filterText) === -1) {
         return;
       }
-      return (<ProductRow onEmployeeTableUpdate={onEmployeeTableUpdate} employee={employee} onDelEvent={rowDel.bind(this)} key={employee.id}/>)
+      return (<ProductRow  onEmployeeTableUpdate={onEmployeeTableUpdate} employee={employee} onDelEvent={rowDel.bind(this)} key={employee.id}/>)
     });
     return (
-      <div>
+      <div>      
 
-      {/* Tirei apenas o botao, a função dele ainda existe */}
-      {/* <button type="button" onClick={this.props.onRowAdd} className="btn btn-success pull-right">Add</button>  */}
+    {/* <button type="button" onClick={this.props.onRowAdd} className="btn btn-success pull-right">Add</button>  */}
         <table id="table_funcionarios" className="table table-bordered">
           <thead className="thead-dark">
             <tr>
@@ -204,24 +283,25 @@ class ProductTable extends React.Component {
           </thead>
           <tbody>
             {employee}
-
           </tbody>
-
         </table>
       </div>
     );
-
   }
-
 }
+
+
+
+
+
+
 
 class ProductRow extends React.Component {
   onDelEvent() {
     this.props.onDelEvent(this.props.employee);
-
   }
+  
   render() {
-
     return (
       <tr className="eachRow">
         <EditableCell onEmployeeTableUpdate={this.props.onEmployeeTableUpdate} cellData={{
@@ -264,22 +344,29 @@ class ProductRow extends React.Component {
         </td>
       </tr>
     );
-
   }
-
 }
-class EditableCell extends React.Component {
 
+
+
+
+
+
+
+class EditableCell extends React.Component {
   render() {
     return (
       <td>
         <input className="form-control" type='text' name={this.props.cellData.type} id={this.props.cellData.id} value={this.props.cellData.value} onChange={this.props.onEmployeeTableUpdate}/>
       </td>
     );
-
   }
-
 }
+
+
+
+
+
 export default TableFuncionarios2;
 
 /*
