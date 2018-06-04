@@ -126,22 +126,6 @@ componentWillUpdate(){
     this.setState(this.state.employees);
   };
 
-  // handleAddEvent(evt) {
-  //   var id = (+ new Date() + Math.floor(Math.random() * 999999)).toString(36);
-  //   var employee = {
-  //     id: id,
-  //     nome: "",
-  //     rg: "",
-  //     cpf: "",
-  //     email: "",
-  //     gh: "",
-  //     turno: "",
-  //     sexo: ""
-  //   }
-  //   this.state.employees.push(employee);
-  //   this.setState(this.state.employees);
-  // }
-
   handleProductTable(evt) {
     var item = {
       id: evt.target.id,
@@ -201,7 +185,7 @@ componentWillUpdate(){
       <div onClick={this.teste2}>TEST2</div>
       <div onClick={this.teste3}>TEST3</div>
         <div className="panel-heading d-flex justify-content-between align-items-center">
-          <h6 className="text-left mb-0"><i className="fa fa-user pr-2" aria-hidden="true"></i>Funcionários({this.state.employees.length})</h6>
+          <h6 className="text-left mb-0"><i className="fa fa-user pr-2" aria-hidden="true"></i>Epi's em estoque({this.state.employees.length})</h6>
           
           <div className="d-nonin" id="table-buttons">      
             <button type="button" onClick={this.CancelarEditar} className="btn btn-danger mr-2" > {/*data-dismiss="modal"*/}
@@ -271,13 +255,21 @@ class ProductTable extends React.Component {
         <table id="table_funcionarios" className="table table-bordered">
           <thead className="thead-dark">
             <tr>
+              <th>Cod</th>
               <th>Nome</th>
-              <th>rg</th>
-              <th>cpf</th>
-              <th>email</th>
-              <th>gh</th>
-              <th>turno</th>
-              <th>sexo</th>
+              <th>Descrição</th>
+              <th>Validade</th>
+              <th>Min Estoque</th>
+              <th>Estoque</th>
+              <th>Max Estoque</th>
+              <th>CA</th>
+              <th>Data Armazenamento</th>
+              <th>Data Devolução</th>
+              <th>Motivo Devolução</th>
+              <th>Cor</th>
+              <th>Grupo</th>
+              <th>Unidade</th>
+              <th>Fator Redução</th>
               <th></th>
             </tr>
           </thead>
@@ -306,37 +298,77 @@ class ProductRow extends React.Component {
       <tr className="eachRow">
         <EditableCell onEmployeeTableUpdate={this.props.onEmployeeTableUpdate} cellData={{
           "type": "nome",
-          value: this.props.employee.nome,
+          value: this.props.employee.cod,
           id: this.props.employee.id
         }}/>
         <EditableCell onEmployeeTableUpdate={this.props.onEmployeeTableUpdate} cellData={{
           type: "rg",
-          value: this.props.employee.rg,
+          value: this.props.employee.nome,
           id: this.props.employee.id
         }}/>
         <EditableCell onEmployeeTableUpdate={this.props.onEmployeeTableUpdate} cellData={{
           type: "cpf",
-          value: this.props.employee.cpf,
+          value: this.props.employee.descricao,
           id: this.props.employee.id
         }}/>
         <EditableCell onEmployeeTableUpdate={this.props.onEmployeeTableUpdate} cellData={{
           type: "email",
-          value: this.props.employee.email,
+          value: this.props.employee.validade,
           id: this.props.employee.id
         }}/>
         <EditableCell onEmployeeTableUpdate={this.props.onEmployeeTableUpdate} cellData={{
           type: "gh",
-          value: this.props.employee.gh,
+          value: this.props.employee.minEstoque,
           id: this.props.employee.id
         }}/>
         <EditableCell onEmployeeTableUpdate={this.props.onEmployeeTableUpdate} cellData={{
           type: "turno",
-          value: this.props.employee.turno,
+          value: this.props.employee.estoque,
           id: this.props.employee.id
         }}/>
         <EditableCell onEmployeeTableUpdate={this.props.onEmployeeTableUpdate} cellData={{
           type: "sexo",
-          value: this.props.employee.sexo,
+          value: this.props.employee.maxEstoque,
+          id: this.props.employee.id
+        }}/>
+        <EditableCell onEmployeeTableUpdate={this.props.onEmployeeTableUpdate} cellData={{
+          type: "sexo",
+          value: this.props.employee.ca,
+          id: this.props.employee.id
+        }}/>
+        <EditableCell onEmployeeTableUpdate={this.props.onEmployeeTableUpdate} cellData={{
+          type: "sexo",
+          value: this.props.employee.dataArmazenamento,
+          id: this.props.employee.id
+        }}/>
+        <EditableCell onEmployeeTableUpdate={this.props.onEmployeeTableUpdate} cellData={{
+          type: "sexo",
+          value: this.props.employee.dataDevolucao,
+          id: this.props.employee.id
+        }}/>
+        <EditableCell onEmployeeTableUpdate={this.props.onEmployeeTableUpdate} cellData={{
+          type: "sexo",
+          value: this.props.employee.motivoDevolucao,
+          id: this.props.employee.id
+        }}/>
+        <EditableCell onEmployeeTableUpdate={this.props.onEmployeeTableUpdate} cellData={{
+          type: "sexo",
+          value: this.props.employee.cor,
+          id: this.props.employee.id
+        }}/>
+        <EditableCell onEmployeeTableUpdate={this.props.onEmployeeTableUpdate} cellData={{
+          type: "sexo",
+          value: this.props.employee.grupo,
+          id: this.props.employee.id
+        }}/>
+        <EditableCell onEmployeeTableUpdate={this.props.onEmployeeTableUpdate} cellData={{
+          type: "sexo",
+          value: this.props.employee.unidade,
+          id: this.props.employee.id
+        }}/>
+        <EditableCell onEmployeeTableUpdate={this.props.onEmployeeTableUpdate} cellData={{
+          type: "sexo",
+          value: this.props.employee.fatorReducao,
           id: this.props.employee.id
         }}/>
         <td className="del-cell">

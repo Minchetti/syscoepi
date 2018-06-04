@@ -1,32 +1,19 @@
 import React from 'react';
-import TableFuncionarios from '../tablefuncionarios';
-import TableFuncionarios2 from '../tablefuncionarios2';
 import Table2 from '../table2';
 import Table3 from '../table3';
 import Modal2 from '../modal1';
 import Button from '../button';
+import TableEpis from '../tableepis';
 import PreviewFuncionarios from '../previewfuncionarios';
 import ModalCriarEmpresa from '../modalcriarempresa';
 import ModalAddFuncionario from '../modaladdfuncionario';
-import * as Papa from 'papaparse';
 import $ from 'jquery'; 
 import IdUsuarioLogado from '../login/Login.js';
-
-// var data;
-
-
-// let PreviewComponent;
-
-// $(document).ready(function(){
-//   $("#csv-file").change(handleFileSelect);
-//   alert(IdUsuarioLogado);
-// });
 
 
 
 class Epis extends React.Component {
   state = {
-    csv: null,
     arrayEmpresas: [],
     nomeEmpresaSelecionada: null,
     empresaSelecionadaId: '',
@@ -45,20 +32,6 @@ class Epis extends React.Component {
   }
 
 
-  handleFileSelect(evt) {
-    var file = evt.target.files[0];
-    Papa.parse(file, {
-      header: true,
-      dynamicTyping: true,
-      complete: function(csv) {
-        this.setState({ csv });
-        console.log(csv);
-        
-      $('#JAJA').show();
-        // PreviewComponent = <PreviewFuncionarios lista={csv}/> 
-      }.bind(this)
-      });
-  }
 
 
   CarregarEmpresas = () => {   
@@ -200,26 +173,20 @@ class Epis extends React.Component {
     // alert("Funcionarios carregados!") ;
 
     var data = [
-      {id:"0123", nome: "Marcello Minchetti1", turno: "Noturno", sexo: "Masculino", rg: "16778405", cpf: "10770546617", gh: "123456", email: "teste@gmail.com"},   
-      {id:"1123", nome: "Leandro Santos1", turno: "vespertino", sexo: "Masculino", rg: "16698405", cpf: "78970546617", gh: "123456", email: "teste@gmail.com"}, 
-      {id:"2123", nome: "Luciano Braga1", turno: "Matutino", sexo: "Masculino", rg: "16771105", cpf: "11570546617", gh: "123456", email: "teste@gmail.com"},
-      {id:"3123", nome: "Rodolfo Augusto1", turno: "Vespertino", sexo: "Masculino", rg: "16772605", cpf: "11980546617", gh: "123456", email: "teste@gmail.com"},    
-      {id:"4123", nome: "Susi Ribeiro1", turno: "Noturno", sexo: "Feminino", rg: "16488405", cpf: "10770774617", gh: "123456", email: "teste@gmail.com"}
+      {cod:"0123", nome: "Cap02 BlackBone", descricao: "Capacete com queixeira", validade: "10/10/2025", minEstoque: "10", estoque: "50", maxEstoque: "99", ca: "0776584", dataArmazenamento: "01/02/2018", dataDevolucao: "01/05/2016", motivoDevolucao: "Pedido errado", cor: "preto", grupo: "Capacetes",  fatorReducao: "Proteção contra impactos médios"},   
+      {cod:"3171", nome: "SingleFlow Gloves", descricao: "Luvas de malha", validade: "10/10/2025", minEstoque: "10", estoque: "50", maxEstoque: "99", ca:"0771147", dataArmazenamento: "01/02/2018", dataDevolucao:"01/05/2016", motivoDevolucao:"Pedido errado", cor: "Prata", grupo: "Luvas",  fatorReducao: "Proteção contra cortes"},
+      {cod:"9277", nome: "Straight Glass", descricao: "Óculos de poliestinelo", validade: "10/10/2025", minEstoque: "10", estoque: "50", maxEstoque: "99", ca:"0719684", dataArmazenamento: "01/02/2018", dataDevolucao:"01/05/2016", motivoDevolucao:"Pedido errado", cor:"preto", grupo: "Óculos",  fatorReducao: "Proteção contra faíscas e detritos"},
     ]
     var data2 = [
-      {id:"0123", nome: "Marcello Minchetti2", turno: "Noturno", sexo: "Masculino", rg: "16778405", cpf: "10770546617", gh: "123456", email: "teste@gmail.com"},   
-      {id:"1123", nome: "Leandro Santos2", turno: "vespertino", sexo: "Masculino", rg: "16698405", cpf: "78970546617", gh: "123456", email: "teste@gmail.com"}, 
-      {id:"2123", nome: "Luciano Braga2", turno: "Matutino", sexo: "Masculino", rg: "16771105", cpf: "11570546617", gh: "123456", email: "teste@gmail.com"},
-      {id:"3123", nome: "Rodolfo Augusto2", turno: "Vespertino", sexo: "Masculino", rg: "16772605", cpf: "11980546617", gh: "123456", email: "teste@gmail.com"},    
-      {id:"4123", nome: "Susi Ribeiro2", turno: "Noturno", sexo: "Feminino", rg: "16488405", cpf: "10770774617", gh: "123456", email: "teste@gmail.com"}
+      {cod:"0123", nome: "Cap02 BlackBone2", descricao: "Capacete com queixeira", validade: "10/10/2025", minEstoque: "10", estoque: "50", maxEstoque: "99", ca: "0776584", dataArmazenamento: "01/02/2018", dataDevolucao: "01/05/2016", motivoDevolucao: "Pedido errado", cor: "preto", grupo: "Capacetes",  fatorReducao: "Proteção contra impactos médios"},   
+      {cod:"3171", nome: "SingleFlow Gloves2", descricao: "Luvas de malha", validade: "10/10/2025", minEstoque: "10", estoque: "50", maxEstoque: "99", ca:"0771147", dataArmazenamento: "01/02/2018", dataDevolucao:"01/05/2016", motivoDevolucao:"Pedido errado", cor: "Prata", grupo: "Luvas",  fatorReducao: "Proteção contra cortes"},
+      {cod:"9277", nome: "Straight Glass2", descricao: "Óculos de poliestinelo", validade: "10/10/2025", minEstoque: "10", estoque: "50", maxEstoque: "99", ca:"0719684", dataArmazenamento: "01/02/2018", dataDevolucao:"01/05/2016", motivoDevolucao:"Pedido errado", cor:"preto", grupo: "Óculos",  fatorReducao: "Proteção contra faíscas e detritos"},
     ]
     var data3 = [
-      {id:"0123", nome: "Marcello Minchetti3", turno: "Noturno", sexo: "Masculino", rg: "16778405", cpf: "10770546617", gh: "123456", email: "teste@gmail.com"},   
-      {id:"1123", nome: "Leandro Santos3", turno: "vespertino", sexo: "Masculino", rg: "16698405", cpf: "78970546617", gh: "123456", email: "teste@gmail.com"}, 
-      {id:"2123", nome: "Luciano Braga3", turno: "Matutino", sexo: "Masculino", rg: "16771105", cpf: "11570546617", gh: "123456", email: "teste@gmail.com"},
-      {id:"3123", nome: "Rodolfo Augusto3", turno: "Vespertino", sexo: "Masculino", rg: "16772605", cpf: "11980546617", gh: "123456", email: "teste@gmail.com"},    
-      {id:"4123", nome: "Susi Ribeiro3", turno: "Noturno", sexo: "Feminino", rg: "16488405", cpf: "10770774617", gh: "123456", email: "teste@gmail.com"}
-    ]    
+      {cod:"0123", nome: "Cap02 BlackBone3", descricao: "Capacete com queixeira", validade: "10/10/2025", minEstoque: "10", estoque: "50", maxEstoque: "99", ca: "0776584", dataArmazenamento: "01/02/2018", dataDevolucao: "01/05/2016", motivoDevolucao: "Pedido errado", cor: "preto", grupo: "Capacetes",  fatorReducao: "Proteção contra impactos médios"},   
+      {cod:"3171", nome: "SingleFlow Gloves3", descricao: "Luvas de malha", validade: "10/10/2025", minEstoque: "10", estoque: "50", maxEstoque: "99", ca:"0771147", dataArmazenamento: "01/02/2018", dataDevolucao:"01/05/2016", motivoDevolucao:"Pedido errado", cor: "Prata", grupo: "Luvas",  fatorReducao: "Proteção contra cortes"},
+      {cod:"9277", nome: "Straight Glass3", descricao: "Óculos de poliestinelo", validade: "10/10/2025", minEstoque: "10", estoque: "50", maxEstoque: "99", ca:"0719684", dataArmazenamento: "01/02/2018", dataDevolucao:"01/05/2016", motivoDevolucao:"Pedido errado", cor:"preto", grupo: "Óculos",  fatorReducao: "Proteção contra faíscas e detritos"},
+    ]   
 
 
     if (this.state.nomeEmpresaSelecionada == 'Empresa 1' ){
@@ -257,16 +224,15 @@ class Epis extends React.Component {
               </select>
           </div>
           <div className="col-md-6 p-0 align-items-center">
-            <input type="file" className="btn btn-dark" id="csv-file" name="files" onChange={this.handleFileSelect.bind(this)}/>
+            
             <Button class="btn-dark pr-2 ml-3" icon="fa-plus fa-lg mr-1" text="Adicionar Funcionário" target="#modal-add-funcionario"/>
           </div>
         </div>
         
         {this.state.csv && <PreviewFuncionarios lista={this.state.csv} />}
         
-        {/* {this.state.listaFuncionarios != 0 ? (<TableFuncionarios lista={this.state.listaFuncionarios}  />) : (<h1>TA VAZIO MANÉ</h1>) } */}
-        {this.state.listaFuncionarios != 0 ? (<TableFuncionarios2 lista={this.state.listaFuncionarios}  />) : (<h1>TA VAZIO MANÉ</h1>) }
-        {/* <TableFuncionarios2 /> */}
+        
+        {this.state.listaFuncionarios != 0 ? (<TableEpis lista={this.state.listaFuncionarios}  />) : (<h1>TA VAZIO MANÉ</h1>) }
 
 
       </div>
@@ -292,7 +258,7 @@ class Epis extends React.Component {
       <div id="Epis">
       <div onClick={this.Teste}>AQUI</div>
       
-        <h4 className="mt-2 mb-4"><i className="fa fa-users mr-2" aria-hidden="true"></i>Epi's</h4>  
+        <h4 className="mt-2 mb-4"><i className="fas fa-shield-alt mr-2" aria-hidden="true"></i>Epi's</h4>  
                
         {this.PrimeiroFuncionario()}
         
