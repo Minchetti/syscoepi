@@ -91,7 +91,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
               </li>
               <ul className="sub-menu collapse" id="sub-company">
                 <li><Link to="/app/employees">Funcionários</Link></li>
-                <li>Service 2</li>
+                <li><Link to="/app/epis">Epi's</Link></li>
                 <li>Service 3</li>
               </ul>
 
