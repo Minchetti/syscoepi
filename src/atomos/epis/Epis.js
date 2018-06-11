@@ -6,7 +6,7 @@ import Button from '../button';
 import TableEpis from '../tableepis';
 import PreviewFuncionarios from '../previewfuncionarios';
 import ModalCriarEmpresa from '../modalcriarempresa';
-import ModalAddFuncionario from '../modaladdfuncionario';
+import ModalAddEpi from '../modaladdepi';
 import $ from 'jquery'; 
 import IdUsuarioLogado from '../login/Login.js';
 
@@ -211,7 +211,7 @@ class Epis extends React.Component {
   };
 
 
-  PrimeiroFuncionario = () =>{
+  PrimeiroEpi = () =>{
     const empresas = this.state.arrayEmpresas;
 
     if(empresas.length != 0 ){
@@ -225,14 +225,14 @@ class Epis extends React.Component {
           </div>
           <div className="col-md-6 p-0 align-items-center">
             
-            <Button class="btn-dark pr-2 ml-3" icon="fa-plus fa-lg mr-1" text="Adicionar Funcionário" target="#modal-add-funcionario"/>
+            <Button class="btn-dark pr-2 ml-3" icon="fa-plus fa-lg mr-1" text="Adicionar Epi" target="#modal-add-epi"/>
           </div>
         </div>
         
         {this.state.csv && <PreviewFuncionarios lista={this.state.csv} />}
         
         
-        {this.state.listaFuncionarios != 0 ? (<TableEpis lista={this.state.listaFuncionarios}  />) : (<h1>TA VAZIO MANÉ</h1>) }
+        {this.state.listaFuncionarios != 0 ? (<TableEpis lista={this.state.listaFuncionarios}  />) : (<h1>Cadastre seus primeiros epi's</h1>) }
 
 
       </div>
@@ -248,7 +248,6 @@ class Epis extends React.Component {
     }
   }
 
-  Teste = () => {console.log(this.state);}
   
   render() {   
 
@@ -256,13 +255,12 @@ class Epis extends React.Component {
     return (
       
       <div id="Epis">
-      <div onClick={this.Teste}>AQUI</div>
       
         <h4 className="mt-2 mb-4"><i className="fas fa-shield-alt mr-2" aria-hidden="true"></i>Epi's</h4>  
                
-        {this.PrimeiroFuncionario()}
+        {this.PrimeiroEpi()}
         
-        <ModalAddFuncionario empresaId={this.state.empresaSelecionadaId}  /> 
+        <ModalAddEpi empresaId={this.state.empresaSelecionadaId}  /> 
 
 
       </div>

@@ -82,15 +82,14 @@ componentWillMount(){
 
 
 
-componentWillUpdate(){
+componentWillUpdate(nextProps){
   console.log('WILL UPDATE');
 
-  if(JSON.stringify(this.initialState.employeesInitial) !== JSON.stringify(this.state.employees)){
-    console.log('MEU PAU');
+  if(JSON.stringify(this.initialState.employeesInitial) !== JSON.stringify(this.state.employees) && this.props.lista == nextProps.lista){
     document.getElementById("table-buttons").style.display = "flex";
+    // document.getElementById("delete-buttons").setAttribute("disabled", "disabled"); pq n funfa?
   }
   else{
-    console.log('meu CU');
     document.getElementById("table-buttons").style.display = "none";
   }
 }
@@ -120,10 +119,19 @@ componentWillUpdate(){
     this.setState({filterText: filterText});
   };
 
+
   handleRowDel(employee) {
     var index = this.state.employees.indexOf(employee);
     this.state.employees.splice(index, 1);
-    this.setState(this.state.employees);
+    var array = this.state.employees.concat(employee);
+    
+    this.setState(
+      {employees: array},
+      () => {
+        var arrayLength = document.getElementsByClassName("eachRow").length;
+        var lastEmp = document.getElementsByClassName("eachRow")[arrayLength-1];
+        lastEmp.classList.add("inactive");
+      });    
   };
 
   // handleAddEvent(evt) {
@@ -165,7 +173,11 @@ componentWillUpdate(){
   CancelarEditar = () =>{      
     this.setState(
       {employees : JSON.parse(JSON.stringify(this.initialState.employeesInitial))},
-      () => document.getElementById("table-buttons").style.display = "none"
+      () => {
+        document.getElementById("table-buttons").style.display = "none";        
+        var firstEmp = document.getElementsByClassName("eachRow")[0];
+        firstEmp.classList.remove("inactive");
+      }
     );
   }
 
@@ -189,9 +201,6 @@ componentWillUpdate(){
       console.log("DIFERENT")
     }
   }
-
-
-
 
   render() {
     
@@ -227,10 +236,6 @@ componentWillUpdate(){
 
 
 
-
-
-
-
 class SearchBar extends React.Component {
   handleChange() {
     this.props.onUserInput(this.refs.filterTextInput.value);
@@ -243,10 +248,6 @@ class SearchBar extends React.Component {
     );
   }
 }
-
-
-
-
 
 
 
@@ -340,7 +341,7 @@ class ProductRow extends React.Component {
           id: this.props.employee.id
         }}/>
         <td className="del-cell">
-          <input type="button" onClick={this.onDelEvent.bind(this)} value="X" className="del-btn form-control"/>
+          <input type="button" id="delete-buttons" onClick={this.onDelEvent.bind(this)} value="X" className="del-btn form-control c-pointer"/>
         </td>
       </tr>
     );

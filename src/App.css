@@ -278,7 +278,7 @@ svg{
 .table{
   font-size: 0.7em !important;
 }
-#table_funcionarios .form-control {
+.table .form-control {
   font-size: 1.1em;
 }
 .table th {
@@ -287,11 +287,11 @@ svg{
 /* .table td {
   padding: 10px !important;
 } */
-#table_funcionarios td {
+.table td {
   padding: 10px !important;
 }
-#table_funcionarios input {
-  /* padding: 5px !important; */
+.table input {
+  padding: 5px !important;
 }
 
 
@@ -307,8 +307,12 @@ svg{
 }
 
 
-
-/* TESTES */
-input.form-control{
+/* Css EPIS */
+#table_epis input.form-control{
   width: auto !important;
+}
+
+/* css classe funcionario inativado */
+.inactive{
+  background:red;
 }

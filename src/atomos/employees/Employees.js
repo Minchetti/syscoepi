@@ -265,7 +265,7 @@ class Employees extends React.Component {
         {this.state.csv && <PreviewFuncionarios lista={this.state.csv} />}
         
         {/* {this.state.listaFuncionarios != 0 ? (<TableFuncionarios lista={this.state.listaFuncionarios}  />) : (<h1>TA VAZIO MANÉ</h1>) } */}
-        {this.state.listaFuncionarios != 0 ? (<TableFuncionarios2 lista={this.state.listaFuncionarios}  />) : (<h1>TA VAZIO MANÉ</h1>) }
+        {this.state.listaFuncionarios != 0 ? (<TableFuncionarios2 lista={this.state.listaFuncionarios}  />) : (<h1>Cadastre seus primeiros funcionários</h1>) }
         {/* <TableFuncionarios2 /> */}
 
 
