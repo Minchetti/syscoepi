@@ -5,7 +5,9 @@ import InputMask from 'react-input-mask';
 
 class TableFuncionarios2 extends React.Component {
 initialState = {
-  employeesInitial: []
+  employeesInitial: [],
+  disableds: 0
+
   // setInitial: false
 }
 
@@ -75,6 +77,22 @@ state = {
 
 }
 
+CountDisableds = () =>{ //para contar qntos funcionarios estao desabilitados e com isso eu tirar o css "inactive" de todos - o nº de desabilitados
+  var j = 0;
+  this.state.employees.forEach(i => {
+    if(i.ativo == false){
+      j ++;
+    }
+  });
+  this.initialState.disableds = j;  
+}
+
+// if(this.state.employees[i].sexo == "Masculino"){
+//   console.log('entrou no if');
+//   this.initialState.disableds ++;
+//   console.log(this.initialState.disableds);
+// }
+
 componentWillMount(){
   console.log('WILL MOUNT');
   this.initialState.employeesInitial = JSON.parse(JSON.stringify(this.props.lista));
@@ -82,12 +100,18 @@ componentWillMount(){
 
 
 
-componentWillUpdate(nextProps){
+componentWillUpdate = (nextProps) =>{
   console.log('WILL UPDATE');
+  
+  this.CountDisableds(); //contar os desabilitados a cada atualização
 
   if(JSON.stringify(this.initialState.employeesInitial) !== JSON.stringify(this.state.employees) && this.props.lista == nextProps.lista){
     document.getElementById("table-buttons").style.display = "flex";
-    // document.getElementById("delete-buttons").setAttribute("disabled", "disabled"); pq n funfa?
+     
+    var btns = document.getElementsByClassName("delete-buttons");
+    for(var i = 0; i < btns.length; i++) {
+      btns[i].disabled = true;
+    }
   }
   else{
     document.getElementById("table-buttons").style.display = "none";
@@ -174,15 +198,37 @@ componentWillUpdate(nextProps){
     this.setState(
       {employees : JSON.parse(JSON.stringify(this.initialState.employeesInitial))},
       () => {
-        document.getElementById("table-buttons").style.display = "none";        
-        var firstEmp = document.getElementsByClassName("eachRow")[0];
-        firstEmp.classList.remove("inactive");
+        document.getElementById("table-buttons").style.display = "none";    
+        
+        var qntd_ativos = this.state.employees.length - this.initialState.disableds; //descobri a qntd de funcionarios ativos
+        for(var i = 0; i < qntd_ativos; i++) {  //ao clicar em cancelar a edição eu removo a class "inactive" de todos os funcionarios - os ultimos que estão inativos
+          document.getElementsByClassName("eachRow")[i].classList.remove("inactive");
+        }      
+        
+
+        var btns = document.getElementsByClassName("delete-buttons");
+        for(var i = 0; i < btns.length; i++) {
+          btns[i].disabled = false;
+        }
       }
-    );
+    )    
   }
+
+  // var btns = document.getElementsByClassName("delete-buttons");
+  // for(var i = 0; i < btns.length; i++) {
+  //   btns[i].disabled = false;
+  //   console.log('laço2');
+  // }
 
   SalvarEditar = () =>{
     alert('DADOS MODIFICADOS SALVOS');
+    document.getElementById("table-buttons").style.display = "none"; 
+
+    var btns = document.getElementsByClassName("delete-buttons");
+    for(var i = 0; i < btns.length; i++) {
+      btns[i].disabled = false;
+      console.log('laço2');
+    }
   }
 
   
@@ -191,7 +237,9 @@ componentWillUpdate(nextProps){
     console.log(JSON.stringify(this.state.employees));
   }
   teste2 = () =>{  
-    console.log(this.initialState.employeesInitial);
+    // console.log(this.initialState.employeesInitial);
+    console.log(this.props.lista);
+    // this.CountDisableds();
   }
   teste3 = () =>{  
     if(JSON.stringify(this.initialState.employeesInitial) === JSON.stringify(this.state.employees)){
@@ -273,12 +321,13 @@ class ProductTable extends React.Component {
           <thead className="thead-dark">
             <tr>
               <th>Nome</th>
-              <th>rg</th>
-              <th>cpf</th>
-              <th>email</th>
-              <th>gh</th>
-              <th>turno</th>
-              <th>sexo</th>
+              <th>RG</th>
+              <th>CPF</th>
+              <th>Email</th>
+              <th>GH</th>
+              <th>Turno</th>
+              <th>Sexo</th>
+              <th>Ativo</th>
               <th></th>
             </tr>
           </thead>
@@ -303,8 +352,18 @@ class ProductRow extends React.Component {
   }
   
   render() {
+
+    var VerificarAtivos = () =>{  //verificar qndo o funcionarios vair ser ativo ou não, os não ativos colocar o css "inactive"
+      if(this.props.employee.ativo == false){
+        return "inactive";
+      }
+      else{
+        return;
+      }
+    }
+    
     return (
-      <tr className="eachRow">
+      <tr className={"eachRow " + VerificarAtivos()}>
         <EditableCell onEmployeeTableUpdate={this.props.onEmployeeTableUpdate} cellData={{
           "type": "nome",
           value: this.props.employee.nome,
@@ -340,8 +399,13 @@ class ProductRow extends React.Component {
           value: this.props.employee.sexo,
           id: this.props.employee.id
         }}/>
+        <EditableCell onEmployeeTableUpdate={this.props.onEmployeeTableUpdate} cellData={{
+          type: "ativo",
+          value: this.props.employee.ativo,
+          id: this.props.employee.id
+        }}/>
         <td className="del-cell">
-          <input type="button" id="delete-buttons" onClick={this.onDelEvent.bind(this)} value="X" className="del-btn form-control c-pointer"/>
+          <input type="button" onClick={this.onDelEvent.bind(this)} value="X" className="del-btn form-control c-pointer delete-buttons"/>
         </td>
       </tr>
     );

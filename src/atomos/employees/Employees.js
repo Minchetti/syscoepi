@@ -6,7 +6,6 @@ import Table3 from '../table3';
 import Modal2 from '../modal1';
 import Button from '../button';
 import PreviewFuncionarios from '../previewfuncionarios';
-import ModalCriarEmpresa from '../modalcriarempresa';
 import ModalAddFuncionario from '../modaladdfuncionario';
 import * as Papa from 'papaparse';
 import $ from 'jquery'; 
@@ -200,32 +199,53 @@ class Employees extends React.Component {
     // alert("Funcionarios carregados!") ;
 
     var data = [
-      {id:"0123", nome: "Marcello Minchetti1", turno: "Noturno", sexo: "Masculino", rg: "16778405", cpf: "10770546617", gh: "123456", email: "teste@gmail.com"},   
-      {id:"1123", nome: "Leandro Santos1", turno: "vespertino", sexo: "Masculino", rg: "16698405", cpf: "78970546617", gh: "123456", email: "teste@gmail.com"}, 
-      {id:"2123", nome: "Luciano Braga1", turno: "Matutino", sexo: "Masculino", rg: "16771105", cpf: "11570546617", gh: "123456", email: "teste@gmail.com"},
-      {id:"3123", nome: "Rodolfo Augusto1", turno: "Vespertino", sexo: "Masculino", rg: "16772605", cpf: "11980546617", gh: "123456", email: "teste@gmail.com"},    
-      {id:"4123", nome: "Susi Ribeiro1", turno: "Noturno", sexo: "Feminino", rg: "16488405", cpf: "10770774617", gh: "123456", email: "teste@gmail.com"}
+      {id:"0123", nome: "Marcello Minchetti1", turno: "Noturno", sexo: "Masculino", rg: "16778405", cpf: "10770546617", gh: "123456", email: "teste@gmail.com", ativo: false},   
+      {id:"1123", nome: "Leandro Santos1", turno: "vespertino", sexo: "Masculino", rg: "16698405", cpf: "78970546617", gh: "123456", email: "teste@gmail.com", ativo: true}, 
+      {id:"2123", nome: "Luciano Braga1", turno: "Matutino", sexo: "Masculino", rg: "16771105", cpf: "11570546617", gh: "123456", email: "teste@gmail.com", ativo: false},
+      {id:"3123", nome: "Rodolfo Augusto1", turno: "Vespertino", sexo: "Masculino", rg: "16772605", cpf: "11980546617", gh: "123456", email: "teste@gmail.com", ativo: true},    
+      {id:"4123", nome: "Susi Ribeiro1", turno: "Noturno", sexo: "Feminino", rg: "16488405", cpf: "10770774617", gh: "123456", email: "teste@gmail.com", ativo: true}
     ]
     var data2 = [
-      {id:"0123", nome: "Marcello Minchetti2", turno: "Noturno", sexo: "Masculino", rg: "16778405", cpf: "10770546617", gh: "123456", email: "teste@gmail.com"},   
-      {id:"1123", nome: "Leandro Santos2", turno: "vespertino", sexo: "Masculino", rg: "16698405", cpf: "78970546617", gh: "123456", email: "teste@gmail.com"}, 
-      {id:"2123", nome: "Luciano Braga2", turno: "Matutino", sexo: "Masculino", rg: "16771105", cpf: "11570546617", gh: "123456", email: "teste@gmail.com"},
-      {id:"3123", nome: "Rodolfo Augusto2", turno: "Vespertino", sexo: "Masculino", rg: "16772605", cpf: "11980546617", gh: "123456", email: "teste@gmail.com"},    
-      {id:"4123", nome: "Susi Ribeiro2", turno: "Noturno", sexo: "Feminino", rg: "16488405", cpf: "10770774617", gh: "123456", email: "teste@gmail.com"}
+      {id:"0123", nome: "Marcello Minchetti2", turno: "Noturno", sexo: "Masculino", rg: "16778405", cpf: "10770546617", gh: "123456", email: "teste@gmail.com", ativo: true},   
+      {id:"1123", nome: "Leandro Santos2", turno: "vespertino", sexo: "Masculino", rg: "16698405", cpf: "78970546617", gh: "123456", email: "teste@gmail.com", ativo: true}, 
+      {id:"2123", nome: "Luciano Braga2", turno: "Matutino", sexo: "Masculino", rg: "16771105", cpf: "11570546617", gh: "123456", email: "teste@gmail.com", ativo: true},
+      {id:"3123", nome: "Rodolfo Augusto2", turno: "Vespertino", sexo: "Masculino", rg: "16772605", cpf: "11980546617", gh: "123456", email: "teste@gmail.com", ativo: true},    
+      {id:"4123", nome: "Susi Ribeiro2", turno: "Noturno", sexo: "Feminino", rg: "16488405", cpf: "10770774617", gh: "123456", email: "teste@gmail.com", ativo: true}
     ]
     var data3 = [
-      {id:"0123", nome: "Marcello Minchetti3", turno: "Noturno", sexo: "Masculino", rg: "16778405", cpf: "10770546617", gh: "123456", email: "teste@gmail.com"},   
-      {id:"1123", nome: "Leandro Santos3", turno: "vespertino", sexo: "Masculino", rg: "16698405", cpf: "78970546617", gh: "123456", email: "teste@gmail.com"}, 
-      {id:"2123", nome: "Luciano Braga3", turno: "Matutino", sexo: "Masculino", rg: "16771105", cpf: "11570546617", gh: "123456", email: "teste@gmail.com"},
-      {id:"3123", nome: "Rodolfo Augusto3", turno: "Vespertino", sexo: "Masculino", rg: "16772605", cpf: "11980546617", gh: "123456", email: "teste@gmail.com"},    
-      {id:"4123", nome: "Susi Ribeiro3", turno: "Noturno", sexo: "Feminino", rg: "16488405", cpf: "10770774617", gh: "123456", email: "teste@gmail.com"}
+      {id:"0123", nome: "Marcello Minchetti3", turno: "Noturno", sexo: "Masculino", rg: "16778405", cpf: "10770546617", gh: "123456", email: "teste@gmail.com", ativo: true},   
+      {id:"1123", nome: "Leandro Santos3", turno: "vespertino", sexo: "Masculino", rg: "16698405", cpf: "78970546617", gh: "123456", email: "teste@gmail.com", ativo: true}, 
+      {id:"2123", nome: "Luciano Braga3", turno: "Matutino", sexo: "Masculino", rg: "16771105", cpf: "11570546617", gh: "123456", email: "teste@gmail.com", ativo: true},
+      {id:"3123", nome: "Rodolfo Augusto3", turno: "Vespertino", sexo: "Masculino", rg: "16772605", cpf: "11980546617", gh: "123456", email: "teste@gmail.com", ativo: true},    
+      {id:"4123", nome: "Susi Ribeiro3", turno: "Noturno", sexo: "Feminino", rg: "16488405", cpf: "10770774617", gh: "123456", email: "teste@gmail.com", ativo: true}
     ]    
 
 
     if (this.state.nomeEmpresaSelecionada == 'Empresa 1' ){
-      // this.setState({ nomeEmpresaSelecionada: data[0].nomeAmigavel });
-      this.setState({ listaFuncionarios: data });  
+
+      var ativos = [];
+      var inativos = [];
+      var listaFuncionariosReorganizada;
+
+      data.forEach(i => { //criar array pros inativos
+        if(i.ativo == false){
+          inativos = inativos.concat(i);
+          console.log(inativos);
+        }
+      });
+
+      data.forEach(i => { //criar array pros ativos
+        if(i.ativo == true){
+          ativos = ativos.concat(i);
+          console.log(ativos);
+        }
+      });
+
+      listaFuncionariosReorganizada = ativos.concat(inativos);  //setar lista na ordem certa pra lista de funcionarioss
+      console.log(listaFuncionariosReorganizada);
+      this.setState({ listaFuncionarios: listaFuncionariosReorganizada });  
     }    
+    
     if (this.state.nomeEmpresaSelecionada == 'Empresa 2' ){
       // this.setState({ nomeEmpresaSelecionada: data2[0].nomeAmigavel });  
       this.setState({ listaFuncionarios: data2 });  
