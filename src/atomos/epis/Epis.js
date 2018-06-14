@@ -4,6 +4,7 @@ import Table3 from '../table3';
 import Modal2 from '../modal1';
 import Button from '../button';
 import TableEpis from '../tableepis';
+import TableEpis2 from '../tableepis';
 import PreviewFuncionarios from '../previewfuncionarios';
 import ModalCriarEmpresa from '../modalcriarempresa';
 import ModalAddEpi from '../modaladdepi';
@@ -232,7 +233,8 @@ class Epis extends React.Component {
         {this.state.csv && <PreviewFuncionarios lista={this.state.csv} />}
         
         
-        {this.state.listaFuncionarios != 0 ? (<TableEpis lista={this.state.listaFuncionarios}  />) : (<h1>Cadastre seus primeiros epi's</h1>) }
+        {/* {this.state.listaFuncionarios != 0 ? (<TableEpis lista={this.state.listaFuncionarios}  />) : (<h1>Cadastre seus primeiros epi's</h1>) } */}
+        {this.state.listaFuncionarios != 0 ? (<TableEpis2 lista={this.state.listaFuncionarios}  />) : (<h1>Cadastre seus primeiros epi's</h1>) }
 
 
       </div>
