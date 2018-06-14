@@ -86,7 +86,7 @@ SalvarEditar = () =>{
     return (
       <div className="panel">        
         <div className="panel-heading d-flex justify-content-between align-items-center">
-          <h6 className="text-left mb-0"><i className="fa fa-user pr-2" aria-hidden="true"></i>Epi's em estoque({this.state.epis.length})</h6>
+          <h6 className="text-left mb-0"><i className="fa fa-user pr-2" aria-hidden="true"></i>Epi's({this.state.epis.length})</h6>
           
           <div className="d-nonin" id="table-buttons">      
             <button type="button" onClick={this.CancelarEditar} className="btn btn-danger mr-2" > {/*data-dismiss="modal"*/}

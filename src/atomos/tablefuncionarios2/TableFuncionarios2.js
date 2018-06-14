@@ -145,17 +145,39 @@ componentWillUpdate = (nextProps) =>{
 
 
   handleRowDel(employee) {
-    var index = this.state.employees.indexOf(employee);
-    this.state.employees.splice(index, 1);
-    var array = this.state.employees.concat(employee);
-    
-    this.setState(
-      {employees: array},
-      () => {
-        var arrayLength = document.getElementsByClassName("eachRow").length;
-        var lastEmp = document.getElementsByClassName("eachRow")[arrayLength-1];
-        lastEmp.classList.add("inactive");
-      });    
+
+    if(employee.ativo == false){ //se o funcionario eh inativo reativar
+      var employee2 = [];
+      var index = this.state.employees.indexOf(employee);
+      this.state.employees.splice(index, 1);
+      employee.ativo = true;
+      var array = employee2.concat(employee, this.state.employees);
+
+      this.setState(
+        {employees: array},
+        () => {
+          var lastEmp = document.getElementsByClassName("eachRow")[0];
+          lastEmp.classList.remove("inactive");
+        }
+      );    
+    }
+    else{ //senao ele é ativo entao desativar
+      var index = this.state.employees.indexOf(employee);
+      this.state.employees.splice(index, 1);
+      
+      employee.ativo = false;
+      var array = this.state.employees.concat(employee);
+      
+      this.setState(
+        {employees: array},
+        () => {
+          var arrayLength = document.getElementsByClassName("eachRow").length;
+          var lastEmp = document.getElementsByClassName("eachRow")[arrayLength-1];
+          lastEmp.classList.add("inactive");
+        }
+      ); 
+    }
+
   };
 
   // handleAddEvent(evt) {
@@ -201,9 +223,21 @@ componentWillUpdate = (nextProps) =>{
         document.getElementById("table-buttons").style.display = "none";    
         
         var qntd_ativos = this.state.employees.length - this.initialState.disableds; //descobri a qntd de funcionarios ativos
-        for(var i = 0; i < qntd_ativos; i++) {  //ao clicar em cancelar a edição eu removo a class "inactive" de todos os funcionarios - os ultimos que estão inativos
+
+        for(var i = 0; i < qntd_ativos-1; i++) {  //ao clicar em cancelar a edição eu removo a class "inactive" de todos os ultimos funcionarios 
           document.getElementsByClassName("eachRow")[i].classList.remove("inactive");
-        }      
+          console.log("passou");
+          console.log(qntd_ativos);
+        } 
+        
+        for(var i = this.state.employees.length-1; i > qntd_ativos; i--) {  //ao clicar em cancelar a edição eu add a class "inactive" em todos os fultimos que estão inativos
+          // console.log(document.getElementsByClassName("eachRow")[i]);
+          console.log(this.state.employees.length-1);
+          console.log(qntd_ativos);
+
+          document.getElementsByClassName("eachRow")[i].classList.add("inactive");
+          console.log("passou2");
+        }         
         
 
         var btns = document.getElementsByClassName("delete-buttons");
@@ -353,17 +387,23 @@ class ProductRow extends React.Component {
   
   render() {
 
-    var VerificarAtivos = () =>{  //verificar qndo o funcionarios vair ser ativo ou não, os não ativos colocar o css "inactive"
+    var VerificarAtivosRow = () =>{  //verificar qndo o funcionarios vair ser ativo ou não, os não ativos colocar o css "inactive"
       if(this.props.employee.ativo == false){
         return "inactive";
       }
-      else{
-        return;
-      }
     }
+
+    var VerificarAtivosInput = () =>{  //verificar qndo o funcionarios vair ser ativo ou não, os não ativos colocar o botão "reativar"
+    if(this.props.employee.ativo == false){
+      return "V";
+    }
+    else{
+      return "X";
+    }
+  }
     
     return (
-      <tr className={"eachRow " + VerificarAtivos()}>
+      <tr className={"eachRow " + VerificarAtivosRow()}>
         <EditableCell onEmployeeTableUpdate={this.props.onEmployeeTableUpdate} cellData={{
           "type": "nome",
           value: this.props.employee.nome,
@@ -405,7 +445,7 @@ class ProductRow extends React.Component {
           id: this.props.employee.id
         }}/>
         <td className="del-cell">
-          <input type="button" onClick={this.onDelEvent.bind(this)} value="X" className="del-btn form-control c-pointer delete-buttons"/>
+          <input type="button" onClick={this.onDelEvent.bind(this)} value={VerificarAtivosInput()} className="del-btn form-control c-pointer delete-buttons"/>
         </td>
       </tr>
     );
