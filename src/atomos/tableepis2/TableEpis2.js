@@ -4,16 +4,20 @@ import InputMask from 'react-input-mask';
 
 class TableEpis2 extends React.Component {
 initialState = {
-  episInitial: []
+  episInitialD: [],
+  episInitialA: [],
 }
 
 state = {
-  filterText : "",
-  epis: this.props.lista
+  filterTextD : "",
+  filterTextA : "",
+  episDisponiveis: this.props.listaD,
+  episAtribuidos: this.props.listaA
 }
 
 componentWillMount(){
-  this.initialState.episInitial = JSON.parse(JSON.stringify(this.props.lista));
+  this.initialState.episInitialD = JSON.parse(JSON.stringify(this.props.listaD));
+  this.initialState.episInitialA = JSON.parse(JSON.stringify(this.props.listaA));
 }
 
 
@@ -36,33 +40,57 @@ componentWillReceiveProps(nextProps){
 }
 
 
-handleUserInput(filterText) {
-  this.setState({filterText: filterText});
+handleUserInputD(filterText) {
+  this.setState({filterTextD: filterText});
+};
+handleUserInputA(filterText) {
+  this.setState({filterTextA: filterText});
 };
 
-handleRowDel(epi) {
-  var index = this.state.epis.indexOf(epi);
-  this.state.epis.splice(index, 1);
-  this.setState(this.state.epis);
+handleRowDelD(epi) {
+  var index = this.state.episDisponiveis.indexOf(epi);
+  this.state.episDisponiveis.splice(index, 1);
+  this.setState(this.state.episDisponiveis);
+};
+handleRowDelA(epi) {
+  var index = this.state.episAtribuidos.indexOf(epi);
+  this.state.episAtribuidos.splice(index, 1);
+  this.setState(this.state.episAtribuidos);
 };
 
-handleEpisTable(evt) {
+handleEpisTableD(evt) {
   var item = {
     id: evt.target.id,
     name: evt.target.name,
     value: evt.target.value
   };
-  var epis = this.state.epis.slice();
+  var epis = this.state.episDisponiveis.slice();
   var newEpis = epis.map(function(epi) {
     for (var key in epi) {
       if (key == item.name && epi.id == item.id) {
         epi[key] = item.value;
-
       }
     }
     return epi;
   });
-  this.setState({epis:newEpis});
+  this.setState({episDisponiveis:newEpis});
+};
+handleEpisTableA(evt) {
+  var item = {
+    id: evt.target.id,
+    name: evt.target.name,
+    value: evt.target.value
+  };
+  var epis = this.state.episAtribuidos.slice();
+  var newEpis = epis.map(function(epi) {
+    for (var key in epi) {
+      if (key == item.name && epi.id == item.id) {
+        epi[key] = item.value;
+      }
+    }
+    return epi;
+  });
+  this.setState({episAtribuidos:newEpis});
 };
 
 
@@ -81,29 +109,53 @@ SalvarEditar = () =>{
 
 
 
-  render() {
-    
+  render() {    
     return (
-      <div className="panel">        
-        <div className="panel-heading d-flex justify-content-between align-items-center">
-          <h6 className="text-left mb-0"><i className="fa fa-user pr-2" aria-hidden="true"></i>Epi's 2({this.state.epis.length})</h6>
-          
-          <div className="d-nonin" id="table-buttons">      
-            <button type="button" onClick={this.CancelarEditar} className="btn btn-danger mr-2" > {/*data-dismiss="modal"*/}
-              <i className="fa fa-times pr-2 " aria-hidden="true" />Cancelar
-            </button>
-            <button onClick={this.SalvarEditar} type="submit" className="btn btn-primary" >
-              <i className="fa fa-check pr-2 " aria-hidden="true"/>Salvar
-            </button>
+      <div>
+        <div className="panel">        
+          <div className="panel-heading d-flex justify-content-between align-items-center">
+            <h6 className="text-left mb-0"><i className="fa fa-user pr-2" aria-hidden="true"></i>Epi's Disponíveis({this.state.episDisponiveis.length})</h6>
+            
+            <div className="d-nonin" id="table-buttons">      
+              <button type="button" onClick={this.CancelarEditar} className="btn btn-danger mr-2" > {/*data-dismiss="modal"*/}
+                <i className="fa fa-times pr-2 " aria-hidden="true" />Cancelar
+              </button>
+              <button onClick={this.SalvarEditar} type="submit" className="btn btn-primary" >
+                <i className="fa fa-check pr-2 " aria-hidden="true"/>Salvar
+              </button>
+            </div>
+            
+            <div className="d-flex align-items-center">
+              <i class="fas fa-search fa-lg mr-2"></i>
+              <SearchBar filterText={this.state.filterTextD} onUserInput={this.handleUserInputD.bind(this)}/>
+            </div>
           </div>
-          
-          <div className="d-flex align-items-center">
-            <i class="fas fa-search fa-lg mr-2"></i>
-            <SearchBar filterText={this.state.filterText} onUserInput={this.handleUserInput.bind(this)}/>
+          <div className="panel-body">
+            <EpisTable onEpisTableUpdate={this.handleEpisTableD.bind(this)}  onRowDel={this.handleRowDelD.bind(this)} epis={this.state.episDisponiveis} filterText={this.state.filterTextD}/> {/*onRowAdd={this.handleAddEvent.bind(this)}*/}
           </div>
         </div>
-        <div className="panel-body">
-          <EpisTable onEpisTableUpdate={this.handleEpisTable.bind(this)}  onRowDel={this.handleRowDel.bind(this)} epis={this.state.epis} filterText={this.state.filterText}/> {/*onRowAdd={this.handleAddEvent.bind(this)}*/}
+
+        <div className="panel mt-5">        
+          <div className="panel-heading d-flex justify-content-between align-items-center">
+            <h6 className="text-left mb-0"><i className="fa fa-user pr-2" aria-hidden="true"></i>Epi's Atribuidos({this.state.episAtribuidos.length})</h6>
+            
+            <div className="d-nonin" id="table-buttons">      
+              <button type="button" onClick={this.CancelarEditar} className="btn btn-danger mr-2" > {/*data-dismiss="modal"*/}
+                <i className="fa fa-times pr-2 " aria-hidden="true" />Cancelar
+              </button>
+              <button onClick={this.SalvarEditar} type="submit" className="btn btn-primary" >
+                <i className="fa fa-check pr-2 " aria-hidden="true"/>Salvar
+              </button>
+            </div>
+            
+            <div className="d-flex align-items-center">
+              <i class="fas fa-search fa-lg mr-2"></i>
+              <SearchBar filterText={this.state.filterTextA} onUserInput={this.handleUserInputA.bind(this)}/>
+            </div>
+          </div>
+          <div className="panel-body">
+            <EpisTable onEpisTableUpdate={this.handleEpisTableA.bind(this)}  onRowDel={this.handleRowDelA.bind(this)} epis={this.state.episAtribuidos} filterText={this.state.filterTextA}/> {/*onRowAdd={this.handleAddEvent.bind(this)}*/}
+          </div>
         </div>
       </div>
     );
@@ -256,6 +308,11 @@ class TableRow extends React.Component {
         }}/>
         <td className="del-cell">
           <input type="button" onClick={this.onDelEvent.bind(this)} value="X" className="del-btn form-control"/>
+        </td>
+        <td className="">
+          <input type="button" onClick={this.onDelEvent.bind(this)} value="" className="del-btn form-control"/>
+          {/* <input className="form-control" type='text'  onChange={this.props.onEpisTableUpdate}/>        {/*name={this.props.cellData.type} id={this.props.cellData.id} value={this.props.cellData.value}*/}
+          {/*<input type="button" onClick={this.onDelEvent.bind(this)} value="X" className="del-btn form-control"/> */}
         </td>
       </tr>
     );

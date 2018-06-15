@@ -314,5 +314,10 @@ svg{
 
 /* css classe funcionario inativado */
 .inactive{
-  background:red;
+  background:red; 
+  opacity: 0.8;
+}
+.inactive td input{
+  color: red;
+  /* text-transform:  */
 }

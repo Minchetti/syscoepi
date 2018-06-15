@@ -3,8 +3,8 @@ import Table2 from '../table2';
 import Table3 from '../table3';
 import Modal2 from '../modal1';
 import Button from '../button';
-import TableEpis from '../tableepis';
-import TableEpis2 from '../tableepis';
+// import TableEpis from '../tableepis';
+import TableEpis2 from '../tableepis2';
 import PreviewFuncionarios from '../previewfuncionarios';
 import ModalCriarEmpresa from '../modalcriarempresa';
 import ModalAddEpi from '../modaladdepi';
@@ -18,7 +18,8 @@ class Epis extends React.Component {
     arrayEmpresas: [],
     nomeEmpresaSelecionada: null,
     empresaSelecionadaId: '',
-    listaFuncionarios: []
+    listaEpisDisponiveis: [],
+    listaEpisAtribuidos: []
   };
   
 
@@ -28,8 +29,8 @@ class Epis extends React.Component {
     this.CarregarDadosEmpresa();   
   }
   componentDidMount(){
-    this.CarregarFuncionarios();   
-
+    this.CarregarEpisDisponiveis();   
+    this.CarregarEpisAtribuidos();   
   }
 
 
@@ -80,7 +81,8 @@ class Epis extends React.Component {
 
   Callback = () =>{
     this.CarregarDadosEmpresa();
-    this.CarregarFuncionarios();
+    this.CarregarEpisDisponiveis();
+    this.CarregarEpisAtribuidos();
   }
 
 
@@ -145,7 +147,7 @@ class Epis extends React.Component {
 
 
 
-  CarregarFuncionarios = () => {   
+  CarregarEpisDisponiveis = () => {   
     // alert('FUNCIONARIOS');
     // var EmpresaSelecionada = document.getElementById("select-empresas").value;
     
@@ -160,7 +162,7 @@ class Epis extends React.Component {
         //   response.json().then(data => {
           //     if (data.success == true) {   
             
-        //        this.setState({ listaFuncionarios });   
+        //        this.setState({ listaEpisDisponiveis });   
     //          } 
     //          else {
       //       alert(data.message+' - '+data.data[0].message);    
@@ -192,24 +194,97 @@ class Epis extends React.Component {
 
     if (this.state.nomeEmpresaSelecionada == 'Empresa 1' ){
       // this.setState({ nomeEmpresaSelecionada: data[0].nomeAmigavel });
-      this.setState({ listaFuncionarios: data });  
+      this.setState({ listaEpisDisponiveis: data });  
     }    
     if (this.state.nomeEmpresaSelecionada == 'Empresa 2' ){
       // this.setState({ nomeEmpresaSelecionada: data2[0].nomeAmigavel });  
-      this.setState({ listaFuncionarios: data2 });  
+      this.setState({ listaEpisDisponiveis: data2 });  
     }
     if (this.state.nomeEmpresaSelecionada == 'Empresa 3' ){
       // this.setState({ nomeEmpresaSelecionada: data3[0].nomeAmigavel }); 
-      this.setState({ listaFuncionarios: data3 });   
+      this.setState({ listaEpisDisponiveis: data3 });   
     }
 
 
     // var data = null;
 
     // if(data != null){
-    //   this.setState({ listaFuncionarios : data });
+    //   this.setState({ listaEpisDisponiveis : data });
     // }  
   };
+
+
+
+
+
+
+
+  CarregarEpisAtribuidos = () => {   
+    // alert('FUNCIONARIOS');
+    // var EmpresaSelecionada = document.getElementById("select-empresas").value;
+    
+    // fetch('http://192.168.10.30/v1/?', {
+    //   method: 'post',
+    //   body: JSON.stringify(),
+    //   headers: {
+      //     'content-type': 'application/json'
+      //   }
+      // })
+      // .then(response => {
+        //   response.json().then(data => {
+          //     if (data.success == true) {   
+            
+        //        this.setState({ listaEpisAtribuidos });   
+    //          } 
+    //          else {
+      //       alert(data.message+' - '+data.data[0].message);    
+    //     }
+    //   });
+    // })
+    // .catch(err => {
+    //   console.error('Failed retrieving information', err);
+    //   alert(err);
+    // });
+    // alert("Funcionarios carregados!") ;
+
+    var data = [
+      {cod:"0123", nome: "Cotoveleira BreakGlass1", descricao: "Cotoveleira para Obras", validade: "10/10/2025", minEstoque: "10", estoque: "50", maxEstoque: "99", ca: "0776584", dataArmazenamento: "01/02/2018", dataDevolucao: "01/05/2016", motivoDevolucao: "Pedido errado", cor: "preto", grupo: "Capacetes",  fatorReducao: "Proteção contra impactos médios"},   
+      {cod:"3171", nome: "Joelheira Ironbox1", descricao: "Joelheira de fibra para reparos", validade: "10/10/2025", minEstoque: "10", estoque: "50", maxEstoque: "99", ca:"0771147", dataArmazenamento: "01/02/2018", dataDevolucao:"01/05/2016", motivoDevolucao:"Pedido errado", cor: "Prata", grupo: "Luvas",  fatorReducao: "Proteção contra cortes"},
+      {cod:"9277", nome: "Caneleira Fullsteal1", descricao: "Caneleira de aço", validade: "10/10/2025", minEstoque: "10", estoque: "50", maxEstoque: "99", ca:"0719684", dataArmazenamento: "01/02/2018", dataDevolucao:"01/05/2016", motivoDevolucao:"Pedido errado", cor:"preto", grupo: "Óculos",  fatorReducao: "Proteção contra faíscas e detritos"},
+    ]
+    var data2 = [
+      {cod:"0123", nome: "Cotoveleira BreakGlass2", descricao: "Cotoveleira para Obras", validade: "10/10/2025", minEstoque: "10", estoque: "50", maxEstoque: "99", ca: "0776584", dataArmazenamento: "01/02/2018", dataDevolucao: "01/05/2016", motivoDevolucao: "Pedido errado", cor: "preto", grupo: "Capacetes",  fatorReducao: "Proteção contra impactos médios"},   
+      {cod:"3171", nome: "Joelheira Ironbox2", descricao: "Joelheira de fibra para reparos", validade: "10/10/2025", minEstoque: "10", estoque: "50", maxEstoque: "99", ca:"0771147", dataArmazenamento: "01/02/2018", dataDevolucao:"01/05/2016", motivoDevolucao:"Pedido errado", cor: "Prata", grupo: "Luvas",  fatorReducao: "Proteção contra cortes"},
+      {cod:"9277", nome: "Caneleira Fullsteal2", descricao: "Caneleira de aço", validade: "10/10/2025", minEstoque: "10", estoque: "50", maxEstoque: "99", ca:"0719684", dataArmazenamento: "01/02/2018", dataDevolucao:"01/05/2016", motivoDevolucao:"Pedido errado", cor:"preto", grupo: "Óculos",  fatorReducao: "Proteção contra faíscas e detritos"},
+    ]
+    var data3 = [
+      {cod:"0123", nome: "Cotoveleira BreakGlass3", descricao: "Cotoveleira para Obras", validade: "10/10/2025", minEstoque: "10", estoque: "50", maxEstoque: "99", ca: "0776584", dataArmazenamento: "01/02/2018", dataDevolucao: "01/05/2016", motivoDevolucao: "Pedido errado", cor: "preto", grupo: "Capacetes",  fatorReducao: "Proteção contra impactos médios"},   
+      {cod:"3171", nome: "Joelheira Ironbox3", descricao: "Joelheira de fibra para reparos", validade: "10/10/2025", minEstoque: "10", estoque: "50", maxEstoque: "99", ca:"0771147", dataArmazenamento: "01/02/2018", dataDevolucao:"01/05/2016", motivoDevolucao:"Pedido errado", cor: "Prata", grupo: "Luvas",  fatorReducao: "Proteção contra cortes"},
+      {cod:"9277", nome: "Caneleira Fullsteal3", descricao: "Caneleira de aço", validade: "10/10/2025", minEstoque: "10", estoque: "50", maxEstoque: "99", ca:"0719684", dataArmazenamento: "01/02/2018", dataDevolucao:"01/05/2016", motivoDevolucao:"Pedido errado", cor:"preto", grupo: "Óculos",  fatorReducao: "Proteção contra faíscas e detritos"},
+    ]   
+
+
+    if (this.state.nomeEmpresaSelecionada == 'Empresa 1' ){
+      // this.setState({ nomeEmpresaSelecionada: data[0].nomeAmigavel });
+      this.setState({ listaEpisAtribuidos: data });  
+    }    
+    if (this.state.nomeEmpresaSelecionada == 'Empresa 2' ){
+      // this.setState({ nomeEmpresaSelecionada: data2[0].nomeAmigavel });  
+      this.setState({ listaEpisAtribuidos: data2 });  
+    }
+    if (this.state.nomeEmpresaSelecionada == 'Empresa 3' ){
+      // this.setState({ nomeEmpresaSelecionada: data3[0].nomeAmigavel }); 
+      this.setState({ listaEpisAtribuidos: data3 });   
+    }
+
+    // }  
+  };
+
+
+
+
+
+
 
 
   PrimeiroEpi = () =>{
@@ -230,11 +305,9 @@ class Epis extends React.Component {
           </div>
         </div>
         
-        {this.state.csv && <PreviewFuncionarios lista={this.state.csv} />}
         
-        
-        {/* {this.state.listaFuncionarios != 0 ? (<TableEpis lista={this.state.listaFuncionarios}  />) : (<h1>Cadastre seus primeiros epi's</h1>) } */}
-        {this.state.listaFuncionarios != 0 ? (<TableEpis2 lista={this.state.listaFuncionarios}  />) : (<h1>Cadastre seus primeiros epi's</h1>) }
+        {/* {this.state.listaEpisDisponiveis != 0 ? (<TableEpis lista={this.state.listaEpisDisponiveis}  />) : (<h1>Cadastre seus primeiros epi's</h1>) } */}
+        {this.state.listaEpisDisponiveis !=0 && this.state.listaEpisAtribuidos ? (<TableEpis2 listaD={this.state.listaEpisDisponiveis} listaA={this.state.listaEpisAtribuidos} />) : (<h1>Cadastre seus primeiros epi's</h1>) }
 
 
       </div>
