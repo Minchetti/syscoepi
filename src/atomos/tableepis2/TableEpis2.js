@@ -22,20 +22,35 @@ componentWillMount(){
 
 
 componentWillUpdate(nextProps){
-  if(JSON.stringify(this.initialState.episInitial) !== JSON.stringify(this.state.epis)  && this.props.lista == nextProps.lista){
-    document.getElementById("table-buttons").style.display = "flex";
+  if(JSON.stringify(this.initialState.episInitialD) !== JSON.stringify(this.state.episDisponiveis)  && this.props.listaD == nextProps.listaD){
+    document.getElementById("table-buttonsD").style.display = "flex";
   }
   else{
-    document.getElementById("table-buttons").style.display = "none";
+    document.getElementById("table-buttonsD").style.display = "none";
+  }
+
+  if(JSON.stringify(this.initialState.episInitialA) !== JSON.stringify(this.state.episAtribuidos)  && this.props.listaA == nextProps.listaA){
+    document.getElementById("table-buttonsA").style.display = "flex";
+  }
+  else{
+    document.getElementById("table-buttonsA").style.display = "none";
   }
 }
 
 componentWillReceiveProps(nextProps){    
-  if(this.state.epis !== nextProps.lista){
-    this.setState({ epis : nextProps.lista});   
+  if(this.state.episDisponiveis !== nextProps.listaD){
+    this.setState({ episDisponiveis : nextProps.listaD});   
   }     
-  if(this.initialState.episInitial !== nextProps.lista){
-    this.initialState.episInitial = JSON.parse(JSON.stringify(nextProps.lista));
+  if(this.initialState.episInitialD !== nextProps.listaD){
+    this.initialState.episInitialD = JSON.parse(JSON.stringify(nextProps.listaD));
+  }
+
+      
+  if(this.state.episAtribuidos !== nextProps.listaA){
+    this.setState({ episAtribuidos : nextProps.listaA});   
+  }     
+  if(this.initialState.episInitialA !== nextProps.listaA){
+    this.initialState.episInitialA = JSON.parse(JSON.stringify(nextProps.listaA));
   }
 }
 
@@ -47,6 +62,7 @@ handleUserInputA(filterText) {
   this.setState({filterTextA: filterText});
 };
 
+
 handleRowDelD(epi) {
   var index = this.state.episDisponiveis.indexOf(epi);
   this.state.episDisponiveis.splice(index, 1);
@@ -57,6 +73,34 @@ handleRowDelA(epi) {
   this.state.episAtribuidos.splice(index, 1);
   this.setState(this.state.episAtribuidos);
 };
+
+
+handleRowAssignD(epi) {
+  console.log(epi);
+};
+handleRowAssignA(epi) {  
+  console.log(epi);
+};
+
+handleRowChangeButtonD(epi) {
+  var index = this.state.episDisponiveis.indexOf(epi);
+  var chosenEpi = document.getElementsByClassName("eachRow")[index];
+  console.log(chosenEpi);
+  console.log('DDDDDD');
+  chosenEpi.lastChild.lastChild.style.display = "flex"; //mostrar o text e btn OK
+  chosenEpi.lastChild.firstChild.style.display = "none"; //esconder botao d trocar d tabela
+};
+
+handleRowChangeButtonA(epi) {  
+  var index = this.state.episAtribuidos.indexOf(epi);
+  var lengthD = this.state.episDisponiveis.length;
+  var chosenEpi = document.getElementsByClassName("eachRow")[index + lengthD];
+  console.log(chosenEpi);
+  console.log(this.state);
+  chosenEpi.lastChild.lastChild.style.display = "flex"; //mostrar o text e btn OK
+  chosenEpi.lastChild.firstChild.style.display = "none"; //esconder botao d trocar d tabela
+};
+
 
 handleEpisTableD(evt) {
   var item = {
@@ -94,16 +138,28 @@ handleEpisTableA(evt) {
 };
 
 
-CancelarEditar = () =>{      
+CancelarEditarD = () =>{      
   this.setState(
-    {epis : JSON.parse(JSON.stringify(this.initialState.episInitial))},
-    () => document.getElementById("table-buttons").style.display = "none"
+    {episDisponiveis : JSON.parse(JSON.stringify(this.initialState.episInitialD))},
+    () => document.getElementById("table-buttonsD").style.display = "none"
   );
 }
 
-SalvarEditar = () =>{
-  alert('DADOS MODIFICADOS SALVOS');
+CancelarEditarA = () =>{      
+  this.setState(
+    {episAtribuidos : JSON.parse(JSON.stringify(this.initialState.episInitialA))},
+    () => document.getElementById("table-buttonsA").style.display = "none"
+  );
 }
+
+SalvarEditarD = () =>{
+  alert('DADOS EPIS Disponíveis SALVOS');
+}
+SalvarEditarA = () =>{
+  alert('DADOS EPIS Atribuídos SALVOS');
+}
+
+
 
 
 
@@ -116,11 +172,11 @@ SalvarEditar = () =>{
           <div className="panel-heading d-flex justify-content-between align-items-center">
             <h6 className="text-left mb-0"><i className="fa fa-user pr-2" aria-hidden="true"></i>Epi's Disponíveis({this.state.episDisponiveis.length})</h6>
             
-            <div className="d-nonin" id="table-buttons">      
-              <button type="button" onClick={this.CancelarEditar} className="btn btn-danger mr-2" > {/*data-dismiss="modal"*/}
+            <div className="d-nonin" id="table-buttonsD">      
+              <button type="button" onClick={this.CancelarEditarD} className="btn btn-danger mr-2" > {/*data-dismiss="modal"*/}
                 <i className="fa fa-times pr-2 " aria-hidden="true" />Cancelar
               </button>
-              <button onClick={this.SalvarEditar} type="submit" className="btn btn-primary" >
+              <button onClick={this.SalvarEditarD} type="submit" className="btn btn-primary" >
                 <i className="fa fa-check pr-2 " aria-hidden="true"/>Salvar
               </button>
             </div>
@@ -131,19 +187,20 @@ SalvarEditar = () =>{
             </div>
           </div>
           <div className="panel-body">
-            <EpisTable onEpisTableUpdate={this.handleEpisTableD.bind(this)}  onRowDel={this.handleRowDelD.bind(this)} epis={this.state.episDisponiveis} filterText={this.state.filterTextD}/> {/*onRowAdd={this.handleAddEvent.bind(this)}*/}
+            <EpisTable onEpisTableUpdate={this.handleEpisTableD.bind(this)}  onRowDel={this.handleRowDelD.bind(this)} onRowAssign={this.handleRowAssignD.bind(this)} onRowChangeButton={this.handleRowChangeButtonD.bind(this)} epis={this.state.episDisponiveis} filterText={this.state.filterTextD}/> {/*onRowAdd={this.handleAddEvent.bind(this)}*/}
           </div>
         </div>
+
 
         <div className="panel mt-5">        
           <div className="panel-heading d-flex justify-content-between align-items-center">
             <h6 className="text-left mb-0"><i className="fa fa-user pr-2" aria-hidden="true"></i>Epi's Atribuidos({this.state.episAtribuidos.length})</h6>
             
-            <div className="d-nonin" id="table-buttons">      
-              <button type="button" onClick={this.CancelarEditar} className="btn btn-danger mr-2" > {/*data-dismiss="modal"*/}
+            <div className="d-nonin" id="table-buttonsA">      
+              <button type="button" onClick={this.CancelarEditarA} className="btn btn-danger mr-2" > {/*data-dismiss="modal"*/}
                 <i className="fa fa-times pr-2 " aria-hidden="true" />Cancelar
               </button>
-              <button onClick={this.SalvarEditar} type="submit" className="btn btn-primary" >
+              <button onClick={this.SalvarEditarA} type="submit" className="btn btn-primary" >
                 <i className="fa fa-check pr-2 " aria-hidden="true"/>Salvar
               </button>
             </div>
@@ -154,7 +211,7 @@ SalvarEditar = () =>{
             </div>
           </div>
           <div className="panel-body">
-            <EpisTable onEpisTableUpdate={this.handleEpisTableA.bind(this)}  onRowDel={this.handleRowDelA.bind(this)} epis={this.state.episAtribuidos} filterText={this.state.filterTextA}/> {/*onRowAdd={this.handleAddEvent.bind(this)}*/}
+            <EpisTable onEpisTableUpdate={this.handleEpisTableA.bind(this)}  onRowDel={this.handleRowDelA.bind(this)} onRowAssign={this.handleRowAssignA.bind(this)} onRowChangeButton={this.handleRowChangeButtonA.bind(this)} epis={this.state.episAtribuidos} filterText={this.state.filterTextA}/> {/*onRowAdd={this.handleAddEvent.bind(this)}*/}
           </div>
         </div>
       </div>
@@ -194,12 +251,14 @@ class EpisTable extends React.Component {
 
     var onEpisTableUpdate = this.props.onEpisTableUpdate;
     var rowDel = this.props.onRowDel;
+    var rowAssign = this.props.onRowAssign;
+    var rowChangeButton = this.props.onRowChangeButton;
     var filterText = this.props.filterText;
     var epi = this.props.epis.map(function(epi) {
       if (epi.nome.indexOf(filterText) === -1) {
         return;
       }
-      return (<TableRow  onEpisTableUpdate={onEpisTableUpdate} epi={epi} onDelEvent={rowDel.bind(this)} key={epi.id}/>)
+      return (<TableRow  onEpisTableUpdate={onEpisTableUpdate} epi={epi} onDelEvent={rowDel.bind(this)} onAssignEvent={rowAssign.bind(this)} onChangeButtonEvent={rowChangeButton.bind(this)} key={epi.id}/>)
     });
     return (
       <div className="table-responsive">      
@@ -220,6 +279,7 @@ class EpisTable extends React.Component {
               <th>Cor</th>
               <th>Fator Redução</th>
               <th></th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -234,10 +294,17 @@ class EpisTable extends React.Component {
 
 
 class TableRow extends React.Component {
+
   onDelEvent() {
     this.props.onDelEvent(this.props.epi);
   }
-  
+  onAssignEvent() {
+    this.props.onAssignEvent(this.props.epi);
+  }
+  onChangeButtonEvent() {
+    this.props.onChangeButtonEvent(this.props.epi);
+  }
+
   render() {
     return (
       <tr className="eachRow">
@@ -309,8 +376,12 @@ class TableRow extends React.Component {
         <td className="del-cell">
           <input type="button" onClick={this.onDelEvent.bind(this)} value="X" className="del-btn form-control"/>
         </td>
-        <td className="">
-          <input type="button" onClick={this.onDelEvent.bind(this)} value="" className="del-btn form-control"/>
+        <td className="assign-cell">
+          <input type="button" onClick={this.onChangeButtonEvent.bind(this)} value="V" className="del-btn form-control"/>
+          <div className="d-nonin">          
+            <input type="text" placeholder="Qntd..." className="del-btn form-control"/> 
+            <input type="button" onClick={this.onAssignEvent.bind(this)} value="OK" className="del-btn form-control"/>            
+          </div>
           {/* <input className="form-control" type='text'  onChange={this.props.onEpisTableUpdate}/>        {/*name={this.props.cellData.type} id={this.props.cellData.id} value={this.props.cellData.value}*/}
           {/*<input type="button" onClick={this.onDelEvent.bind(this)} value="X" className="del-btn form-control"/> */}
         </td>
