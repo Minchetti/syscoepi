@@ -1,5 +1,4 @@
 import React from 'react';
-import InputMask from 'react-input-mask';
 // import PropTypes from 'prop-types';
 
 class TableEpis2 extends React.Component {
@@ -74,31 +73,71 @@ handleRowDelA(epi) {
   this.setState(this.state.episAtribuidos);
 };
 
+disableChangeBtn = () =>{
+  var btns = document.getElementsByClassName("change-btn"); //desabilitar botao de change
+  for(var i = 0; i < btns.length; i++) {
+    btns[i].disabled = true;
+  } 
+}
+enableChangeBtn = () =>{
+  var btns = document.getElementsByClassName("change-btn"); //habilitar botao de change
+  for(var i = 0; i < btns.length; i++) {
+    btns[i].disabled = false;
+  }  
+}
 
 handleRowAssignD(epi) {
-  console.log(epi);
+  var index = this.state.episDisponiveis.indexOf(epi);
+  var assignedEpi = this.state.episDisponiveis.splice(index, 1);
+  var array = this.state.episAtribuidos.concat(assignedEpi);
+  this.setState({episAtribuidos : array});
+
+  this.enableChangeBtn();
 };
 handleRowAssignA(epi) {  
-  console.log(epi);
+  var index = this.state.episAtribuidos.indexOf(epi);
+  var assignedEpi = this.state.episAtribuidos.splice(index, 1);
+  var array = this.state.episDisponiveis.concat(assignedEpi);
+  this.setState({episDisponiveis : array});
+
+  this.enableChangeBtn();
+};
+
+
+handleRowCancelAssignD(epi) { 
+  var index = this.state.episDisponiveis.indexOf(epi);
+  var chosenEpi = document.getElementsByClassName("eachRow")[index];
+  chosenEpi.lastChild.lastChild.style.display = "none"; //mostrar o text e btn OK
+  chosenEpi.lastChild.firstChild.style.display = "flex"; //esconder botao d trocar d tabela
+
+  this.enableChangeBtn();
+};
+handleRowCancelAssignA(epi) {  
+  var index = this.state.episAtribuidos.indexOf(epi);
+  var lengthD = this.state.episDisponiveis.length;
+  var chosenEpi = document.getElementsByClassName("eachRow")[index + lengthD];
+  chosenEpi.lastChild.lastChild.style.display = "none"; //mostrar o text e btn OK
+  chosenEpi.lastChild.firstChild.style.display = "flex"; //esconder botao d trocar d tabela
+
+  this.enableChangeBtn();
 };
 
 handleRowChangeButtonD(epi) {
   var index = this.state.episDisponiveis.indexOf(epi);
   var chosenEpi = document.getElementsByClassName("eachRow")[index];
-  console.log(chosenEpi);
-  console.log('DDDDDD');
   chosenEpi.lastChild.lastChild.style.display = "flex"; //mostrar o text e btn OK
   chosenEpi.lastChild.firstChild.style.display = "none"; //esconder botao d trocar d tabela
-};
 
+  this.disableChangeBtn();
+};
 handleRowChangeButtonA(epi) {  
   var index = this.state.episAtribuidos.indexOf(epi);
   var lengthD = this.state.episDisponiveis.length;
   var chosenEpi = document.getElementsByClassName("eachRow")[index + lengthD];
-  console.log(chosenEpi);
-  console.log(this.state);
   chosenEpi.lastChild.lastChild.style.display = "flex"; //mostrar o text e btn OK
   chosenEpi.lastChild.firstChild.style.display = "none"; //esconder botao d trocar d tabela
+
+ this.disableChangeBtn();
 };
 
 
@@ -187,7 +226,7 @@ SalvarEditarA = () =>{
             </div>
           </div>
           <div className="panel-body">
-            <EpisTable onEpisTableUpdate={this.handleEpisTableD.bind(this)}  onRowDel={this.handleRowDelD.bind(this)} onRowAssign={this.handleRowAssignD.bind(this)} onRowChangeButton={this.handleRowChangeButtonD.bind(this)} epis={this.state.episDisponiveis} filterText={this.state.filterTextD}/> {/*onRowAdd={this.handleAddEvent.bind(this)}*/}
+            <EpisTable onEpisTableUpdate={this.handleEpisTableD.bind(this)}  onRowDel={this.handleRowDelD.bind(this)} onRowAssign={this.handleRowAssignD.bind(this)} onRowCancelAssign={this.handleRowCancelAssignD.bind(this)} onRowChangeButton={this.handleRowChangeButtonD.bind(this)} epis={this.state.episDisponiveis} filterText={this.state.filterTextD}/> {/*onRowAdd={this.handleAddEvent.bind(this)}*/}
           </div>
         </div>
 
@@ -211,7 +250,7 @@ SalvarEditarA = () =>{
             </div>
           </div>
           <div className="panel-body">
-            <EpisTable onEpisTableUpdate={this.handleEpisTableA.bind(this)}  onRowDel={this.handleRowDelA.bind(this)} onRowAssign={this.handleRowAssignA.bind(this)} onRowChangeButton={this.handleRowChangeButtonA.bind(this)} epis={this.state.episAtribuidos} filterText={this.state.filterTextA}/> {/*onRowAdd={this.handleAddEvent.bind(this)}*/}
+            <EpisTable onEpisTableUpdate={this.handleEpisTableA.bind(this)}  onRowDel={this.handleRowDelA.bind(this)} onRowAssign={this.handleRowAssignA.bind(this)} onRowCancelAssign={this.handleRowCancelAssignA.bind(this)} onRowChangeButton={this.handleRowChangeButtonA.bind(this)} epis={this.state.episAtribuidos} filterText={this.state.filterTextA}/> {/*onRowAdd={this.handleAddEvent.bind(this)}*/}
           </div>
         </div>
       </div>
@@ -252,13 +291,14 @@ class EpisTable extends React.Component {
     var onEpisTableUpdate = this.props.onEpisTableUpdate;
     var rowDel = this.props.onRowDel;
     var rowAssign = this.props.onRowAssign;
+    var rowCancelAssign = this.props.onRowCancelAssign;
     var rowChangeButton = this.props.onRowChangeButton;
     var filterText = this.props.filterText;
     var epi = this.props.epis.map(function(epi) {
       if (epi.nome.indexOf(filterText) === -1) {
         return;
       }
-      return (<TableRow  onEpisTableUpdate={onEpisTableUpdate} epi={epi} onDelEvent={rowDel.bind(this)} onAssignEvent={rowAssign.bind(this)} onChangeButtonEvent={rowChangeButton.bind(this)} key={epi.id}/>)
+      return (<TableRow  onEpisTableUpdate={onEpisTableUpdate} epi={epi} onDelEvent={rowDel.bind(this)} onAssignEvent={rowAssign.bind(this)} onCancelAssignEvent={rowCancelAssign.bind(this)} onChangeButtonEvent={rowChangeButton.bind(this)} key={epi.id}/>)
     });
     return (
       <div className="table-responsive">      
@@ -300,6 +340,9 @@ class TableRow extends React.Component {
   }
   onAssignEvent() {
     this.props.onAssignEvent(this.props.epi);
+  }  
+  onCancelAssignEvent() {
+    this.props.onCancelAssignEvent(this.props.epi);
   }
   onChangeButtonEvent() {
     this.props.onChangeButtonEvent(this.props.epi);
@@ -377,10 +420,11 @@ class TableRow extends React.Component {
           <input type="button" onClick={this.onDelEvent.bind(this)} value="X" className="del-btn form-control"/>
         </td>
         <td className="assign-cell">
-          <input type="button" onClick={this.onChangeButtonEvent.bind(this)} value="V" className="del-btn form-control"/>
-          <div className="d-nonin">          
+          <input type="button" onClick={this.onChangeButtonEvent.bind(this)} value="V" className="change-btn form-control"/>
+          <div className="assign-btn d-nonin">          
             <input type="text" placeholder="Qntd..." className="del-btn form-control"/> 
-            <input type="button" onClick={this.onAssignEvent.bind(this)} value="OK" className="del-btn form-control"/>            
+            <input type="button" onClick={this.onAssignEvent.bind(this)} value="OK" className="form-control"/>            
+            <input type="button" onClick={this.onCancelAssignEvent.bind(this)} value="Cancelar" className="form-control"/>            
           </div>
           {/* <input className="form-control" type='text'  onChange={this.props.onEpisTableUpdate}/>        {/*name={this.props.cellData.type} id={this.props.cellData.id} value={this.props.cellData.value}*/}
           {/*<input type="button" onClick={this.onDelEvent.bind(this)} value="X" className="del-btn form-control"/> */}
