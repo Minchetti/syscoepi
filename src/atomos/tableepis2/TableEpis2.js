@@ -1,5 +1,8 @@
 import React from 'react';
+
 // import PropTypes from 'prop-types';
+
+//descobrir pq n está editando o campo
 
 class TableEpis2 extends React.Component {
 initialState = {
@@ -17,10 +20,30 @@ state = {
 componentWillMount(){
   this.initialState.episInitialD = JSON.parse(JSON.stringify(this.props.listaD));
   this.initialState.episInitialA = JSON.parse(JSON.stringify(this.props.listaA));
+  
+}
+componentDidMount(){
+  
+  this.changeArrowAssign();
 }
 
+changeArrowAssign = () =>{
+    var lengthD = this.state.episDisponiveis.length;
+    var lengthA = this.state.episAtribuidos.length;
+    var length = lengthA + lengthD;
+    console.log(lengthD);
+    console.log(lengthA);
+    console.log(length);
+    console.log(document.getElementsByClassName("eachRow"));
+    console.log(document.getElementsByClassName("eachRow")[length-1]);
 
-componentWillUpdate(nextProps){
+    for (var i = length-1; i > lengthD-1; i--){
+      var arrows = document.getElementsByClassName("eachRow")[i].lastChild.firstChild.value = "FALEI";
+    }
+}
+
+componentWillUpdate(nextProps){  
+  console.log('WUP');
   if(JSON.stringify(this.initialState.episInitialD) !== JSON.stringify(this.state.episDisponiveis)  && this.props.listaD == nextProps.listaD){
     document.getElementById("table-buttonsD").style.display = "flex";
   }
@@ -73,8 +96,17 @@ handleRowDelA(epi) {
   this.setState(this.state.episAtribuidos);
 };
 
+
+
+
+
+
 disableChangeBtn = () =>{
   var btns = document.getElementsByClassName("change-btn"); //desabilitar botao de change
+  for(var i = 0; i < btns.length; i++) {
+    btns[i].disabled = true;
+  } 
+  var btns = document.getElementsByClassName("del-btn"); //desabilitar botao de excluir
   for(var i = 0; i < btns.length; i++) {
     btns[i].disabled = true;
   } 
@@ -84,31 +116,92 @@ enableChangeBtn = () =>{
   for(var i = 0; i < btns.length; i++) {
     btns[i].disabled = false;
   }  
+  var btns = document.getElementsByClassName("del-btn"); //habilitar botao de excluir
+  for(var i = 0; i < btns.length; i++) {
+    btns[i].disabled = false;
+  } 
 }
 
+
+
+
+
+
 handleRowAssignD(epi) {
-  var index = this.state.episDisponiveis.indexOf(epi);
-  var assignedEpi = this.state.episDisponiveis.splice(index, 1);
-  var array = this.state.episAtribuidos.concat(assignedEpi);
-  this.setState({episAtribuidos : array});
+  var arrayD = this.state.episDisponiveis;
+  var arrayA = this.state.episAtribuidos;
+  var index = arrayD.indexOf(epi);
+  
+  var estoqueInicial = arrayD[index].estoque;   //estoque inicial
+  var assignedEpi = Object.assign({}, arrayD[index]);  //seleciona o obj escolhido
 
-  this.enableChangeBtn();
-};
-handleRowAssignA(epi) {  
-  var index = this.state.episAtribuidos.indexOf(epi);
-  var assignedEpi = this.state.episAtribuidos.splice(index, 1);
-  var array = this.state.episDisponiveis.concat(assignedEpi);
-  this.setState({episDisponiveis : array});
+  var assignedEpiHTML = document.getElementsByClassName("eachRow")[index];  //seleciona o html do epi escolhido
+  var qntdPassada = assignedEpiHTML.lastChild.lastChild.firstChild.value; //pega o value da qntd passada digitada
 
-  this.enableChangeBtn();
+  assignedEpiHTML.lastChild.lastChild.style.display = "none"; //esconder a qntd ok text e cancel
+  assignedEpiHTML.lastChild.firstChild.style.display = "flex"; //mostrar botao d trocar d tabela
+  
+  if(assignedEpi.estoque > 0 && qntdPassada < assignedEpi.estoque) {    //se a qntd em estoque eh maior q a qntd passada
+    
+    arrayD[index].estoque = estoqueInicial - qntdPassada;      //ajustar o estoque D 
+
+    assignedEpi.estoque = qntdPassada;  //atualiza para a qntd digitada antes de juntar com o arrayA
+    arrayA = arrayA.concat(assignedEpi);  //concatena o registro passado pro final do arrayA
+    
+    this.setState({episAtribuidos: arrayA});
+  }
+  else{
+    arrayD.splice(index, 1);   //tirar do array
+    arrayA = arrayA.concat(assignedEpi);  //concatena o registro passado pro final do arrayA    
+    this.setState({episAtribuidos: arrayA});
+  }  
+  
+  this.enableChangeBtn(); //ao final da troca habilitar denovo os botoes
 };
+
+
+
+handleRowAssignA(epi) { 
+ var arrayD = this.state.episDisponiveis;
+  var arrayA = this.state.episAtribuidos;
+  var index = arrayA.indexOf(epi);
+  
+  var estoqueInicial = arrayA[index].estoque;   //estoque inicial
+  var assignedEpi = Object.assign({}, arrayA[index]);  //seleciona o obj escolhido
+
+  var lengthD = this.state.episDisponiveis.length; //descobrir qntos registro tem na tabela de cima 
+  var assignedEpiHTML = document.getElementsByClassName("eachRow")[index + lengthD];  //seleciona o html do epi escolhido
+  var qntdPassada = assignedEpiHTML.lastChild.lastChild.firstChild.value; //pega o value da qntd passada digitada
+
+  assignedEpiHTML.lastChild.lastChild.style.display = "none"; //esconder a qntd ok text e cancel
+  assignedEpiHTML.lastChild.firstChild.style.display = "flex"; //mostrar botao d trocar d tabela
+  
+  if(assignedEpi.estoque > 0 && qntdPassada < assignedEpi.estoque) {    //se a qntd em estoque eh maior q a qntd passada
+    
+    arrayA[index].estoque = estoqueInicial - qntdPassada;      //ajustar o estoque D 
+
+    assignedEpi.estoque = qntdPassada;  //atualiza para a qntd digitada antes de juntar com o arrayA
+    arrayD = arrayD.concat(assignedEpi);  //concatena o registro passado pro final do arrayA
+    
+    this.setState({episDisponiveis: arrayD});
+  }
+  else{
+    arrayA.splice(index, 1);   //tirar do array
+    arrayD = arrayD.concat(assignedEpi);  //concatena o registro passado pro final do arrayA    
+    this.setState({episDisponiveis: arrayD});
+  }  
+  
+  this.enableChangeBtn(); //ao final da troca habilitar denovo os botoes
+};
+
+
 
 
 handleRowCancelAssignD(epi) { 
   var index = this.state.episDisponiveis.indexOf(epi);
   var chosenEpi = document.getElementsByClassName("eachRow")[index];
-  chosenEpi.lastChild.lastChild.style.display = "none"; //mostrar o text e btn OK
-  chosenEpi.lastChild.firstChild.style.display = "flex"; //esconder botao d trocar d tabela
+  chosenEpi.lastChild.lastChild.style.display = "none"; //esconder a qntd ok e cancel
+  chosenEpi.lastChild.firstChild.style.display = "flex"; //mostrar botao d trocar d tabela
 
   this.enableChangeBtn();
 };
@@ -121,6 +214,8 @@ handleRowCancelAssignA(epi) {
 
   this.enableChangeBtn();
 };
+
+
 
 handleRowChangeButtonD(epi) {
   var index = this.state.episDisponiveis.indexOf(epi);
@@ -141,7 +236,8 @@ handleRowChangeButtonA(epi) {
 };
 
 
-handleEpisTableD(evt) {
+handleEpisTableD(evt) {  
+  console.log('HET D');
   var item = {
     id: evt.target.id,
     name: evt.target.name,
@@ -159,6 +255,7 @@ handleEpisTableD(evt) {
   this.setState({episDisponiveis:newEpis});
 };
 handleEpisTableA(evt) {
+  console.log('HET A');
   var item = {
     id: evt.target.id,
     name: evt.target.name,
@@ -352,67 +449,67 @@ class TableRow extends React.Component {
     return (
       <tr className="eachRow">
         <EditableCell onEpisTableUpdate={this.props.onEpisTableUpdate} cellData={{
-          "type": "nome",
+          type: "cod",
           value: this.props.epi.cod,
           id: this.props.epi.id
         }}/>
         <EditableCell onEpisTableUpdate={this.props.onEpisTableUpdate} cellData={{
-          type: "rg",
+          type: "nome",
           value: this.props.epi.nome,
           id: this.props.epi.id
         }}/>
         <EditableCell onEpisTableUpdate={this.props.onEpisTableUpdate} cellData={{
-          type: "cpf",
+          type: "descricao",
           value: this.props.epi.descricao,
           id: this.props.epi.id
         }}/>
         <EditableCell onEpisTableUpdate={this.props.onEpisTableUpdate} cellData={{
-          type: "email",
+          type: "validade",
           value: this.props.epi.validade,
           id: this.props.epi.id
         }}/>
         <EditableCell onEpisTableUpdate={this.props.onEpisTableUpdate} cellData={{
-          type: "gh",
+          type: "minEstoque",
           value: this.props.epi.minEstoque,
           id: this.props.epi.id
         }}/>
         <EditableCell onEpisTableUpdate={this.props.onEpisTableUpdate} cellData={{
-          type: "turno",
+          type: "estoque",
           value: this.props.epi.estoque,
           id: this.props.epi.id
         }}/>
         <EditableCell onEpisTableUpdate={this.props.onEpisTableUpdate} cellData={{
-          type: "sexo",
+          type: "maxEstoque",
           value: this.props.epi.maxEstoque,
           id: this.props.epi.id
         }}/>
         <EditableCell onEpisTableUpdate={this.props.onEpisTableUpdate} cellData={{
-          type: "sexo",
+          type: "ca",
           value: this.props.epi.ca,
           id: this.props.epi.id
         }}/>
         <EditableCell onEpisTableUpdate={this.props.onEpisTableUpdate} cellData={{
-          type: "sexo",
+          type: "dataArmazenamento",
           value: this.props.epi.dataArmazenamento,
           id: this.props.epi.id
         }}/>
         <EditableCell onEpisTableUpdate={this.props.onEpisTableUpdate} cellData={{
-          type: "sexo",
+          type: "dataDevolucao",
           value: this.props.epi.dataDevolucao,
           id: this.props.epi.id
         }}/>
         <EditableCell onEpisTableUpdate={this.props.onEpisTableUpdate} cellData={{
-          type: "sexo",
+          type: "motivoDevolucao",
           value: this.props.epi.motivoDevolucao,
           id: this.props.epi.id
         }}/>
         <EditableCell onEpisTableUpdate={this.props.onEpisTableUpdate} cellData={{
-          type: "sexo",
+          type: "cor",
           value: this.props.epi.cor,
           id: this.props.epi.id
         }}/>
         <EditableCell onEpisTableUpdate={this.props.onEpisTableUpdate} cellData={{
-          type: "sexo",
+          type: "fatorReducao",
           value: this.props.epi.fatorReducao,
           id: this.props.epi.id
         }}/>
@@ -422,7 +519,7 @@ class TableRow extends React.Component {
         <td className="assign-cell">
           <input type="button" onClick={this.onChangeButtonEvent.bind(this)} value="V" className="change-btn form-control"/>
           <div className="assign-btn d-nonin">          
-            <input type="text" placeholder="Qntd..." className="del-btn form-control"/> 
+            <input type="text" placeholder="Qntd..." className="input-qntd form-control"/> 
             <input type="button" onClick={this.onAssignEvent.bind(this)} value="OK" className="form-control"/>            
             <input type="button" onClick={this.onCancelAssignEvent.bind(this)} value="Cancelar" className="form-control"/>            
           </div>

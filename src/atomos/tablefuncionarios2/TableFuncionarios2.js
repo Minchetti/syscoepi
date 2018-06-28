@@ -222,7 +222,7 @@ componentWillUpdate = (nextProps) =>{
       () => {
         document.getElementById("table-buttons").style.display = "none";    
         
-        var qntd_ativos = this.state.employees.length - this.initialState.disableds; //descobri a qntd de funcionarios ativos
+        var qntd_ativos = this.state.employees.length - this.initialState.disableds; //descobrir a qntd de funcionarios ativos
 
         for(var i = 0; i < qntd_ativos-1; i++) {  //ao clicar em cancelar a edição eu removo a class "inactive" de todos os ultimos funcionarios 
           document.getElementsByClassName("eachRow")[i].classList.remove("inactive");
