@@ -316,3 +316,8 @@ svg{
   color: red;
   /* text-transform:  */
 }
+
+
+.rotated { 
+  transform:rotate(180deg); 
+}

@@ -1,5 +1,7 @@
 import React from 'react';
 
+import $ from 'jquery'; 
+ 
 // import PropTypes from 'prop-types';
 
 //descobrir pq n está editando o campo
@@ -8,6 +10,7 @@ class TableEpis2 extends React.Component {
 initialState = {
   episInitialD: [],
   episInitialA: [],
+  action: ''
 }
 
 state = {
@@ -31,31 +34,32 @@ changeArrowAssign = () =>{
     var lengthD = this.state.episDisponiveis.length;
     var lengthA = this.state.episAtribuidos.length;
     var length = lengthA + lengthD;
-    console.log(lengthD);
-    console.log(lengthA);
-    console.log(length);
     console.log(document.getElementsByClassName("eachRow"));
     console.log(document.getElementsByClassName("eachRow")[length-1]);
 
     for (var i = length-1; i > lengthD-1; i--){
-      var arrows = document.getElementsByClassName("eachRow")[i].lastChild.firstChild.value = "FALEI";
+      document.getElementsByClassName("eachRow")[i].lastChild.firstChild.classList.add("rotated");
     }
 }
 
 componentWillUpdate(nextProps){  
   console.log('WUP');
   if(JSON.stringify(this.initialState.episInitialD) !== JSON.stringify(this.state.episDisponiveis)  && this.props.listaD == nextProps.listaD){
-    document.getElementById("table-buttonsD").style.display = "flex";
+    document.getElementById("table-edit-buttonsD").style.display = "flex";
+    // alert('1');
   }
   else{
-    document.getElementById("table-buttonsD").style.display = "none";
+    document.getElementById("table-edit-buttonsD").style.display = "none";
+    // alert('2');
   }
 
   if(JSON.stringify(this.initialState.episInitialA) !== JSON.stringify(this.state.episAtribuidos)  && this.props.listaA == nextProps.listaA){
-    document.getElementById("table-buttonsA").style.display = "flex";
+    document.getElementById("table-edit-buttonsA").style.display = "flex";
+    // alert('3');
   }
   else{
-    document.getElementById("table-buttonsA").style.display = "none";
+    document.getElementById("table-edit-buttonsA").style.display = "none";
+    // alert('4');
   }
 }
 
@@ -89,11 +93,13 @@ handleRowDelD(epi) {
   var index = this.state.episDisponiveis.indexOf(epi);
   this.state.episDisponiveis.splice(index, 1);
   this.setState(this.state.episDisponiveis);
+  document.getElementById("table-delete-buttonsD").style.display = "flex";
 };
 handleRowDelA(epi) {
   var index = this.state.episAtribuidos.indexOf(epi);
   this.state.episAtribuidos.splice(index, 1);
   this.setState(this.state.episAtribuidos);
+  document.getElementById("table-delete-buttonsA").style.display = "flex";
 };
 
 
@@ -127,10 +133,18 @@ enableChangeBtn = () =>{
 
 
 
+
+
+
+
+
+
+
 handleRowAssignD(epi) {
   var arrayD = this.state.episDisponiveis;
   var arrayA = this.state.episAtribuidos;
   var index = arrayD.indexOf(epi);
+  var achouIgual = false; //variavel aux pra logica de ver se tem outro registro igual na outra tabela
   
   var estoqueInicial = arrayD[index].estoque;   //estoque inicial
   var assignedEpi = Object.assign({}, arrayD[index]);  //seleciona o obj escolhido
@@ -144,20 +158,41 @@ handleRowAssignD(epi) {
   if(assignedEpi.estoque > 0 && qntdPassada < assignedEpi.estoque) {    //se a qntd em estoque eh maior q a qntd passada
     
     arrayD[index].estoque = estoqueInicial - qntdPassada;      //ajustar o estoque D 
-
-    assignedEpi.estoque = qntdPassada;  //atualiza para a qntd digitada antes de juntar com o arrayA
-    arrayA = arrayA.concat(assignedEpi);  //concatena o registro passado pro final do arrayA
-    
-    this.setState({episAtribuidos: arrayA});
+     
+    arrayA.map((value) => {   //laço para varrer o outro array e ver se ja tem um registro com cod igual
+      if(value.cod == assignedEpi.cod){  //se achar só adicionar no estoque da outra 
+        value.estoque = parseInt(value.estoque) + parseInt(qntdPassada);          
+        achouIgual = true;
+        this.setState({episAtribuidos: arrayA});
+      }
+    });      
+    if(achouIgual == false){  // se não cria um novo registro desse epi na outra
+      assignedEpi.estoque = qntdPassada;  //atualiza para a qntd digitada antes de juntar com o arrayA
+      arrayA = arrayA.concat(assignedEpi);  //concatena o registro passado pro final do arrayA
+      this.setState({episAtribuidos: arrayA});
+    }    
   }
-  else{
+  else if(assignedEpi.estoque > 0){ //arrumar aqui
     arrayD.splice(index, 1);   //tirar do array
-    arrayA = arrayA.concat(assignedEpi);  //concatena o registro passado pro final do arrayA    
-    this.setState({episAtribuidos: arrayA});
-  }  
-  
-  this.enableChangeBtn(); //ao final da troca habilitar denovo os botoes
+    this.setState({episDisponiveis: arrayD});
+
+    arrayA.map((value) => {   //laço para varrer o outro array e ver se ja tem um registro com cod igual
+      if(value.cod == assignedEpi.cod){  //se achar só adicionar no estoque da outra 
+        value.estoque = parseInt(value.estoque) + parseInt(qntdPassada);          
+        achouIgual = true;
+      }
+    });    
+    if(achouIgual == false){  // se não cria um novo registro desse epi na outra
+      arrayA = arrayA.concat(assignedEpi);  //concatena o registro passado pro final do arrayA
+      this.setState({episAtribuidos: arrayA});
+    }  
+  }    
+  this.enableChangeBtn(); //ao final da troca habilitar denovo os botoes  
+  document.getElementById("table-assign-buttonsD").style.display = "flex";
 };
+
+
+
 
 
 
@@ -165,6 +200,7 @@ handleRowAssignA(epi) {
  var arrayD = this.state.episDisponiveis;
   var arrayA = this.state.episAtribuidos;
   var index = arrayA.indexOf(epi);
+  var achouIgual = false; //variavel aux pra logica de ver se tem outro registro igual na outra tabela
   
   var estoqueInicial = arrayA[index].estoque;   //estoque inicial
   var assignedEpi = Object.assign({}, arrayA[index]);  //seleciona o obj escolhido
@@ -178,21 +214,50 @@ handleRowAssignA(epi) {
   
   if(assignedEpi.estoque > 0 && qntdPassada < assignedEpi.estoque) {    //se a qntd em estoque eh maior q a qntd passada
     
-    arrayA[index].estoque = estoqueInicial - qntdPassada;      //ajustar o estoque D 
+    arrayA[index].estoque = estoqueInicial - qntdPassada;      //ajustar o estoque A
 
-    assignedEpi.estoque = qntdPassada;  //atualiza para a qntd digitada antes de juntar com o arrayA
-    arrayD = arrayD.concat(assignedEpi);  //concatena o registro passado pro final do arrayA
-    
-    this.setState({episDisponiveis: arrayD});
+    arrayD.map((value) => {   //laço para varrer o outro array e ver se ja tem um registro com cod igual
+      if(value.cod == assignedEpi.cod){  //se achar só adicionar no estoque da outra 
+        value.estoque = parseInt(value.estoque) + parseInt(qntdPassada);          
+        achouIgual = true;
+        this.setState({episDisponiveis: arrayD});
+      }
+    });
+
+    if(achouIgual == false){  // se não cria um novo registro desse epi na outra
+      assignedEpi.estoque = qntdPassada;  //atualiza para a qntd digitada antes de juntar com o arrayA
+      arrayD = arrayD.concat(assignedEpi);  //concatena o registro passado pro final do arrayA
+      this.setState({episDisponiveis: arrayD});
+    }  
   }
-  else{
+
+  else if(assignedEpi.estoque > 0){
     arrayA.splice(index, 1);   //tirar do array
-    arrayD = arrayD.concat(assignedEpi);  //concatena o registro passado pro final do arrayA    
-    this.setState({episDisponiveis: arrayD});
-  }  
-  
-  this.enableChangeBtn(); //ao final da troca habilitar denovo os botoes
+    this.setState({episAtribuidos: arrayA});
+
+    arrayD.map((value) => {   //laço para varrer o outro array e ver se ja tem um registro com cod igual
+      if(value.cod == assignedEpi.cod){  //se achar só adicionar no estoque da outra 
+        value.estoque = parseInt(value.estoque) + parseInt(qntdPassada);          
+        achouIgual = true;
+      }
+    });
+    
+    if(achouIgual == false){  // se não cria um novo registro desse epi na outra
+      arrayD = arrayD.concat(assignedEpi);  //concatena o registro passado pro final do arrayA
+      this.setState({episDisponiveis: arrayD});
+    }  
+  }    
+  this.enableChangeBtn(); //ao final da troca habilitar denovo os botoes  
+  document.getElementById("table-assign-buttonsA").style.display = "flex";
 };
+
+
+
+
+
+
+
+
 
 
 
@@ -214,7 +279,6 @@ handleRowCancelAssignA(epi) {
 
   this.enableChangeBtn();
 };
-
 
 
 handleRowChangeButtonD(epi) {
@@ -254,6 +318,7 @@ handleEpisTableD(evt) {
   });
   this.setState({episDisponiveis:newEpis});
 };
+
 handleEpisTableA(evt) {
   console.log('HET A');
   var item = {
@@ -274,28 +339,200 @@ handleEpisTableA(evt) {
 };
 
 
+CancelarDeletarD = () =>{      
+  this.setState(
+    {episDisponiveis : JSON.parse(JSON.stringify(this.initialState.episInitialD))},
+    () => document.getElementById("table-delete-buttonsD").style.display = "none"
+  );  
+}
+
+
+CancelarAtribuirD = () =>{      
+  this.setState(
+    {
+      episDisponiveis : JSON.parse(JSON.stringify(this.initialState.episInitialD)),
+      episAtribuidos : JSON.parse(JSON.stringify(this.initialState.episInitialA))
+    },
+    () => document.getElementById("table-assign-buttonsD").style.display = "none"
+  );
+}
+
 CancelarEditarD = () =>{      
   this.setState(
     {episDisponiveis : JSON.parse(JSON.stringify(this.initialState.episInitialD))},
-    () => document.getElementById("table-buttonsD").style.display = "none"
-  );
+    () => document.getElementById("table-edit-buttonsD").style.display = "none"
+  );  
 }
 
+CancelarDeletarA = () =>{      
+  this.setState(
+    {episAtribuidos : JSON.parse(JSON.stringify(this.initialState.episInitialA))},
+    () => document.getElementById("table-delete-buttonsA").style.display = "none"
+  );
+}
+CancelarAtribuirA = () =>{      
+  this.setState(
+    {
+      episDisponiveis : JSON.parse(JSON.stringify(this.initialState.episInitialD)),
+      episAtribuidos : JSON.parse(JSON.stringify(this.initialState.episInitialA))
+    },
+    () => document.getElementById("table-assign-buttonsA").style.display = "none"
+  );
+}
 CancelarEditarA = () =>{      
   this.setState(
     {episAtribuidos : JSON.parse(JSON.stringify(this.initialState.episInitialA))},
-    () => document.getElementById("table-buttonsA").style.display = "none"
-  );
+    () => document.getElementById("table-edit-buttonsA").style.display = "none"
+  );  
+}
+
+
+
+SalvarDeletarD = () =>{
+  document.getElementById("table-delete-buttonsD").style.display = "none";
+
+  // var EmpresaSelecionada = document.getElementById("select-empresas").value;
+    
+    // fetch('http://192.168.10.30/v1/cliente/{id}/empresas', {
+    //   method: 'get',
+    //   body: JSON.stringify(),
+    //   headers: {
+      //     'content-type': 'application/json'
+      //   }
+      // })
+      // .then(response => {
+        //   response.json().then(data => {
+          //     if (data.success == true) {   
+        //        this.setState({ arrayEmpresas: data });   
+    //          } 
+    //          else {
+      //       alert(data.message+' - '+data.data[0].message);    
+    //     }
+    //   });
+    // })
+    // .catch(err => {
+    //   console.error('Failed retrieving information', err);
+    //   alert(err);
+    // });
+    
+    $('#progress-bar').text('Epi D excluido com sucesso !');
+    $('#progress-bar').fadeIn(2000);
+    setTimeout(function() {$('#progress-bar').fadeOut(2000);}, 2000); 
+}
+
+SalvarAtribuirD = () =>{
+  console.log('foi asdasds');
+  document.getElementById("table-assign-buttonsD").style.display = "none";
+
+  // var EmpresaSelecionada = document.getElementById("select-empresas").value;
+    
+    // fetch('http://192.168.10.30/v1/cliente/{id}/empresas', {
+    //   method: 'get',
+    //   body: JSON.stringify(),
+    //   headers: {
+      //     'content-type': 'application/json'
+      //   }
+      // })
+      // .then(response => {
+        //   response.json().then(data => {
+          //     if (data.success == true) {   
+        //        this.setState({ arrayEmpresas: data });   
+    //          } 
+    //          else {
+      //       alert(data.message+' - '+data.data[0].message);    
+    //     }
+    //   });
+    // })
+    // .catch(err => {
+    //   console.error('Failed retrieving information', err);
+    //   alert(err);
+    // });
+    
+    $('#progress-bar').text('Epi D atribuído com sucesso 2!');
+    $('#progress-bar').fadeIn(2000);
+    setTimeout(function() {$('#progress-bar').fadeOut(2000);}, 2000); 
 }
 
 SalvarEditarD = () =>{
-  alert('DADOS EPIS Disponíveis SALVOS');
+  document.getElementById("table-edit-buttonsD").style.display = "none";
+
+  // var EmpresaSelecionada = document.getElementById("select-empresas").value;
+    
+    // fetch('http://192.168.10.30/v1/cliente/{id}/empresas', {
+    //   method: 'get',
+    //   body: JSON.stringify(),
+    //   headers: {
+      //     'content-type': 'application/json'
+      //   }
+      // })
+      // .then(response => {
+        //   response.json().then(data => {
+          //     if (data.success == true) {   
+        //        this.setState({ arrayEmpresas: data });   
+    //          } 
+    //          else {
+      //       alert(data.message+' - '+data.data[0].message);    
+    //     }
+    //   });
+    // })
+    // .catch(err => {
+    //   console.error('Failed retrieving information', err);
+    //   alert(err);
+    // });
+    
+    $('#progress-bar').text('Epi D editado com sucesso!');
+    $('#progress-bar').fadeIn(2000);
+    setTimeout(function() {$('#progress-bar').fadeOut(2000);}, 2000); 
 }
+
+
+SalvarDeletarA = () =>{
+  document.getElementById("table-delete-buttonsA").style.display = "none";
+    
+  $('#progress-bar').text('Epi A excluído com sucesso!');
+  $('#progress-bar').fadeIn(2000);
+  setTimeout(function() {$('#progress-bar').fadeOut(2000);}, 2000); 
+}
+
+SalvarAtribuirA = () =>{
+  document.getElementById("table-assign-buttonsA").style.display = "none";
+    
+  $('#progress-bar').text('Epi A atribuído com sucesso2!');
+  $('#progress-bar').fadeIn(2000);
+  setTimeout(function() {$('#progress-bar').fadeOut(2000);}, 2000); 
+}
+
 SalvarEditarA = () =>{
-  alert('DADOS EPIS Atribuídos SALVOS');
+  document.getElementById("table-edit-buttonsA").style.display = "none";
+
+  // var EmpresaSelecionada = document.getElementById("select-empresas").value;
+    
+    // fetch('http://192.168.10.30/v1/cliente/{id}/empresas', {
+    //   method: 'get',
+    //   body: JSON.stringify(),
+    //   headers: {
+      //     'content-type': 'application/json'
+      //   }
+      // })
+      // .then(response => {
+        //   response.json().then(data => {
+          //     if (data.success == true) {   
+        //        this.setState({ arrayEmpresas: data });   
+    //          } 
+    //          else {
+      //       alert(data.message+' - '+data.data[0].message);    
+    //     }
+    //   });
+    // })
+    // .catch(err => {
+    //   console.error('Failed retrieving information', err);
+    //   alert(err);
+    // });
+    
+    $('#progress-bar').text('Epi A editado com sucesso!');
+    $('#progress-bar').fadeIn(2000);
+    setTimeout(function() {$('#progress-bar').fadeOut(2000);}, 2000); 
 }
-
-
 
 
 
@@ -308,12 +545,30 @@ SalvarEditarA = () =>{
           <div className="panel-heading d-flex justify-content-between align-items-center">
             <h6 className="text-left mb-0"><i className="fa fa-user pr-2" aria-hidden="true"></i>Epi's Disponíveis({this.state.episDisponiveis.length})</h6>
             
-            <div className="d-nonin" id="table-buttonsD">      
+            <div className="d-nonin" id="table-delete-buttonsD">      
+              <button type="button" onClick={this.CancelarDeletarD} className="btn btn-danger mr-2" > {/*data-dismiss="modal"*/}
+                <i className="fa fa-times pr-2 " aria-hidden="true" />Cancelar Deletar D
+              </button>
+              <button onClick={this.SalvarDeletarD} type="submit" className="btn btn-primary" >
+                <i className="fa fa-check pr-2 " aria-hidden="true"/>Salvar Deletar D
+              </button>
+            </div>
+            
+            <div className="d-nonin" id="table-assign-buttonsD">      
+              <button type="button" onClick={this.CancelarAtribuirD} className="btn btn-danger mr-2" > {/*data-dismiss="modal"*/}
+                <i className="fa fa-times pr-2 " aria-hidden="true" />Cancelar Atribuir D
+              </button>
+              <button onClick={this.SalvarAtribuirD} type="submit" className="btn btn-primary" >
+                <i className="fa fa-check pr-2 " aria-hidden="true"/>Salvar Atribuir D
+              </button>
+            </div>
+
+            <div className="d-nonin" id="table-edit-buttonsD">      
               <button type="button" onClick={this.CancelarEditarD} className="btn btn-danger mr-2" > {/*data-dismiss="modal"*/}
-                <i className="fa fa-times pr-2 " aria-hidden="true" />Cancelar
+                <i className="fa fa-times pr-2 " aria-hidden="true" />Cancelar Editar D
               </button>
               <button onClick={this.SalvarEditarD} type="submit" className="btn btn-primary" >
-                <i className="fa fa-check pr-2 " aria-hidden="true"/>Salvar
+                <i className="fa fa-check pr-2 " aria-hidden="true"/>Salvar Editar D
               </button>
             </div>
             
@@ -332,12 +587,30 @@ SalvarEditarA = () =>{
           <div className="panel-heading d-flex justify-content-between align-items-center">
             <h6 className="text-left mb-0"><i className="fa fa-user pr-2" aria-hidden="true"></i>Epi's Atribuidos({this.state.episAtribuidos.length})</h6>
             
-            <div className="d-nonin" id="table-buttonsA">      
+            <div className="d-nonin" id="table-delete-buttonsA">      
+              <button type="button" onClick={this.CancelarDeletarA} className="btn btn-danger mr-2" > {/*data-dismiss="modal"*/}
+                <i className="fa fa-times pr-2 " aria-hidden="true" />Cancelar Delete A
+              </button>
+              <button onClick={this.SalvarDeletarA} type="submit" className="btn btn-primary" >
+                <i className="fa fa-check pr-2 " aria-hidden="true"/>Salvar Delete A
+              </button>
+            </div>
+            
+            <div className="d-nonin" id="table-assign-buttonsA">      
+              <button type="button" onClick={this.CancelarAtribuirA} className="btn btn-danger mr-2" > {/*data-dismiss="modal"*/}
+                <i className="fa fa-times pr-2 " aria-hidden="true" />Cancelar Atribuir A
+              </button>
+              <button onClick={this.SalvarAtribuirA} type="submit" className="btn btn-primary" >
+                <i className="fa fa-check pr-2 " aria-hidden="true"/>Salvar Atribuir A
+              </button>
+            </div>
+
+            <div className="d-nonin" id="table-edit-buttonsA">      
               <button type="button" onClick={this.CancelarEditarA} className="btn btn-danger mr-2" > {/*data-dismiss="modal"*/}
-                <i className="fa fa-times pr-2 " aria-hidden="true" />Cancelar
+                <i className="fa fa-times pr-2 " aria-hidden="true" />Cancelar Editar A
               </button>
               <button onClick={this.SalvarEditarA} type="submit" className="btn btn-primary" >
-                <i className="fa fa-check pr-2 " aria-hidden="true"/>Salvar
+                <i className="fa fa-check pr-2 " aria-hidden="true"/>Salvar Editar A
               </button>
             </div>
             
@@ -513,18 +786,20 @@ class TableRow extends React.Component {
           value: this.props.epi.fatorReducao,
           id: this.props.epi.id
         }}/>
-        <td className="del-cell">
-          <input type="button" onClick={this.onDelEvent.bind(this)} value="X" className="del-btn form-control"/>
+        <td>
+          <div className="del-btn form-control" onClick={this.onDelEvent.bind(this)}>
+            <i class="far fa-trash-alt"></i>
+          </div>
         </td>
-        <td className="assign-cell">
-          <input type="button" onClick={this.onChangeButtonEvent.bind(this)} value="V" className="change-btn form-control"/>
+        <td>
+          <div className="change-btn form-control" onClick={this.onChangeButtonEvent.bind(this)}>
+            <i className="fas fa-arrow-down "></i>
+          </div>
           <div className="assign-btn d-nonin">          
             <input type="text" placeholder="Qntd..." className="input-qntd form-control"/> 
             <input type="button" onClick={this.onAssignEvent.bind(this)} value="OK" className="form-control"/>            
             <input type="button" onClick={this.onCancelAssignEvent.bind(this)} value="Cancelar" className="form-control"/>            
           </div>
-          {/* <input className="form-control" type='text'  onChange={this.props.onEpisTableUpdate}/>        {/*name={this.props.cellData.type} id={this.props.cellData.id} value={this.props.cellData.value}*/}
-          {/*<input type="button" onClick={this.onDelEvent.bind(this)} value="X" className="del-btn form-control"/> */}
         </td>
       </tr>
     );

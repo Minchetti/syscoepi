@@ -17,63 +17,6 @@ state = {
   // state : {},
   filterText : "",
   employees: this.props.lista
-  // employees : [
-  //   {
-  //     id: 1,
-  //     name: 'Jhon jhonson',
-  //     rg: '48.449.652',
-  //     cpf: '187.899.486-66',
-  //     email: 'teste@teste.com',
-  //     gh: '123123',
-  //     turno: 'Noturno',
-  //     sexo: 'masc'
-  //   }, {
-  //     id: 2,
-  //     name: 'Jhon jhonson2',
-  //     rg: '48.449.652',
-  //     cpf: '187.899.486-66',
-  //     email: 'teste@teste.com',
-  //     gh: '123123',
-  //     turno: 'Noturno',
-  //     sexo: 'masc'
-  //   }, {
-  //     id: 3,
-  //     name: 'Jhon jhonson3',
-  //     rg: '48.449.652',
-  //     cpf: '187.899.486-66',
-  //     email: 'teste@teste.com',
-  //     gh: '123123',
-  //     turno: 'Noturno',
-  //     sexo: 'masc'
-  //   }, {
-  //     id: 4,
-  //     name: 'Jhon jhonson4',
-  //     rg: '48.449.652',
-  //     cpf: '187.899.486-66',
-  //     email: 'teste@teste.com',
-  //     gh: '123123',
-  //     turno: 'Noturno',
-  //     sexo: 'masc'
-  //   }, {
-  //     id: 5,
-  //     name: 'Jhon jhonson5',
-  //     rg: '48.449.652',
-  //     cpf: '187.899.486-66',
-  //     email: 'teste@teste.com',
-  //     gh: '123123',
-  //     turno: 'Noturno',
-  //     sexo: 'masc'
-  //   }, {
-  //     id: 6,
-  //     name: 'Jhon jhonson6',
-  //     rg: '48.449.652',
-  //     cpf: '187.899.486-66',
-  //     email: 'teste@teste.com',
-  //     gh: '123123',
-  //     turno: 'Noturno',
-  //     sexo: 'masc'
-  //   }
-  // ]
 
 }
 
@@ -86,12 +29,6 @@ CountDisableds = () =>{ //para contar qntos funcionarios estao desabilitados e c
   });
   this.initialState.disableds = j;  
 }
-
-// if(this.state.employees[i].sexo == "Masculino"){
-//   console.log('entrou no if');
-//   this.initialState.disableds ++;
-//   console.log(this.initialState.disableds);
-// }
 
 componentWillMount(){
   console.log('WILL MOUNT');
@@ -145,7 +82,7 @@ componentWillUpdate = (nextProps) =>{
 
 
   handleRowDel(employee) {
-
+    console.log('aru');
     if(employee.ativo == false){ //se o funcionario eh inativo reativar
       var employee2 = [];
       var index = this.state.employees.indexOf(employee);
@@ -197,6 +134,7 @@ componentWillUpdate = (nextProps) =>{
   // }
 
   handleProductTable(evt) {
+    console.log("ará!")
     var item = {
       id: evt.target.id,
       name: evt.target.name,
@@ -207,7 +145,6 @@ componentWillUpdate = (nextProps) =>{
       for (var key in employee) {
         if (key == item.name && employee.id == item.id) {
           employee[key] = item.value;
-
         }
       }
       return employee;
@@ -384,26 +321,33 @@ class ProductRow extends React.Component {
   onDelEvent() {
     this.props.onDelEvent(this.props.employee);
   }
-  
-  render() {
 
-    var VerificarAtivosRow = () =>{  //verificar qndo o funcionarios vair ser ativo ou não, os não ativos colocar o css "inactive"
+  VerificarAtivosRow = () =>{  //verificar qndo o funcionarios vair ser ativo ou não, os não ativos colocar o css "inactive"
       if(this.props.employee.ativo == false){
         return "inactive";
       }
     }
 
-    var VerificarAtivosInput = () =>{  //verificar qndo o funcionarios vair ser ativo ou não, os não ativos colocar o botão "reativar"
-    if(this.props.employee.ativo == false){
-      return "V";
+    VerificarAtivosInput = () =>{  //verificar qndo o funcionarios vair ser ativo ou não, os não ativos colocar o botão "reativar"
+      if(this.props.employee.ativo == false){
+        console.log(this.props.employee);
+        return "fa-user-plus";
+        // return <i class="fas fa-user-plus"></i>;
+        // return "V";
+      }
+      else{
+        // return <i class="far fa-trash-alt"></i>;
+        return "fa-trash-alt";
+        // return "X";
+      }
     }
-    else{
-      return "X";
-    }
-  }
+  
+  render() {
+
+    
     
     return (
-      <tr className={"eachRow " + VerificarAtivosRow()}>
+      <tr className={"eachRow " + this.VerificarAtivosRow()}>
         <EditableCell onEmployeeTableUpdate={this.props.onEmployeeTableUpdate} cellData={{
           "type": "nome",
           value: this.props.employee.nome,
@@ -445,7 +389,9 @@ class ProductRow extends React.Component {
           id: this.props.employee.id
         }}/>
         <td className="del-cell">
-          <input type="button" onClick={this.onDelEvent.bind(this)} value={VerificarAtivosInput()} className="del-btn form-control c-pointer delete-buttons"/>
+          <input type="button" onClick={this.onDelEvent.bind(this)} value={this.VerificarAtivosInput()} className="del-btn form-control c-pointer delete-buttons"/>
+          <i class={"fas " + this.VerificarAtivosInput()} />;
+          {this.VerificarAtivosInput()}
         </td>
       </tr>
     );
