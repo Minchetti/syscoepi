@@ -30,11 +30,11 @@ CountDisableds = () =>{ //para contar qntos funcionarios estao desabilitados e c
   this.initialState.disableds = j;  
 }
 
+
 componentWillMount(){
   console.log('WILL MOUNT');
   this.initialState.employeesInitial = JSON.parse(JSON.stringify(this.props.lista));
 }
-
 
 
 componentWillUpdate = (nextProps) =>{
@@ -67,8 +67,7 @@ componentWillUpdate = (nextProps) =>{
   componentWillReceiveProps(nextProps){    
     console.log('WILL RECEIVE PROPS');
     if(this.state.employees !== nextProps.lista){
-      this.setState({ employees : nextProps.lista});  
-      // this.initialState.employeesInitial = nextProps.lista;  
+      this.setState({ employees : nextProps.lista});   
     }     
     if(this.initialState.employeesInitial !== nextProps.lista){
       this.initialState.employeesInitial = JSON.parse(JSON.stringify(nextProps.lista));
@@ -82,7 +81,6 @@ componentWillUpdate = (nextProps) =>{
 
 
   handleRowDel(employee) {
-    console.log('aru');
     if(employee.ativo == false){ //se o funcionario eh inativo reativar
       var employee2 = [];
       var index = this.state.employees.indexOf(employee);
@@ -114,7 +112,6 @@ componentWillUpdate = (nextProps) =>{
         }
       ); 
     }
-
   };
 
   // handleAddEvent(evt) {
@@ -158,24 +155,15 @@ componentWillUpdate = (nextProps) =>{
       {employees : JSON.parse(JSON.stringify(this.initialState.employeesInitial))},
       () => {
         document.getElementById("table-buttons").style.display = "none";    
-        
         var qntd_ativos = this.state.employees.length - this.initialState.disableds; //descobrir a qntd de funcionarios ativos
 
         for(var i = 0; i < qntd_ativos-1; i++) {  //ao clicar em cancelar a edição eu removo a class "inactive" de todos os ultimos funcionarios 
           document.getElementsByClassName("eachRow")[i].classList.remove("inactive");
-          console.log("passou");
-          console.log(qntd_ativos);
         } 
         
         for(var i = this.state.employees.length-1; i > qntd_ativos; i--) {  //ao clicar em cancelar a edição eu add a class "inactive" em todos os fultimos que estão inativos
-          // console.log(document.getElementsByClassName("eachRow")[i]);
-          console.log(this.state.employees.length-1);
-          console.log(qntd_ativos);
-
           document.getElementsByClassName("eachRow")[i].classList.add("inactive");
-          console.log("passou2");
         }         
-        
 
         var btns = document.getElementsByClassName("delete-buttons");
         for(var i = 0; i < btns.length; i++) {
@@ -185,49 +173,26 @@ componentWillUpdate = (nextProps) =>{
     )    
   }
 
-  // var btns = document.getElementsByClassName("delete-buttons");
-  // for(var i = 0; i < btns.length; i++) {
-  //   btns[i].disabled = false;
-  //   console.log('laço2');
-  // }
 
   SalvarEditar = () =>{
-    alert('DADOS MODIFICADOS SALVOS');
     document.getElementById("table-buttons").style.display = "none"; 
 
     var btns = document.getElementsByClassName("delete-buttons");
     for(var i = 0; i < btns.length; i++) {
       btns[i].disabled = false;
-      console.log('laço2');
     }
+    
+    $('#progress-bar').text('Dados salvos com sucesso!');
+    $('#progress-bar').fadeIn(2000);
+    setTimeout(function() {$('#progress-bar').fadeOut(2000);}, 2000); 
   }
 
   
-  teste = () =>{  
-    console.log(this.state.employees);
-    console.log(JSON.stringify(this.state.employees));
-  }
-  teste2 = () =>{  
-    // console.log(this.initialState.employeesInitial);
-    console.log(this.props.lista);
-    // this.CountDisableds();
-  }
-  teste3 = () =>{  
-    if(JSON.stringify(this.initialState.employeesInitial) === JSON.stringify(this.state.employees)){
-      console.log("IGUAL");
-    }
-    else{
-      console.log("DIFERENT")
-    }
-  }
 
   render() {
     
     return (
       <div className="panel">        
-      <div onClick={this.teste}>TEST</div>
-      <div onClick={this.teste2}>TEST2</div>
-      <div onClick={this.teste3}>TEST3</div>
         <div className="panel-heading d-flex justify-content-between align-items-center">
           <h6 className="text-left mb-0"><i className="fa fa-user pr-2" aria-hidden="true"></i>Funcionários({this.state.employees.length})</h6>
           
@@ -288,7 +253,7 @@ class ProductTable extends React.Component {
       <div>      
 
     {/* <button type="button" onClick={this.props.onRowAdd} className="btn btn-success pull-right">Add</button>  */}
-        <table id="table_funcionarios" className="table table-bordered">
+        <table id="table_funcionarios" className="table table-bordered mb-0">
           <thead className="thead-dark">
             <tr>
               <th>Nome</th>
@@ -326,25 +291,12 @@ class ProductRow extends React.Component {
       if(this.props.employee.ativo == false){
         return "inactive";
       }
-    }
-
-    VerificarAtivosInput = () =>{  //verificar qndo o funcionarios vair ser ativo ou não, os não ativos colocar o botão "reativar"
-      if(this.props.employee.ativo == false){
-        console.log(this.props.employee);
-        return "fa-user-plus";
-        // return <i class="fas fa-user-plus"></i>;
-        // return "V";
-      }
       else{
-        // return <i class="far fa-trash-alt"></i>;
-        return "fa-trash-alt";
-        // return "X";
+        return "active";
       }
     }
   
   render() {
-
-    
     
     return (
       <tr className={"eachRow " + this.VerificarAtivosRow()}>
@@ -388,10 +340,13 @@ class ProductRow extends React.Component {
           value: this.props.employee.ativo,
           id: this.props.employee.id
         }}/>
-        <td className="del-cell">
-          <input type="button" onClick={this.onDelEvent.bind(this)} value={this.VerificarAtivosInput()} className="del-btn form-control c-pointer delete-buttons"/>
-          <i class={"fas " + this.VerificarAtivosInput()} />;
-          {this.VerificarAtivosInput()}
+        <td className="del-cell">          
+          <div className="del-btn form-control c-pointer delete-buttons" onClick={this.onDelEvent.bind(this)}>
+            <i class="far fa-trash-alt"></i>
+          </div>
+          <div className="del-btn form-control c-pointer delete-buttons" onClick={this.onDelEvent.bind(this)}>
+            <i class="fas fa-user-plus"></i>
+          </div>
         </td>
       </tr>
     );

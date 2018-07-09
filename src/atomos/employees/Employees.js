@@ -318,7 +318,7 @@ class Employees extends React.Component {
         {/* <Modal2/>    */}
         {/* <ModalCriarEmpresa/>  */}
         
-        <ModalAddFuncionario empresaId={this.state.empresaSelecionadaId}  /> 
+        <ModalAddFuncionario empresaId={this.state.empresaSelecionadaId} lista={this.state.listaFuncionarios} /> 
 
 
       </div>

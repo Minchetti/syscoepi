@@ -310,14 +310,27 @@ svg{
 /* css classe funcionario inativado */
 .inactive{
   background:red; 
-  opacity: 0.8;
+  opacity: 0.6;
 }
 .inactive td input{
   color: red;
-  /* text-transform:  */
+  text-decoration: line-through
 }
+.inactive .del-cell div:first-child{
+  display: none !important;
+} 
+.active .del-cell div:last-child{
+  display: none !important;
+} 
 
 
 .rotated { 
   transform:rotate(180deg); 
+}
+
+/*css do area de reativar func*/
+#reactiveArea {
+  background: whitesmoke;
+  transition: 2s;
+
 }

@@ -386,7 +386,7 @@ class ModalUsuario extends React.Component {
                   <i className="fa fa-times pr-2 " aria-hidden="true" />Cancelar
                 </button>
                 <button onClick={this.EditarConta} id="editarConta" type="submit" className="btn btn-primary" >
-                  <i className="fa fa-plus pr-2 " aria-hidden="true"/>Salvar
+                  <i className="fa fa-check pr-2 " aria-hidden="true"/>Salvar
                 </button>
               </div>
 

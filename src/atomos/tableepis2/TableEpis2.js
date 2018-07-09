@@ -4,13 +4,11 @@ import $ from 'jquery';
  
 // import PropTypes from 'prop-types';
 
-//descobrir pq n está editando o campo
 
 class TableEpis2 extends React.Component {
 initialState = {
   episInitialD: [],
-  episInitialA: [],
-  action: ''
+  episInitialA: []
 }
 
 state = {
@@ -23,44 +21,25 @@ state = {
 componentWillMount(){
   this.initialState.episInitialD = JSON.parse(JSON.stringify(this.props.listaD));
   this.initialState.episInitialA = JSON.parse(JSON.stringify(this.props.listaA));
-  
 }
+
 componentDidMount(){
-  
   this.changeArrowAssign();
 }
 
-changeArrowAssign = () =>{
-    var lengthD = this.state.episDisponiveis.length;
-    var lengthA = this.state.episAtribuidos.length;
-    var length = lengthA + lengthD;
-    console.log(document.getElementsByClassName("eachRow"));
-    console.log(document.getElementsByClassName("eachRow")[length-1]);
-
-    for (var i = length-1; i > lengthD-1; i--){
-      document.getElementsByClassName("eachRow")[i].lastChild.firstChild.classList.add("rotated");
-    }
-}
-
-componentWillUpdate(nextProps){  
-  console.log('WUP');
+componentDidUpdate(nextProps){  
   if(JSON.stringify(this.initialState.episInitialD) !== JSON.stringify(this.state.episDisponiveis)  && this.props.listaD == nextProps.listaD){
-    document.getElementById("table-edit-buttonsD").style.display = "flex";
-    // alert('1');
+    document.getElementById("table-buttonsD").style.display = "flex";
   }
   else{
-    document.getElementById("table-edit-buttonsD").style.display = "none";
-    // alert('2');
-  }
-
+    document.getElementById("table-buttonsD").style.display = "none";
+  }  
   if(JSON.stringify(this.initialState.episInitialA) !== JSON.stringify(this.state.episAtribuidos)  && this.props.listaA == nextProps.listaA){
-    document.getElementById("table-edit-buttonsA").style.display = "flex";
-    // alert('3');
+    document.getElementById("table-buttonsA").style.display = "flex";
   }
   else{
-    document.getElementById("table-edit-buttonsA").style.display = "none";
-    // alert('4');
-  }
+    document.getElementById("table-buttonsA").style.display = "none";
+  }  
 }
 
 componentWillReceiveProps(nextProps){    
@@ -69,9 +48,7 @@ componentWillReceiveProps(nextProps){
   }     
   if(this.initialState.episInitialD !== nextProps.listaD){
     this.initialState.episInitialD = JSON.parse(JSON.stringify(nextProps.listaD));
-  }
-
-      
+  }      
   if(this.state.episAtribuidos !== nextProps.listaA){
     this.setState({ episAtribuidos : nextProps.listaA});   
   }     
@@ -79,6 +56,23 @@ componentWillReceiveProps(nextProps){
     this.initialState.episInitialA = JSON.parse(JSON.stringify(nextProps.listaA));
   }
 }
+
+
+
+
+
+
+
+
+changeArrowAssign = () =>{
+    var lengthD = this.state.episDisponiveis.length;
+    var lengthA = this.state.episAtribuidos.length;
+    var length = lengthA + lengthD;
+    for (var i = length-1; i > lengthA-1; i--){
+      document.getElementsByClassName("eachRow")[i].lastChild.firstChild.classList.add("rotated");
+    }
+}
+
 
 
 handleUserInputD(filterText) {
@@ -93,13 +87,13 @@ handleRowDelD(epi) {
   var index = this.state.episDisponiveis.indexOf(epi);
   this.state.episDisponiveis.splice(index, 1);
   this.setState(this.state.episDisponiveis);
-  document.getElementById("table-delete-buttonsD").style.display = "flex";
+  document.getElementById("table-buttonsD").style.display = "flex";
 };
 handleRowDelA(epi) {
   var index = this.state.episAtribuidos.indexOf(epi);
   this.state.episAtribuidos.splice(index, 1);
   this.setState(this.state.episAtribuidos);
-  document.getElementById("table-delete-buttonsA").style.display = "flex";
+  document.getElementById("table-buttonsA").style.display = "flex";
 };
 
 
@@ -188,7 +182,7 @@ handleRowAssignD(epi) {
     }  
   }    
   this.enableChangeBtn(); //ao final da troca habilitar denovo os botoes  
-  document.getElementById("table-assign-buttonsD").style.display = "flex";
+  document.getElementById("table-buttonsD").style.display = "flex";
 };
 
 
@@ -248,7 +242,7 @@ handleRowAssignA(epi) {
     }  
   }    
   this.enableChangeBtn(); //ao final da troca habilitar denovo os botoes  
-  document.getElementById("table-assign-buttonsA").style.display = "flex";
+  document.getElementById("table-buttonsA").style.display = "flex";
 };
 
 
@@ -301,7 +295,6 @@ handleRowChangeButtonA(epi) {
 
 
 handleEpisTableD(evt) {  
-  console.log('HET D');
   var item = {
     id: evt.target.id,
     name: evt.target.name,
@@ -320,7 +313,6 @@ handleEpisTableD(evt) {
 };
 
 handleEpisTableA(evt) {
-  console.log('HET A');
   var item = {
     id: evt.target.id,
     name: evt.target.name,
@@ -339,122 +331,32 @@ handleEpisTableA(evt) {
 };
 
 
-CancelarDeletarD = () =>{      
-  this.setState(
-    {episDisponiveis : JSON.parse(JSON.stringify(this.initialState.episInitialD))},
-    () => document.getElementById("table-delete-buttonsD").style.display = "none"
-  );  
-}
 
 
-CancelarAtribuirD = () =>{      
-  this.setState(
-    {
-      episDisponiveis : JSON.parse(JSON.stringify(this.initialState.episInitialD)),
-      episAtribuidos : JSON.parse(JSON.stringify(this.initialState.episInitialA))
-    },
-    () => document.getElementById("table-assign-buttonsD").style.display = "none"
-  );
-}
 
 CancelarEditarD = () =>{      
   this.setState(
-    {episDisponiveis : JSON.parse(JSON.stringify(this.initialState.episInitialD))},
-    () => document.getElementById("table-edit-buttonsD").style.display = "none"
-  );  
-}
-
-CancelarDeletarA = () =>{      
-  this.setState(
-    {episAtribuidos : JSON.parse(JSON.stringify(this.initialState.episInitialA))},
-    () => document.getElementById("table-delete-buttonsA").style.display = "none"
+    {
+      episDisponiveis : JSON.parse(JSON.stringify(this.initialState.episInitialD)),
+      episAtribuidos : JSON.parse(JSON.stringify(this.initialState.episInitialA))
+    },
+    () => document.getElementById("table-buttonsD").style.display = "none"
   );
 }
-CancelarAtribuirA = () =>{      
+
+CancelarEditarA = () =>{      
   this.setState(
     {
       episDisponiveis : JSON.parse(JSON.stringify(this.initialState.episInitialD)),
       episAtribuidos : JSON.parse(JSON.stringify(this.initialState.episInitialA))
     },
-    () => document.getElementById("table-assign-buttonsA").style.display = "none"
+    () => document.getElementById("table-buttonsA").style.display = "none"
   );
 }
-CancelarEditarA = () =>{      
-  this.setState(
-    {episAtribuidos : JSON.parse(JSON.stringify(this.initialState.episInitialA))},
-    () => document.getElementById("table-edit-buttonsA").style.display = "none"
-  );  
-}
 
-
-
-SalvarDeletarD = () =>{
-  document.getElementById("table-delete-buttonsD").style.display = "none";
-
-  // var EmpresaSelecionada = document.getElementById("select-empresas").value;
-    
-    // fetch('http://192.168.10.30/v1/cliente/{id}/empresas', {
-    //   method: 'get',
-    //   body: JSON.stringify(),
-    //   headers: {
-      //     'content-type': 'application/json'
-      //   }
-      // })
-      // .then(response => {
-        //   response.json().then(data => {
-          //     if (data.success == true) {   
-        //        this.setState({ arrayEmpresas: data });   
-    //          } 
-    //          else {
-      //       alert(data.message+' - '+data.data[0].message);    
-    //     }
-    //   });
-    // })
-    // .catch(err => {
-    //   console.error('Failed retrieving information', err);
-    //   alert(err);
-    // });
-    
-    $('#progress-bar').text('Epi D excluido com sucesso !');
-    $('#progress-bar').fadeIn(2000);
-    setTimeout(function() {$('#progress-bar').fadeOut(2000);}, 2000); 
-}
-
-SalvarAtribuirD = () =>{
-  console.log('foi asdasds');
-  document.getElementById("table-assign-buttonsD").style.display = "none";
-
-  // var EmpresaSelecionada = document.getElementById("select-empresas").value;
-    
-    // fetch('http://192.168.10.30/v1/cliente/{id}/empresas', {
-    //   method: 'get',
-    //   body: JSON.stringify(),
-    //   headers: {
-      //     'content-type': 'application/json'
-      //   }
-      // })
-      // .then(response => {
-        //   response.json().then(data => {
-          //     if (data.success == true) {   
-        //        this.setState({ arrayEmpresas: data });   
-    //          } 
-    //          else {
-      //       alert(data.message+' - '+data.data[0].message);    
-    //     }
-    //   });
-    // })
-    // .catch(err => {
-    //   console.error('Failed retrieving information', err);
-    //   alert(err);
-    // });
-    
-    $('#progress-bar').text('Epi D atribuído com sucesso 2!');
-    $('#progress-bar').fadeIn(2000);
-    setTimeout(function() {$('#progress-bar').fadeOut(2000);}, 2000); 
-}
 
 SalvarEditarD = () =>{
-  document.getElementById("table-edit-buttonsD").style.display = "none";
+  document.getElementById("table-buttonsD").style.display = "none";
 
   // var EmpresaSelecionada = document.getElementById("select-empresas").value;
     
@@ -480,30 +382,13 @@ SalvarEditarD = () =>{
     //   alert(err);
     // });
     
-    $('#progress-bar').text('Epi D editado com sucesso!');
+    $('#progress-bar').text('Dados salvos com sucesso!');
     $('#progress-bar').fadeIn(2000);
     setTimeout(function() {$('#progress-bar').fadeOut(2000);}, 2000); 
-}
-
-
-SalvarDeletarA = () =>{
-  document.getElementById("table-delete-buttonsA").style.display = "none";
-    
-  $('#progress-bar').text('Epi A excluído com sucesso!');
-  $('#progress-bar').fadeIn(2000);
-  setTimeout(function() {$('#progress-bar').fadeOut(2000);}, 2000); 
-}
-
-SalvarAtribuirA = () =>{
-  document.getElementById("table-assign-buttonsA").style.display = "none";
-    
-  $('#progress-bar').text('Epi A atribuído com sucesso2!');
-  $('#progress-bar').fadeIn(2000);
-  setTimeout(function() {$('#progress-bar').fadeOut(2000);}, 2000); 
 }
 
 SalvarEditarA = () =>{
-  document.getElementById("table-edit-buttonsA").style.display = "none";
+  document.getElementById("table-buttonsA").style.display = "none";
 
   // var EmpresaSelecionada = document.getElementById("select-empresas").value;
     
@@ -529,46 +414,51 @@ SalvarEditarA = () =>{
     //   alert(err);
     // });
     
-    $('#progress-bar').text('Epi A editado com sucesso!');
+    $('#progress-bar').text('Dados salvos com sucesso!');
     $('#progress-bar').fadeIn(2000);
     setTimeout(function() {$('#progress-bar').fadeOut(2000);}, 2000); 
 }
-
-
 
 
 
   render() {    
     return (
       <div>
+
         <div className="panel">        
           <div className="panel-heading d-flex justify-content-between align-items-center">
-            <h6 className="text-left mb-0"><i className="fa fa-user pr-2" aria-hidden="true"></i>Epi's Disponíveis({this.state.episDisponiveis.length})</h6>
+            <h6 className="text-left mb-0"><i className="fa fa-user pr-2" aria-hidden="true"></i>Epi's Atribuidos({this.state.episAtribuidos.length})</h6>
             
-            <div className="d-nonin" id="table-delete-buttonsD">      
-              <button type="button" onClick={this.CancelarDeletarD} className="btn btn-danger mr-2" > {/*data-dismiss="modal"*/}
-                <i className="fa fa-times pr-2 " aria-hidden="true" />Cancelar Deletar D
+            <div className="d-nonin" id="table-buttonsA">      
+              <button type="button" onClick={this.CancelarEditarA} className="btn btn-danger mr-2" > {/*data-dismiss="modal"*/}
+                <i className="fa fa-times pr-2 " aria-hidden="true" />Cancelar A
               </button>
-              <button onClick={this.SalvarDeletarD} type="submit" className="btn btn-primary" >
-                <i className="fa fa-check pr-2 " aria-hidden="true"/>Salvar Deletar D
+              <button onClick={this.SalvarEditarA} type="submit" className="btn btn-primary" >
+                <i className="fa fa-check pr-2 " aria-hidden="true"/>Salvar A
               </button>
             </div>
             
-            <div className="d-nonin" id="table-assign-buttonsD">      
-              <button type="button" onClick={this.CancelarAtribuirD} className="btn btn-danger mr-2" > {/*data-dismiss="modal"*/}
-                <i className="fa fa-times pr-2 " aria-hidden="true" />Cancelar Atribuir D
-              </button>
-              <button onClick={this.SalvarAtribuirD} type="submit" className="btn btn-primary" >
-                <i className="fa fa-check pr-2 " aria-hidden="true"/>Salvar Atribuir D
-              </button>
+            <div className="d-flex align-items-center">
+              <i class="fas fa-search fa-lg mr-2"></i>
+              <SearchBar filterText={this.state.filterTextA} onUserInput={this.handleUserInputA.bind(this)}/>
             </div>
+          </div>
+          <div className="panel-body">
+            <EpisTable onEpisTableUpdate={this.handleEpisTableA.bind(this)}  onRowDel={this.handleRowDelA.bind(this)} onRowAssign={this.handleRowAssignA.bind(this)} onRowCancelAssign={this.handleRowCancelAssignA.bind(this)} onRowChangeButton={this.handleRowChangeButtonA.bind(this)} epis={this.state.episAtribuidos} filterText={this.state.filterTextA}/> {/*onRowAdd={this.handleAddEvent.bind(this)}*/}
+          </div>
+        </div>
 
-            <div className="d-nonin" id="table-edit-buttonsD">      
+
+        <div className="panel mt-5">        
+          <div className="panel-heading d-flex justify-content-between align-items-center">
+            <h6 className="text-left mb-0"><i className="fa fa-user pr-2" aria-hidden="true"></i>Epi's Disponíveis({this.state.episDisponiveis.length})</h6>
+
+            <div className="d-nonin" id="table-buttonsD">      
               <button type="button" onClick={this.CancelarEditarD} className="btn btn-danger mr-2" > {/*data-dismiss="modal"*/}
-                <i className="fa fa-times pr-2 " aria-hidden="true" />Cancelar Editar D
+                <i className="fa fa-times pr-2 " aria-hidden="true" />Cancelar D
               </button>
               <button onClick={this.SalvarEditarD} type="submit" className="btn btn-primary" >
-                <i className="fa fa-check pr-2 " aria-hidden="true"/>Salvar Editar D
+                <i className="fa fa-check pr-2 " aria-hidden="true"/>Salvar D
               </button>
             </div>
             
@@ -583,46 +473,8 @@ SalvarEditarA = () =>{
         </div>
 
 
-        <div className="panel mt-5">        
-          <div className="panel-heading d-flex justify-content-between align-items-center">
-            <h6 className="text-left mb-0"><i className="fa fa-user pr-2" aria-hidden="true"></i>Epi's Atribuidos({this.state.episAtribuidos.length})</h6>
-            
-            <div className="d-nonin" id="table-delete-buttonsA">      
-              <button type="button" onClick={this.CancelarDeletarA} className="btn btn-danger mr-2" > {/*data-dismiss="modal"*/}
-                <i className="fa fa-times pr-2 " aria-hidden="true" />Cancelar Delete A
-              </button>
-              <button onClick={this.SalvarDeletarA} type="submit" className="btn btn-primary" >
-                <i className="fa fa-check pr-2 " aria-hidden="true"/>Salvar Delete A
-              </button>
-            </div>
-            
-            <div className="d-nonin" id="table-assign-buttonsA">      
-              <button type="button" onClick={this.CancelarAtribuirA} className="btn btn-danger mr-2" > {/*data-dismiss="modal"*/}
-                <i className="fa fa-times pr-2 " aria-hidden="true" />Cancelar Atribuir A
-              </button>
-              <button onClick={this.SalvarAtribuirA} type="submit" className="btn btn-primary" >
-                <i className="fa fa-check pr-2 " aria-hidden="true"/>Salvar Atribuir A
-              </button>
-            </div>
+       
 
-            <div className="d-nonin" id="table-edit-buttonsA">      
-              <button type="button" onClick={this.CancelarEditarA} className="btn btn-danger mr-2" > {/*data-dismiss="modal"*/}
-                <i className="fa fa-times pr-2 " aria-hidden="true" />Cancelar Editar A
-              </button>
-              <button onClick={this.SalvarEditarA} type="submit" className="btn btn-primary" >
-                <i className="fa fa-check pr-2 " aria-hidden="true"/>Salvar Editar A
-              </button>
-            </div>
-            
-            <div className="d-flex align-items-center">
-              <i class="fas fa-search fa-lg mr-2"></i>
-              <SearchBar filterText={this.state.filterTextA} onUserInput={this.handleUserInputA.bind(this)}/>
-            </div>
-          </div>
-          <div className="panel-body">
-            <EpisTable onEpisTableUpdate={this.handleEpisTableA.bind(this)}  onRowDel={this.handleRowDelA.bind(this)} onRowAssign={this.handleRowAssignA.bind(this)} onRowCancelAssign={this.handleRowCancelAssignA.bind(this)} onRowChangeButton={this.handleRowChangeButtonA.bind(this)} epis={this.state.episAtribuidos} filterText={this.state.filterTextA}/> {/*onRowAdd={this.handleAddEvent.bind(this)}*/}
-          </div>
-        </div>
       </div>
     );
   }
