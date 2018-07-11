@@ -253,7 +253,9 @@ class Epis extends React.Component {
   };
 
 
-
+  handleMassAssignD (epi){
+    alert("capataz fei");
+  }
 
 
 
@@ -278,7 +280,7 @@ class Epis extends React.Component {
         </div>
         
         
-        {this.state.listaEpisDisponiveis !=0 && this.state.listaEpisAtribuidos !=0 ? (<TableEpis2 listaD={this.state.listaEpisDisponiveis} listaA={this.state.listaEpisAtribuidos} />) : (<h1>Cadastre seus primeiros epi's</h1>) }
+        {this.state.listaEpisDisponiveis !=0 && this.state.listaEpisAtribuidos !=0 ? (<TableEpis2 onMassAssign={this.handleMassAssignD.bind(this)} listaD={this.state.listaEpisDisponiveis} listaA={this.state.listaEpisAtribuidos} />) : (<h1>Cadastre seus primeiros epi's</h1>) }
         {/* {this.state.listaEpisDisponiveis != 0 ? (<TableEpis lista={this.state.listaEpisDisponiveis}  />) : (<h1>Cadastre seus primeiros epi's</h1>) } */}
 
 

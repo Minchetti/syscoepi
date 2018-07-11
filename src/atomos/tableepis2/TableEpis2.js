@@ -61,14 +61,11 @@ componentWillReceiveProps(nextProps){
 
 
 
-
-
-
 changeArrowAssign = () =>{
     var lengthD = this.state.episDisponiveis.length;
     var lengthA = this.state.episAtribuidos.length;
     var length = lengthA + lengthD;
-    for (var i = length-1; i > lengthA-1; i--){
+    for (var i = length-1; i > lengthD-1; i--){
       document.getElementsByClassName("eachRow")[i].lastChild.firstChild.classList.add("rotated");
     }
 }
@@ -83,6 +80,7 @@ handleUserInputA(filterText) {
 };
 
 
+
 handleRowDelD(epi) {
   var index = this.state.episDisponiveis.indexOf(epi);
   this.state.episDisponiveis.splice(index, 1);
@@ -95,8 +93,6 @@ handleRowDelA(epi) {
   this.setState(this.state.episAtribuidos);
   document.getElementById("table-buttonsA").style.display = "flex";
 };
-
-
 
 
 
@@ -121,14 +117,6 @@ enableChangeBtn = () =>{
     btns[i].disabled = false;
   } 
 }
-
-
-
-
-
-
-
-
 
 
 
@@ -184,6 +172,59 @@ handleRowAssignD(epi) {
   this.enableChangeBtn(); //ao final da troca habilitar denovo os botoes  
   document.getElementById("table-buttonsD").style.display = "flex";
 };
+
+handleRowAssignD2(epi) {
+  console.log('veio');
+  // var arrayD = this.state.episDisponiveis;
+  // var arrayA = this.state.episAtribuidos;
+  // var index = arrayD.indexOf(epi);
+  // var achouIgual = false; //variavel aux pra logica de ver se tem outro registro igual na outra tabela
+  
+  // var estoqueInicial = arrayD[index].estoque;   //estoque inicial
+  // var assignedEpi = Object.assign({}, arrayD[index]);  //seleciona o obj escolhido
+
+  // var assignedEpiHTML = document.getElementsByClassName("eachRow")[index];  //seleciona o html do epi escolhido
+  // var qntdPassada = assignedEpiHTML.lastChild.lastChild.firstChild.value; //pega o value da qntd passada digitada
+
+  // assignedEpiHTML.lastChild.lastChild.style.display = "none"; //esconder a qntd ok text e cancel
+  // assignedEpiHTML.lastChild.firstChild.style.display = "flex"; //mostrar botao d trocar d tabela
+  
+  // if(assignedEpi.estoque > 0 && qntdPassada < assignedEpi.estoque) {    //se a qntd em estoque eh maior q a qntd passada
+    
+  //   arrayD[index].estoque = estoqueInicial - qntdPassada;      //ajustar o estoque D 
+     
+  //   arrayA.map((value) => {   //laço para varrer o outro array e ver se ja tem um registro com cod igual
+  //     if(value.cod == assignedEpi.cod){  //se achar só adicionar no estoque da outra 
+  //       value.estoque = parseInt(value.estoque) + parseInt(qntdPassada);          
+  //       achouIgual = true;
+  //       this.setState({episAtribuidos: arrayA});
+  //     }
+  //   });      
+  //   if(achouIgual == false){  // se não cria um novo registro desse epi na outra
+  //     assignedEpi.estoque = qntdPassada;  //atualiza para a qntd digitada antes de juntar com o arrayA
+  //     arrayA = arrayA.concat(assignedEpi);  //concatena o registro passado pro final do arrayA
+  //     this.setState({episAtribuidos: arrayA});
+  //   }    
+  // }
+  // else if(assignedEpi.estoque > 0){ //arrumar aqui
+  //   arrayD.splice(index, 1);   //tirar do array
+  //   this.setState({episDisponiveis: arrayD});
+
+  //   arrayA.map((value) => {   //laço para varrer o outro array e ver se ja tem um registro com cod igual
+  //     if(value.cod == assignedEpi.cod){  //se achar só adicionar no estoque da outra 
+  //       value.estoque = parseInt(value.estoque) + parseInt(qntdPassada);          
+  //       achouIgual = true;
+  //     }
+  //   });    
+  //   if(achouIgual == false){  // se não cria um novo registro desse epi na outra
+  //     arrayA = arrayA.concat(assignedEpi);  //concatena o registro passado pro final do arrayA
+  //     this.setState({episAtribuidos: arrayA});
+  //   }  
+  // }    
+  // this.enableChangeBtn(); //ao final da troca habilitar denovo os botoes  
+  // document.getElementById("table-buttonsD").style.display = "flex";
+};
+
 
 
 
@@ -244,12 +285,6 @@ handleRowAssignA(epi) {
   this.enableChangeBtn(); //ao final da troca habilitar denovo os botoes  
   document.getElementById("table-buttonsA").style.display = "flex";
 };
-
-
-
-
-
-
 
 
 
@@ -427,6 +462,29 @@ SalvarEditarA = () =>{
 
         <div className="panel">        
           <div className="panel-heading d-flex justify-content-between align-items-center">
+            <h6 className="text-left mb-0"><i className="fa fa-user pr-2" aria-hidden="true"></i>Epi's Disponíveis({this.state.episDisponiveis.length})</h6>
+
+            <div className="d-nonin" id="table-buttonsD">      
+              <button type="button" onClick={this.CancelarEditarD} className="btn btn-danger mr-2" > {/*data-dismiss="modal"*/}
+                <i className="fa fa-times pr-2 " aria-hidden="true" />Cancelar D
+              </button>
+              <button onClick={this.SalvarEditarD} type="submit" className="btn btn-primary" >
+                <i className="fa fa-check pr-2 " aria-hidden="true"/>Salvar D
+              </button>
+            </div>
+            
+            <div className="d-flex align-items-center">
+              <i class="fas fa-search fa-lg mr-2"></i>
+              <SearchBar filterText={this.state.filterTextD} onUserInput={this.handleUserInputD.bind(this)}/>
+            </div>
+          </div>
+          <div className="panel-body">
+            <EpisTable onEpisTableUpdate={this.handleEpisTableD.bind(this)}  onRowDel={this.handleRowDelD.bind(this)} onAssignEvent2={this.handleRowAssignD2.bind(this)} onRowAssign={this.handleRowAssignD.bind(this)} onRowCancelAssign={this.handleRowCancelAssignD.bind(this)} onRowChangeButton={this.handleRowChangeButtonD.bind(this)} epis={this.state.episDisponiveis} filterText={this.state.filterTextD}/> {/*onRowAdd={this.handleAddEvent.bind(this)}*/}
+          </div>
+        </div>
+
+        <div className="panel mt-5">        
+          <div className="panel-heading d-flex justify-content-between align-items-center">
             <h6 className="text-left mb-0"><i className="fa fa-user pr-2" aria-hidden="true"></i>Epi's Atribuidos({this.state.episAtribuidos.length})</h6>
             
             <div className="d-nonin" id="table-buttonsA">      
@@ -447,41 +505,12 @@ SalvarEditarA = () =>{
             <EpisTable onEpisTableUpdate={this.handleEpisTableA.bind(this)}  onRowDel={this.handleRowDelA.bind(this)} onRowAssign={this.handleRowAssignA.bind(this)} onRowCancelAssign={this.handleRowCancelAssignA.bind(this)} onRowChangeButton={this.handleRowChangeButtonA.bind(this)} epis={this.state.episAtribuidos} filterText={this.state.filterTextA}/> {/*onRowAdd={this.handleAddEvent.bind(this)}*/}
           </div>
         </div>
-
-
-        <div className="panel mt-5">        
-          <div className="panel-heading d-flex justify-content-between align-items-center">
-            <h6 className="text-left mb-0"><i className="fa fa-user pr-2" aria-hidden="true"></i>Epi's Disponíveis({this.state.episDisponiveis.length})</h6>
-
-            <div className="d-nonin" id="table-buttonsD">      
-              <button type="button" onClick={this.CancelarEditarD} className="btn btn-danger mr-2" > {/*data-dismiss="modal"*/}
-                <i className="fa fa-times pr-2 " aria-hidden="true" />Cancelar D
-              </button>
-              <button onClick={this.SalvarEditarD} type="submit" className="btn btn-primary" >
-                <i className="fa fa-check pr-2 " aria-hidden="true"/>Salvar D
-              </button>
-            </div>
-            
-            <div className="d-flex align-items-center">
-              <i class="fas fa-search fa-lg mr-2"></i>
-              <SearchBar filterText={this.state.filterTextD} onUserInput={this.handleUserInputD.bind(this)}/>
-            </div>
-          </div>
-          <div className="panel-body">
-            <EpisTable onEpisTableUpdate={this.handleEpisTableD.bind(this)}  onRowDel={this.handleRowDelD.bind(this)} onRowAssign={this.handleRowAssignD.bind(this)} onRowCancelAssign={this.handleRowCancelAssignD.bind(this)} onRowChangeButton={this.handleRowChangeButtonD.bind(this)} epis={this.state.episDisponiveis} filterText={this.state.filterTextD}/> {/*onRowAdd={this.handleAddEvent.bind(this)}*/}
-          </div>
-        </div>
-
-
        
 
       </div>
     );
   }
 }
-
-
-
 
 
 
@@ -502,17 +531,19 @@ class SearchBar extends React.Component {
 
 
 
-
-
-
-
 class EpisTable extends React.Component {
+
+  
+  onAssignEvent2() {
+    this.props.onAssignEvent2(this.props.epi);
+  } 
 
   render() {
 
     var onEpisTableUpdate = this.props.onEpisTableUpdate;
     var rowDel = this.props.onRowDel;
     var rowAssign = this.props.onRowAssign;
+    var rowAssign2 = this.props.onRowAssign2;
     var rowCancelAssign = this.props.onRowCancelAssign;
     var rowChangeButton = this.props.onRowChangeButton;
     var filterText = this.props.filterText;
@@ -547,6 +578,11 @@ class EpisTable extends React.Component {
           <tbody>
             {epi}
           </tbody>
+          <tfoot> {/*MASS ASSIGN*/}
+            <div className="">        
+              <input type="button" onClick={this.onAssignEvent2.bind(this)} value="OK" className="form-control"/>                     
+            </div>
+          </tfoot>
         </table>
       </div>
     );
@@ -651,6 +687,11 @@ class TableRow extends React.Component {
             <input type="text" placeholder="Qntd..." className="input-qntd form-control"/> 
             <input type="button" onClick={this.onAssignEvent.bind(this)} value="OK" className="form-control"/>            
             <input type="button" onClick={this.onCancelAssignEvent.bind(this)} value="Cancelar" className="form-control"/>            
+          </div>
+        </td>
+        <td>
+          <div className="form-control">          
+            <input type="text" placeholder="Qntd..." className="form-control"/>          
           </div>
         </td>
       </tr>
