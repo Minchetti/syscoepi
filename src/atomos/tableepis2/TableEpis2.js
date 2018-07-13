@@ -59,8 +59,6 @@ componentWillReceiveProps(nextProps){
 
 
 
-
-
 changeArrowAssign = () =>{
     var lengthD = this.state.episDisponiveis.length;
     var lengthA = this.state.episAtribuidos.length;
@@ -96,7 +94,6 @@ handleRowDelA(epi) {
 
 
 
-
 disableChangeBtn = () =>{
   var btns = document.getElementsByClassName("change-btn"); //desabilitar botao de change
   for(var i = 0; i < btns.length; i++) {
@@ -117,8 +114,6 @@ enableChangeBtn = () =>{
     btns[i].disabled = false;
   } 
 }
-
-
 
 
 
@@ -173,119 +168,176 @@ handleRowAssignD(epi) {
   document.getElementById("table-buttonsD").style.display = "flex";
 };
 
-handleRowAssignD2(epi) {
-  console.log('veio');
-  // var arrayD = this.state.episDisponiveis;
-  // var arrayA = this.state.episAtribuidos;
-  // var index = arrayD.indexOf(epi);
-  // var achouIgual = false; //variavel aux pra logica de ver se tem outro registro igual na outra tabela
-  
-  // var estoqueInicial = arrayD[index].estoque;   //estoque inicial
-  // var assignedEpi = Object.assign({}, arrayD[index]);  //seleciona o obj escolhido
-
-  // var assignedEpiHTML = document.getElementsByClassName("eachRow")[index];  //seleciona o html do epi escolhido
-  // var qntdPassada = assignedEpiHTML.lastChild.lastChild.firstChild.value; //pega o value da qntd passada digitada
-
-  // assignedEpiHTML.lastChild.lastChild.style.display = "none"; //esconder a qntd ok text e cancel
-  // assignedEpiHTML.lastChild.firstChild.style.display = "flex"; //mostrar botao d trocar d tabela
-  
-  // if(assignedEpi.estoque > 0 && qntdPassada < assignedEpi.estoque) {    //se a qntd em estoque eh maior q a qntd passada
-    
-  //   arrayD[index].estoque = estoqueInicial - qntdPassada;      //ajustar o estoque D 
-     
-  //   arrayA.map((value) => {   //laço para varrer o outro array e ver se ja tem um registro com cod igual
-  //     if(value.cod == assignedEpi.cod){  //se achar só adicionar no estoque da outra 
-  //       value.estoque = parseInt(value.estoque) + parseInt(qntdPassada);          
-  //       achouIgual = true;
-  //       this.setState({episAtribuidos: arrayA});
-  //     }
-  //   });      
-  //   if(achouIgual == false){  // se não cria um novo registro desse epi na outra
-  //     assignedEpi.estoque = qntdPassada;  //atualiza para a qntd digitada antes de juntar com o arrayA
-  //     arrayA = arrayA.concat(assignedEpi);  //concatena o registro passado pro final do arrayA
-  //     this.setState({episAtribuidos: arrayA});
-  //   }    
-  // }
-  // else if(assignedEpi.estoque > 0){ //arrumar aqui
-  //   arrayD.splice(index, 1);   //tirar do array
-  //   this.setState({episDisponiveis: arrayD});
-
-  //   arrayA.map((value) => {   //laço para varrer o outro array e ver se ja tem um registro com cod igual
-  //     if(value.cod == assignedEpi.cod){  //se achar só adicionar no estoque da outra 
-  //       value.estoque = parseInt(value.estoque) + parseInt(qntdPassada);          
-  //       achouIgual = true;
-  //     }
-  //   });    
-  //   if(achouIgual == false){  // se não cria um novo registro desse epi na outra
-  //     arrayA = arrayA.concat(assignedEpi);  //concatena o registro passado pro final do arrayA
-  //     this.setState({episAtribuidos: arrayA});
-  //   }  
-  // }    
-  // this.enableChangeBtn(); //ao final da troca habilitar denovo os botoes  
-  // document.getElementById("table-buttonsD").style.display = "flex";
-};
-
-
-
-
 
 
 
 handleRowAssignA(epi) { 
- var arrayD = this.state.episDisponiveis;
+  var arrayD = this.state.episDisponiveis;
+   var arrayA = this.state.episAtribuidos;
+   var index = arrayA.indexOf(epi);
+   var achouIgual = false; //variavel aux pra logica de ver se tem outro registro igual na outra tabela
+   
+   var estoqueInicial = arrayA[index].estoque;   //estoque inicial
+   var assignedEpi = Object.assign({}, arrayA[index]);  //seleciona o obj escolhido
+ 
+   var lengthD = this.state.episDisponiveis.length; //descobrir qntos registro tem na tabela de cima 
+   var assignedEpiHTML = document.getElementsByClassName("eachRow")[index + lengthD];  //seleciona o html do epi escolhido
+   var qntdPassada = assignedEpiHTML.lastChild.lastChild.firstChild.value; //pega o value da qntd passada digitada
+ 
+   assignedEpiHTML.lastChild.lastChild.style.display = "none"; //esconder a qntd ok text e cancel
+   assignedEpiHTML.lastChild.firstChild.style.display = "flex"; //mostrar botao d trocar d tabela
+   
+   if(assignedEpi.estoque > 0 && qntdPassada < assignedEpi.estoque) {    //se a qntd em estoque eh maior q a qntd passada
+     
+     arrayA[index].estoque = estoqueInicial - qntdPassada;      //ajustar o estoque A
+ 
+     arrayD.map((value) => {   //laço para varrer o outro array e ver se ja tem um registro com cod igual
+       if(value.cod == assignedEpi.cod){  //se achar só adicionar no estoque da outra 
+         value.estoque = parseInt(value.estoque) + parseInt(qntdPassada);          
+         achouIgual = true;
+         this.setState({episDisponiveis: arrayD});
+       }
+     });
+ 
+     if(achouIgual == false){  // se não cria um novo registro desse epi na outra
+       assignedEpi.estoque = qntdPassada;  //atualiza para a qntd digitada antes de juntar com o arrayA
+       arrayD = arrayD.concat(assignedEpi);  //concatena o registro passado pro final do arrayA
+       this.setState({episDisponiveis: arrayD});
+     }  
+   }
+ 
+   else if(assignedEpi.estoque > 0){
+     arrayA.splice(index, 1);   //tirar do array
+     this.setState({episAtribuidos: arrayA});
+ 
+     arrayD.map((value) => {   //laço para varrer o outro array e ver se ja tem um registro com cod igual
+       if(value.cod == assignedEpi.cod){  //se achar só adicionar no estoque da outra 
+         value.estoque = parseInt(value.estoque) + parseInt(qntdPassada);          
+         achouIgual = true;
+       }
+     });
+     
+     if(achouIgual == false){  // se não cria um novo registro desse epi na outra
+       arrayD = arrayD.concat(assignedEpi);  //concatena o registro passado pro final do arrayA
+       this.setState({episDisponiveis: arrayD});
+     }  
+   }    
+   this.enableChangeBtn(); //ao final da troca habilitar denovo os botoes  
+   document.getElementById("table-buttonsA").style.display = "flex";
+ };
+ 
+
+
+
+
+handleMassAssignD(epi) {
+  var arrayD = this.state.episDisponiveis;
+  var arrayDaux = Object.assign([], this.state.episDisponiveis);
   var arrayA = this.state.episAtribuidos;
-  var index = arrayA.indexOf(epi);
-  var achouIgual = false; //variavel aux pra logica de ver se tem outro registro igual na outra tabela
-  
-  var estoqueInicial = arrayA[index].estoque;   //estoque inicial
-  var assignedEpi = Object.assign({}, arrayA[index]);  //seleciona o obj escolhido
+  var splices = 0;
 
-  var lengthD = this.state.episDisponiveis.length; //descobrir qntos registro tem na tabela de cima 
-  var assignedEpiHTML = document.getElementsByClassName("eachRow")[index + lengthD];  //seleciona o html do epi escolhido
-  var qntdPassada = assignedEpiHTML.lastChild.lastChild.firstChild.value; //pega o value da qntd passada digitada
+  arrayDaux.map((epi)=> {
+    var index = arrayD.indexOf(epi);
+    var qntdPassada = document.getElementsByClassName("massAssign")[index + splices].value; //pega o value da qntd passada digitada
+    var assignedEpi = Object.assign({}, arrayD[index]);  //seleciona o obj escolhido
+    var achouIgual = false; //variavel aux pra logica de ver se tem outro registro igual na outra tabela
+   
+    if(qntdPassada != ''){
 
-  assignedEpiHTML.lastChild.lastChild.style.display = "none"; //esconder a qntd ok text e cancel
-  assignedEpiHTML.lastChild.firstChild.style.display = "flex"; //mostrar botao d trocar d tabela
-  
-  if(assignedEpi.estoque > 0 && qntdPassada < assignedEpi.estoque) {    //se a qntd em estoque eh maior q a qntd passada
-    
-    arrayA[index].estoque = estoqueInicial - qntdPassada;      //ajustar o estoque A
-
-    arrayD.map((value) => {   //laço para varrer o outro array e ver se ja tem um registro com cod igual
-      if(value.cod == assignedEpi.cod){  //se achar só adicionar no estoque da outra 
-        value.estoque = parseInt(value.estoque) + parseInt(qntdPassada);          
-        achouIgual = true;
-        this.setState({episDisponiveis: arrayD});
+      if(assignedEpi.estoque > 0 && qntdPassada < assignedEpi.estoque) {    //se a qntd em estoque eh maior q a qntd passada
+        arrayD[index].estoque = arrayD[index].estoque - qntdPassada;      //ajustar o estoque D 
+        
+        arrayA.map((value) => {   //laço para varrer o outro array e ver se ja tem um registro com cod igual
+          if(value.cod == assignedEpi.cod){  //se achar só adicionar no estoque da outra 
+            value.estoque = parseInt(value.estoque) + parseInt(qntdPassada);          
+            achouIgual = true;
+            // this.setState({episAtribuidos: arrayA});
+          }
+        });      
+        if(achouIgual == false){  // se não cria um novo registro desse epi na outra
+          assignedEpi.estoque = qntdPassada;  //atualiza para a qntd digitada antes de juntar com o arrayA
+          arrayA = arrayA.concat(assignedEpi);  //concatena o registro passado pro final do arrayA
+          // this.setState({episAtribuidos: arrayA});
+        }    
       }
-    });
-
-    if(achouIgual == false){  // se não cria um novo registro desse epi na outra
-      assignedEpi.estoque = qntdPassada;  //atualiza para a qntd digitada antes de juntar com o arrayA
-      arrayD = arrayD.concat(assignedEpi);  //concatena o registro passado pro final do arrayA
-      this.setState({episDisponiveis: arrayD});
-    }  
-  }
-
-  else if(assignedEpi.estoque > 0){
-    arrayA.splice(index, 1);   //tirar do array
-    this.setState({episAtribuidos: arrayA});
-
-    arrayD.map((value) => {   //laço para varrer o outro array e ver se ja tem um registro com cod igual
-      if(value.cod == assignedEpi.cod){  //se achar só adicionar no estoque da outra 
-        value.estoque = parseInt(value.estoque) + parseInt(qntdPassada);          
-        achouIgual = true;
-      }
-    });
+      else if(assignedEpi.estoque > 0){ 
+        arrayD.splice(index, 1);   //tirar do array
+        splices += 1;
+        // this.setState({episDisponiveis: arrayD});
     
-    if(achouIgual == false){  // se não cria um novo registro desse epi na outra
-      arrayD = arrayD.concat(assignedEpi);  //concatena o registro passado pro final do arrayA
-      this.setState({episDisponiveis: arrayD});
-    }  
-  }    
-  this.enableChangeBtn(); //ao final da troca habilitar denovo os botoes  
-  document.getElementById("table-buttonsA").style.display = "flex";
+        arrayA.map((value) => {   //laço para varrer o outro array e ver se ja tem um registro com cod igual
+          if(value.cod == assignedEpi.cod){  //se achar só adicionar no estoque da outra 
+            value.estoque = parseInt(value.estoque) + parseInt(qntdPassada);          
+            achouIgual = true;
+          }
+        });    
+        if(achouIgual == false){  // se não cria um novo registro desse epi na outra
+          arrayA = arrayA.concat(assignedEpi);  //concatena o registro passado pro final do arrayA
+          // this.setState({episAtribuidos: arrayA});
+        }  
+      }  
+    }
+  });    
+  document.getElementById("table-buttonsD").style.display = "flex";
+  this.setState({episAtribuidos: arrayA});
+  this.setState({episDisponiveis: arrayD});
 };
 
+
+
+handleMassAssignA(epi) {
+  var arrayD = this.state.episDisponiveis;
+  var arrayAaux = Object.assign([], this.state.episAtribuidos);
+  var arrayA = this.state.episAtribuidos;
+  var splices = 0;
+  var lengthD = this.state.episDisponiveis.length; //descobrir qntos registro tem na tabela de cima 
+
+  arrayAaux.map((epi)=> {
+    var index = arrayA.indexOf(epi);
+    var qntdPassada = document.getElementsByClassName("massAssign")[index + splices + lengthD].value; //pega o value da qntd passada digitada
+    var assignedEpi = Object.assign({}, arrayA[index]);  //seleciona o obj escolhido
+    var achouIgual = false; //variavel aux pra logica de ver se tem outro registro igual na outra tabela
+   
+    if(qntdPassada != ''){
+
+      if(assignedEpi.estoque > 0 && qntdPassada < assignedEpi.estoque) {    //se a qntd em estoque eh maior q a qntd passada
+        arrayA[index].estoque = arrayA[index].estoque - qntdPassada;      //ajustar o estoque D 
+        
+        arrayD.map((value) => {   //laço para varrer o outro array e ver se ja tem um registro com cod igual
+          if(value.cod == assignedEpi.cod){  //se achar só adicionar no estoque da outra 
+            value.estoque = parseInt(value.estoque) + parseInt(qntdPassada);          
+            achouIgual = true;
+            // this.setState({episAtribuidos: arrayA});
+          }
+        });      
+        if(achouIgual == false){  // se não cria um novo registro desse epi na outra
+          assignedEpi.estoque = qntdPassada;  //atualiza para a qntd digitada antes de juntar com o arrayA
+          arrayD = arrayD.concat(assignedEpi);  //concatena o registro passado pro final do arrayA
+          // this.setState({episAtribuidos: arrayA});
+        }    
+      }
+      else if(assignedEpi.estoque > 0){ 
+        arrayA.splice(index, 1);   //tirar do array
+        splices += 1;
+        // this.setState({episDisponiveis: arrayD});
+    
+        arrayD.map((value) => {   //laço para varrer o outro array e ver se ja tem um registro com cod igual
+          if(value.cod == assignedEpi.cod){  //se achar só adicionar no estoque da outra 
+            value.estoque = parseInt(value.estoque) + parseInt(qntdPassada);          
+            achouIgual = true;
+          }
+        });    
+        if(achouIgual == false){  // se não cria um novo registro desse epi na outra
+          arrayD = arrayD.concat(assignedEpi);  //concatena o registro passado pro final do arrayA
+          // this.setState({episAtribuidos: arrayA});
+        }  
+      }  
+    }
+  });    
+  document.getElementById("table-buttonsD").style.display = "flex";
+  this.setState({episAtribuidos: arrayA});
+  this.setState({episDisponiveis: arrayD});
+}
 
 
 
@@ -364,8 +416,6 @@ handleEpisTableA(evt) {
   });
   this.setState({episAtribuidos:newEpis});
 };
-
-
 
 
 
@@ -455,7 +505,6 @@ SalvarEditarA = () =>{
 }
 
 
-
   render() {    
     return (
       <div>
@@ -479,7 +528,7 @@ SalvarEditarA = () =>{
             </div>
           </div>
           <div className="panel-body">
-            <EpisTable onEpisTableUpdate={this.handleEpisTableD.bind(this)}  onRowDel={this.handleRowDelD.bind(this)} onAssignEvent2={this.handleRowAssignD2.bind(this)} onRowAssign={this.handleRowAssignD.bind(this)} onRowCancelAssign={this.handleRowCancelAssignD.bind(this)} onRowChangeButton={this.handleRowChangeButtonD.bind(this)} epis={this.state.episDisponiveis} filterText={this.state.filterTextD}/> {/*onRowAdd={this.handleAddEvent.bind(this)}*/}
+            <EpisTable onEpisTableUpdate={this.handleEpisTableD.bind(this)} onMassAssign={this.handleMassAssignD.bind(this)} onRowDel={this.handleRowDelD.bind(this)} onRowAssign={this.handleRowAssignD.bind(this)} onRowCancelAssign={this.handleRowCancelAssignD.bind(this)} onRowChangeButton={this.handleRowChangeButtonD.bind(this)} epis={this.state.episDisponiveis} filterText={this.state.filterTextD}/> {/*onRowAdd={this.handleAddEvent.bind(this)}*/}
           </div>
         </div>
 
@@ -502,7 +551,7 @@ SalvarEditarA = () =>{
             </div>
           </div>
           <div className="panel-body">
-            <EpisTable onEpisTableUpdate={this.handleEpisTableA.bind(this)}  onRowDel={this.handleRowDelA.bind(this)} onRowAssign={this.handleRowAssignA.bind(this)} onRowCancelAssign={this.handleRowCancelAssignA.bind(this)} onRowChangeButton={this.handleRowChangeButtonA.bind(this)} epis={this.state.episAtribuidos} filterText={this.state.filterTextA}/> {/*onRowAdd={this.handleAddEvent.bind(this)}*/}
+            <EpisTable onEpisTableUpdate={this.handleEpisTableA.bind(this)} onMassAssign={this.handleMassAssignA.bind(this)} onRowDel={this.handleRowDelA.bind(this)} onRowAssign={this.handleRowAssignA.bind(this)} onRowCancelAssign={this.handleRowCancelAssignA.bind(this)} onRowChangeButton={this.handleRowChangeButtonA.bind(this)} epis={this.state.episAtribuidos} filterText={this.state.filterTextA}/> {/*onRowAdd={this.handleAddEvent.bind(this)}*/}
           </div>
         </div>
        
@@ -511,8 +560,6 @@ SalvarEditarA = () =>{
     );
   }
 }
-
-
 
 
 class SearchBar extends React.Component {
@@ -530,20 +577,16 @@ class SearchBar extends React.Component {
 
 
 
-
 class EpisTable extends React.Component {
-
   
-  onAssignEvent2() {
-    this.props.onAssignEvent2(this.props.epi);
+  onMassAssignEvent () {  
+    this.props.onMassAssign(this.props.epis);
   } 
 
-  render() {
-
+  render() {    
     var onEpisTableUpdate = this.props.onEpisTableUpdate;
     var rowDel = this.props.onRowDel;
     var rowAssign = this.props.onRowAssign;
-    var rowAssign2 = this.props.onRowAssign2;
     var rowCancelAssign = this.props.onRowCancelAssign;
     var rowChangeButton = this.props.onRowChangeButton;
     var filterText = this.props.filterText;
@@ -573,14 +616,15 @@ class EpisTable extends React.Component {
               <th>Fator Redução</th>
               <th></th>
               <th></th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
             {epi}
           </tbody>
           <tfoot> {/*MASS ASSIGN*/}
-            <div className="">        
-              <input type="button" onClick={this.onAssignEvent2.bind(this)} value="OK" className="form-control"/>                     
+            <div>        
+              <input type="button" onClick={this.onMassAssignEvent.bind(this)} value="OK" className="form-control"/>                     
             </div>
           </tfoot>
         </table>
@@ -680,7 +724,7 @@ class TableRow extends React.Component {
           </div>
         </td>
         <td>
-          <div className="change-btn form-control" onClick={this.onChangeButtonEvent.bind(this)}>
+          <div className="change-btn form-control d-nonin" onClick={this.onChangeButtonEvent.bind(this)}>
             <i className="fas fa-arrow-down "></i>
           </div>
           <div className="assign-btn d-nonin">          
@@ -691,7 +735,7 @@ class TableRow extends React.Component {
         </td>
         <td>
           <div className="form-control">          
-            <input type="text" placeholder="Qntd..." className="form-control"/>          
+            <input type="text" placeholder="Qntd2..." className="massAssign  form-control"/>          
           </div>
         </td>
       </tr>
