@@ -614,20 +614,20 @@ class EpisTable extends React.Component {
               <th>Motivo Devolução</th>
               <th>Cor</th>
               <th>Fator Redução</th>
-              <th></th>
-              <th></th>
-              <th></th>
+              <th>Excluir</th>
+              {/* <th></th> */}
+              <th>Atribuir</th>
             </tr>
           </thead>
           <tbody>
             {epi}
-          </tbody>
-          <tfoot> {/*MASS ASSIGN*/}
-            <div>        
-              <input type="button" onClick={this.onMassAssignEvent.bind(this)} value="OK" className="form-control"/>                     
-            </div>
-          </tfoot>
+          </tbody>          
         </table>
+        <div className=""> {/*MASS ASSIGN*/}
+          <div className="form-control d-flex align-items-center" onClick={this.onMassAssignEvent.bind(this)}>        
+            <i className="fas fa-arrow-down fa-lg mr-2"></i><b>Atribuir</b>
+          </div>
+        </div>
       </div>
     );
   }
@@ -663,7 +663,7 @@ class TableRow extends React.Component {
           value: this.props.epi.nome,
           id: this.props.epi.id
         }}/>
-        <EditableCell onEpisTableUpdate={this.props.onEpisTableUpdate} cellData={{
+        <EditableCell className="w-auto" onEpisTableUpdate={this.props.onEpisTableUpdate} cellData={{
           type: "descricao",
           value: this.props.epi.descricao,
           id: this.props.epi.id
@@ -723,7 +723,7 @@ class TableRow extends React.Component {
             <i class="far fa-trash-alt"></i>
           </div>
         </td>
-        <td>
+        {/* <td>  comentar só pq n to usando mas eh a outra logica de assing
           <div className="change-btn form-control d-nonin" onClick={this.onChangeButtonEvent.bind(this)}>
             <i className="fas fa-arrow-down "></i>
           </div>
@@ -732,11 +732,9 @@ class TableRow extends React.Component {
             <input type="button" onClick={this.onAssignEvent.bind(this)} value="OK" className="form-control"/>            
             <input type="button" onClick={this.onCancelAssignEvent.bind(this)} value="Cancelar" className="form-control"/>            
           </div>
-        </td>
-        <td>
-          <div className="form-control">          
-            <input type="text" placeholder="Qntd2..." className="massAssign  form-control"/>          
-          </div>
+        </td> */}
+        <td>       
+          <input type="text" placeholder="qntd..." id="massAssign" className="massAssign form-control"/>                   
         </td>
       </tr>
     );

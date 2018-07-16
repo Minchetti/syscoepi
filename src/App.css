@@ -303,9 +303,50 @@ svg{
 
 
 /* Css EPIS */
-#table_epis input.form-control{
-  width: auto !important;
+#table_epis tfoot>div{
+  /* background: blue; */
 }
+.eachRow td:nth-child(1) input{
+  width:42px;
+}
+.eachRow td:nth-child(2) input{
+  width:150px;
+}
+.eachRow td:nth-child(3) input{
+  width:250px;
+}
+.eachRow td:nth-child(4) input{
+  width:80px;
+}
+.eachRow td:nth-child(5) input{
+  width:42px;
+}
+.eachRow td:nth-child(6) input{
+  width:42px;
+}
+.eachRow td:nth-child(7) input{
+  width:42px;
+}
+.eachRow td:nth-child(8) input{
+  width:65px;
+}
+.eachRow td:nth-child(10) input{
+  width:80px;
+}
+.eachRow td:nth-child(11) input{
+  width:100px;
+}
+.eachRow td:nth-child(12) input{
+  width: 50px;
+}
+.eachRow td:nth-child(13) input{
+  width: 200px;
+}
+.eachRow td:nth-child(15) input{
+  width: 50px;
+}
+
+
 
 /* css classe funcionario inativado */
 .inactive{
@@ -332,5 +373,6 @@ svg{
 #reactiveArea {
   background: whitesmoke;
   transition: 2s;
-
 }
+
+
