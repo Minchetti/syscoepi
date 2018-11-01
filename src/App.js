@@ -13,7 +13,16 @@ import {
   withRouter,
 } from 'react-router-dom';
 
+const teste = () =>{
+  console.log('FOIIIIIIII');
+}
+
+
+
 class App extends Component {
+
+
+
   render() {
     return (
       <div className="App overflow-h">
@@ -87,9 +96,6 @@ const Public = () =>
   </h1>
   <Link to="/app/dashboard">Entrar no sistema!</Link>
 </div>
-
-
-
 
 
 export default App;

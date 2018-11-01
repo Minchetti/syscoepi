@@ -53,7 +53,7 @@ class Employees extends React.Component {
         this.setState({ csv });
         console.log(csv);
         
-      $('#JAJA').show();
+      $('#previewfuncionarios').show();
         // PreviewComponent = <PreviewFuncionarios lista={csv}/> 
       }.bind(this)
       });
@@ -199,25 +199,25 @@ class Employees extends React.Component {
     // alert("Funcionarios carregados!") ;
 
     var data = [
-      {id:"0123", nome: "Marcello Minchetti1", turno: "Noturno", sexo: "Masculino", rg: "16778405", cpf: "10770546617", gh: "123456", email: "teste@gmail.com", ativo: false},   
-      {id:"1123", nome: "Leandro Santos1", turno: "vespertino", sexo: "Masculino", rg: "16698405", cpf: "78970546617", gh: "123456", email: "teste@gmail.com", ativo: true}, 
-      {id:"2123", nome: "Luciano Braga1", turno: "Matutino", sexo: "Masculino", rg: "16771105", cpf: "11570546617", gh: "123456", email: "teste@gmail.com", ativo: false},
-      {id:"3123", nome: "Rodolfo Augusto1", turno: "Vespertino", sexo: "Masculino", rg: "16772605", cpf: "11980546617", gh: "123456", email: "teste@gmail.com", ativo: true},    
-      {id:"4123", nome: "Susi Ribeiro1", turno: "Noturno", sexo: "Feminino", rg: "16488405", cpf: "10770774617", gh: "123456", email: "teste@gmail.com", ativo: true}
+      {id:"0123", nome: "Marcello Minchetti1", turno: "Noturno", sexo: "Masculino", rg: "16778405", cpf: "10770546617", gh: "123456", cc: "1332445", email: "teste@gmail.com", ativo: false},   
+      {id:"1123", nome: "Leandro Santos1", turno: "vespertino", sexo: "Masculino", rg: "16698405", cpf: "78970546617", gh: "123456", cc: "2232445", email: "teste@gmail.com", ativo: true}, 
+      {id:"2123", nome: "Luciano Braga1", turno: "Matutino", sexo: "Masculino", rg: "16771105", cpf: "11570546617", gh: "123456", cc: "31332445", email: "teste@gmail.com", ativo: false},
+      {id:"3123", nome: "Rodolfo Augusto1", turno: "Vespertino", sexo: "Masculino", rg: "16772605", cpf: "11980546617", gh: "123456", cc: "31332445", email: "teste@gmail.com", ativo: true},    
+      {id:"4123", nome: "Susi Ribeiro1", turno: "Noturno", sexo: "Feminino", rg: "16488405", cpf: "10770774617", gh: "123456", cc: "31332445", email: "teste@gmail.com", ativo: true}
     ]
     var data2 = [
-      {id:"0123", nome: "Marcello Minchetti2", turno: "Noturno", sexo: "Masculino", rg: "16778405", cpf: "10770546617", gh: "123456", email: "teste@gmail.com", ativo: true},   
-      {id:"1123", nome: "Leandro Santos2", turno: "vespertino", sexo: "Masculino", rg: "16698405", cpf: "78970546617", gh: "123456", email: "teste@gmail.com", ativo: true}, 
-      {id:"2123", nome: "Luciano Braga2", turno: "Matutino", sexo: "Masculino", rg: "16771105", cpf: "11570546617", gh: "123456", email: "teste@gmail.com", ativo: true},
-      {id:"3123", nome: "Rodolfo Augusto2", turno: "Vespertino", sexo: "Masculino", rg: "16772605", cpf: "11980546617", gh: "123456", email: "teste@gmail.com", ativo: true},    
-      {id:"4123", nome: "Susi Ribeiro2", turno: "Noturno", sexo: "Feminino", rg: "16488405", cpf: "10770774617", gh: "123456", email: "teste@gmail.com", ativo: true}
+      {id:"0123", nome: "Marcello Minchetti2", turno: "Noturno", sexo: "Masculino", rg: "16778405", cpf: "10770546617", gh: "123456", cc: "31332445", email: "teste@gmail.com", ativo: true},   
+      {id:"1123", nome: "Leandro Santos2", turno: "vespertino", sexo: "Masculino", rg: "16698405", cpf: "78970546617", gh: "123456", cc: "31332445", email: "teste@gmail.com", ativo: true}, 
+      {id:"2123", nome: "Luciano Braga2", turno: "Matutino", sexo: "Masculino", rg: "16771105", cpf: "11570546617", gh: "123456", cc: "31332445", email: "teste@gmail.com", ativo: true},
+      {id:"3123", nome: "Rodolfo Augusto2", turno: "Vespertino", sexo: "Masculino", rg: "16772605", cpf: "11980546617", gh: "123456", cc: "31332445", email: "teste@gmail.com", ativo: true},    
+      {id:"4123", nome: "Susi Ribeiro2", turno: "Noturno", sexo: "Feminino", rg: "16488405", cpf: "10770774617", gh: "123456", cc: "31332445", email: "teste@gmail.com", ativo: true}
     ]
     var data3 = [
-      {id:"0123", nome: "Marcello Minchetti3", turno: "Noturno", sexo: "Masculino", rg: "16778405", cpf: "10770546617", gh: "123456", email: "teste@gmail.com", ativo: true},   
-      {id:"1123", nome: "Leandro Santos3", turno: "vespertino", sexo: "Masculino", rg: "16698405", cpf: "78970546617", gh: "123456", email: "teste@gmail.com", ativo: true}, 
-      {id:"2123", nome: "Luciano Braga3", turno: "Matutino", sexo: "Masculino", rg: "16771105", cpf: "11570546617", gh: "123456", email: "teste@gmail.com", ativo: true},
-      {id:"3123", nome: "Rodolfo Augusto3", turno: "Vespertino", sexo: "Masculino", rg: "16772605", cpf: "11980546617", gh: "123456", email: "teste@gmail.com", ativo: true},    
-      {id:"4123", nome: "Susi Ribeiro3", turno: "Noturno", sexo: "Feminino", rg: "16488405", cpf: "10770774617", gh: "123456", email: "teste@gmail.com", ativo: true}
+      {id:"0123", nome: "Marcello Minchetti3", turno: "Noturno", sexo: "Masculino", rg: "16778405", cpf: "10770546617", gh: "123456", cc: "31332445", email: "teste@gmail.com", ativo: true},   
+      {id:"1123", nome: "Leandro Santos3", turno: "vespertino", sexo: "Masculino", rg: "16698405", cpf: "78970546617", gh: "123456", cc: "31332445", email: "teste@gmail.com", ativo: true}, 
+      {id:"2123", nome: "Luciano Braga3", turno: "Matutino", sexo: "Masculino", rg: "16771105", cpf: "11570546617", gh: "123456", cc: "31332445", email: "teste@gmail.com", ativo: true},
+      {id:"3123", nome: "Rodolfo Augusto3", turno: "Vespertino", sexo: "Masculino", rg: "16772605", cpf: "11980546617", gh: "123456", cc: "31332445", email: "teste@gmail.com", ativo: true},    
+      {id:"4123", nome: "Susi Ribeiro3", turno: "Noturno", sexo: "Feminino", rg: "16488405", cpf: "10770774617", gh: "123456", cc: "31332445", email: "teste@gmail.com", ativo: true}
     ]    
 
 
@@ -281,7 +281,7 @@ class Employees extends React.Component {
             <Button class="btn-dark pr-2 ml-3" icon="fa-plus fa-lg mr-1" text="Adicionar Funcionário" target="#modal-add-funcionario"/>
           </div>
         </div>
-        
+        {console.log(this.state.csv)}
         {this.state.csv && <PreviewFuncionarios lista={this.state.csv} />}
         
         {/* {this.state.listaFuncionarios != 0 ? (<TableFuncionarios lista={this.state.listaFuncionarios}  />) : (<h1>TA VAZIO MANÉ</h1>) } */}

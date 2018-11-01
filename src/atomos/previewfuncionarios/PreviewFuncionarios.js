@@ -1,5 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
+import './previewfuncionarios.css';
 // import PropTypes from 'prop-types';
 
 class PreviewFuncionarios extends React.Component {
@@ -30,8 +31,10 @@ class PreviewFuncionarios extends React.Component {
       //   alert(err);
       // });
       alert("Funcionarios adicionados!") ;
-      $('#JAJA').hide();
+      $('#previewfuncionarios').hide();
     };
+
+    
     
     
 
@@ -41,16 +44,20 @@ class PreviewFuncionarios extends React.Component {
       return (
         <tr>
           <td>{value.Nome}</td>
-          <td>{value.Turno}</td>
-          <td>{value.Sexo}</td>
           <td>{value.RG}</td>
           <td>{value.CPF}</td>
+          <td>{value.Email}</td>
+          <td>{value.GH}</td>
+          <td>{value.CC}</td>          
+          <td>{value.Turno}</td>
+          <td>{value.Sexo}</td>
+          <td>{value.Ativo}</td>
         </tr>  
         )
     });
       
     return (
-      <div id="JAJA">
+      <div id="previewfuncionarios">
         <div className="panel mt-3 mb-3">
           <div className="panel-heading">
             <button onClick={this.AddFuncionarios} className="btn btn-dark ml-2"> <i className="fa fa-share-square fa-lg pr-2"></i> Enviar Dados </button>             
@@ -60,10 +67,14 @@ class PreviewFuncionarios extends React.Component {
               <thead className="thead-dark">
                 <tr>
                   <th>Nome</th>
-                  <th>Turno</th>
-                  <th>Sexo</th>
                   <th>RG</th>
                   <th>CPF</th>
+                  <th>Email</th>
+                  <th>GH</th>
+                  <th>CC</th>
+                  <th>Turno</th>
+                  <th>Sexo</th>
+                  <th>Ativo</th>
                 </tr>
               </thead>
               <tbody>

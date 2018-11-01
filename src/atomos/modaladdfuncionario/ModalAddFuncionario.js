@@ -56,14 +56,14 @@ class ModalAddFuncionario extends React.Component {
 
 verificarCPF = () =>{
   this.props.lista.map((value) => {   //laço para varrer o outro a lista e ver se ja existe esse func
-    if(value.cpf == this.state.cpf.replace(/[./-]/g, "")) {  //
+    if(value.cpf === this.state.cpf.replace(/[./-]/g, "")) {  //
       document.getElementById("reactiveArea").style.display = "flex";
       document.getElementById("btn-add-salvar").disabled = true;
       document.getElementById("btn-add-fechar").disabled = true;
       this.aux.funcAchado = value;
 
     }
-    else if(this.aux.funcAchado == ''){        
+    else if(this.aux.funcAchado === ''){        
       document.getElementById("reactiveArea").style.display = "none";
     }
   });  
@@ -85,7 +85,7 @@ reativar = () =>{
   this.apagarCampos();
 
   this.props.lista.map((value) => {  
-    if(value.cpf == this.state.cpf.replace(/[./-]/g, "")) {  
+    if(value.cpf === this.state.cpf.replace(/[./-]/g, "")) {  
       value.ativo = true;
     }
   });

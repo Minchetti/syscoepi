@@ -40,7 +40,7 @@ class Cabecalho extends React.Component {
         <span className="d-nonin msg-aviso"></span>
 
         <div className="d-flex">
-          <div id="lnk-painel-usuario" className="mr-3 c-pointer"  data-toggle="modal" data-target="#modal-usuario">
+          <div id="lnk-painel-usuario" className="mr-3 c-pointer" data-toggle="modal" data-target="#modal-usuario">
             <i className="fa fa-user-circle mr-2"></i> 
             <span className="nome-usuario"></span>
           </div>          
