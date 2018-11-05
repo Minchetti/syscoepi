@@ -253,8 +253,113 @@ class Epis extends React.Component {
   };
 
 
-  handleMassAssignD (epi){
-    alert("capataz fei");
+  handleMassAssign (epi){
+    console.log('chegou');
+  var arrayD = this.state.listaEpisDisponiveis;
+  var arrayDaux = Object.assign([], this.state.listaEpisDisponiveis);
+  var arrayA = this.state.listaEpisAtribuidos;
+  var splices = 0;
+
+  arrayDaux.map((epi)=> {
+    var index = arrayD.indexOf(epi);
+    var qntdPassada = document.getElementsByClassName("massAssign")[index + splices].value; //pega o value da qntd passada digitada
+    var assignedEpi = Object.assign({}, arrayD[index]);  //seleciona o obj escolhido
+    var achouIgual = false; //variavel aux pra logica de ver se tem outro registro igual na outra tabela
+   
+    if(qntdPassada !== ''){
+
+      if(assignedEpi.estoque > 0 && qntdPassada < assignedEpi.estoque) {    //se a qntd em estoque eh maior q a qntd passada
+        arrayD[index].estoque = arrayD[index].estoque - qntdPassada;      //ajustar o estoque D 
+        
+        arrayA.map((value) => {   //laço para varrer o outro array e ver se ja tem um registro com cod igual
+          if(value.cod === assignedEpi.cod){  //se achar só adicionar no estoque da outra 
+            value.estoque = parseInt(value.estoque) + parseInt(qntdPassada);          
+            achouIgual = true;
+            // this.setState({episAtribuidos: arrayA});
+          }
+        });      
+        if(achouIgual === false){  // se não cria um novo registro desse epi na outra
+          assignedEpi.estoque = qntdPassada;  //atualiza para a qntd digitada antes de juntar com o arrayA
+          arrayA = arrayA.concat(assignedEpi);  //concatena o registro passado pro final do arrayA
+          // this.setState({episAtribuidos: arrayA});
+        }    
+      }
+      else if(assignedEpi.estoque > 0){ 
+        arrayD.splice(index, 1);   //tirar do array
+        splices += 1;
+        // this.setState({episDisponiveis: arrayD});
+    
+        arrayA.map((value) => {   //laço para varrer o outro array e ver se ja tem um registro com cod igual
+          if(value.cod === assignedEpi.cod){  //se achar só adicionar no estoque da outra 
+            value.estoque = parseInt(value.estoque) + parseInt(qntdPassada);          
+            achouIgual = true;
+          }
+        });    
+        if(achouIgual === false){  // se não cria um novo registro desse epi na outra
+          arrayA = arrayA.concat(assignedEpi);  //concatena o registro passado pro final do arrayA
+          // this.setState({episAtribuidos: arrayA});
+        }  
+      }  
+    }
+  });    
+
+  
+  var arrayD = this.state.listaEpisDisponiveis;
+  var arrayAaux = Object.assign([], this.state.listaEpisAtribuidos);
+  var arrayA = this.state.listaEpisAtribuidos;
+  var splices = 0;
+  var lengthD = this.state.listaEpisDisponiveis.length; //descobrir qntos registro tem na tabela de cima 
+
+  arrayAaux.map((epi)=> {
+    var index = arrayA.indexOf(epi);
+    var qntdPassada = document.getElementsByClassName("massAssign")[index + splices + lengthD].value; //pega o value da qntd passada digitada
+    var assignedEpi = Object.assign({}, arrayA[index]);  //seleciona o obj escolhido
+    var achouIgual = false; //variavel aux pra logica de ver se tem outro registro igual na outra tabela
+   
+    if(qntdPassada !== ''){
+
+      if(assignedEpi.estoque > 0 && qntdPassada < assignedEpi.estoque) {    //se a qntd em estoque eh maior q a qntd passada
+        arrayA[index].estoque = arrayA[index].estoque - qntdPassada;      //ajustar o estoque D 
+        
+        arrayD.map((value) => {   //laço para varrer o outro array e ver se ja tem um registro com cod igual
+          if(value.cod === assignedEpi.cod){  //se achar só adicionar no estoque da outra 
+            value.estoque = parseInt(value.estoque) + parseInt(qntdPassada);          
+            achouIgual = true;
+            // this.setState({episAtribuidos: arrayA});
+          }
+        });      
+        if(achouIgual === false){  // se não cria um novo registro desse epi na outra
+          assignedEpi.estoque = qntdPassada;  //atualiza para a qntd digitada antes de juntar com o arrayA
+          arrayD = arrayD.concat(assignedEpi);  //concatena o registro passado pro final do arrayA
+          // this.setState({episAtribuidos: arrayA});
+        }    
+      }
+      else if(assignedEpi.estoque > 0){ 
+        arrayA.splice(index, 1);   //tirar do array
+        splices += 1;
+        // this.setState({episDisponiveis: arrayD});
+    
+        arrayD.map((value) => {   //laço para varrer o outro array e ver se ja tem um registro com cod igual
+          if(value.cod === assignedEpi.cod){  //se achar só adicionar no estoque da outra 
+            value.estoque = parseInt(value.estoque) + parseInt(qntdPassada);          
+            achouIgual = true;
+          }
+        });    
+        if(achouIgual === false){  // se não cria um novo registro desse epi na outra
+          arrayD = arrayD.concat(assignedEpi);  //concatena o registro passado pro final do arrayA
+          // this.setState({episAtribuidos: arrayA});
+        }  
+      }  
+    }
+  });    
+
+
+  document.getElementById("table-buttonsD").style.display = "flex";
+
+
+  this.setState({listaEpisAtribuidos: arrayA});
+  this.setState({listaEpisDisponiveis: arrayD});
+  console.log('terminou');
   }
 
 
@@ -280,7 +385,7 @@ class Epis extends React.Component {
         </div>
         
         
-        {this.state.listaEpisDisponiveis !=0 && this.state.listaEpisAtribuidos !=0 ? (<TableEpis2 onMassAssign={this.handleMassAssignD.bind(this)} listaD={this.state.listaEpisDisponiveis} listaA={this.state.listaEpisAtribuidos} />) : (<h1>Cadastre seus primeiros epi's</h1>) }
+        {this.state.listaEpisDisponiveis !=0 && this.state.listaEpisAtribuidos !=0 ? (<TableEpis2 onMassAssign={this.handleMassAssign.bind(this)} listaD={this.state.listaEpisDisponiveis} listaA={this.state.listaEpisAtribuidos} />) : (<h1>Cadastre seus primeiros epi's</h1>) }
         {/* {this.state.listaEpisDisponiveis != 0 ? (<TableEpis lista={this.state.listaEpisDisponiveis}  />) : (<h1>Cadastre seus primeiros epi's</h1>) } */}
 
 
@@ -297,6 +402,7 @@ class Epis extends React.Component {
     }
   }
 
+  Teste = () => {console.log(this.state);}
   
   render() {   
 
@@ -307,6 +413,7 @@ class Epis extends React.Component {
       
         <h4 className="mt-2 mb-4"><i className="fas fa-shield-alt mr-2" aria-hidden="true"></i>Epi's</h4>  
                
+      <div onClick={this.Teste}>STATE</div>
         {this.PrimeiroEpi()}
         
         <ModalAddEpi empresaId={this.state.empresaSelecionadaId}  /> 
