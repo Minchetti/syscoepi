@@ -28,13 +28,13 @@ componentDidMount(){
 }
 
 componentDidUpdate(nextProps){  
-  if(JSON.stringify(this.initialState.episInitialD) !== JSON.stringify(this.state.episDisponiveis)  && this.props.listaD === nextProps.listaD){
+  if(JSON.stringify(this.initialState.episInitialD) !== JSON.stringify(this.state.episDisponiveis)  && this.props.listaD == nextProps.listaD){
     document.getElementById("table-buttonsD").style.display = "flex";
   }
   else{
     document.getElementById("table-buttonsD").style.display = "none";
   }  
-  if(JSON.stringify(this.initialState.episInitialA) !== JSON.stringify(this.state.episAtribuidos)  && this.props.listaA === nextProps.listaA){
+  if(JSON.stringify(this.initialState.episInitialA) !== JSON.stringify(this.state.episAtribuidos)  && this.props.listaA == nextProps.listaA){
     document.getElementById("table-buttonsA").style.display = "flex";
   }
   else{
@@ -137,13 +137,13 @@ handleRowAssignD(epi) {
     arrayD[index].estoque = estoqueInicial - qntdPassada;      //ajustar o estoque D 
      
     arrayA.map((value) => {   //laço para varrer o outro array e ver se ja tem um registro com cod igual
-      if(value.cod === assignedEpi.cod){  //se achar só adicionar no estoque da outra 
+      if(value.cod == assignedEpi.cod){  //se achar só adicionar no estoque da outra 
         value.estoque = parseInt(value.estoque) + parseInt(qntdPassada);          
         achouIgual = true;
         this.setState({episAtribuidos: arrayA});
       }
     });      
-    if(achouIgual === false){  // se não cria um novo registro desse epi na outra
+    if(achouIgual == false){  // se não cria um novo registro desse epi na outra
       assignedEpi.estoque = qntdPassada;  //atualiza para a qntd digitada antes de juntar com o arrayA
       arrayA = arrayA.concat(assignedEpi);  //concatena o registro passado pro final do arrayA
       this.setState({episAtribuidos: arrayA});
@@ -154,12 +154,12 @@ handleRowAssignD(epi) {
     this.setState({episDisponiveis: arrayD});
 
     arrayA.map((value) => {   //laço para varrer o outro array e ver se ja tem um registro com cod igual
-      if(value.cod === assignedEpi.cod){  //se achar só adicionar no estoque da outra 
+      if(value.cod == assignedEpi.cod){  //se achar só adicionar no estoque da outra 
         value.estoque = parseInt(value.estoque) + parseInt(qntdPassada);          
         achouIgual = true;
       }
     });    
-    if(achouIgual === false){  // se não cria um novo registro desse epi na outra
+    if(achouIgual == false){  // se não cria um novo registro desse epi na outra
       arrayA = arrayA.concat(assignedEpi);  //concatena o registro passado pro final do arrayA
       this.setState({episAtribuidos: arrayA});
     }  
@@ -192,14 +192,14 @@ handleRowAssignA(epi) {
      arrayA[index].estoque = estoqueInicial - qntdPassada;      //ajustar o estoque A
  
      arrayD.map((value) => {   //laço para varrer o outro array e ver se ja tem um registro com cod igual
-       if(value.cod === assignedEpi.cod){  //se achar só adicionar no estoque da outra 
+       if(value.cod == assignedEpi.cod){  //se achar só adicionar no estoque da outra 
          value.estoque = parseInt(value.estoque) + parseInt(qntdPassada);          
          achouIgual = true;
          this.setState({episDisponiveis: arrayD});
        }
      });
  
-     if(achouIgual === false){  // se não cria um novo registro desse epi na outra
+     if(achouIgual == false){  // se não cria um novo registro desse epi na outra
        assignedEpi.estoque = qntdPassada;  //atualiza para a qntd digitada antes de juntar com o arrayA
        arrayD = arrayD.concat(assignedEpi);  //concatena o registro passado pro final do arrayA
        this.setState({episDisponiveis: arrayD});
@@ -211,13 +211,13 @@ handleRowAssignA(epi) {
      this.setState({episAtribuidos: arrayA});
  
      arrayD.map((value) => {   //laço para varrer o outro array e ver se ja tem um registro com cod igual
-       if(value.cod === assignedEpi.cod){  //se achar só adicionar no estoque da outra 
+       if(value.cod == assignedEpi.cod){  //se achar só adicionar no estoque da outra 
          value.estoque = parseInt(value.estoque) + parseInt(qntdPassada);          
          achouIgual = true;
        }
      });
      
-     if(achouIgual === false){  // se não cria um novo registro desse epi na outra
+     if(achouIgual == false){  // se não cria um novo registro desse epi na outra
        arrayD = arrayD.concat(assignedEpi);  //concatena o registro passado pro final do arrayA
        this.setState({episDisponiveis: arrayD});
      }  
@@ -242,19 +242,19 @@ handleMassAssignD(epi) {
     var assignedEpi = Object.assign({}, arrayD[index]);  //seleciona o obj escolhido
     var achouIgual = false; //variavel aux pra logica de ver se tem outro registro igual na outra tabela
    
-    if(qntdPassada !== ''){
+    if(qntdPassada != ''){
 
       if(assignedEpi.estoque > 0 && qntdPassada < assignedEpi.estoque) {    //se a qntd em estoque eh maior q a qntd passada
         arrayD[index].estoque = arrayD[index].estoque - qntdPassada;      //ajustar o estoque D 
         
         arrayA.map((value) => {   //laço para varrer o outro array e ver se ja tem um registro com cod igual
-          if(value.cod === assignedEpi.cod){  //se achar só adicionar no estoque da outra 
+          if(value.cod == assignedEpi.cod){  //se achar só adicionar no estoque da outra 
             value.estoque = parseInt(value.estoque) + parseInt(qntdPassada);          
             achouIgual = true;
             // this.setState({episAtribuidos: arrayA});
           }
         });      
-        if(achouIgual === false){  // se não cria um novo registro desse epi na outra
+        if(achouIgual == false){  // se não cria um novo registro desse epi na outra
           assignedEpi.estoque = qntdPassada;  //atualiza para a qntd digitada antes de juntar com o arrayA
           arrayA = arrayA.concat(assignedEpi);  //concatena o registro passado pro final do arrayA
           // this.setState({episAtribuidos: arrayA});
@@ -266,12 +266,12 @@ handleMassAssignD(epi) {
         // this.setState({episDisponiveis: arrayD});
     
         arrayA.map((value) => {   //laço para varrer o outro array e ver se ja tem um registro com cod igual
-          if(value.cod === assignedEpi.cod){  //se achar só adicionar no estoque da outra 
+          if(value.cod == assignedEpi.cod){  //se achar só adicionar no estoque da outra 
             value.estoque = parseInt(value.estoque) + parseInt(qntdPassada);          
             achouIgual = true;
           }
         });    
-        if(achouIgual === false){  // se não cria um novo registro desse epi na outra
+        if(achouIgual == false){  // se não cria um novo registro desse epi na outra
           arrayA = arrayA.concat(assignedEpi);  //concatena o registro passado pro final do arrayA
           // this.setState({episAtribuidos: arrayA});
         }  
@@ -298,19 +298,19 @@ handleMassAssignD(epi) {
     var assignedEpi = Object.assign({}, arrayA[index]);  //seleciona o obj escolhido
     var achouIgual = false; //variavel aux pra logica de ver se tem outro registro igual na outra tabela
    
-    if(qntdPassada !== ''){
+    if(qntdPassada != ''){
 
       if(assignedEpi.estoque > 0 && qntdPassada < assignedEpi.estoque) {    //se a qntd em estoque eh maior q a qntd passada
         arrayA[index].estoque = arrayA[index].estoque - qntdPassada;      //ajustar o estoque D 
         
         arrayD.map((value) => {   //laço para varrer o outro array e ver se ja tem um registro com cod igual
-          if(value.cod === assignedEpi.cod){  //se achar só adicionar no estoque da outra 
+          if(value.cod == assignedEpi.cod){  //se achar só adicionar no estoque da outra 
             value.estoque = parseInt(value.estoque) + parseInt(qntdPassada);          
             achouIgual = true;
             // this.setState({episAtribuidos: arrayA});
           }
         });      
-        if(achouIgual === false){  // se não cria um novo registro desse epi na outra
+        if(achouIgual == false){  // se não cria um novo registro desse epi na outra
           assignedEpi.estoque = qntdPassada;  //atualiza para a qntd digitada antes de juntar com o arrayA
           arrayD = arrayD.concat(assignedEpi);  //concatena o registro passado pro final do arrayA
           // this.setState({episAtribuidos: arrayA});
@@ -322,12 +322,12 @@ handleMassAssignD(epi) {
         // this.setState({episDisponiveis: arrayD});
     
         arrayD.map((value) => {   //laço para varrer o outro array e ver se ja tem um registro com cod igual
-          if(value.cod === assignedEpi.cod){  //se achar só adicionar no estoque da outra 
+          if(value.cod == assignedEpi.cod){  //se achar só adicionar no estoque da outra 
             value.estoque = parseInt(value.estoque) + parseInt(qntdPassada);          
             achouIgual = true;
           }
         });    
-        if(achouIgual === false){  // se não cria um novo registro desse epi na outra
+        if(achouIgual == false){  // se não cria um novo registro desse epi na outra
           arrayD = arrayD.concat(assignedEpi);  //concatena o registro passado pro final do arrayA
           // this.setState({episAtribuidos: arrayA});
         }  
@@ -390,7 +390,7 @@ handleEpisTableD(evt) {
   var epis = this.state.episDisponiveis.slice();
   var newEpis = epis.map(function(epi) {
     for (var key in epi) {
-      if (key === item.name && epi.id === item.id) {
+      if (key == item.name && epi.id == item.id) {
         epi[key] = item.value;
       }
     }
@@ -408,7 +408,7 @@ handleEpisTableA(evt) {
   var epis = this.state.episAtribuidos.slice();
   var newEpis = epis.map(function(epi) {
     for (var key in epi) {
-      if (key === item.name && epi.id === item.id) {
+      if (key == item.name && epi.id == item.id) {
         epi[key] = item.value;
       }
     }
@@ -514,32 +514,6 @@ SalvarEditarA = () =>{
 
         <div className="panel">        
           <div className="panel-heading d-flex justify-content-between align-items-center">
-            <h6 className="text-left mb-0"><i className="fa fa-user pr-2" aria-hidden="true"></i>Epi's Atribuidos({this.state.episAtribuidos.length})</h6>
-            
-            <div className="d-nonin" id="table-buttonsA">      
-              <button type="button" onClick={this.CancelarEditarA} className="btn btn-danger mr-2" > {/*data-dismiss="modal"*/}
-                <i className="fa fa-times pr-2 " aria-hidden="true" />Cancelar A
-              </button>
-              <button onClick={this.SalvarEditarA} type="submit" className="btn btn-primary" >
-                <i className="fa fa-check pr-2 " aria-hidden="true"/>Salvar A
-              </button>
-            </div>
-            
-            <div className="d-flex align-items-center">
-              <i class="fas fa-search fa-lg mr-2"></i>
-              <SearchBar filterText={this.state.filterTextA} onUserInput={this.handleUserInputA.bind(this)}/>
-            </div>
-          </div>
-          <div className="panel-body">
-            <EpisTable onEpisTableUpdate={this.handleEpisTableA.bind(this)} onMassAssign={this.handleMassAssignA.bind(this)} onRowDel={this.handleRowDelA.bind(this)} onRowAssign={this.handleRowAssignA.bind(this)} onRowCancelAssign={this.handleRowCancelAssignA.bind(this)} onRowChangeButton={this.handleRowChangeButtonA.bind(this)} epis={this.state.episAtribuidos} filterText={this.state.filterTextA}/> {/*onRowAdd={this.handleAddEvent.bind(this)}*/}
-          </div>
-        </div>
-
-        
-
-
-        <div className="panel mt-5">        
-          <div className="panel-heading d-flex justify-content-between align-items-center">
             <h6 className="text-left mb-0"><i className="fa fa-user pr-2" aria-hidden="true"></i>Epi's Disponíveis({this.state.episDisponiveis.length})</h6>
 
             <div className="d-nonin" id="table-buttonsD">      
@@ -561,6 +535,28 @@ SalvarEditarA = () =>{
           </div>
         </div>
 
+        <div className="panel mt-5">        
+          <div className="panel-heading d-flex justify-content-between align-items-center">
+            <h6 className="text-left mb-0"><i className="fa fa-user pr-2" aria-hidden="true"></i>Epi's Atribuidos({this.state.episAtribuidos.length})</h6>
+            
+            <div className="d-nonin" id="table-buttonsA">      
+              <button type="button" onClick={this.CancelarEditarA} className="btn btn-danger mr-2" > {/*data-dismiss="modal"*/}
+                <i className="fa fa-times pr-2 " aria-hidden="true" />Cancelar A
+              </button>
+              <button onClick={this.SalvarEditarA} type="submit" className="btn btn-primary" >
+                <i className="fa fa-check pr-2 " aria-hidden="true"/>Salvar A
+              </button>
+            </div>
+            
+            <div className="d-flex align-items-center">
+              <i class="fas fa-search fa-lg mr-2"></i>
+              <SearchBar filterText={this.state.filterTextA} onUserInput={this.handleUserInputA.bind(this)}/>
+            </div>
+          </div>
+          <div className="panel-body">
+            <EpisTable onEpisTableUpdate={this.handleEpisTableA.bind(this)} onMassAssign={this.handleMassAssignA.bind(this)} onRowDel={this.handleRowDelA.bind(this)} onRowAssign={this.handleRowAssignA.bind(this)} onRowCancelAssign={this.handleRowCancelAssignA.bind(this)} onRowChangeButton={this.handleRowChangeButtonA.bind(this)} epis={this.state.episAtribuidos} filterText={this.state.filterTextA}/> {/*onRowAdd={this.handleAddEvent.bind(this)}*/}
+          </div>
+        </div>
        
 
       </div>

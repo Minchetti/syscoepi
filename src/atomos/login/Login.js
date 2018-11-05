@@ -71,7 +71,7 @@ class Login extends React.Component {
     .then(response => {
       response.json().then(data => {
         
-        if (data.success === true) {
+        if (data.success == true) {
           console.log(data);       
           
           // // json no cabeçalho do modal do painel do usuario
@@ -79,7 +79,6 @@ class Login extends React.Component {
           
           
           localStorage.setItem('logged', true);
-          localStorage.setItem('nome', data.data.usuarios[0].nome.split(" ")[0]);
           this.setState({ logged: true });
 
           // json msg boas vindas
@@ -108,7 +107,7 @@ class Login extends React.Component {
     var url = 'http://localhost:3000/login';
     var url_atual = window.location.href;
 
-    if (url !== url_atual){
+    if (url != url_atual){
       var parametrosDaUrl = url_atual.split("?")[1];
       var listaDeParametros = parametrosDaUrl.split("&");
       var dados1 = listaDeParametros[0].split("=");
@@ -128,7 +127,7 @@ class Login extends React.Component {
       })
       .then(response => {
         response.json().then(data => {
-          if (data.success === true) {
+          if (data.success == true) {
 
             // mostrar msg de confirmação de validação do email
             $('#msg-validou').fadeIn(2000);

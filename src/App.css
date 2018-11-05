@@ -270,8 +270,11 @@ svg{
 .table>tbody>tr>td{
   vertical-align: middle;
 }
+.table{
+  font-size: 0.7em !important;
+}
 .table .form-control {
-  font-size: 12px;
+  font-size: 1.1em;
 }
 .table th {
   padding: 3px !important;
@@ -280,15 +283,10 @@ svg{
   padding: 10px !important;
 } */
 .table td {
-  padding: 7px !important;
-  font-size: 12px;
-}
-.table th{
-  font-size:12px !important;
+  padding: 10px !important;
 }
 .table input {
   padding: 5px !important;
-  text-align: center;
 }
 
 
@@ -308,77 +306,44 @@ svg{
 #table_epis tfoot>div{
   /* background: blue; */
 }
-#table_epis .eachRow td:nth-child(1) input{
+.eachRow td:nth-child(1) input{
   width:42px;
 }
-#table_epis .eachRow td:nth-child(2) input{
+.eachRow td:nth-child(2) input{
   width:150px;
 }
-#table_epis .eachRow td:nth-child(3) input{
+.eachRow td:nth-child(3) input{
   width:250px;
 }
-#table_epis .eachRow td:nth-child(4) input{
+.eachRow td:nth-child(4) input{
   width:80px;
 }
-#table_epis .eachRow td:nth-child(5) input{
+.eachRow td:nth-child(5) input{
   width:42px;
 }
-#table_epis .eachRow td:nth-child(6) input{
+.eachRow td:nth-child(6) input{
   width:42px;
 }
-#table_epis .eachRow td:nth-child(7) input{
+.eachRow td:nth-child(7) input{
   width:42px;
 }
-#table_epis .eachRow td:nth-child(8) input{
+.eachRow td:nth-child(8) input{
   width:65px;
 }
-#table_epis .eachRow td:nth-child(10) input{
+.eachRow td:nth-child(10) input{
   width:80px;
 }
-#table_epis .eachRow td:nth-child(11) input{
+.eachRow td:nth-child(11) input{
   width:100px;
 }
-#table_epis .eachRow td:nth-child(12) input{
+.eachRow td:nth-child(12) input{
   width: 50px;
 }
-#table_epis .eachRow td:nth-child(13) input{
+.eachRow td:nth-child(13) input{
   width: 200px;
 }
-#table_epis .eachRow td:nth-child(15) input{
+.eachRow td:nth-child(15) input{
   width: 50px;
-}
-
-
-/* Css FUNCIONARIOS */
-#table_funcionarios tfoot>div{
-  /* background: blue; */
-}
-#table_funcionarios .eachRow td:nth-child(1){
-  width:200px;
-}
-#table_funcionarios .eachRow td:nth-child(2){
-  width:100px;
-}
-#table_funcionarios .eachRow td:nth-child(3){
-  width:110px;
-}
-#table_funcionarios .eachRow td:nth-child(4){
-  width:220px;
-}
-#table_funcionarios .eachRow td:nth-child(5){
-  width:100px;
-}
-#table_funcionarios .eachRow td:nth-child(6){
-  width:100px;
-}
-#table_funcionarios .eachRow td:nth-child(7){
-  width:100px;
-}
-#table_funcionarios .eachRow td:nth-child(8){
-  width:110px;
-}
-#table_funcionarios .eachRow td:nth-child(9){
-  width:80px;
 }
 
 
@@ -390,7 +355,7 @@ svg{
 }
 .inactive td input{
   color: red;
-  text-decoration: line-through;
+  text-decoration: line-through
 }
 .inactive .del-cell div:first-child{
   display: none !important;

@@ -20,7 +20,6 @@ state = {
 
 }
 
-
 CountDisableds = () =>{ //para contar qntos funcionarios estao desabilitados e com isso eu tirar o css "inactive" de todos - o nº de desabilitados
   var j = 0;
   this.state.employees.forEach(i => {
@@ -35,8 +34,6 @@ CountDisableds = () =>{ //para contar qntos funcionarios estao desabilitados e c
 componentWillMount(){
   console.log('WILL MOUNT');
   this.initialState.employeesInitial = JSON.parse(JSON.stringify(this.props.lista));
-  
-  // this.CountDisableds(); //contar os desabilitados a cada atualização //coloquei pra testar
 }
 
 
@@ -154,25 +151,24 @@ componentWillUpdate = (nextProps) =>{
 
 
   CancelarEditar = () =>{      
-    this.setState({employees : JSON.parse(JSON.stringify(this.initialState.employeesInitial))},
+    this.setState(
+      {employees : JSON.parse(JSON.stringify(this.initialState.employeesInitial))},
       () => {
-        console.log('CANCELAR EDITAR');
         document.getElementById("table-buttons").style.display = "none";    
-        // var qntd_ativos = this.state.employees.length - this.initialState.disableds; //descobrir a qntd de funcionarios ativos
-       
-        // console.log('QNTD DE ATIVOS '+qntd_ativos);
-        // for(var i = 0; i < qntd_ativos-1; i++) {  //ao clicar em cancelar a edição eu removo a class "inactive" de todos os ultimos funcionarios 
-        //   document.getElementsByClassName("eachRow")[i].classList.remove("inactive");
-        // } 
-        
-        // for(var i = this.state.employees.length-1; i > qntd_ativos; i--) {  //ao clicar em cancelar a edição eu add a class "inactive" em todos os ultimos que estão inativos
-        //   document.getElementsByClassName("eachRow")[i].classList.add("inactive");
-        // }         
+        var qntd_ativos = this.state.employees.length - this.initialState.disableds; //descobrir a qntd de funcionarios ativos
 
-        // var btns = document.getElementsByClassName("delete-buttons");
-        // for(var i = 0; i < btns.length; i++) {
-        //   btns[i].disabled = false;
-        // }
+        for(var i = 0; i < qntd_ativos-1; i++) {  //ao clicar em cancelar a edição eu removo a class "inactive" de todos os ultimos funcionarios 
+          document.getElementsByClassName("eachRow")[i].classList.remove("inactive");
+        } 
+        
+        for(var i = this.state.employees.length-1; i > qntd_ativos; i--) {  //ao clicar em cancelar a edição eu add a class "inactive" em todos os fultimos que estão inativos
+          document.getElementsByClassName("eachRow")[i].classList.add("inactive");
+        }         
+
+        var btns = document.getElementsByClassName("delete-buttons");
+        for(var i = 0; i < btns.length; i++) {
+          btns[i].disabled = false;
+        }
       }
     )    
   }
@@ -192,10 +188,6 @@ componentWillUpdate = (nextProps) =>{
   }
 
   
-Teste = () => {console.log(this.state);}
-
-Teste2 = () => {console.log(this.initialState);}
-
 
   render() {
     
@@ -204,8 +196,6 @@ Teste2 = () => {console.log(this.initialState);}
         <div className="panel-heading d-flex justify-content-between align-items-center">
           <h6 className="text-left mb-0"><i className="fa fa-user pr-2" aria-hidden="true"></i>Funcionários({this.state.employees.length})</h6>
           
-      <div onClick={this.Teste}>STATE</div>
-      <div onClick={this.Teste2}>INITIAL STATE</div>
           <div className="d-nonin" id="table-buttons">      
             <button type="button" onClick={this.CancelarEditar} className="btn btn-danger mr-2" > {/*data-dismiss="modal"*/}
               <i className="fa fa-times pr-2 " aria-hidden="true" />Cancelar
@@ -271,7 +261,6 @@ class ProductTable extends React.Component {
               <th>CPF</th>
               <th>Email</th>
               <th>GH</th>
-              <th>CC</th>
               <th>Turno</th>
               <th>Sexo</th>
               <th>Ativo</th>
@@ -334,11 +323,6 @@ class ProductRow extends React.Component {
         <EditableCell onEmployeeTableUpdate={this.props.onEmployeeTableUpdate} cellData={{
           type: "gh",
           value: this.props.employee.gh,
-          id: this.props.employee.id
-        }}/>
-        <EditableCell onEmployeeTableUpdate={this.props.onEmployeeTableUpdate} cellData={{
-          type: "cc",
-          value: this.props.employee.cc,
           id: this.props.employee.id
         }}/>
         <EditableCell onEmployeeTableUpdate={this.props.onEmployeeTableUpdate} cellData={{
