@@ -231,112 +231,112 @@ handleRowAssignA(epi) {
 
 
 handleMassAssignD(epi) {
-  // var arrayD = this.state.episDisponiveis;
-  // var arrayDaux = Object.assign([], this.state.episDisponiveis);
-  // var arrayA = this.state.episAtribuidos;
-  // var splices = 0;
+  var arrayD = this.state.episDisponiveis;
+  var arrayDaux = Object.assign([], this.state.episDisponiveis);
+  var arrayA = this.state.episAtribuidos;
+  var splices = 0;
 
-  // arrayDaux.map((epi)=> {
-  //   var index = arrayD.indexOf(epi);
-  //   var qntdPassada = document.getElementsByClassName("massAssign")[index + splices].value; //pega o value da qntd passada digitada
-  //   var assignedEpi = Object.assign({}, arrayD[index]);  //seleciona o obj escolhido
-  //   var achouIgual = false; //variavel aux pra logica de ver se tem outro registro igual na outra tabela
+  arrayDaux.map((epi)=> {
+    var index = arrayD.indexOf(epi);
+    var qntdPassada = document.getElementsByClassName("massAssign")[index + splices].value; //pega o value da qntd passada digitada
+    var assignedEpi = Object.assign({}, arrayD[index]);  //seleciona o obj escolhido
+    var achouIgual = false; //variavel aux pra logica de ver se tem outro registro igual na outra tabela
    
-  //   if(qntdPassada !== ''){
+    if(qntdPassada !== ''){
 
-  //     if(assignedEpi.estoque > 0 && qntdPassada < assignedEpi.estoque) {    //se a qntd em estoque eh maior q a qntd passada
-  //       arrayD[index].estoque = arrayD[index].estoque - qntdPassada;      //ajustar o estoque D 
+      if(assignedEpi.estoque > 0 && qntdPassada < assignedEpi.estoque) {    //se a qntd em estoque eh maior q a qntd passada
+        arrayD[index].estoque = arrayD[index].estoque - qntdPassada;      //ajustar o estoque D 
         
-  //       arrayA.map((value) => {   //laço para varrer o outro array e ver se ja tem um registro com cod igual
-  //         if(value.cod === assignedEpi.cod){  //se achar só adicionar no estoque da outra 
-  //           value.estoque = parseInt(value.estoque) + parseInt(qntdPassada);          
-  //           achouIgual = true;
-  //           // this.setState({episAtribuidos: arrayA});
-  //         }
-  //       });      
-  //       if(achouIgual === false){  // se não cria um novo registro desse epi na outra
-  //         assignedEpi.estoque = qntdPassada;  //atualiza para a qntd digitada antes de juntar com o arrayA
-  //         arrayA = arrayA.concat(assignedEpi);  //concatena o registro passado pro final do arrayA
-  //         // this.setState({episAtribuidos: arrayA});
-  //       }    
-  //     }
-  //     else if(assignedEpi.estoque > 0){ 
-  //       arrayD.splice(index, 1);   //tirar do array
-  //       splices += 1;
-  //       // this.setState({episDisponiveis: arrayD});
+        arrayA.map((value) => {   //laço para varrer o outro array e ver se ja tem um registro com cod igual
+          if(value.cod === assignedEpi.cod){  //se achar só adicionar no estoque da outra 
+            value.estoque = parseInt(value.estoque) + parseInt(qntdPassada);          
+            achouIgual = true;
+            // this.setState({episAtribuidos: arrayA});
+          }
+        });      
+        if(achouIgual === false){  // se não cria um novo registro desse epi na outra
+          assignedEpi.estoque = qntdPassada;  //atualiza para a qntd digitada antes de juntar com o arrayA
+          arrayA = arrayA.concat(assignedEpi);  //concatena o registro passado pro final do arrayA
+          // this.setState({episAtribuidos: arrayA});
+        }    
+      }
+      else if(assignedEpi.estoque > 0){ 
+        arrayD.splice(index, 1);   //tirar do array
+        splices += 1;
+        // this.setState({episDisponiveis: arrayD});
     
-  //       arrayA.map((value) => {   //laço para varrer o outro array e ver se ja tem um registro com cod igual
-  //         if(value.cod === assignedEpi.cod){  //se achar só adicionar no estoque da outra 
-  //           value.estoque = parseInt(value.estoque) + parseInt(qntdPassada);          
-  //           achouIgual = true;
-  //         }
-  //       });    
-  //       if(achouIgual === false){  // se não cria um novo registro desse epi na outra
-  //         arrayA = arrayA.concat(assignedEpi);  //concatena o registro passado pro final do arrayA
-  //         // this.setState({episAtribuidos: arrayA});
-  //       }  
-  //     }  
-  //   }
-  // });    
-  // document.getElementById("table-buttonsD").style.display = "flex";
-  // this.setState({episAtribuidos: arrayA});
-  // this.setState({episDisponiveis: arrayD});
+        arrayA.map((value) => {   //laço para varrer o outro array e ver se ja tem um registro com cod igual
+          if(value.cod === assignedEpi.cod){  //se achar só adicionar no estoque da outra 
+            value.estoque = parseInt(value.estoque) + parseInt(qntdPassada);          
+            achouIgual = true;
+          }
+        });    
+        if(achouIgual === false){  // se não cria um novo registro desse epi na outra
+          arrayA = arrayA.concat(assignedEpi);  //concatena o registro passado pro final do arrayA
+          // this.setState({episAtribuidos: arrayA});
+        }  
+      }  
+    }
+  });    
+  document.getElementById("table-buttonsD").style.display = "flex";
+  this.setState({episAtribuidos: arrayA});
+  this.setState({episDisponiveis: arrayD});
 };
 
 
 
  handleMassAssignA(epi) {
-//   var arrayD = this.state.episDisponiveis;
-//   var arrayAaux = Object.assign([], this.state.episAtribuidos);
-//   var arrayA = this.state.episAtribuidos;
-//   var splices = 0;
-//   var lengthD = this.state.episDisponiveis.length; //descobrir qntos registro tem na tabela de cima 
+  var arrayD = this.state.episDisponiveis;
+  var arrayAaux = Object.assign([], this.state.episAtribuidos);
+  var arrayA = this.state.episAtribuidos;
+  var splices = 0;
+  var lengthD = this.state.episDisponiveis.length; //descobrir qntos registro tem na tabela de cima 
 
-//   arrayAaux.map((epi)=> {
-//     var index = arrayA.indexOf(epi);
-//     var qntdPassada = document.getElementsByClassName("massAssign")[index + splices + lengthD].value; //pega o value da qntd passada digitada
-//     var assignedEpi = Object.assign({}, arrayA[index]);  //seleciona o obj escolhido
-//     var achouIgual = false; //variavel aux pra logica de ver se tem outro registro igual na outra tabela
+  arrayAaux.map((epi)=> {
+    var index = arrayA.indexOf(epi);
+    var qntdPassada = document.getElementsByClassName("massAssign")[index + splices + lengthD].value; //pega o value da qntd passada digitada
+    var assignedEpi = Object.assign({}, arrayA[index]);  //seleciona o obj escolhido
+    var achouIgual = false; //variavel aux pra logica de ver se tem outro registro igual na outra tabela
    
-//     if(qntdPassada !== ''){
+    if(qntdPassada !== ''){
 
-//       if(assignedEpi.estoque > 0 && qntdPassada < assignedEpi.estoque) {    //se a qntd em estoque eh maior q a qntd passada
-//         arrayA[index].estoque = arrayA[index].estoque - qntdPassada;      //ajustar o estoque D 
+      if(assignedEpi.estoque > 0 && qntdPassada < assignedEpi.estoque) {    //se a qntd em estoque eh maior q a qntd passada
+        arrayA[index].estoque = arrayA[index].estoque - qntdPassada;      //ajustar o estoque D 
         
-//         arrayD.map((value) => {   //laço para varrer o outro array e ver se ja tem um registro com cod igual
-//           if(value.cod === assignedEpi.cod){  //se achar só adicionar no estoque da outra 
-//             value.estoque = parseInt(value.estoque) + parseInt(qntdPassada);          
-//             achouIgual = true;
-//             // this.setState({episAtribuidos: arrayA});
-//           }
-//         });      
-//         if(achouIgual === false){  // se não cria um novo registro desse epi na outra
-//           assignedEpi.estoque = qntdPassada;  //atualiza para a qntd digitada antes de juntar com o arrayA
-//           arrayD = arrayD.concat(assignedEpi);  //concatena o registro passado pro final do arrayA
-//           // this.setState({episAtribuidos: arrayA});
-//         }    
-//       }
-//       else if(assignedEpi.estoque > 0){ 
-//         arrayA.splice(index, 1);   //tirar do array
-//         splices += 1;
-//         // this.setState({episDisponiveis: arrayD});
+        arrayD.map((value) => {   //laço para varrer o outro array e ver se ja tem um registro com cod igual
+          if(value.cod === assignedEpi.cod){  //se achar só adicionar no estoque da outra 
+            value.estoque = parseInt(value.estoque) + parseInt(qntdPassada);          
+            achouIgual = true;
+            // this.setState({episAtribuidos: arrayA});
+          }
+        });      
+        if(achouIgual === false){  // se não cria um novo registro desse epi na outra
+          assignedEpi.estoque = qntdPassada;  //atualiza para a qntd digitada antes de juntar com o arrayA
+          arrayD = arrayD.concat(assignedEpi);  //concatena o registro passado pro final do arrayA
+          // this.setState({episAtribuidos: arrayA});
+        }    
+      }
+      else if(assignedEpi.estoque > 0){ 
+        arrayA.splice(index, 1);   //tirar do array
+        splices += 1;
+        // this.setState({episDisponiveis: arrayD});
     
-//         arrayD.map((value) => {   //laço para varrer o outro array e ver se ja tem um registro com cod igual
-//           if(value.cod === assignedEpi.cod){  //se achar só adicionar no estoque da outra 
-//             value.estoque = parseInt(value.estoque) + parseInt(qntdPassada);          
-//             achouIgual = true;
-//           }
-//         });    
-//         if(achouIgual === false){  // se não cria um novo registro desse epi na outra
-//           arrayD = arrayD.concat(assignedEpi);  //concatena o registro passado pro final do arrayA
-//           // this.setState({episAtribuidos: arrayA});
-//         }  
-//       }  
-//     }
-//   });    
-//   document.getElementById("table-buttonsD").style.display = "flex";
-//   this.setState({episAtribuidos: arrayA});
-//   this.setState({episDisponiveis: arrayD});
+        arrayD.map((value) => {   //laço para varrer o outro array e ver se ja tem um registro com cod igual
+          if(value.cod === assignedEpi.cod){  //se achar só adicionar no estoque da outra 
+            value.estoque = parseInt(value.estoque) + parseInt(qntdPassada);          
+            achouIgual = true;
+          }
+        });    
+        if(achouIgual === false){  // se não cria um novo registro desse epi na outra
+          arrayD = arrayD.concat(assignedEpi);  //concatena o registro passado pro final do arrayA
+          // this.setState({episAtribuidos: arrayA});
+        }  
+      }  
+    }
+  });    
+  document.getElementById("table-buttonsD").style.display = "flex";
+  this.setState({episAtribuidos: arrayA});
+  this.setState({episDisponiveis: arrayD});
 }
 
 
@@ -504,9 +504,9 @@ SalvarEditarA = () =>{
     setTimeout(function() {$('#progress-bar').fadeOut(2000);}, 2000); 
 }
 
-onMassAssignEvent () {  
-  this.props.onMassAssign(this.props.epis);
-} 
+// onMassAssignEvent () {  
+//   this.props.onMassAssign(this.props.epis);
+// } 
 
   render() {    
     return (
@@ -535,11 +535,7 @@ onMassAssignEvent () {
           </div>
         </div>
 
-        <div className=""> {/*MASS ASSIGN*/}
-          <div className="form-control d-flex align-items-center" onClick={this.onMassAssignEvent.bind(this)}>        
-            <i className="fas fa-arrow-down fa-lg mr-2"></i><b>Atribuir</b>
-          </div>
-        </div>
+        
 
 
         <div className="panel mt-5">        
@@ -590,9 +586,9 @@ class SearchBar extends React.Component {
 
 class EpisTable extends React.Component {
   
-  // onMassAssignEvent () {  
-  //   this.props.onMassAssign(this.props.epis);
-  // } 
+  onMassAssignEvent () {  
+    this.props.onMassAssign(this.props.epis);
+  } 
 
   render() {    
     var onEpisTableUpdate = this.props.onEpisTableUpdate;
@@ -634,11 +630,11 @@ class EpisTable extends React.Component {
             {epi}
           </tbody>          
         </table>
-        {/* <div className=""> {/*MASS ASSIGN
+        <div className=""> {/*MASS ASSIGN*/}
           <div className="form-control d-flex align-items-center" onClick={this.onMassAssignEvent.bind(this)}>        
             <i className="fas fa-arrow-down fa-lg mr-2"></i><b>Atribuir</b>
           </div>
-        </div> */}
+        </div>
       </div>
     );
   }

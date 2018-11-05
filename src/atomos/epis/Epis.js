@@ -253,7 +253,7 @@ class Epis extends React.Component {
   };
 
 
-  handleMassAssign (epi){
+  handleMassAssignD (epi){
     console.log('chegou');
   var arrayD = this.state.listaEpisDisponiveis;
   var arrayDaux = Object.assign([], this.state.listaEpisDisponiveis);
@@ -301,9 +301,22 @@ class Epis extends React.Component {
         }  
       }  
     }
-  });    
+  }); 
 
-  
+
+  document.getElementById("table-buttonsD").style.display = "flex";
+
+
+  this.setState({listaEpisAtribuidos: arrayA});
+  this.setState({listaEpisDisponiveis: arrayD});
+  console.log('terminou');
+  }
+
+
+
+  handleMassAssignA (epi){
+    console.log('chegou');  
+    
   var arrayD = this.state.listaEpisDisponiveis;
   var arrayAaux = Object.assign([], this.state.listaEpisAtribuidos);
   var arrayA = this.state.listaEpisAtribuidos;
@@ -354,13 +367,26 @@ class Epis extends React.Component {
   });    
 
 
-  document.getElementById("table-buttonsD").style.display = "flex";
+  document.getElementById("table-buttonsA").style.display = "flex";
 
 
   this.setState({listaEpisAtribuidos: arrayA});
   this.setState({listaEpisDisponiveis: arrayD});
   console.log('terminou');
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -385,7 +411,7 @@ class Epis extends React.Component {
         </div>
         
         
-        {this.state.listaEpisDisponiveis !=0 && this.state.listaEpisAtribuidos !=0 ? (<TableEpis2 onMassAssign={this.handleMassAssign.bind(this)} listaD={this.state.listaEpisDisponiveis} listaA={this.state.listaEpisAtribuidos} />) : (<h1>Cadastre seus primeiros epi's</h1>) }
+        {this.state.listaEpisDisponiveis !=0 && this.state.listaEpisAtribuidos !=0 ? (<TableEpis2 onMassAssign={this.handleMassAssignD.bind(this)} listaD={this.state.listaEpisDisponiveis} listaA={this.state.listaEpisAtribuidos} />) : (<h1>Cadastre seus primeiros epi's</h1>) }
         {/* {this.state.listaEpisDisponiveis != 0 ? (<TableEpis lista={this.state.listaEpisDisponiveis}  />) : (<h1>Cadastre seus primeiros epi's</h1>) } */}
 
 
