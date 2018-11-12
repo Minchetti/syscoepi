@@ -60,12 +60,12 @@ componentWillReceiveProps(nextProps){
 
 
 changeArrowAssign = () =>{
-    var lengthD = this.state.episDisponiveis.length;
-    var lengthA = this.state.episAtribuidos.length;
-    var length = lengthA + lengthD;
-    for (var i = length-1; i > lengthD-1; i--){
-      document.getElementsByClassName("eachRow")[i].lastChild.firstChild.classList.add("rotated");
-    }
+    // var lengthD = this.state.episDisponiveis.length;
+    // var lengthA = this.state.episAtribuidos.length;
+    // var length = lengthA + lengthD;
+    // for (var i = length-1; i > lengthD-1; i--){
+    //   document.getElementsByClassName("eachRow")[i].lastChild.firstChild.classList.add("rotated");
+    // }
 }
 
 
@@ -600,32 +600,34 @@ class EpisTable extends React.Component {
       return (<TableRow  onEpisTableUpdate={onEpisTableUpdate} epi={epi} onDelEvent={rowDel.bind(this)} onAssignEvent={rowAssign.bind(this)} onCancelAssignEvent={rowCancelAssign.bind(this)} onChangeButtonEvent={rowChangeButton.bind(this)} key={epi.id}/>)
     });
     return (
-      <div className="table-responsive">      
-        <table id="table_epis" className="table table-bordered">
-          <thead className="thead-dark">
-            <tr>
-              <th>Cod</th>
-              <th>Nome</th>
-              <th>Descrição</th>
-              <th>Validade</th>
-              <th>Min Estoque</th>
-              <th>Estoque</th>
-              <th>Max Estoque</th>
-              <th>CA</th>
-              <th>Data Armazenamento</th>
-              <th>Data Devolução</th>
-              <th>Motivo Devolução</th>
-              <th>Cor</th>
-              <th>Fator Redução</th>
-              <th>Excluir</th>
-              {/* <th></th> */}
-              <th>Atribuir</th>
-            </tr>
-          </thead>
-          <tbody>
-            {epi}
-          </tbody>          
-        </table>
+      <div>
+        <div className="table-responsive">      
+          <table id="table_epis" className="table table-bordered">
+            <thead className="thead-dark">
+              <tr>
+                <th>Cod</th>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Validade</th>
+                <th>Min Estoque</th>
+                <th>Estoque</th>
+                <th>Max Estoque</th>
+                <th>CA</th>
+                <th>Data Armazenamento</th>
+                <th>Data Devolução</th>
+                <th>Motivo Devolução</th>
+                <th>Cor</th>
+                <th>Fator Redução</th>
+                <th>Excluir</th>
+                {/* <th></th> */}
+                <th>Atribuir</th>
+              </tr>
+            </thead>
+            <tbody>
+              {epi}
+            </tbody>          
+          </table>
+        </div>
         <div className=""> {/*MASS ASSIGN*/}
           <div className="form-control d-flex align-items-center" onClick={this.onMassAssignEvent.bind(this)}>        
             <i className="fas fa-arrow-down fa-lg mr-2"></i><b>Atribuir</b>
