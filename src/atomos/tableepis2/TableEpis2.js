@@ -4,7 +4,7 @@ import $ from 'jquery';
  
 // import PropTypes from 'prop-types';
 
-
+//começando a edição da table epis
 class TableEpis2 extends React.Component {
 initialState = {
   episInitialD: [],
