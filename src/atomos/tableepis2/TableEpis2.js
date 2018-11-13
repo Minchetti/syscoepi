@@ -1,3 +1,5 @@
+
+
 import React from 'react';
 
 import $ from 'jquery'; 
@@ -231,6 +233,7 @@ handleRowAssignA(epi) {
 
 
 handleMassAssignD(epi) {
+  console.log('asdas2d');
   var arrayD = this.state.episDisponiveis;
   var arrayDaux = Object.assign([], this.state.episDisponiveis);
   var arrayA = this.state.episAtribuidos;
@@ -286,6 +289,7 @@ handleMassAssignD(epi) {
 
 
  handleMassAssignA(epi) {
+   console.log('asdasd');
   var arrayD = this.state.episDisponiveis;
   var arrayAaux = Object.assign([], this.state.episAtribuidos);
   var arrayA = this.state.episAtribuidos;
@@ -514,6 +518,29 @@ SalvarEditarA = () =>{
 
         <div className="panel">        
           <div className="panel-heading d-flex justify-content-between align-items-center">
+            <h6 className="text-left mb-0"><i className="fa fa-user pr-2" aria-hidden="true"></i>Epi's Atribuidos({this.state.episAtribuidos.length})</h6>
+            
+            <div className="d-nonin" id="table-buttonsA">      
+              <button type="button" onClick={this.CancelarEditarA} className="btn btn-danger mr-2" > {/*data-dismiss="modal"*/}
+                <i className="fa fa-times pr-2 " aria-hidden="true" />Cancelar A
+              </button>
+              <button onClick={this.SalvarEditarA} type="submit" className="btn btn-primary" >
+                <i className="fa fa-check pr-2 " aria-hidden="true"/>Salvar A
+              </button>
+            </div>
+            
+            <div className="d-flex align-items-center">
+              <i class="fas fa-search fa-lg mr-2"></i>
+              <SearchBar filterText={this.state.filterTextA} onUserInput={this.handleUserInputA.bind(this)}/>
+            </div>
+          </div>
+          <div className="panel-body">
+            <EpisTable onEpisTableUpdate={this.handleEpisTableA.bind(this)} onMassAssign={this.handleMassAssignA.bind(this)} onRowDel={this.handleRowDelA.bind(this)} onRowAssign={this.handleRowAssignA.bind(this)} onRowCancelAssign={this.handleRowCancelAssignA.bind(this)} onRowChangeButton={this.handleRowChangeButtonA.bind(this)} epis={this.state.episAtribuidos} filterText={this.state.filterTextA}/> {/*onRowAdd={this.handleAddEvent.bind(this)}*/}
+          </div>
+        </div>
+
+        <div className="panel mt-5">        
+          <div className="panel-heading d-flex justify-content-between align-items-center">
             <h6 className="text-left mb-0"><i className="fa fa-user pr-2" aria-hidden="true"></i>Epi's Disponíveis({this.state.episDisponiveis.length})</h6>
 
             <div className="d-nonin" id="table-buttonsD">      
@@ -535,28 +562,6 @@ SalvarEditarA = () =>{
           </div>
         </div>
 
-        <div className="panel mt-5">        
-          <div className="panel-heading d-flex justify-content-between align-items-center">
-            <h6 className="text-left mb-0"><i className="fa fa-user pr-2" aria-hidden="true"></i>Epi's Atribuidos({this.state.episAtribuidos.length})</h6>
-            
-            <div className="d-nonin" id="table-buttonsA">      
-              <button type="button" onClick={this.CancelarEditarA} className="btn btn-danger mr-2" > {/*data-dismiss="modal"*/}
-                <i className="fa fa-times pr-2 " aria-hidden="true" />Cancelar A
-              </button>
-              <button onClick={this.SalvarEditarA} type="submit" className="btn btn-primary" >
-                <i className="fa fa-check pr-2 " aria-hidden="true"/>Salvar A
-              </button>
-            </div>
-            
-            <div className="d-flex align-items-center">
-              <i class="fas fa-search fa-lg mr-2"></i>
-              <SearchBar filterText={this.state.filterTextA} onUserInput={this.handleUserInputA.bind(this)}/>
-            </div>
-          </div>
-          <div className="panel-body">
-            <EpisTable onEpisTableUpdate={this.handleEpisTableA.bind(this)} onMassAssign={this.handleMassAssignA.bind(this)} onRowDel={this.handleRowDelA.bind(this)} onRowAssign={this.handleRowAssignA.bind(this)} onRowCancelAssign={this.handleRowCancelAssignA.bind(this)} onRowChangeButton={this.handleRowChangeButtonA.bind(this)} epis={this.state.episAtribuidos} filterText={this.state.filterTextA}/> {/*onRowAdd={this.handleAddEvent.bind(this)}*/}
-          </div>
-        </div>
        
 
       </div>
