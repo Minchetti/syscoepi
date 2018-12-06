@@ -1,15 +1,15 @@
 import React from 'react';
-import TableFuncionarios from '../tablefuncionarios';
+// import TableFuncionarios from '../tablefuncionarios';
 import TableFuncionarios2 from '../tablefuncionarios2';
-import Table2 from '../table2';
-import Table3 from '../table3';
-import Modal2 from '../modal1';
+// import Table2 from '../table2';
+// import Table3 from '../table3';
+// import Modal2 from '../modal1';
 import Button from '../button';
 import PreviewFuncionarios from '../previewfuncionarios';
 import ModalAddFuncionario from '../modaladdfuncionario';
 import * as Papa from 'papaparse';
 import $ from 'jquery'; 
-import IdUsuarioLogado from '../login/Login.js';
+// import IdUsuarioLogado from '../login/Login.js';
 
 // var data;
 
@@ -53,7 +53,7 @@ class Employees extends React.Component {
         this.setState({ csv });
         console.log(csv);
         
-      $('#JAJA').show();
+      $('#previewfuncionarios').show();
         // PreviewComponent = <PreviewFuncionarios lista={csv}/> 
       }.bind(this)
       });
@@ -94,7 +94,7 @@ class Employees extends React.Component {
     ]
     // var data = null;
 
-    if(data != null){
+    if(data !== null){
       this.setState({ arrayEmpresas: data });  
       this.setState({ nomeEmpresaSelecionada: data[0].nomeAmigavel });  
       this.setState({ empresaSelecionadaId: data[0].empresaId });  
@@ -149,13 +149,13 @@ class Employees extends React.Component {
     var data3 = [
       {cnpj: '333333', nomeAmigavel:'Empresa 3', razaoSocial: 'Razao3', empresaId: '39e6158ef2eb894d3bb4530504615482'} 
     ]
-    if (this.state.nomeEmpresaSelecionada == 'Empresa 1' ){
+    if (this.state.nomeEmpresaSelecionada === 'Empresa 1' ){
       this.setState({ empresaSelecionadaId: data[0].empresaId });  
     }    
-    if (this.state.nomeEmpresaSelecionada == 'Empresa 2' ){
+    if (this.state.nomeEmpresaSelecionada === 'Empresa 2' ){
       this.setState({ empresaSelecionadaId: data2[0].empresaId });  
     }
-    if (this.state.nomeEmpresaSelecionada == 'Empresa 3' ){
+    if (this.state.nomeEmpresaSelecionada === 'Empresa 3' ){
       this.setState({ empresaSelecionadaId: data3[0].empresaId });  
     }
     // alert("Dados da empresa carregados!") ;
@@ -199,43 +199,43 @@ class Employees extends React.Component {
     // alert("Funcionarios carregados!") ;
 
     var data = [
-      {id:"0123", nome: "Marcello Minchetti1", turno: "Noturno", sexo: "Masculino", rg: "16778405", cpf: "10770546617", gh: "123456", email: "teste@gmail.com", ativo: false},   
-      {id:"1123", nome: "Leandro Santos1", turno: "vespertino", sexo: "Masculino", rg: "16698405", cpf: "78970546617", gh: "123456", email: "teste@gmail.com", ativo: true}, 
-      {id:"2123", nome: "Luciano Braga1", turno: "Matutino", sexo: "Masculino", rg: "16771105", cpf: "11570546617", gh: "123456", email: "teste@gmail.com", ativo: false},
-      {id:"3123", nome: "Rodolfo Augusto1", turno: "Vespertino", sexo: "Masculino", rg: "16772605", cpf: "11980546617", gh: "123456", email: "teste@gmail.com", ativo: true},    
-      {id:"4123", nome: "Susi Ribeiro1", turno: "Noturno", sexo: "Feminino", rg: "16488405", cpf: "10770774617", gh: "123456", email: "teste@gmail.com", ativo: true}
+      {id:"0123", nome: "Marcello Minchetti1", turno: "Noturno", sexo: "Masculino", rg: "16778405", cpf: "10770546617", gh: "123456", cc: "123456", email: "teste@gmail.com", ativo: false},   
+      {id:"1123", nome: "Leandro Santos1", turno: "vespertino", sexo: "Masculino", rg: "16698405", cpf: "78970546617", gh: "123456", cc: "123456", email: "teste@gmail.com", ativo: true}, 
+      {id:"2123", nome: "Luciano Braga1", turno: "Matutino", sexo: "Masculino", rg: "16771105", cpf: "11570546617", gh: "123456", cc: "123456", email: "teste@gmail.com", ativo: false},
+      {id:"3123", nome: "Rodolfo Augusto1", turno: "Vespertino", sexo: "Masculino", rg: "16772605", cpf: "11980546617", gh: "123456", cc: "123456", email: "teste@gmail.com", ativo: true},    
+      {id:"4123", nome: "Susi Ribeiro1", turno: "Noturno", sexo: "Feminino", rg: "16488405", cpf: "10770774617", gh: "123456", cc: "123456", email: "teste@gmail.com", ativo: true}
     ]
     var data2 = [
-      {id:"0123", nome: "Marcello Minchetti2", turno: "Noturno", sexo: "Masculino", rg: "16778405", cpf: "10770546617", gh: "123456", email: "teste@gmail.com", ativo: true},   
-      {id:"1123", nome: "Leandro Santos2", turno: "vespertino", sexo: "Masculino", rg: "16698405", cpf: "78970546617", gh: "123456", email: "teste@gmail.com", ativo: true}, 
-      {id:"2123", nome: "Luciano Braga2", turno: "Matutino", sexo: "Masculino", rg: "16771105", cpf: "11570546617", gh: "123456", email: "teste@gmail.com", ativo: true},
-      {id:"3123", nome: "Rodolfo Augusto2", turno: "Vespertino", sexo: "Masculino", rg: "16772605", cpf: "11980546617", gh: "123456", email: "teste@gmail.com", ativo: true},    
-      {id:"4123", nome: "Susi Ribeiro2", turno: "Noturno", sexo: "Feminino", rg: "16488405", cpf: "10770774617", gh: "123456", email: "teste@gmail.com", ativo: true}
+      {id:"0123", nome: "Marcello Minchetti2", turno: "Noturno", sexo: "Masculino", rg: "16778405", cpf: "10770546617", gh: "123456", cc: "123456", email: "teste@gmail.com", ativo: true},   
+      {id:"1123", nome: "Leandro Santos2", turno: "vespertino", sexo: "Masculino", rg: "16698405", cpf: "78970546617", gh: "123456", cc: "123456", email: "teste@gmail.com", ativo: true}, 
+      {id:"2123", nome: "Luciano Braga2", turno: "Matutino", sexo: "Masculino", rg: "16771105", cpf: "11570546617", gh: "123456", cc: "123456", email: "teste@gmail.com", ativo: true},
+      {id:"3123", nome: "Rodolfo Augusto2", turno: "Vespertino", sexo: "Masculino", rg: "16772605", cpf: "11980546617", gh: "123456", cc: "123456", email: "teste@gmail.com", ativo: true},    
+      {id:"4123", nome: "Susi Ribeiro2", turno: "Noturno", sexo: "Feminino", rg: "16488405", cpf: "10770774617", gh: "123456", cc: "123456", email: "teste@gmail.com", ativo: true}
     ]
     var data3 = [
-      {id:"0123", nome: "Marcello Minchetti3", turno: "Noturno", sexo: "Masculino", rg: "16778405", cpf: "10770546617", gh: "123456", email: "teste@gmail.com", ativo: true},   
-      {id:"1123", nome: "Leandro Santos3", turno: "vespertino", sexo: "Masculino", rg: "16698405", cpf: "78970546617", gh: "123456", email: "teste@gmail.com", ativo: true}, 
-      {id:"2123", nome: "Luciano Braga3", turno: "Matutino", sexo: "Masculino", rg: "16771105", cpf: "11570546617", gh: "123456", email: "teste@gmail.com", ativo: true},
-      {id:"3123", nome: "Rodolfo Augusto3", turno: "Vespertino", sexo: "Masculino", rg: "16772605", cpf: "11980546617", gh: "123456", email: "teste@gmail.com", ativo: true},    
-      {id:"4123", nome: "Susi Ribeiro3", turno: "Noturno", sexo: "Feminino", rg: "16488405", cpf: "10770774617", gh: "123456", email: "teste@gmail.com", ativo: true}
+      {id:"0123", nome: "Marcello Minchetti3", turno: "Noturno", sexo: "Masculino", rg: "16778405", cpf: "10770546617", gh: "123456", cc: "123456", email: "teste@gmail.com", ativo: true},   
+      {id:"1123", nome: "Leandro Santos3", turno: "vespertino", sexo: "Masculino", rg: "16698405", cpf: "78970546617", gh: "123456", cc: "123456", email: "teste@gmail.com", ativo: true}, 
+      {id:"2123", nome: "Luciano Braga3", turno: "Matutino", sexo: "Masculino", rg: "16771105", cpf: "11570546617", gh: "123456", cc: "123456", email: "teste@gmail.com", ativo: true},
+      {id:"3123", nome: "Rodolfo Augusto3", turno: "Vespertino", sexo: "Masculino", rg: "16772605", cpf: "11980546617", gh: "123456", cc: "123456", email: "teste@gmail.com", ativo: true},    
+      {id:"4123", nome: "Susi Ribeiro3", turno: "Noturno", sexo: "Feminino", rg: "16488405", cpf: "10770774617", gh: "123456", cc: "123456", email: "teste@gmail.com", ativo: true}
     ]    
 
 
-    if (this.state.nomeEmpresaSelecionada == 'Empresa 1' ){
+    if (this.state.nomeEmpresaSelecionada === 'Empresa 1' ){
 
       var ativos = [];
       var inativos = [];
       var listaFuncionariosReorganizada;
 
       data.forEach(i => { //criar array pros inativos
-        if(i.ativo == false){
+        if(i.ativo === false){
           inativos = inativos.concat(i);
           console.log(inativos);
         }
       });
 
       data.forEach(i => { //criar array pros ativos
-        if(i.ativo == true){
+        if(i.ativo === true){
           ativos = ativos.concat(i);
           console.log(ativos);
         }
@@ -246,11 +246,11 @@ class Employees extends React.Component {
       this.setState({ listaFuncionarios: listaFuncionariosReorganizada });  
     }    
     
-    if (this.state.nomeEmpresaSelecionada == 'Empresa 2' ){
+    if (this.state.nomeEmpresaSelecionada === 'Empresa 2' ){
       // this.setState({ nomeEmpresaSelecionada: data2[0].nomeAmigavel });  
       this.setState({ listaFuncionarios: data2 });  
     }
-    if (this.state.nomeEmpresaSelecionada == 'Empresa 3' ){
+    if (this.state.nomeEmpresaSelecionada === 'Empresa 3' ){
       // this.setState({ nomeEmpresaSelecionada: data3[0].nomeAmigavel }); 
       this.setState({ listaFuncionarios: data3 });   
     }
@@ -267,25 +267,27 @@ class Employees extends React.Component {
   PrimeiroFuncionario = () =>{
     const empresas = this.state.arrayEmpresas;
 
-    if(empresas.length != 0 ){
+    if(empresas.length !== 0 ){
       return (
         <div className=" d-flex flex-column">              
-        <div className="d-flex mb-4">
-          <div className="col-md-6 d-flex align-items-center p-0">
-              <select id="select-empresas" className="form-control" onChange={e => this.setState({ nomeEmpresaSelecionada: e.target.value },this.Callback)}>
+        <div className="d-flex mb-3">
+          <div className="col-md-4 d-flex align-items-center p-0">
+              <select id="select-empresas" className="form-control btn-dark" onChange={e => this.setState({ nomeEmpresaSelecionada: e.target.value },this.Callback)}>
                 {this.MontarSelect()}
               </select>
           </div>
-          <div className="col-md-6 p-0 align-items-center">
-            <input type="file" className="btn btn-dark" id="csv-file" name="files" onChange={this.handleFileSelect.bind(this)}/>
-            <Button class="btn-dark pr-2 ml-3" icon="fa-plus fa-lg mr-1" text="Adicionar Funcionário" target="#modal-add-funcionario"/>
+          <div className="col-md-4 pl-2 pr-2 align-items-center ">
+            <input type="file" className="btn btn-dark w-100 h-100" id="csv-file" name="files" onChange={this.handleFileSelect.bind(this)}/>
+          </div>          
+          <div className="col-md-4 p-0 align-items-center ">
+            <Button class="btn-dark pr-2 w-100 h-100" icon="fa-plus fa-lg mr-2" text="Adicionar Funcionário" target="#modal-add-funcionario"/>
           </div>
         </div>
         
         {this.state.csv && <PreviewFuncionarios lista={this.state.csv} />}
         
         {/* {this.state.listaFuncionarios != 0 ? (<TableFuncionarios lista={this.state.listaFuncionarios}  />) : (<h1>TA VAZIO MANÉ</h1>) } */}
-        {this.state.listaFuncionarios != 0 ? (<TableFuncionarios2 lista={this.state.listaFuncionarios}  />) : (<h1>Cadastre seus primeiros funcionários</h1>) }
+        {this.state.listaFuncionarios !== 0 ? (<TableFuncionarios2 lista={this.state.listaFuncionarios}  />) : (<h1>Cadastre seus primeiros funcionários</h1>) }
         {/* <TableFuncionarios2 /> */}
 
 
@@ -310,9 +312,9 @@ class Employees extends React.Component {
     return (
       
       <div id="Employees">
-      <div onClick={this.Teste}>AQUI</div>
+      {/* <div onClick={this.Teste}>AQUI</div> */}
       
-        <h4 className="mt-2 mb-4"><i className="fa fa-users mr-2" aria-hidden="true"></i>Funcionários</h4>  
+        <h4 className="position-absolute m-auto l-0 r-0 t-15 text-white "><i className="fa fa-users mr-2" aria-hidden="true"></i>Funcionários</h4>  
                
         {this.PrimeiroFuncionario()}
         {/* <Modal2/>    */}

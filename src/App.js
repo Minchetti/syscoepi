@@ -10,7 +10,7 @@ import {
   Route,
   Link,
   Redirect,
-  withRouter,
+  // withRouter,
 } from 'react-router-dom';
 
 class App extends Component {

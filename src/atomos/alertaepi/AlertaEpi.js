@@ -18,7 +18,7 @@ const AlertaEpi = props => (
     <table className="table m-0">
       <thead className="thead-dark">
         <tr>
-          <th className="text-center"></th>
+          <th className="text-center">Thumb</th>
           <th className="text-center">CA</th>
           <th className="text-center">Empresa</th>
           <th className="text-center">CC</th>
@@ -31,43 +31,42 @@ const AlertaEpi = props => (
       </thead>
       <tbody >
         <tr>
-          <td scope="row"><img src={abafador} className="thumb" alt="logo" /></td>
-          <td>125468</td>
-          <td>Siemens</td>
-          <td>012345</td>
-          <td>Obras</td>
-          <td>Noturno</td>
-          <td>Adriano Torres</td>
-          <td className="alerta">10/02/2018</td>
-          <td>01</td>
+          <td scope="row"><div><img src={abafador} className="thumb" alt="logo" /></div></td>
+          <td><div>125468</div></td>
+          <td><div>Siemens</div></td>
+          <td><div>012345</div></td>
+          <td><div>Obras</div></td>
+          <td><div>Noturno</div></td>
+          <td><div>Adriano Torres</div></td>
+          <td className="alerta"><div>10/02/2018</div></td>
+          <td><div>01</div></td>
         </tr>
         <tr>
-          <td scope="row"><img src={capacete} className="thumb" alt="logo" /></td>
-          <td>103254</td>
-          <td>Votorantin</td>
-          <td>201354</td>
-          <td>Obras</td>
-          <td>Diurno</td>
-          <td><i className="fa fa-users fa-lg" aria-hidden="true"></i></td>
-          <td>01/01/2020</td>
-          <td className="alerta">09</td>
+          <td scope="row"><div><img src={capacete} className="thumb" alt="logo" /></div></td>
+          <td><div>103254</div></td>
+          <td><div>Votorantin</div></td>
+          <td><div>201354</div></td>
+          <td><div>Obras</div></td>
+          <td><div>Diurno</div></td>
+          <td><div>Marcello Dias</div></td>
+          <td><div>01/01/2020</div></td>
+          <td className="alerta"><div>09</div></td>
         </tr>
         <tr>
-          <td scope="row"><img src={bota2} className="thumb" alt="logo" /></td>
-          <td>013256</td>
-          <td>Helibras</td>
-          <td>254463</td>
-          <td>Obras</td>
-          <td>Matutino</td>
-          <td>Lucas Pereira</td>
-          <td className="alerta">08/02/2018</td>
-          <td>01</td>
+          <td scope="row"><div><img src={bota2} className="thumb" alt="logo" /></div></td>
+          <td><div>013256</div></td>
+          <td><div>Helibras</div></td>
+          <td><div>254463</div></td>
+          <td><div>Obras</div></td>
+          <td><div>Matutino</div></td>
+          <td><div>Lucas Pereira</div></td>
+          <td className="alerta"><div>08/02/2018</div></td>
+          <td><div>01</div></td>
         </tr>
       </tbody>
     </table>
   </div>
-</div> 
-
+  </div>
 
 
 

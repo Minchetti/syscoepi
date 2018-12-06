@@ -15,7 +15,6 @@ class ModalAddFuncionario extends React.Component {
     gh: '',
     turno: '',
     sexo: '',
-    email: '',
     ativo: ''
   };
 
@@ -56,17 +55,19 @@ class ModalAddFuncionario extends React.Component {
 
 verificarCPF = () =>{
   this.props.lista.map((value) => {   //laço para varrer o outro a lista e ver se ja existe esse func
-    if(value.cpf == this.state.cpf.replace(/[./-]/g, "")) {  //
+    if(value.cpf === this.state.cpf.replace(/[./-]/g, "")) {  //
       document.getElementById("reactiveArea").style.display = "flex";
       document.getElementById("btn-add-salvar").disabled = true;
       document.getElementById("btn-add-fechar").disabled = true;
       this.aux.funcAchado = value;
 
     }
-    else if(this.aux.funcAchado == ''){        
+    else if(this.aux.funcAchado === ''){        
       document.getElementById("reactiveArea").style.display = "none";
     }
-  });  
+    
+    return null;
+  });
 }
 
 naoReativar = () =>{
@@ -85,9 +86,10 @@ reativar = () =>{
   this.apagarCampos();
 
   this.props.lista.map((value) => {  
-    if(value.cpf == this.state.cpf.replace(/[./-]/g, "")) {  
+    if(value.cpf === this.state.cpf.replace(/[./-]/g, "")) {  
       value.ativo = true;
     }
+    return null;
   });
 
   console.log(this.props.lista);
@@ -137,13 +139,14 @@ apagarCampos = () =>{
     var dados = {
       empresaId: this.props.empresaId,
       nome: this.state.nome,
-      nome: this.state.rg,
-      nome: this.state.cpf,
-      nome: this.state.email,
-      nome: this.state.gh,
-      nome: this.state.turno,
-      email: this.state.sexo,
-      nome: this.state.ativo      
+      rg: this.state.rg,
+      cpf: this.state.cpf,
+      email: this.state.email,
+      gh: this.state.gh,
+      cc: this.state.cc,
+      turno: this.state.turno,
+      sexo: this.state.sexo,
+      ativo: this.state.ativo      
     } 
 
     fetch('http://192.168.10.30/v1/funcionarios', {
@@ -217,7 +220,7 @@ apagarCampos = () =>{
                     </div>
                     <div className="form-group col-md-6">
                       <label htmlFor="input-cpf"><i className="far fa-address-card pr-2" ></i>CPF</label>
-                      <InputMask mask="999.999.999-99" type="text" value={this.state.cpf} onChange={e => this.setState({ cpf: e.target.value })} className="inputs form-control" id="input-cpf" name="input-cpf" aria-describedby="cpfHelp" minlength="14" pattern=".{14,}" size="14" data-minlength="14" required />
+                      <InputMask mask="999.999.999-99" type="text" value={this.state.cpf} onChange={e => this.setState({ cpf: e.target.value })} className="inputs form-control" id="input-cpf" name="input-cpf" aria-describedby="cpfHelp" minLength="14" pattern=".{14,}" size="14" data-minlength="14" required />
                     </div> 
                     <div className="form-group col-md-6">
                       <label htmlFor="input-rg"><i className="far fa-address-card pr-2" ></i>RG</label>
@@ -230,6 +233,10 @@ apagarCampos = () =>{
                     <div className="form-group col-md-6">
                       <label htmlFor="input-gh"><i className="far fa-envelope pr-2" ></i>GH</label>
                       <input type="text" value={this.state.gh} onChange={e => this.setState({ gh: e.target.value })} className="inputs form-control" id="input-gh" name="input-gh" aria-describedby="emailHelp" required/>
+                    </div> 
+                    <div className="form-group col-md-6">
+                      <label htmlFor="input-cc"><i className="far fa-envelope pr-2" ></i>CC</label>
+                      <input type="text" value={this.state.cc} onChange={e => this.setState({ cc: e.target.value })} className="inputs form-control" id="input-cc" name="input-cc" aria-describedby="emailHelp" required/>
                     </div> 
                     <div className="form-group col-md-6">
                       <label htmlFor="input-turno"><i className="far fa-envelope pr-2" ></i>Turno</label>

@@ -1,16 +1,16 @@
 
 import React from 'react';
-import Table2 from '../table2';
-import Table3 from '../table3';
-import Modal2 from '../modal1';
+// import Table2 from '../table2';
+// import Table3 from '../table3';
+// import Modal2 from '../modal1';
 import Button from '../button';
 // import TableEpis from '../tableepis';
 import TableEpis2 from '../tableepis2';
-import PreviewFuncionarios from '../previewfuncionarios';
-import ModalCriarEmpresa from '../modalcriarempresa';
+// import PreviewFuncionarios from '../previewfuncionarios';
+// import ModalCriarEmpresa from '../modalcriarempresa';
 import ModalAddEpi from '../modaladdepi';
-import $ from 'jquery'; 
-import IdUsuarioLogado from '../login/Login.js';
+// import $ from 'jquery'; 
+// import IdUsuarioLogado from '../login/Login.js';
 
 
 
@@ -50,7 +50,7 @@ class Epis extends React.Component {
       // })
       // .then(response => {
         //   response.json().then(data => {
-          //     if (data.success == true) {   
+          //     if (data.success === true) {   
         //        this.setState({ arrayEmpresas: data });   
     //          } 
     //          else {
@@ -71,7 +71,7 @@ class Epis extends React.Component {
     ]
     // var data = null;
 
-    if(data != null){
+    if(data !== null){
       this.setState({ arrayEmpresas: data });  
       this.setState({ nomeEmpresaSelecionada: data[0].nomeAmigavel });  
       this.setState({ empresaSelecionadaId: data[0].empresaId });  
@@ -105,7 +105,7 @@ class Epis extends React.Component {
       // })
       // .then(response => {
         //   response.json().then(data => {
-          //     if (data.success == true) {   
+          //     if (data.success === true) {   
         //        this.setState({ data });   
     //          } 
     //          else {
@@ -127,13 +127,13 @@ class Epis extends React.Component {
     var data3 = [
       {cnpj: '333333', nomeAmigavel:'Empresa 3', razaoSocial: 'Razao3', empresaId: '39e6158ef2eb894d3bb4530504615482'} 
     ]
-    if (this.state.nomeEmpresaSelecionada == 'Empresa 1' ){
+    if (this.state.nomeEmpresaSelecionada === 'Empresa 1' ){
       this.setState({ empresaSelecionadaId: data[0].empresaId });  
     }    
-    if (this.state.nomeEmpresaSelecionada == 'Empresa 2' ){
+    if (this.state.nomeEmpresaSelecionada === 'Empresa 2' ){
       this.setState({ empresaSelecionadaId: data2[0].empresaId });  
     }
-    if (this.state.nomeEmpresaSelecionada == 'Empresa 3' ){
+    if (this.state.nomeEmpresaSelecionada === 'Empresa 3' ){
       this.setState({ empresaSelecionadaId: data3[0].empresaId });  
     }
     // alert("Dados da empresa carregados!") ;
@@ -161,7 +161,7 @@ class Epis extends React.Component {
       // })
       // .then(response => {
         //   response.json().then(data => {
-          //     if (data.success == true) {   
+          //     if (data.success === true) {   
             
         //        this.setState({ listaEpisDisponiveis });   
     //          } 
@@ -205,7 +205,7 @@ class Epis extends React.Component {
       // })
       // .then(response => {
         //   response.json().then(data => {
-          //     if (data.success == true) {   
+          //     if (data.success === true) {   
             
         //        this.setState({ listaEpisAtribuidos });   
     //          } 
@@ -237,15 +237,15 @@ class Epis extends React.Component {
     ]   
 
 
-    if (this.state.nomeEmpresaSelecionada == 'Empresa 1' ){
+    if (this.state.nomeEmpresaSelecionada === 'Empresa 1' ){
       // this.setState({ nomeEmpresaSelecionada: data[0].nomeAmigavel });
       this.setState({ listaEpisAtribuidos: data });  
     }    
-    if (this.state.nomeEmpresaSelecionada == 'Empresa 2' ){
+    if (this.state.nomeEmpresaSelecionada === 'Empresa 2' ){
       // this.setState({ nomeEmpresaSelecionada: data2[0].nomeAmigavel });  
       this.setState({ listaEpisAtribuidos: data2 });  
     }
-    if (this.state.nomeEmpresaSelecionada == 'Empresa 3' ){
+    if (this.state.nomeEmpresaSelecionada === 'Empresa 3' ){
       // this.setState({ nomeEmpresaSelecionada: data3[0].nomeAmigavel }); 
       this.setState({ listaEpisAtribuidos: data3 });   
     }
@@ -267,7 +267,7 @@ class Epis extends React.Component {
   //   var assignedEpi = Object.assign({}, arrayD[index]);  //seleciona o obj escolhido
   //   var achouIgual = false; //variavel aux pra logica de ver se tem outro registro igual na outra tabela
    
-  //   if(qntdPassada !== ''){
+  //   if(qntdPassada !=== ''){
 
   //     if(assignedEpi.estoque > 0 && qntdPassada < assignedEpi.estoque) {    //se a qntd em estoque eh maior q a qntd passada
   //       arrayD[index].estoque = arrayD[index].estoque - qntdPassada;      //ajustar o estoque D 
@@ -385,36 +385,28 @@ class Epis extends React.Component {
 
 
 
-
-
-
-
-
-
-
-
   PrimeiroEpi = () =>{
     const empresas = this.state.arrayEmpresas;
 
-    if(empresas.length != 0 ){
+    if(empresas.length !== 0 ){
       return (
         <div className=" d-flex flex-column">              
-        <div className="d-flex mb-4">
+        <div className="d-flex mb-3">
           <div className="col-md-4 d-flex align-items-center p-0">
               <select id="select-empresas" className="form-control btn-dark" onChange={e => this.setState({ nomeEmpresaSelecionada: e.target.value },this.Callback)}>
                 {this.MontarSelect()}
               </select>
           </div>
-          <div className="col-md-4 pl-1 pr-1 align-items-center">            
-            <Button class="btn-dark pr-2 w-100 h-100" icon="fa-plus fa-lg mr-1" text="Epi Atribuído" target="#modal-add-epi"/>
+          <div className="col-md-4 pl-2 pr-2 align-items-center">            
+            <Button class="btn-dark pr-2 w-100 h-100" icon="fa-plus fa-lg mr-2" text="Epi Atribuído" target="#modal-add-epi"/>
           </div>
           <div className="col-md-4 p-0 align-items-center">            
-            <Button class="btn-dark pr-2 w-100 h-100" icon="fa-plus fa-lg mr-1" text="Epi Disponível" target="#modal-add-epi"/>
+            <Button class="btn-dark pr-2 w-100 h-100" icon="fa-plus fa-lg mr-2" text="Epi Disponível" target="#modal-add-epi"/>
           </div>
         </div>
         
         
-        {this.state.listaEpisDisponiveis !=0 && this.state.listaEpisAtribuidos !=0 ? (<TableEpis2  listaD={this.state.listaEpisDisponiveis} listaA={this.state.listaEpisAtribuidos} />) : (<h1>Cadastre seus primeiros epi's</h1>) } {/*onMassAssign={this.handleMassAssignD.bind(this)} */}
+        {this.state.listaEpisDisponiveis !== 0 && this.state.listaEpisAtribuidos !== 0 ? (<TableEpis2 nomeEmpresaSelecionada={this.state.nomeEmpresaSelecionada} listaD={this.state.listaEpisDisponiveis} listaA={this.state.listaEpisAtribuidos} />) : (<h1>Cadastre seus primeiros epi's</h1>) } {/*onMassAssign={this.handleMassAssignD.bind(this)} */}
         {/* {this.state.listaEpisDisponiveis != 0 ? (<TableEpis lista={this.state.listaEpisDisponiveis}  />) : (<h1>Cadastre seus primeiros epi's</h1>) } */}
 
 
@@ -440,9 +432,9 @@ class Epis extends React.Component {
       
       <div id="Epis">
       
-        <h4 className="position-absolute l-0 r-0 t-15 text-white"><i className="fas fa-shield-alt mr-2" aria-hidden="true"></i>Epi's</h4>  
+        <h4 className="position-absolute m-auto l-0 r-0 t-15 text-white"><i className="fas fa-shield-alt mr-2" aria-hidden="true"></i>Epi's</h4>  
                
-      <div onClick={this.Teste}>STATE</div>
+      {/* <div onClick={this.Teste}>STATE</div> */}
         {this.PrimeiroEpi()}
         
         <ModalAddEpi empresaId={this.state.empresaSelecionadaId}  /> 

@@ -42,7 +42,7 @@ class Cabecalho extends React.Component {
         <div className="d-flex">
           <div id="lnk-painel-usuario" className="mr-3 c-pointer"  data-toggle="modal" data-target="#modal-usuario">
             <i className="fa fa-user-circle mr-2"></i> 
-            <span className="nome-usuario"></span>
+            <span className="nome-usuario">{localStorage.getItem('name')}</span>
           </div>          
           <div className="mr-3">
             <i className="fa fa-question-circle"></i> Ajuda

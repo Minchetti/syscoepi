@@ -11,7 +11,7 @@ import ReqCancelada from '../reqcancelada';
 const Dashboard = props => (
 
   <div id="dashboard" className="">
-    <h4 className="col mt-2"><i className="fa fa-clipboard-list" aria-hidden="true"></i> Dashboard</h4> 
+    <h4 className="position-absolute m-auto l-0 r-0 t-15 text-white"><i className="fa fa-clipboard-list" aria-hidden="true"></i> Dashboard</h4> 
     <AlertaEpi /> 
     <div className="justify-content-between row">
       <UltimaReq size="col-4" big="d-none"/>

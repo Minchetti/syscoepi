@@ -1,5 +1,5 @@
 import React from 'react';
-import $ from 'jquery';
+// import $ from 'jquery';
 import InputMask from 'react-input-mask';
 // import PropTypes from 'prop-types';
 
@@ -69,7 +69,7 @@ class TableFuncionarios extends React.Component {
 
     // var campo_search = "Marcello Minchetti";
     // console.log(campo_search + ' DIGITADO NO INPUT');
-    var funcionario_pesquisado = this.state.lista.filter((i) => i.Nome == campo_search || i.RG == campo_search || i.CPF == campo_search || i.Email == campo_search || i.Turno == campo_search || i.Sexo == campo_search || i.GH == campo_search);
+    var funcionario_pesquisado = this.state.lista.filter((i) => i.Nome === campo_search || i.RG === campo_search || i.CPF === campo_search || i.Email === campo_search || i.Turno === campo_search || i.Sexo === campo_search || i.GH === campo_search);
     // {funcionario_pesquisado && this.setState({ lista: funcionario_pesquisado })};
     if (funcionario_pesquisado.length > 0){
       this.setState({ search: true });
@@ -146,16 +146,16 @@ class TableFuncionarios extends React.Component {
             </button>
           </div>
         </td>
-        <td><input onClick={e => this.setState({ nome: e.target.value })} type="text" value={this.state.nome == '' ? (value.nome) : (this.state.nome)} className="form-control" id="funcionario-nome" name="" aria-describedby="" data-minlength="" /></td>  
-        <td><InputMask onClick={e => this.setState({ rg: e.target.value })} mask="99.999.999" type="text" value={this.state.rg == '' ? (value.rg) : (this.state.rg)} className="form-control" id="funcionario-rg" name="" aria-describedby="" data-minlength="" /></td>  
-        <td><InputMask onClick={e => this.setState({ cpf: e.target.value })} mask="999.999.999-99" type="text" value={this.state.cpf == '' ? (value.cpf) : (this.state.cpf)} className="form-control" id="funcionario-cpf" name="" aria-describedby="" data-minlength="" /></td>  
-        <td><input onClick={e => this.setState({ email: e.target.value })} type="text" value={this.state.email == '' ? (value.email) : (this.state.email)} className="form-control" id="funcionario-email" name="" aria-describedby="" data-minlength="" /></td>  
-        <td><input onClick={e => this.setState({ gh: e.target.value })} type="text" value={this.state.gh == '' ? (value.gh) : (this.state.gh)} className="form-control" id="funcionario-gh" name="" aria-describedby="" data-minlength="" /></td>  
-        <td><input onClick={e => this.setState({ turno : e.target.value })} type="text" value={this.state.turno == '' ? (value.turno) : (this.state.turno)} className="form-control" id="funcionario-turno" name="" aria-describedby="" data-minlength="" /></td>  
+        <td><input onClick={e => this.setState({ nome: e.target.value })} type="text" value={this.state.nome === '' ? (value.nome) : (this.state.nome)} className="form-control" id="funcionario-nome" name="" aria-describedby="" data-minlength="" /></td>  
+        <td><InputMask onClick={e => this.setState({ rg: e.target.value })} mask="99.999.999" type="text" value={this.state.rg === '' ? (value.rg) : (this.state.rg)} className="form-control" id="funcionario-rg" name="" aria-describedby="" data-minlength="" /></td>  
+        <td><InputMask onClick={e => this.setState({ cpf: e.target.value })} mask="999.999.999-99" type="text" value={this.state.cpf === '' ? (value.cpf) : (this.state.cpf)} className="form-control" id="funcionario-cpf" name="" aria-describedby="" data-minlength="" /></td>  
+        <td><input onClick={e => this.setState({ email: e.target.value })} type="text" value={this.state.email === '' ? (value.email) : (this.state.email)} className="form-control" id="funcionario-email" name="" aria-describedby="" data-minlength="" /></td>  
+        <td><input onClick={e => this.setState({ gh: e.target.value })} type="text" value={this.state.gh === '' ? (value.gh) : (this.state.gh)} className="form-control" id="funcionario-gh" name="" aria-describedby="" data-minlength="" /></td>  
+        <td><input onClick={e => this.setState({ turno : e.target.value })} type="text" value={this.state.turno === '' ? (value.turno) : (this.state.turno)} className="form-control" id="funcionario-turno" name="" aria-describedby="" data-minlength="" /></td>  
         <td>
           <select onClick={e => this.setState({ sexo: e.target.value })} type="text" className="form-control" id="funcionario-sexo" name="" aria-describedby="" data-minlength="">
-            <option>{this.state.sexo == '' ? (value.sexo) : (this.state.sexo)}</option>
-            <option>{(this.state.sexo == '' ? (value.sexo) : (this.state.sexo)) == "Masculino" ? 'Feminino' : 'Masculino'}</option>
+            <option>{this.state.sexo === '' ? (value.sexo) : (this.state.sexo)}</option>
+            <option>{(this.state.sexo === '' ? (value.sexo) : (this.state.sexo)) === "Masculino" ? 'Feminino' : 'Masculino'}</option>
           </select>
         </td>           
         {/* <td>{i}</td>
@@ -178,13 +178,13 @@ class TableFuncionarios extends React.Component {
       var newLista = this.state.lista;        
 
       this.state.listaInicial.forEach((result, index) => {     
-        if(result.Id == id) {
+        if(result.Id === id) {
           newListaInicial.splice(index, 1);
         }    
       });
 
       this.state.lista.forEach((result, index) => {
-        if(result.Id == id) {
+        if(result.Id === id) {
           newLista.splice(index, 1);
         }    
       });  
@@ -224,7 +224,7 @@ class TableFuncionarios extends React.Component {
                   <th className="text-center">GH</th>
                   <th className="text-center">Turno</th>
                   <th className="text-center">Sexo</th>
-                  <th className="text-center"><i class="far fa-trash-alt"></i></th>
+                  <th className="text-center"><i className="far fa-trash-alt"></i></th>
                 </tr>
               </thead>
               <tbody>           

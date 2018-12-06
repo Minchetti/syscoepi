@@ -1,6 +1,7 @@
 import React from 'react';
 import $ from 'jquery'; 
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+// import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 // import PropTypes from 'prop-types';
 
 // @flow
@@ -92,7 +93,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
               <ul className="sub-menu collapse" id="sub-company">
                 <li><Link to="/app/employees">Funcionários</Link></li>
                 <li><Link to="/app/epis">Epi's</Link></li>
-                <li>Service 3</li>
+                {/* <li>Service 3</li> */}
               </ul>
 
               <li data-toggle="collapse" data-target="#service" className="collapsed">

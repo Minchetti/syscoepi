@@ -46,7 +46,8 @@ header.App-header {
 
 /* classes bootstrap */
 .z-9999 {z-index: 9999;}
-.panel {box-shadow: 3px 3px 10px rgba(0,0,0,0.5); background: white;}
+.panel {box-shadow: 3px 3px 10px rgba(0,0,0,0.5); background: white; border-radius: 3px !important;}
+.panel-heading {border-radius:3px 3px 0px 0px !important;}
 /* .panel-body, */
 .panel-heading {padding: 10px 20px 10px 20px !important;}
 .d-nonin {display:none; }
@@ -255,41 +256,61 @@ svg{
 
 /*Classes Criadas*/
 .thumb{
-  height:20px;
+  height:17px;
 }
-.alerta{
+.alerta div{
   background: rgba(255,0,0,0.5);
 }
 .white{
   background: white;
 }
 
+.tableDisponiveis button > svg{
+    transform: rotate(180deg);
+}
+
 
 
 
 /* CSS Tabelas */
-.table>tbody>tr>td{
+
+table>tbody>tr>td{
   vertical-align: middle;
 }
-.table{
-  font-size: 0.7em !important;
+table .form-control {
+  font-size: 12px;
 }
-.table .form-control {
-  font-size: 1.1em;
+table th {
+  padding: 2px !important;
 }
-.table th {
-  padding: 3px !important;
+table td {
+  /* padding: 2px !important; */
 }
-/* .table td {
-  padding: 10px !important;
-} */
-.table td {
-  padding: 10px !important;
+table input {
+  /* padding: 5px !important; */
+  text-align: center;
 }
-.table input {
-  padding: 5px !important;
+table {
+  font-size: 12px !important;
+}
+form {
+  font-size: 13px !important;
 }
 
+/* company */
+#company input  {
+  /* font-size:14px !important; */
+  /* text-align: center; */
+}
+#company label{
+  /* font-size:13px !important; */
+}
+/* #company .panel-body input{
+  font-size: 13px;
+}
+#company .panel-body label{
+  font-size: 14px;
+} */
 
 /*classes de varios css*/
 #progress-bar{
@@ -302,61 +323,138 @@ svg{
   display: none;
 }
 
+/* DASHBOARD */
+#dashboard td, #request td{
+  padding: 1px !important;
+  vertical-align: middle;
+  border: none !important;
+}
+#dashboard td > div, #request td > div {
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  padding: 5px;
+}
+
 
 /* Css EPIS */
+#Epis .panel-body button{
+  border-radius: 0px 0px 3px 3px ;
+}
 #table_epis tfoot>div{
   /* background: blue; */
 }
-.eachRow td:nth-child(1) input{
-  width:42px;
+#table_epis{
+  width:1300px !important;
 }
-.eachRow td:nth-child(2) input{
-  width:150px;
+/* #table_epis .eachRow td:nth-child(1) {
+  width:80px !important;
+  background:red;
 }
-.eachRow td:nth-child(3) input{
-  width:250px;
+#table_epis .eachRow td:nth-child(2) {
+  width:300px;
+  background:blue;
 }
-.eachRow td:nth-child(4) input{
+#table_epis .eachRow td:nth-child(3) {
+  width:350px;
+}
+#table_epis .eachRow td:nth-child(4) {
+  width:220px;
+}
+#table_epis .eachRow td:nth-child(5) {
+  width:45px;
+}
+#table_epis .eachRow td:nth-child(6) {
+  width:45px;
+}
+#table_epis .eachRow td:nth-child(7) {
+  width:45px;
+}
+#table_epis .eachRow td:nth-child(8) {
+  width:120px;
+}
+#table_epis .eachRow td:nth-child(10) {
   width:80px;
 }
-.eachRow td:nth-child(5) input{
-  width:42px;
-}
-.eachRow td:nth-child(6) input{
-  width:42px;
-}
-.eachRow td:nth-child(7) input{
-  width:42px;
-}
-.eachRow td:nth-child(8) input{
-  width:65px;
-}
-.eachRow td:nth-child(10) input{
-  width:80px;
-}
-.eachRow td:nth-child(11) input{
+#table_epis .eachRow td:nth-child(11) {
   width:100px;
 }
-.eachRow td:nth-child(12) input{
+#table_epis .eachRow td:nth-child(12) {
   width: 50px;
 }
-.eachRow td:nth-child(13) input{
+#table_epis .eachRow td:nth-child(13) {
   width: 200px;
 }
-.eachRow td:nth-child(15) input{
-  width: 50px;
+#table_epis .eachRow td:nth-child(15) {
+  width: 50px; 
+}*/
+
+/* H4 */
+h4{
+  width: max-content;
+}
+
+/* Css FUNCIONARIOS */
+#table_funcionarios tfoot>div{
+  /* background: blue; */
+}
+#table_funcionarios .eachRow td:nth-child(1), #previewfuncionarios td:nth-child(1){
+  width:200px;
+}
+#table_funcionarios .eachRow td:nth-child(2), #previewfuncionarios td:nth-child(2){
+  width:100px;
+}
+#table_funcionarios .eachRow td:nth-child(3), #previewfuncionarios td:nth-child(3){
+  width:110px;
+}
+#table_funcionarios .eachRow td:nth-child(4), #previewfuncionarios td:nth-child(4){
+  width:220px;
+}
+#table_funcionarios .eachRow td:nth-child(5), #previewfuncionarios td:nth-child(5){
+  width:100px;
+}
+#table_funcionarios .eachRow td:nth-child(6), #previewfuncionarios td:nth-child(6){
+  width:100px;
+}
+#table_funcionarios .eachRow td:nth-child(7), #previewfuncionarios td:nth-child(7){
+  width:100px;
+}
+#table_funcionarios .eachRow td:nth-child(8), #previewfuncionarios td:nth-child(8){
+  width:110px;
+}
+#table_funcionarios .eachRow td:nth-child(9), #previewfuncionarios td:nth-child(9){
+  width:80px;
+}
+
+/* preview funcionarios */
+#previewfuncionarios td{
+  padding: 2px !important;
+}
+#previewfuncionarios input{
+  padding: 5px !important;
+  font-size: 12px !important;
+  text-align: center;
+}
+#previewfuncionarios th{
+  font-size: 12px !important;
+}
+
+
+
+/* csv-file */
+#csv-file{
+  padding: 5px !important;
 }
 
 
 
 /* css classe funcionario inativado */
 .inactive{
-  background:red; 
-  opacity: 0.6;
+  background:gray; 
 }
 .inactive td input{
-  color: red;
-  text-decoration: line-through
+  background: gray;
+  /* opacity: 0.4; */
+  /* text-decoration: line-through */
 }
 .inactive .del-cell div:first-child{
   display: none !important;

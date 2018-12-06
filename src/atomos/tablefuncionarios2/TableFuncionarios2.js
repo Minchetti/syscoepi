@@ -1,6 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
-import InputMask from 'react-input-mask';
+// import InputMask from 'react-input-mask';
 // import PropTypes from 'prop-types';
 
 class TableFuncionarios2 extends React.Component {
@@ -23,7 +23,7 @@ state = {
 CountDisableds = () =>{ //para contar qntos funcionarios estao desabilitados e com isso eu tirar o css "inactive" de todos - o nº de desabilitados
   var j = 0;
   this.state.employees.forEach(i => {
-    if(i.ativo == false){
+    if(i.ativo === false){
       j ++;
     }
   });
@@ -42,7 +42,7 @@ componentWillUpdate = (nextProps) =>{
   
   this.CountDisableds(); //contar os desabilitados a cada atualização
 
-  if(JSON.stringify(this.initialState.employeesInitial) !== JSON.stringify(this.state.employees) && this.props.lista == nextProps.lista){
+  if(JSON.stringify(this.initialState.employeesInitial) !== JSON.stringify(this.state.employees) && this.props.lista === nextProps.lista){
     document.getElementById("table-buttons").style.display = "flex";
      
     var btns = document.getElementsByClassName("delete-buttons");
@@ -81,7 +81,7 @@ componentWillUpdate = (nextProps) =>{
 
 
   handleRowDel(employee) {
-    if(employee.ativo == false){ //se o funcionario eh inativo reativar
+    if(employee.ativo === false){ //se o funcionario eh inativo reativar
       var employee2 = [];
       var index = this.state.employees.indexOf(employee);
       this.state.employees.splice(index, 1);
@@ -97,14 +97,14 @@ componentWillUpdate = (nextProps) =>{
       );    
     }
     else{ //senao ele é ativo entao desativar
-      var index = this.state.employees.indexOf(employee);
-      this.state.employees.splice(index, 1);
+      var index2 = this.state.employees.indexOf(employee);
+      this.state.employees.splice(index2, 1);
       
       employee.ativo = false;
-      var array = this.state.employees.concat(employee);
+      var array2 = this.state.employees.concat(employee);
       
       this.setState(
-        {employees: array},
+        {employees: array2},
         () => {
           var arrayLength = document.getElementsByClassName("eachRow").length;
           var lastEmp = document.getElementsByClassName("eachRow")[arrayLength-1];
@@ -140,7 +140,7 @@ componentWillUpdate = (nextProps) =>{
     var employees = this.state.employees.slice();
     var newProducts = employees.map(function(employee) {
       for (var key in employee) {
-        if (key == item.name && employee.id == item.id) {
+        if (key === item.name && employee.id === item.id) {
           employee[key] = item.value;
         }
       }
@@ -155,20 +155,20 @@ componentWillUpdate = (nextProps) =>{
       {employees : JSON.parse(JSON.stringify(this.initialState.employeesInitial))},
       () => {
         document.getElementById("table-buttons").style.display = "none";    
-        var qntd_ativos = this.state.employees.length - this.initialState.disableds; //descobrir a qntd de funcionarios ativos
+        // var qntd_ativos = this.state.employees.length - this.initialState.disableds; //descobrir a qntd de funcionarios ativos
 
-        for(var i = 0; i < qntd_ativos-1; i++) {  //ao clicar em cancelar a edição eu removo a class "inactive" de todos os ultimos funcionarios 
-          document.getElementsByClassName("eachRow")[i].classList.remove("inactive");
-        } 
+        // for(var i = 0; i < qntd_ativos-1; i++) {  //ao clicar em cancelar a edição eu removo a class "inactive" de todos os ultimos funcionarios 
+        //   document.getElementsByClassName("eachRow")[i].classList.remove("inactive");
+        // } 
         
-        for(var i = this.state.employees.length-1; i > qntd_ativos; i--) {  //ao clicar em cancelar a edição eu add a class "inactive" em todos os fultimos que estão inativos
-          document.getElementsByClassName("eachRow")[i].classList.add("inactive");
-        }         
+        // for(var i = this.state.employees.length-1; i > qntd_ativos; i--) {  //ao clicar em cancelar a edição eu add a class "inactive" em todos os fultimos que estão inativos
+        //   document.getElementsByClassName("eachRow")[i].classList.add("inactive");
+        // }         
 
-        var btns = document.getElementsByClassName("delete-buttons");
-        for(var i = 0; i < btns.length; i++) {
-          btns[i].disabled = false;
-        }
+        // var btns = document.getElementsByClassName("delete-buttons");
+        // for(var i = 0; i < btns.length; i++) {
+        //   btns[i].disabled = false;
+        // }
       }
     )    
   }
@@ -206,7 +206,7 @@ componentWillUpdate = (nextProps) =>{
           </div>
           
           <div className="d-flex align-items-center">
-            <i class="fas fa-search fa-lg mr-2"></i>
+            <i className="fas fa-search  mr-2"></i>
             <SearchBar filterText={this.state.filterText} onUserInput={this.handleUserInput.bind(this)}/>
           </div>
         </div>
@@ -227,7 +227,7 @@ class SearchBar extends React.Component {
   render() {
     return (
       <div>
-        <input className="form-control" type="text" placeholder="Search..." value={this.props.filterText} ref="filterTextInput" onChange={this.handleChange.bind(this)}/>
+        <input className="form-control btn-sm" type="text" placeholder="Search..." value={this.props.filterText} ref="filterTextInput" onChange={this.handleChange.bind(this)}/>
       </div>
     );
   }
@@ -244,8 +244,10 @@ class ProductTable extends React.Component {
     var rowDel = this.props.onRowDel;
     var filterText = this.props.filterText;
     var employee = this.props.employees.map(function(employee) {
-      if (employee.nome.indexOf(filterText) === -1) {
-        return;
+      if (employee.nome.indexOf(filterText) === -1 && employee.sexo.indexOf(filterText) === -1 && employee.rg.indexOf(filterText) === -1
+          && employee.cpf.indexOf(filterText) === -1 && employee.email.indexOf(filterText) === -1 && employee.gh.indexOf(filterText) === -1
+          && employee.cc.indexOf(filterText) === -1 && employee.turno.indexOf(filterText) === -1 ) {
+        return null;
       }
       return (<ProductRow  onEmployeeTableUpdate={onEmployeeTableUpdate} employee={employee} onDelEvent={rowDel.bind(this)} key={employee.id}/>)
     });
@@ -253,7 +255,7 @@ class ProductTable extends React.Component {
       <div>      
 
     {/* <button type="button" onClick={this.props.onRowAdd} className="btn btn-success pull-right">Add</button>  */}
-        <table id="table_funcionarios" className="table table-bordered mb-0">
+        <table id="table_funcionarios" className="w-100 mb-0">
           <thead className="thead-dark">
             <tr>
               <th>Nome</th>
@@ -261,6 +263,7 @@ class ProductTable extends React.Component {
               <th>CPF</th>
               <th>Email</th>
               <th>GH</th>
+              <th>CC</th>
               <th>Turno</th>
               <th>Sexo</th>
               <th>Ativo</th>
@@ -288,7 +291,7 @@ class ProductRow extends React.Component {
   }
 
   VerificarAtivosRow = () =>{  //verificar qndo o funcionarios vair ser ativo ou não, os não ativos colocar o css "inactive"
-      if(this.props.employee.ativo == false){
+      if(this.props.employee.ativo === false){
         return "inactive";
       }
       else{
@@ -323,6 +326,11 @@ class ProductRow extends React.Component {
         <EditableCell onEmployeeTableUpdate={this.props.onEmployeeTableUpdate} cellData={{
           type: "gh",
           value: this.props.employee.gh,
+          id: this.props.employee.id
+        }}/>
+        <EditableCell onEmployeeTableUpdate={this.props.onEmployeeTableUpdate} cellData={{
+          type: "cc",
+          value: this.props.employee.cc,
           id: this.props.employee.id
         }}/>
         <EditableCell onEmployeeTableUpdate={this.props.onEmployeeTableUpdate} cellData={{

@@ -30,40 +30,46 @@ class PreviewFuncionarios extends React.Component {
       //   alert(err);
       // });
       alert("Funcionarios adicionados!") ;
-      $('#JAJA').hide();
+      $('#previewfuncionarios').hide();
     };
     
     
-
   render() {      
 
     var MontarLista = () => this.props.lista.data.map(function(value){
       return (
         <tr>
-          <td>{value.Nome}</td>
-          <td>{value.Turno}</td>
-          <td>{value.Sexo}</td>
-          <td>{value.RG}</td>
-          <td>{value.CPF}</td>
+          <td><input class="form-control" value={value.Nome} /></td>
+          <td><input class="form-control" value={value.RG} /></td>
+          <td><input class="form-control" value={value.CPF} /></td>
+          <td><input class="form-control" value={value.Email} /></td>
+          <td><input class="form-control" value={value.GH} /></td>
+          <td><input class="form-control" value={value.CC} /></td>
+          <td><input class="form-control" value={value.Turno} /></td>
+          <td><input class="form-control" value={value.Sexo} /></td>
+          <td><input class="form-control" value={value.Ativo} /></td>
         </tr>  
         )
     });
       
     return (
-      <div id="JAJA">
-        <div className="panel mt-3 mb-3">
-          <div className="panel-heading">
-            <button onClick={this.AddFuncionarios} className="btn btn-dark ml-2"> <i className="fa fa-share-square fa-lg pr-2"></i> Enviar Dados </button>             
-          </div>
+      <div id="previewfuncionarios" className=" mb-3">
+        
+        <div className="panel">
           <div className="panel-body">
             <table className="w-100">
               <thead className="thead-dark">
                 <tr>
                   <th>Nome</th>
-                  <th>Turno</th>
-                  <th>Sexo</th>
                   <th>RG</th>
                   <th>CPF</th>
+                  <th>Email</th>
+                  <th>GH</th>
+                  <th>CC</th>
+                  <th>Turno</th>
+                  <th>Sexo</th>
+                  <th>Ativo</th>
+                  {/* <th>hghg</th> */}
                 </tr>
               </thead>
               <tbody>
@@ -71,7 +77,11 @@ class PreviewFuncionarios extends React.Component {
               </tbody>
             </table>                  
           </div>                 
-        </div>                  
+        </div>  
+
+        <div className=" ">
+          <button onClick={this.AddFuncionarios} className="btn btn-dark w-100 h-100 pb-2 pt-2" > <i className="fa fa-share-square pr-2"></i> Enviar Funcionarios </button>             
+        </div>                
       </div>
     )
   }
