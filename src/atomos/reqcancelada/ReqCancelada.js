@@ -9,16 +9,16 @@ const ReqCancelada = props => (
   // <span>{props.text}</span>
 
 
-<div className={props.size + ' ReqCancelada mb-5'}>
+<div className={props.size + ' ReqCancelada'}>
 
 
   <div className={'panel ' + props.small}>
-    <div className="panel-heading ">
+    <div className="panel-heading thead-dark">
       <h6 className="text-left mb-0"><i className="fa fa-trash pr-2" aria-hidden="true"></i>Requisições Canceladas  </h6>
     </div>
     <div className="panel-body">
       <table className="table m-0">
-        <thead className="thead-dark">
+        <thead className="">
           <tr>
             <th className="text-center">Thumb</th>
             <th className="text-center">CA</th>
@@ -52,14 +52,14 @@ const ReqCancelada = props => (
 
 
   <div className={'ReqCancelada panel mb-4 ' + props.big}>
-    <div className="panel-heading">
+    <div className="panel-heading thead-dark">
       <h6 className="text-left mb-0"><i className="fa fa-trash pr-2" aria-hidden="true"></i>Requisições Canceladas  </h6>
     </div>
     <div className="panel-body">
       <table className="table m-0">
-        <thead className="thead-dark">
+        <thead className="">
           <tr>
-            <th className="text-center"></th>
+            <th className="text-center">Thumb</th>
             <th className="text-center">CA</th>
             <th className="text-center">Código</th>
             <th className="text-center">Empresa</th>

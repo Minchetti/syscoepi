@@ -223,6 +223,9 @@ svg{
 .bg-whitesmoke {
   background: whitesmoke;
 }
+.dozepx{
+  font-size: 12px;
+}
 
 
 /* LOADING */
@@ -333,6 +336,9 @@ form {
   border: 1px solid #ced4da;
   border-radius: .25rem;
   padding: 5px;
+}
+#dashboard tspan{
+  font-size:12px;
 }
 
 
@@ -474,4 +480,12 @@ h4{
   transition: 2s;
 }
 
-
+.ze{
+  padding: 3px;
+  /* border:1px solid #2e353d; */
+  background: #586474;
+  color: white;
+  font-size: 20px;
+  margin: 0px 10px;
+  border-radius: 5px;
+}

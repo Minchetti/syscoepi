@@ -9,13 +9,13 @@ const ReqAberta = props => (
 
 <div className={props.size + ' ReqAberta'}>
 
-  <div className={'panel mb-4 ' + props.small}>
-    <div className="panel-heading ">
+  <div className={'panel ' + props.small}>
+    <div className="panel-heading thead-dark">
       <h6 className="text-left mb-0"><i className="fa fa-folder-open pr-2" aria-hidden="true"></i>Requisições em Aberto  </h6>
     </div>
     <div className="panel-body">
       <table className="table m-0">
-        <thead className="thead-dark">
+        <thead className="">
           <tr>
             <th className="text-center">Thumb</th>
             <th className="text-center">CA</th>
@@ -50,12 +50,12 @@ const ReqAberta = props => (
 
   
   <div className={'ReqAberta2 panel mb-4 ' + props.big}>
-    <div className="panel-heading ">
+    <div className="panel-heading thead-dark">
       <h6 className="text-left mb-0"><i className="fa fa-folder-open pr-2" aria-hidden="true"></i>Requisições em Aberto  </h6>
     </div>
     <div className="panel-body">
       <table className="table m-0">
-        <thead className="thead-dark">
+        <thead className="">
           <tr>
             <th className="text-center">Thumb</th>
             <th className="text-center">CA</th>

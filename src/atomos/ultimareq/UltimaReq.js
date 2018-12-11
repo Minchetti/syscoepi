@@ -11,13 +11,13 @@ const UltimaReq = props => (
 <div className={props.size}>
 
 
-  <div className={'UltimaReq panel mb-4 ' + props.small}>
-    <div className="panel-heading ">
+  <div className={'UltimaReq panel ' + props.small}>
+    <div className="panel-heading thead-dark">
       <h6 className="text-left mb-0"><i className="fa fa-check-square pr-2" aria-hidden="true"></i>Ultimas Requisições  </h6>
     </div>
     <div className="panel-body">
       <table className="table m-0">
-        <thead className="thead-dark">
+        <thead className="">
           <tr>
             <th className="text-center">Thumb</th>
             <th className="text-center">CA</th>
@@ -53,12 +53,12 @@ const UltimaReq = props => (
 
     
   <div className={'UltimaReq panel mb-4 ' + props.big}>
-    <div className="panel-heading">
+    <div className="panel-heading thead-dark">
       <h6 className="text-left mb-0"><i className="fa fa-check-square pr-2" aria-hidden="true"></i>Últimas Requisições</h6>
     </div>
     <div className="panel-body">
       <table className="table m-0">
-        <thead className="thead-dark">
+        <thead className="">
           <tr>
             <th className="text-center">Thumb</th>
             <th className="text-center">CA</th>

@@ -11,12 +11,12 @@ const AlertaEpi = props => (
 
 
 <div className="AlertaEpi panel col p-0 mb-4">
-  <div className="panel-heading ">
+  <div className="panel-heading thead-dark">
     <h6 className="text-left mb-0"><i className="fa fa-exclamation-triangle pr-2" aria-hidden="true"></i>EPI's em Alerta  </h6>
   </div>
   <div className="panel-body">
     <table className="table m-0">
-      <thead className="thead-dark">
+      <thead className="">
         <tr>
           <th className="text-center">Thumb</th>
           <th className="text-center">CA</th>
