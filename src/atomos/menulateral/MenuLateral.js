@@ -96,18 +96,18 @@ import { Link } from "react-router-dom";
                 {/* <li>Service 3</li> */}
               </ul>
 
-              <li data-toggle="collapse" data-target="#service" className="collapsed">
+              {/* <li data-toggle="collapse" data-target="#service" className="collapsed">
                 <a className="position-relative d-flex justify-content-between align-items-center p-3">
                   <span style={{display: this.state.display}}>Templates</span>
                   <i className="fa fa-folder-open fa-lg"></i>
                   <i className="arrow position-absolute fas fa-angle-down"></i>
                 </a>
-              </li>  
-              <ul className="sub-menu collapse" id="service">
+              </li>   */}
+              {/* <ul className="sub-menu collapse" id="service">
                 <li>Service 1</li>
                 <li>Service 2</li>
                 <li>Service 3</li>
-              </ul>
+              </ul> */}
 
               <li data-toggle="collapse" data-target="#new" className="collapsed">
                 <a  className="position-relative d-flex justify-content-between align-items-center p-3">

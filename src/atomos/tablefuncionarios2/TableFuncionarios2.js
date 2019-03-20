@@ -193,7 +193,7 @@ componentWillUpdate = (nextProps) =>{
     
     return (
       <div className="panel">        
-        <div className="panel-heading d-flex justify-content-between align-items-center">
+        <div className="panel-heading d-flex justify-content-between align-items-center thead-dark">
           <h6 className="text-left mb-0"><i className="fa fa-user pr-2" aria-hidden="true"></i>Funcionários({this.state.employees.length})</h6>
           
           <div className="d-nonin" id="table-buttons">      
@@ -256,7 +256,7 @@ class ProductTable extends React.Component {
 
     {/* <button type="button" onClick={this.props.onRowAdd} className="btn btn-success pull-right">Add</button>  */}
         <table id="table_funcionarios" className="w-100 mb-0">
-          <thead className="thead-dark">
+          <thead className="">
             <tr>
               <th>Nome</th>
               <th>RG</th>

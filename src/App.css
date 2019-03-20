@@ -261,8 +261,11 @@ svg{
 .thumb{
   height:17px;
 }
-.alerta div{
+.alerta{
   background: rgba(255,0,0,0.5);
+}
+.alertaB{
+  background: rgba(0,0,0,0.5);
 }
 .white{
   background: white;

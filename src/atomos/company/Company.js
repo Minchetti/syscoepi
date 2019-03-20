@@ -96,7 +96,7 @@ class Company extends React.Component {
     // var data = null;
     
     if(data !== null){
-      this.setState({ empresaSelecionada: data[0] });
+      // this.setState({ empresaSelecionada: data[0] });
       this.setState({ nomeEmpresaSelecionada: data[0].nomeAmigavel });
       this.setState({ arrayEmpresas: data });
     }  
@@ -147,23 +147,23 @@ class Company extends React.Component {
                 <div className="form-row w-100">
                   <div className="col-md-2 ">
                     <label htmlFor="company-cnpj" className="pl-2"><i className="far fa-id-card pr-2" ></i>CNPJ</label>
-                    <InputMask mask="99.999.999/9999-99" type="text" value={this.state.cnpj} onChange={e => this.setState({ cnpj: e.target.value })} className="form-control" id="company-cnpj" name="company-cnpj" aria-describedby="cnpjHelp" required />
+                    <InputMask mask="99.999.999/9999-99" type="text" value={this.state.cnpj} onChange={e => this.setState({ cnpj: e.target.value })} className="form-control btn-sm" id="company-cnpj" name="company-cnpj" aria-describedby="cnpjHelp" required />
                   </div>          
                   <div className="col-md-2 ">
                       <label htmlFor="company-nome-amigavel" className="pl-2"><i className="far fa-user pr-2" ></i>Nome Amigável</label>
-                    <input type="text" value={this.state.nomeAmigavel} onChange={e => this.setState({ nomeAmigavel: e.target.value })} className="form-control" id="company-nome-amigavel" name="company-nome-amigavel" aria-describedby="nomeAmigavelHelp" required />
+                    <input type="text" value={this.state.nomeAmigavel} onChange={e => this.setState({ nomeAmigavel: e.target.value })} className="form-control btn-sm" id="company-nome-amigavel" name="company-nome-amigavel" aria-describedby="nomeAmigavelHelp" required />
                   </div>
                   <div className="col-md-2">
                     <label htmlFor="company-razao-social" className="pl-2"><i className="far fa-user pr-2" ></i>Razão Social</label>
-                    <input type="text" value={this.state.razaoSocial} onChange={e => this.setState({ razaoSocial: e.target.value })} className="form-control" id="company-razao-social" name="company-razao-social" aria-describedby="razaoSocialHelp" required />
+                    <input type="text" value={this.state.razaoSocial} onChange={e => this.setState({ razaoSocial: e.target.value })} className="form-control btn-sm" id="company-razao-social" name="company-razao-social" aria-describedby="razaoSocialHelp" required />
                   </div>
                   <div className="col-md-2">
                     <label htmlFor="company-setor-atividade" className="pl-2"><i className="far fa-user pr-2" ></i>Setor Atividade</label>
-                    <input type="text" value={this.state.setorAtividade} onChange={e => this.setState({ setorAtividade: e.target.value })} className="form-control" id="company-setor-atividade" name="company-setor-atividade" aria-describedby="setorAtividadeHelp" required />
+                    <input type="text" value={this.state.setorAtividade} onChange={e => this.setState({ setorAtividade: e.target.value })} className="form-control btn-sm" id="company-setor-atividade" name="company-setor-atividade" aria-describedby="setorAtividadeHelp" required />
                   </div>                
                   <div className="col-md-2 ">
                     <label htmlFor="company-data-constituicao" className="pl-2"><i className="far fa-user pr-2" ></i>Data Constituição</label>
-                    <input type="text" value={this.state.dataConstituicao} onChange={e => this.setState({ dataConstituicao: e.target.value })} className="form-control" id="company-data-constituicao" name="company-data-constituicao" aria-describedby="dataConstituicaoHelp" required />
+                    <input type="text" value={this.state.dataConstituicao} onChange={e => this.setState({ dataConstituicao: e.target.value })} className="form-control btn-sm" id="company-data-constituicao" name="company-data-constituicao" aria-describedby="dataConstituicaoHelp" required />
                   </div>
                   
                 </div>

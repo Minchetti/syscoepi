@@ -5,120 +5,111 @@ import bota2 from '../../bota2.png';
 import abafador from '../../abafador.png';
 
 // @flow
-const ReqCancelada = props => (
-  // <span>{props.text}</span>
+
+class ReqCancelada extends React.Component {
+  state = {
+    requisicoesCanceladas: this.props.listaRequisicoesCanceladas
+  }
+
+  componentWillReceiveProps(nextProps){    
+    if(this.state.requisicoesCanceladas !== nextProps.listaRequisicoesCanceladas){
+      this.setState({ requisicoesCanceladas : nextProps.listaRequisicoesCanceladas});   
+    }    
+  }
+
+  
+  montarReqCanceladasG = () => this.state.requisicoesCanceladas.map((value) => { 
+    return (
+      <tr>
+        <td><div>{value.cod}</div></td>
+        <td><div>{value.ca}</div></td>
+        <td><div>{value.empresa}</div></td>
+        <td><div>{value.cc}</div></td>
+        <td><div>{value.gh}</div></td>
+        <td><div>{value.turno}</div></td>
+        <td><div>{value.funcionario}</div></td>
+        <td><div>{value.validade}</div></td>
+        <td><div>{value.quantidade}</div></td>
+      </tr>        
+    )
+  });
+
+  montarReqCanceladasP = () => this.state.requisicoesCanceladas.map((value) => { 
+    return (
+      <tr>
+        <td><div>{value.cod}</div></td>
+        <td><div>{value.ca}</div></td>
+        <td><div>{value.empresa}</div></td>
+      </tr>        
+    )
+  });
 
 
-<div className={props.size + ' ReqCancelada'}>
+  render(){
+    return(
 
 
-  <div className={'panel ' + props.small}>
-    <div className="panel-heading thead-dark">
-      <h6 className="text-left mb-0"><i className="fa fa-trash pr-2" aria-hidden="true"></i>Requisições Canceladas  </h6>
+
+    <div className={this.props.size + ' ReqCancelada'}>
+
+
+      <div className={'panel ' + this.props.small}>
+        <div className="panel-heading thead-dark">
+          <h6 className="text-left mb-0"><i className="fa fa-trash pr-2" aria-hidden="true"></i>Requisições Canceladas  </h6>
+        </div>
+        <div className="panel-body">
+          <table className="table m-0">
+            <thead className="">
+              <tr>
+                {/* <th className="text-center">Thumb</th> */}
+                <th className="text-center">CA</th>
+                <th className="text-center">Código</th>
+                <th className="text-center">Empresa</th>
+              </tr>
+            </thead>
+            <tbody>                
+              {this.montarReqCanceladasP()} 
+            </tbody>
+          </table>
+        </div>
+      </div> 
+
+
+      <div className={'ReqCancelada panel mb-4 ' + this.props.big}>
+        <div className="panel-heading thead-dark">
+          <h6 className="text-left mb-0"><i className="fa fa-trash pr-2" aria-hidden="true"></i>Requisições Canceladas  </h6>
+        </div>
+        <div className="panel-body">
+          <table className="table m-0">
+            <thead className="">
+              <tr>
+                {/* <th className="text-center">Thumb</th> */}
+                <th className="text-center">CA</th>
+                <th className="text-center">Código</th>
+                <th className="text-center">Empresa</th>
+                <th className="text-center">CC</th>
+                <th className="text-center">GH</th>
+                <th className="text-center">Turno</th>
+                <th className="text-center">Funcionário</th>
+                <th className="text-center">Validade</th>
+                <th className="text-center">Quantidade</th>
+              </tr>
+            </thead>
+            <tbody >
+              {this.montarReqCanceladasG()} 
+            </tbody>
+          </table>
+        </div>
+      </div> 
+
+
+
     </div>
-    <div className="panel-body">
-      <table className="table m-0">
-        <thead className="">
-          <tr>
-            <th className="text-center">Thumb</th>
-            <th className="text-center">CA</th>
-            <th className="text-center">Código</th>
-            <th className="text-center">Empresa</th>
-          </tr>
-        </thead>
-        <tbody >
-          <tr>
-            <td scope="row"><div><img src={abafador} className="thumb" alt="logo" /></div></td>
-            <td><div>125468</div></td>
-            <td><div>195436</div></td>
-            <td><div>Siemens</div></td>
-          </tr>
-          <tr>
-            <td scope="row"><div><img src={capacete} className="thumb" alt="logo" /></div></td>
-            <td><div>103254</div></td>
-            <td><div>195436</div></td>
-            <td><div>Votorantin</div></td>
-          </tr>
-          <tr>
-            <td scope="row"><div><img src={bota2} className="thumb" alt="logo" /></div></td>
-            <td><div>013256</div></td>
-            <td><div>195436</div></td>
-            <td><div>Helibras</div></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div> 
 
 
-  <div className={'ReqCancelada panel mb-4 ' + props.big}>
-    <div className="panel-heading thead-dark">
-      <h6 className="text-left mb-0"><i className="fa fa-trash pr-2" aria-hidden="true"></i>Requisições Canceladas  </h6>
-    </div>
-    <div className="panel-body">
-      <table className="table m-0">
-        <thead className="">
-          <tr>
-            <th className="text-center">Thumb</th>
-            <th className="text-center">CA</th>
-            <th className="text-center">Código</th>
-            <th className="text-center">Empresa</th>
-            <th className="text-center">CC</th>
-            <th className="text-center">GH</th>
-            <th className="text-center">Turno</th>
-            <th className="text-center">Funcionário</th>
-            <th className="text-center">Validade</th>
-            <th className="text-center">Quantidade</th>
-          </tr>
-        </thead>
-        <tbody >
-          <tr>
-            <td scope="row"><div><img src={abafador} className="thumb" alt="logo" /></div></td>
-            <td><div>125468</div></td>
-            <td><div>195436</div></td>
-            <td><div>Siemens</div></td>
-            <td><div>012345</div></td>
-            <td><div>Obras</div></td>
-            <td><div>Noturno</div></td>
-            <td><div>Adriano Torres</div></td>
-            <td><div>10/02/2018</div></td>
-            <td><div>01</div></td>
-          </tr>
-          <tr>
-            <td scope="row"><div><img src={capacete} className="thumb" alt="logo" /></div></td>
-            <td><div>103254</div></td>
-            <td><div>195436</div></td>
-            <td><div>Votorantin</div></td>
-            <td><div>012345</div></td>
-            <td><div>Obras</div></td>
-            <td><div>Noturno</div></td>
-            <td><div>Lucas Andadre</div></td>
-            <td><div>10/02/2018</div></td>
-            <td><div>01</div></td>
-          </tr>
-          <tr>
-            <td scope="row"><div><img src={bota2} className="thumb" alt="logo" /></div></td>
-            <td><div>013256</div></td>
-            <td><div>195436</div></td>
-            <td><div>Helibras</div></td>
-            <td><div>012345</div></td>
-            <td><div>Obras</div></td>
-            <td><div>Noturno</div></td>
-            <td><div>Julio Faria</div></td>
-            <td><div>10/02/2018</div></td>
-            <td><div>01</div></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div> 
-
-
-
-</div>
-
-
-);
+)
+}
+}
 
 // ReqCancelada.propTypes = {
 //   text: PropTypes.string.isRequired,

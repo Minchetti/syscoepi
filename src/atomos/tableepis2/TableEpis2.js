@@ -541,14 +541,18 @@ SalvarEditarA = () =>{
 // onMassAssignEvent () {  
 //   this.props.onMassAssign(this.props.epis);
 // } 
+teste = () =>{
+  console.log(this.state);
+}
 
   render() {    
     return (
       <div>
 
         <div className="panel">        
-          <div className="panel-heading d-flex justify-content-between align-items-center">
-            <h6 className="text-left mb-0"><i className="fa fa-user pr-2" aria-hidden="true"></i>Epi's Atribuidos({this.state.episAtribuidos.length}) - {this.state.empresaSelecionada}</h6>
+          <div className="panel-heading d-flex justify-content-between align-items-center thead-dark">
+            <h6 className="text-left mb-0"><i className="fa fa-user pr-2" aria-hidden="true"></i>Epi's Atribuidos ({this.state.episAtribuidos.length}) - {this.state.empresaSelecionada}</h6>
+            <div onClick={this.teste}>TEST</div>
             
             <div className="d-nonin" id="table-buttonsA">      
               <button type="button" onClick={this.CancelarEditarA} className="btn btn-danger mr-2" > {/*data-dismiss="modal"*/}
@@ -570,7 +574,7 @@ SalvarEditarA = () =>{
         </div>
 
         <div className="tableDisponiveis panel mt-4">        
-          <div className="panel-heading d-flex justify-content-between align-items-center">
+          <div className="panel-heading d-flex justify-content-between align-items-center thead-dark">
             <h6 className="text-left mb-0"><i className="fa fa-user pr-2" aria-hidden="true"></i>Epi's Disponíveis({this.state.episDisponiveis.length})</h6>
 
             <div className="d-nonin" id="table-buttonsD">      
@@ -648,7 +652,7 @@ class EpisTable extends React.Component {
       <div>
         <div className="table-responsive">      
           <table id="table_epis" className="">
-            <thead className="thead-dark">
+            <thead className="">
               <tr>
                 <th>Cod</th>
                 <th>Nome</th>
@@ -660,7 +664,7 @@ class EpisTable extends React.Component {
                 <th>CA</th>
                 <th>Excluir</th>
                 {/* <th></th> */}
-                <th>Atribuir</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
