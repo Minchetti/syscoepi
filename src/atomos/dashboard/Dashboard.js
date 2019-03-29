@@ -20,7 +20,11 @@ class Dashboard extends React.Component {
     
     requisicoesUltimas: [],
     requisicoesAbertas: [],
-    requisicoesCanceladas: []
+    requisicoesCanceladas: [],
+    
+    
+    permissoes: localStorage.getItem('permissoes') /*TESTE PERMISSOES */
+
   };
 
   CarregarEmpresas = () => {  
@@ -28,16 +32,13 @@ class Dashboard extends React.Component {
       {cnpj:'123999123', nomeAmigavel:'Fitassul', razaoSocial: 'Razao1',  setorAtividade: 'Setor1', dataConstituicao: '05/07/1990'},    
       {cnpj:'123678123', nomeAmigavel:'Helibras', razaoSocial: 'Razao2',  setorAtividade: 'Setor2', dataConstituicao: '05/07/1992'},
       {cnpj:'123123123', nomeAmigavel:'Mahle2', razaoSocial: 'Razao3',  setorAtividade: 'Setor3', dataConstituicao: '05/07/1991'}
-    ]
-    // var data = null;    
+    ]  
     if(data !== null){
-      // this.setState({ nomeEmpresaSelecionada: data[0].nomeAmigavel });
       this.setState({ arrayEmpresas: data });
     }  
   }
 
   CarregarRequisicoes = () =>{
-    console.log("maoi1");
     var data2 = [];    
     var data = [
       {id:"2235", quantidade: "01", cod:"7899", cc:"31523", gh:"63456", turno:"noturno", funcionario:"Pedro Muniz", empresa:"Fitassul", nome: "Cap02 BlackBone", descricao: "Capacete com queixeira", validade: "10/10/2025", minEstoque: "10", estoque: "50", maxEstoque: "99", ca: "0776584", dataArmazenamento: "01/02/2018", dataDevolucao: "01/05/2016", motivoDevolucao: "Pedido errado", cor: "preto", grupo: "Capacetes",  fatorReducao: "Proteção contra impactos médios"},   
@@ -64,18 +65,16 @@ class Dashboard extends React.Component {
     }
   }  
 
-  MontarSelect = () => this.state.arrayEmpresas.map((value) => { //.data
-    return (
-      <option>{value.nomeAmigavel}</option>
-      )
-    });
+  
     
 
-  componentWillMount(){        
+  componentWillMount(){ 
+    // console.log(this.state);
     this.CarregarRequisicoes();
     this.CarregarEmpresas();
-    this.MontarSelect();   
+    // this.MontarOptionsSelect();   
     this.carregarEpisAlerta();
+    console.log(this.props.name);
   }
   
   Callback = () =>{ 
@@ -87,7 +86,6 @@ class Dashboard extends React.Component {
 
 
   carregarEpisAlerta = () =>{
-    console.log("maoi2");
     var data2 = [];    
     var data = [
       {id:"2235", cod:"7899", cc:"31523", gh:"63456", turno:"noturno", funcionario:"Pedro Muniz", empresa:"Fitassul", nome: "Cap02 BlackBone", descricao: "Capacete com queixeira", validade: "10/10/2025", minEstoque: "10", estoque: "50", maxEstoque: "99", ca: "0776584", dataArmazenamento: "01/02/2018", dataDevolucao: "01/05/2016", motivoDevolucao: "Pedido errado", cor: "preto", grupo: "Capacetes",  fatorReducao: "Proteção contra impactos médios"},   
@@ -112,22 +110,35 @@ class Dashboard extends React.Component {
     }
   }  
 
+  
+  MontarSelect = () =>{    
+    var MontarOptionsSelect = () => this.state.arrayEmpresas.map((value) => { //.data
+      return (
+        <option>{value.nomeAmigavel}</option>
+      )
+    });
+
+    if(this.state.permissoes == 3){
+      return (        
+        <div className="w-100 mb-3">
+          <select id="select-empresas" className="form-control btn-sm btn-dark" onChange={e => this.setState({ nomeEmpresaSelecionada: e.target.value }, this.Callback)}>
+            <option>GERAL</option>
+            {this.MontarOptionsSelect}
+          </select>
+        </div>
+      )
+    }
+  }
 
 
 
   render() {   
 
     return ( 
-
       <div id="dashboard" className="">
         <h4 className="position-absolute m-auto l-0 r-0 t-15 text-white"><i className="fa fa-clipboard-list" aria-hidden="true"></i> Dashboard</h4> 
-        
-        <div className="w-100 mb-3">
-            <select id="select-empresas" className="form-control btn-sm btn-dark" onChange={e => this.setState({ nomeEmpresaSelecionada: e.target.value }, this.Callback)}>
-              <option>GERAL</option>
-              {this.MontarSelect()}
-            </select>
-        </div>
+        {this.MontarSelect()}
+        {/* {this.state} */}
 
         <AlertaEpi listaAlertasEstoque={this.state.alertasEstoque} listaAlertasUso={this.state.alertasUso}/> 
         <div className="justify-content-between row mb-4">

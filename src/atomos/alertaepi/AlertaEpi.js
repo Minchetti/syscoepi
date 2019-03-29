@@ -224,37 +224,13 @@ class AlertaEpi extends React.Component {
                     <th className="text-center">Validade</th>
                   </tr>
                 </thead>
-                <tbody >
-                  
-                  
-                {this.montarAlertasUso()}
-                  {/* <tr>
-                    <td scope="row"><div><img src={abafador} className="thumb" alt="logo" /></div></td>
-                    <td><div>125468</div></td>
-                    <td><div>Siemens</div></td>
-                    <td><div>012345</div></td>
-                    <td><div>Obras</div></td>
-                    <td><div>Noturno</div></td>
-                    <td><div>Adriano Torres</div></td>
-                    <td className="alerta"><div>10/02/2018</div></td>
-                  </tr>
-                  <tr>
-                    <td scope="row"><div><img src={bota2} className="thumb" alt="logo" /></div></td>
-                    <td><div>013256</div></td>
-                    <td><div>Helibras</div></td>
-                    <td><div>254463</div></td>
-                    <td><div>Obras</div></td>
-                    <td><div>Matutino</div></td>
-                    <td><div>Lucas Pereira</div></td>
-                    <td className="alerta"><div>08/02/2018</div></td>
-                  </tr> */}
+                <tbody>         
+                  {this.montarAlertasUso()}                 
                 </tbody>
               </table>
             </div>
           </div>
         </div>
-
-
 
       </div>
 

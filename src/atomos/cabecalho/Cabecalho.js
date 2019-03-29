@@ -35,11 +35,11 @@ class Cabecalho extends React.Component {
     return (
       <header className="App-header d-flex justify-content-between align-items-center">
 
-        <h2 className="m-0 d-flex align-items-center"><span><img src={logo} className="App-logo"/>SCEPI</span></h2>
+        <h2 className="m-0 d-flex align-items-center text-white"><span><img src={logo} className="App-logo"/>SCEPI</span></h2>
 
         <span className="d-nonin msg-aviso"></span>
 
-        <div className="d-flex">
+        <div className="d-flex text-white">
           <div id="lnk-painel-usuario" className="mr-3 c-pointer"  data-toggle="modal" data-target="#modal-usuario">
             <i className="fa fa-user-circle mr-2"></i> 
             <span className="nome-usuario">{localStorage.getItem('name')}</span>

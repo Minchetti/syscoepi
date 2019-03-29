@@ -59,7 +59,7 @@ class Login extends React.Component {
 
 
   onSubmit = e => {
-    console.log('aq');
+    // console.log('aq');
     e.preventDefault(); 
     fetch('http://192.168.10.30/v1/clientes/login', {
       method: 'post',
@@ -72,7 +72,7 @@ class Login extends React.Component {
       response.json().then(data => {
         
         if (data.success === true) {
-          console.log(data);       
+          // console.log(data);       
           
           // // json no cabeçalho do modal do painel do usuario
           // $('.modal .nome-usuario').text('Painel do Usuário - '+data.nome);           
@@ -80,6 +80,10 @@ class Login extends React.Component {
           
           localStorage.setItem('logged', true);
           localStorage.setItem('name', data.data.usuarios[0].nome.split(" ")[0]);
+
+          
+          // localStorage.setItem('permissoes', data.data.usuarios[0].permissoes); /*CODIGO DE TESTE PARA PERMISSOES */
+
           this.setState({ logged: true });
 
           // json msg boas vindas

@@ -6,9 +6,15 @@ import $ from 'jquery';
 
 class ModalCriarRequisicao extends React.Component {
   state = {
-    cnpj: '',
-    nomeAmigavel: '',
-    razaoSocial: ''
+    ca: '',
+    cod: '',
+    empresa: '',
+    cc: '',    
+    gh: '',
+    turno: '',
+    funcionario: '',
+    validade: '',
+    quantidade: '',
   };
   
   
@@ -64,17 +70,43 @@ render(){
           <div className="modal-body text-left d-flex flex-wrap">
            
                 <div className="p-3 col-md-6">
-                  <label htmlFor="input-cnpj"><i className="far fa-id-card fa-lg pr-2" ></i>CNPJ</label>
-                  <InputMask mask="99.999.999/9999-99" type="text" value={this.state.cnpj} onChange={e => this.setState({ cnpj: e.target.value })} className="form-control" id="input-cnpj" name="input-cnpj" aria-describedby="cnpjHelp" required />
+                  <label htmlFor="input-ca"><i className="far fa-id-card fa-lg pr-2" ></i>CA</label>
+                  <input type="text" value={this.state.ca} onChange={e => this.setState({ ca: e.target.value })} className="form-control" id="input-ca" name="input-ca" aria-describedby="caHelp" required />
+                </div>
+                <div className="p-3 col-md-6">  
+                  <label htmlFor="input-cod"><i className="far fa-id-card fa-lg pr-2" ></i>Código</label>
+                  <input type="text" value={this.state.cod} onChange={e => this.setState({ cod: e.target.value })} className="form-control" id="input-cod" name="input-cod" aria-describedby="codHelp" required />
                 </div>
                 <div className="p-3 col-md-6">
+                    <label htmlFor="input-empresa"><i className="far fa-id-card fa-lg pr-2" ></i>Empresa</label>
+                    <input type="text" value={this.state.empresa} onChange={e => this.setState({ empresa: e.target.value })} className="form-control" id="input-empresa" name="input-empresa" aria-describedby="empresaHelp" required />
+                </div>
+                <div className="p-3 col-md-6">
+                    <label htmlFor="input-cc"><i className="far fa-id-card fa-lg pr-2" ></i>CC</label>
+                    <input type="text" value={this.state.cc} onChange={e => this.setState({ cc: e.target.value })} className="form-control" id="input-cc" name="input-cc" aria-describedby="ccHelp" required />
+                </div>
+
+
+                
+
+
+
+
+
+
+                <div className="p-3 col-md-6">  
+                  <label htmlFor="input-cod"><i className="far fa-id-card fa-lg pr-2" ></i>CA</label>
+                  <input type="text" value={this.state.cod} onChange={e => this.setState({ cod: e.target.value })} className="form-control" id="input-cod" name="input-cod" aria-describedby="codHelp" required />
+                </div>
+
+                {/* <div className="p-3 col-md-6">
                   <label htmlFor="input-nome-amigavel"><i className="far fa-user fa-lg pr-2" ></i>Nome Amigável</label>
                   <input type="text" value={this.state.nomeAmigavel} onChange={e => this.setState({ nomeAmigavel: e.target.value })} className="form-control" id="input-nome-amigavel" name="input-nome-amigavel" aria-describedby="nomeAmigavelHelp" required />
                 </div>
                 <div className="p-3 col-md-6">
                   <label htmlFor="input-razao-social"><i className="far fa-user fa-lg pr-2" ></i>Razão Social</label>
                   <input type="text" value={this.state.razaoSocial} onChange={e => this.setState({ razaoSocial: e.target.value })} className="form-control" id="input-razao-social" name="input-razao-social" aria-describedby="razaoSocialHelp" required />
-                </div>
+                </div> */}
           </div>
           <div className="modal-footer">
             <button type="button" className="btn btn-danger mr-2" data-dismiss="modal">

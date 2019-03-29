@@ -1,6 +1,8 @@
 import React from 'react';
 import InputMask from 'react-input-mask';
 import $ from 'jquery'; 
+
+import ModalCriarSubConta from '../modalcriarsubconta';
  
 // import PropTypes from 'prop-types';
 
@@ -277,6 +279,11 @@ class ModalUsuario extends React.Component {
                 <div className="d-flex align-items-center">
                   <i className="far fa-user-circle fa-lg pr-2" aria-hidden="true"/>
                   <h6 className="modal-title">Dados da Conta{/*props.name*/}</h6>
+                </div>                
+                <div className="ml-3">
+                  <button type="submit" className="btn btn-secondary" data-toggle="modal" data-target="#modal-criar-sub-conta" >
+                    <i className="fa fa-plus pr-2 " aria-hidden="true"/>Criar Sub-Conta
+                  </button>
                 </div>
                 <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
@@ -395,6 +402,7 @@ class ModalUsuario extends React.Component {
             </div>
           </div>
         </div>
+        <ModalCriarSubConta/>
 
 
       </div> 
