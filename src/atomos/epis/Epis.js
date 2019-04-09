@@ -16,18 +16,17 @@ import ModalAddEpi from '../modaladdepi';
 
 class Epis extends React.Component {
   state = {
-    arrayEmpresas: [],
-    nomeEmpresaSelecionada: null,
-    empresaSelecionadaId: '',
+    arrayEmpresas: this.props.listaEmpresas,
+    nomeEmpresaSelecionada: localStorage.getItem('pertencente') ? localStorage.getItem('pertencente') : this.props.listaEmpresas[0].nomeAmigavel,
+    empresaSelecionadaId: this.props.listaEmpresas[0].empresaId,
     listaEpisDisponiveis: [],
     listaEpisAtribuidos: []
   };
   
 
   componentWillMount(){
-    this.CarregarEmpresas();
-    this.MontarSelect();     
-    this.CarregarDadosEmpresa();   
+    // this.MontarSelect();     
+    // this.CarregarDadosEmpresa();   
   }
   componentDidMount(){
     this.CarregarEpisDisponiveis();   
@@ -36,52 +35,9 @@ class Epis extends React.Component {
 
 
 
-
-  CarregarEmpresas = () => {   
-    // alert('CARREGAR EMPRESAS');
-    // var EmpresaSelecionada = document.getElementById("select-empresas").value;
-    
-    // fetch('http://192.168.10.30/v1/cliente/{id}/empresas', {
-    //   method: 'get',
-    //   body: JSON.stringify(),
-    //   headers: {
-      //     'content-type': 'application/json'
-      //   }
-      // })
-      // .then(response => {
-        //   response.json().then(data => {
-          //     if (data.success === true) {   
-        //        this.setState({ arrayEmpresas: data });   
-    //          } 
-    //          else {
-      //       alert(data.message+' - '+data.data[0].message);    
-    //     }
-    //   });
-    // })
-    // .catch(err => {
-    //   console.error('Failed retrieving information', err);
-    //   alert(err);
-    // });
-
-    //TESTE
-    var data = [
-      {cnpj:'123999123', nomeAmigavel:'Empresa 1', razaoSocial: 'Razao1', empresaId: '111' },    
-      {cnpj:'123678123', nomeAmigavel:'Empresa 2', razaoSocial: 'Razao2', empresaId: '222' },
-      {cnpj:'123123123', nomeAmigavel:'Empresa 3', razaoSocial: 'Razao3', empresaId: '39e6158e-f2eb-894d-3bb4-530504615482' }
-    ]
-    // var data = null;
-
-    if(data !== null){
-      this.setState({ arrayEmpresas: data });  
-      this.setState({ nomeEmpresaSelecionada: data[0].nomeAmigavel });  
-      this.setState({ empresaSelecionadaId: data[0].empresaId });  
-      // alert("Lista de empresas carregados!");
-    }
-  }
-
-
   Callback = () =>{
     this.CarregarDadosEmpresa();
+
     this.CarregarEpisDisponiveis();
     this.CarregarEpisAtribuidos();
   }
@@ -90,54 +46,17 @@ class Epis extends React.Component {
 
 
   CarregarDadosEmpresa = () => {   
-    // alert('CARREGAR DADOS EMPRESA');
-    // var EmpresaSelecionada = document.getElementById("select-empresas").value;
-    // this.setState({ empresaSelecionada: EmpresaSelecionada });
 
-    // var id = this.state.empresaSelecionada;
-  
-    // fetch('http://192.168.10.30/v1/empresa/{id}?', {
-    //   method: 'get',
-    //   body: JSON.stringify(),
-    //   headers: {
-      //     'content-type': 'application/json'
-      //   }
-      // })
-      // .then(response => {
-        //   response.json().then(data => {
-          //     if (data.success === true) {   
-        //        this.setState({ data });   
-    //          } 
-    //          else {
-      //       alert(data.message+' - '+data.data[0].message);    
-    //     }
-    //   });
-    // })
-    // .catch(err => {
-    //   console.error('Failed retrieving information', err);
-    //   alert(err);
-    // });
-
-    var data = [
-      {cnpj: '12345678998765', nomeAmigavel:'Empresa 1', razaoSocial: 'Razao1', empresaId: '111'} 
-    ]
-    var data2 = [
-      {cnpj: '222222', nomeAmigavel:'Empresa 2', razaoSocial: 'Razao2', empresaId: '222'} 
-    ]
-    var data3 = [
-      {cnpj: '333333', nomeAmigavel:'Empresa 3', razaoSocial: 'Razao3', empresaId: '39e6158ef2eb894d3bb4530504615482'} 
-    ]
-    if (this.state.nomeEmpresaSelecionada === 'Empresa 1' ){
-      this.setState({ empresaSelecionadaId: data[0].empresaId });  
-    }    
-    if (this.state.nomeEmpresaSelecionada === 'Empresa 2' ){
-      this.setState({ empresaSelecionadaId: data2[0].empresaId });  
-    }
-    if (this.state.nomeEmpresaSelecionada === 'Empresa 3' ){
-      this.setState({ empresaSelecionadaId: data3[0].empresaId });  
-    }
-    // alert("Dados da empresa carregados!") ;
+    this.state.arrayEmpresas.map((value) => { //.data
+      if (value.nomeAmigavel == this.state.nomeEmpresaSelecionada){
+        this.setState({ empresaSelecionadaId: value.empresaId });  
+      }
+    });
   }
+
+
+
+
 
 
   MontarSelect = () => this.state.arrayEmpresas.map((value) => { //.data
@@ -238,15 +157,15 @@ class Epis extends React.Component {
     ]   
 
 
-    if (this.state.nomeEmpresaSelecionada === 'Empresa 1' ){
+    if (this.state.nomeEmpresaSelecionada === 'Fitassul' ){
       // this.setState({ nomeEmpresaSelecionada: data[0].nomeAmigavel });
       this.setState({ listaEpisAtribuidos: data });  
     }    
-    if (this.state.nomeEmpresaSelecionada === 'Empresa 2' ){
+    if (this.state.nomeEmpresaSelecionada === 'Helibras' ){
       // this.setState({ nomeEmpresaSelecionada: data2[0].nomeAmigavel });  
       this.setState({ listaEpisAtribuidos: data2 });  
     }
-    if (this.state.nomeEmpresaSelecionada === 'Empresa 3' ){
+    if (this.state.nomeEmpresaSelecionada === 'Mahle' ){
       // this.setState({ nomeEmpresaSelecionada: data3[0].nomeAmigavel }); 
       this.setState({ listaEpisAtribuidos: data3 });   
     }

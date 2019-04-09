@@ -402,7 +402,7 @@ class ModalUsuario extends React.Component {
             </div>
           </div>
         </div>
-        <ModalCriarSubConta/>
+        <ModalCriarSubConta listaEmpresas={this.props.listaEmpresas}/>
 
 
       </div> 

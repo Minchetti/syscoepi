@@ -18,6 +18,52 @@ import Epis from '../epis';
 
 
 class Home extends React.Component {
+  state = {
+    arrayEmpresas: []
+  };
+
+  componentWillMount(){ 
+    this.CarregarEmpresas();
+  }
+
+
+  CarregarEmpresas = () => {  
+     // var EmpresaSelecionada = document.getElementById("select-empresas").value;
+    
+    // fetch('http://192.168.10.30/v1/cliente/{id}/empresas', {
+    //   method: 'get',
+    //   body: JSON.stringify(),
+    //   headers: {
+      //     'content-type': 'application/json'
+      //   }
+      // })
+      // .then(response => {
+        //   response.json().then(data => {
+          //     if (data.success == true) {   
+        //        this.setState({ arrayEmpresas: data });   
+    //          } 
+    //          else {
+      //       alert(data.message+' - '+data.data[0].message);    
+    //     }
+    //   });
+    // })
+    // .catch(err => {
+    //   console.error('Failed retrieving information', err);
+    //   alert(err);
+    // });
+
+    var data = [
+      {cnpj:'123999123', nomeAmigavel:'Fitassul', razaoSocial: 'Razao1',  setorAtividade: 'Setor1', dataConstituicao: '05/07/1990', empresaId: '111'},    
+      {cnpj:'123678123', nomeAmigavel:'Helibras', razaoSocial: 'Razao2',  setorAtividade: 'Setor2', dataConstituicao: '05/07/1992', empresaId: '222'},
+      {cnpj:'123123123', nomeAmigavel:'Mahle', razaoSocial: 'Razao3',  setorAtividade: 'Setor3', dataConstituicao: '05/07/1991', empresaId: '39e6158e-f2eb-894d-3bb4-530504615482'}
+    ]  
+    if(data !== null){
+      this.setState({ arrayEmpresas: data });
+    }  
+  }
+
+
+
   render(){
     return (
 
@@ -26,16 +72,17 @@ class Home extends React.Component {
       <div className="h-100">
       
       <div id="progress-bar"></div>
-        <Cabecalho/>
+      <Cabecalho listaEmpresas={this.state.arrayEmpresas}/>
             
         <div className="d-flex w-100 h-100">
           <MenuLateral/>
           <div className="boxField p-4 w-100 overflow-x">       
-            <Route path="/app/dashboard" render={(props) => <Dashboard  {...props} name='Tulio'/>} /> 
-            <Route path="/app/request" component={Request} />
-            <Route path="/app/company" component={Company} />
-            <Route path="/app/employees" component={Employees} />
-            <Route path="/app/epis" component={Epis} />
+            <Route path="/app/dashboard" render={(props) => <Dashboard  {...props} listaEmpresas={this.state.arrayEmpresas}/>} /> 
+            <Route path="/app/request" render={(props) => <Request  {...props} listaEmpresas={this.state.arrayEmpresas}/>} />
+            <Route path="/app/company" render={(props) => <Company  {...props} listaEmpresas={this.state.arrayEmpresas}/>} />
+            <Route path="/app/employees" render={(props) => <Employees  {...props} listaEmpresas={this.state.arrayEmpresas}/>} />
+            <Route path="/app/epis" render={(props) => <Epis  {...props} listaEmpresas={this.state.arrayEmpresas}/>} />
+            {/* <Route path="/app/request" component={Request} /> */}
             {/* <ModalUsuario/>   */}
           </div>
         </div>  

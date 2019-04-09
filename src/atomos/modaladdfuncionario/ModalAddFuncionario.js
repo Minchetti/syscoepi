@@ -179,7 +179,7 @@ apagarCampos = () =>{
     // alert('Funcionário Avulso Adicionado')
   };
 
-  Teste = () => {console.log(this.state)}
+  Teste = () => {console.log(this.props)}
   render() {
     
     return (

@@ -17,7 +17,11 @@ import InputMask from 'react-input-mask';
       email: '',
       senha: '',
       confirmaSenha: '',
-      permissoes: ''
+
+      permissoes: '',
+      empresaPertencente:'',
+      arrayEmpresas: this.props.listaEmpresas
+
     };
 
     
@@ -31,6 +35,13 @@ import InputMask from 'react-input-mask';
         document.getElementById("input-confirma-senha").style.border = "1px solid green";
       }
     }
+
+
+    MontarSelect = () => this.state.arrayEmpresas.map((value) => { //.data
+      return (
+        <option>{value.nomeAmigavel}</option>
+        )
+    });
       
 
 
@@ -81,7 +92,7 @@ import InputMask from 'react-input-mask';
 
               <div className="modal-body ">
                 <form id="form-usuario" onSubmit={this.onSubmit} onChange={this.ValidarSenhas} className="text-left d-flex flex-wrap" method="post" action="">
-                  <div class="form-row"> 
+                  <div className="form-row"> 
                     {/* <div className="form-group col-md-6">
                       <label htmlFor="input-cnpj"><i className="far fa-id-card  pr-2" ></i>CNPJ</label>
                       <InputMask mask="99.999.999/9999-99" type="text" value={this.state.cnpj} onChange={e => this.setState({ cnpj: e.target.value })} className="form-control" id="input-cnpj" name="input-cnpj" aria-describedby="cnpjHelp" required />
@@ -97,7 +108,7 @@ import InputMask from 'react-input-mask';
                     <div className="form-group col-md-6">
                       <label htmlFor="input-nome"><i className="far fa-user  pr-2" ></i>Nome</label>
                       <input type="text" value={this.state.nome} onChange={e => this.setState({ nome: e.target.value })} className="form-control" id="input-nome" name="input-nome" aria-describedby="nomeHelp" required />
-                      <div class="valid-tooltip">Looks good!</div><div class="invalid-tooltip">Looks bad!</div>
+                      <div className="valid-tooltip">Looks good!</div><div className="invalid-tooltip">Looks bad!</div>
                     </div>
                     <div className="form-group col-md-6">
                       <label htmlFor="input-cpf"><i className="far fa-address-card  pr-2" ></i>CPF</label>
@@ -113,6 +124,12 @@ import InputMask from 'react-input-mask';
                         <option></option>
                         <option>1 - Vizualização</option>
                         <option>2 - Vizualização e Modificação</option>
+                      </select>
+                    </div>
+                    <div className="form-group col-md-6 ">
+                      <label htmlFor="input-pertencente"><i className="fas fa-id-card  pr-2" ></i>Empresa Pertencente</label>
+                      <select id="select-empresas" className="form-control" onChange={e => this.setState({ empresaPertencente: e.target.value })}>
+                        {this.MontarSelect()}
                       </select>
                     </div>
                     <div className="form-group col-md-6">

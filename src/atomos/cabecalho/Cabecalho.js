@@ -51,7 +51,7 @@ class Cabecalho extends React.Component {
           <AuthButton/>
 
         </div>
-        <ModalUsuario/>
+        <ModalUsuario listaEmpresas={this.props.listaEmpresas}/>
       </header>
     )  
   }

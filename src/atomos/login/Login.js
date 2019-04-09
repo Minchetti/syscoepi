@@ -82,7 +82,8 @@ class Login extends React.Component {
           localStorage.setItem('name', data.data.usuarios[0].nome.split(" ")[0]);
 
           
-          // localStorage.setItem('permissoes', data.data.usuarios[0].permissoes); /*CODIGO DE TESTE PARA PERMISSOES */
+          localStorage.setItem('permissoes', data.data.usuarios[0].permissoes); /*CODIGO DE TESTE PARA PERMISSOES */
+          localStorage.setItem('pertencente', data.data.usuarios[0].pertencente); /*CODIGO DE TESTE PARA PERMISSOES */
 
           this.setState({ logged: true });
 

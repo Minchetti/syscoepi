@@ -16,24 +16,23 @@ import InputMask from 'react-input-mask';
 // CNPJ 28.061.033/0001-60
 class Company extends React.Component {
   state = {
-    cnpj: null,
-    nomeAmigavel: null,
-    razaoSocial: null,
-    setorAtividade: null,
-    dataConstituicao: null,
+    cnpj:  this.props.listaEmpresas[0].cnpj,
+    nomeAmigavel:  this.props.listaEmpresas[0].nomeAmigavel,
+    razaoSocial:  this.props.listaEmpresas[0].razaoSocial,
+    setorAtividade:  this.props.listaEmpresas[0].setorAtividade,
+    dataConstituicao:  this.props.listaEmpresas[0].dataConstituicao,
     // empresaSelecionada: null,
-    nomeEmpresaSelecionada: null,
-    arrayEmpresas: [],
-    dadosIniciaisEmpresa: null
+    nomeEmpresaSelecionada: localStorage.getItem('pertencente') ? localStorage.getItem('pertencente') : this.props.listaEmpresas[0].nomeAmigavel,
+    arrayEmpresas: this.props.listaEmpresas,
+    dadosIniciaisEmpresa:  this.props.listaEmpresas[0]
   };
 
 
   componentWillMount(){
-    this.CarregarEmpresas();
     this.MontarSelect();    
   }
   componentDidMount (){
-    this.CarregarDadosEmpresa();
+    // this.CarregarDadosEmpresa();
   }  
   componentWillUpdate (){
     
@@ -58,50 +57,6 @@ class Company extends React.Component {
     else{
       document.getElementById("editarEmpresa").parentNode.style.display = "none";
     }
-  }
-
-
-  
-  CarregarEmpresas = () => {   
-    // var EmpresaSelecionada = document.getElementById("select-empresas").value;
-    
-    // fetch('http://192.168.10.30/v1/cliente/{id}/empresas', {
-    //   method: 'get',
-    //   body: JSON.stringify(),
-    //   headers: {
-      //     'content-type': 'application/json'
-      //   }
-      // })
-      // .then(response => {
-        //   response.json().then(data => {
-          //     if (data.success == true) {   
-        //        this.setState({ arrayEmpresas: data });   
-    //          } 
-    //          else {
-      //       alert(data.message+' - '+data.data[0].message);    
-    //     }
-    //   });
-    // })
-    // .catch(err => {
-    //   console.error('Failed retrieving information', err);
-    //   alert(err);
-    // });
-
-    //TESTE
-    var data = [
-      {cnpj:'123999123', nomeAmigavel:'Fitassul', razaoSocial: 'Razao1',  setorAtividade: 'Setor1', dataConstituicao: '05/07/1990'},    
-      {cnpj:'123678123', nomeAmigavel:'Helibras', razaoSocial: 'Razao2',  setorAtividade: 'Setor2', dataConstituicao: '05/07/1992'},
-      {cnpj:'123123123', nomeAmigavel:'Mahle', razaoSocial: 'Razao3',  setorAtividade: 'Setor3', dataConstituicao: '05/07/1991'}
-    ]
-    // var data = null;
-    
-    if(data !== null){
-      // this.setState({ empresaSelecionada: data[0] });
-      this.setState({ nomeEmpresaSelecionada: data[0].nomeAmigavel });
-      this.setState({ arrayEmpresas: data });
-    }  
-     
-    // alert("Lista de empresas carregados!");
   }
 
 
@@ -175,70 +130,23 @@ class Company extends React.Component {
     )
   }
 
-  
 
+
+  
   CarregarDadosEmpresa = () => {   
-    // var EmpresaSelecionada = document.getElementById("select-empresas").value;
 
-    // var id = this.state.empresaSelecionada;
-  
-    // fetch('http://192.168.10.30/v1/empresa/{id}?', {
-    //   method: 'get',
-    //   body: JSON.stringify(),
-    //   headers: {
-      //     'content-type': 'application/json'
-      //   }
-      // })
-      // .then(response => {
-        //   response.json().then(data => {
-          //     if (data.success == true) {   
-        //        this.setState({ data });   
-    //          } 
-    //          else {
-      //       alert(data.message+' - '+data.data[0].message);    
-    //     }
-    //   });
-    // })
-    // .catch(err => {
-    //   console.error('Failed retrieving information', err);
-    //   alert(err);
-    // });
-
-    var data = [
-      {cnpj: '12345678998765', nomeAmigavel:'Empresa 1', razaoSocial: 'Razao1', setorAtividade: 'Setor1', dataConstituicao: '05/07/1991'} 
-    ]
-    var data2 = [
-      {cnpj: '222222', nomeAmigavel:'Empresa 2', razaoSocial: 'Razao2', setorAtividade: 'Setor22', dataConstituicao: '05/07/1992'} 
-    ]
-    var data3 = [
-      {cnpj: '333333', nomeAmigavel:'Empresa 3', razaoSocial: 'Razao3 ', setorAtividade: 'Setor33', dataConstituicao: '05/07/1993'} 
-    ]
-    if (this.state.nomeEmpresaSelecionada === 'Fitassul' ){
-      this.setState({ nomeAmigavel: data[0].nomeAmigavel });  
-      this.setState({ razaoSocial: data[0].razaoSocial });  
-      this.setState({ cnpj: data[0].cnpj });   
-      this.setState({ setorAtividade: data[0].setorAtividade });   
-      this.setState({ dataConstituicao: data[0].dataConstituicao });   
-      this.setState({ dadosIniciaisEmpresa: data[0]});   
-    }    
-    if (this.state.nomeEmpresaSelecionada === 'Helibras' ){
-      this.setState({ nomeAmigavel: data2[0].nomeAmigavel });  
-      this.setState({ razaoSocial: data2[0].razaoSocial });  
-      this.setState({ cnpj: data2[0].cnpj });  
-      this.setState({ setorAtividade: data2[0].setorAtividade });   
-      this.setState({ dataConstituicao: data2[0].dataConstituicao });    
-      this.setState({ dadosIniciaisEmpresa: data2[0]}); 
-    }
-    if (this.state.nomeEmpresaSelecionada === 'Mahle' ){
-      this.setState({ nomeAmigavel: data3[0].nomeAmigavel });  
-      this.setState({ razaoSocial: data3[0].razaoSocial });  
-      this.setState({ cnpj: data3[0].cnpj });   
-      this.setState({ setorAtividade: data3[0].setorAtividade });   
-      this.setState({ dataConstituicao: data3[0].dataConstituicao });   
-      this.setState({ dadosIniciaisEmpresa: data3[0]}); 
-    }
-    // alert("Dados da empresa carregados!") ;
+    this.state.arrayEmpresas.map((value) => { //.data
+      if (value.nomeAmigavel == this.state.nomeEmpresaSelecionada){        
+        this.setState({ nomeAmigavel: value.nomeAmigavel });  
+        this.setState({ razaoSocial: value.razaoSocial });  
+        this.setState({ cnpj: value.cnpj });   
+        this.setState({ setorAtividade: value.setorAtividade });   
+        this.setState({ dataConstituicao: value.dataConstituicao });   
+        this.setState({ dadosIniciaisEmpresa: value}); 
+      }
+    });
   }
+
 
  
   MontarSelect = () => this.state.arrayEmpresas.map((value) => { //.data

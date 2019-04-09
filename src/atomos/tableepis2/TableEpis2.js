@@ -27,7 +27,7 @@ componentWillMount(){
 }
 
 componentDidMount(){
-  this.changeArrowAssign();
+  // this.changeArrowAssign();
 }
 
 componentDidUpdate(nextProps){  
@@ -62,14 +62,14 @@ componentWillReceiveProps(nextProps){
 
 
 
-changeArrowAssign = () =>{
-    // var lengthD = this.state.episDisponiveis.length;
-    // var lengthA = this.state.episAtribuidos.length;
-    // var length = lengthA + lengthD;
-    // for (var i = length-1; i > lengthD-1; i--){
-    //   document.getElementsByClassName("eachRow")[i].lastChild.firstChild.classList.add("rotated");
-    // }
-}
+// changeArrowAssign = () =>{
+//     // var lengthD = this.state.episDisponiveis.length;
+//     // var lengthA = this.state.episAtribuidos.length;
+//     // var length = lengthA + lengthD;
+//     // for (var i = length-1; i > lengthD-1; i--){
+//     //   document.getElementsByClassName("eachRow")[i].lastChild.firstChild.classList.add("rotated");
+//     // }
+// }
 
 
 
