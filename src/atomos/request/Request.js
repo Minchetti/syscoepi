@@ -11,11 +11,25 @@ import ModalCriarRequisicao from '../modalcriarrequisicao';
 class Request extends React.Component {
 
   state = {
-    nomeEmpresaSelecionada: localStorage.getItem('pertencente'),
+    nomeEmpresaSelecionada: localStorage.getItem('pertencente') ? localStorage.getItem('pertencente') : this.props.listaEmpresas[0].nomeAmigavel,
     arrayEmpresas: this.props.listaEmpresas,
     requisicoesUltimas: [],
     requisicoesAbertas: [],
-    requisicoesCanceladas: []
+    requisicoesCanceladas: [],    
+    
+    ca:  this.props.listaEmpresas[0].ca,
+    cod:  this.props.listaEmpresas[0].cod,
+    empresa:  this.props.listaEmpresas[0].empresa,
+    cc:  this.props.listaEmpresas[0].cc,
+    gh:  this.props.listaEmpresas[0].gh,
+    turno:  this.props.listaEmpresas[0].turno,
+    funcionario:  this.props.listaEmpresas[0].funcionario,
+    validade:  this.props.listaEmpresas[0].validade,
+    quantidade:  this.props.listaEmpresas[0].quantidade,
+
+    dadosIniciaisEmpresa:  this.props.listaEmpresas[0]
+
+
   }
 
 
@@ -52,7 +66,7 @@ class Request extends React.Component {
       )
     }
   }
-
+  
   
   CarregarRequisicoes = () =>{
     var data2 = [];    

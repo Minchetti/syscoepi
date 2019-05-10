@@ -38,7 +38,7 @@ class Employees extends React.Component {
     // this.CarregarDadosEmpresa();   
   }
   componentDidMount(){
-    this.CarregarFuncionarios();   
+    this.CarregarFuncionarios(); 
 
   }
 

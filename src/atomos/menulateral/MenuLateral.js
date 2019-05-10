@@ -83,6 +83,12 @@ import { Link } from "react-router-dom";
                     <i className="fa fa-clipboard fa-lg"></i>                     
                   </Link>               
               </li>
+              <li>
+                  <Link className="position-relative d-flex justify-content-between align-items-center p-3" to="/app/consultaca">
+                    <span style={{display: this.state.display}}>Consulta CA</span> 
+                    <i className="fa fa-clipboard fa-lg"></i>                     
+                  </Link>               
+              </li>
               <li data-toggle="collapse" data-target="#sub-company" className="collapsed">
                   <Link className="position-relative d-flex justify-content-between align-items-center p-3" to="/app/company">
                     <span style={{display: this.state.display}}>Empresas</span> 

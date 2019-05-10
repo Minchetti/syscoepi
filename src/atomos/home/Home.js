@@ -11,6 +11,7 @@ import Request from '../request';
 import Company from '../company';
 import Employees from '../employees';
 import Epis from '../epis';
+import ConsultaCA from '../consultaca';
 
 
 
@@ -81,7 +82,8 @@ class Home extends React.Component {
             <Route path="/app/request" render={(props) => <Request  {...props} listaEmpresas={this.state.arrayEmpresas}/>} />
             <Route path="/app/company" render={(props) => <Company  {...props} listaEmpresas={this.state.arrayEmpresas}/>} />
             <Route path="/app/employees" render={(props) => <Employees  {...props} listaEmpresas={this.state.arrayEmpresas}/>} />
-            <Route path="/app/epis" render={(props) => <Epis  {...props} listaEmpresas={this.state.arrayEmpresas}/>} />
+            <Route path="/app/epis" render={(props) => <Epis  {...props} listaEmpresas={this.state.arrayEmpresas}/>} />            
+            <Route path="/app/consultaca" component={ConsultaCA} />
             {/* <Route path="/app/request" component={Request} /> */}
             {/* <ModalUsuario/>   */}
           </div>

@@ -8,7 +8,6 @@ initialState = {
   employeesInitial: [],
   disableds: 0
 
-  // setInitial: false
 }
 
 state = {
@@ -55,14 +54,6 @@ componentWillUpdate = (nextProps) =>{
   }
 }
 
-// shouldComponentUpdate(nextProps, nextState) {
-//   if (nextProps.lista === this.state.employees) {
-//     return false;
-//   }
-//   else{
-//     return true;
-//   }
-// }
 
   componentWillReceiveProps(nextProps){    
     console.log('WILL RECEIVE PROPS');
@@ -114,21 +105,6 @@ componentWillUpdate = (nextProps) =>{
     }
   };
 
-  // handleAddEvent(evt) {
-  //   var id = (+ new Date() + Math.floor(Math.random() * 999999)).toString(36);
-  //   var employee = {
-  //     id: id,
-  //     nome: "",
-  //     rg: "",
-  //     cpf: "",
-  //     email: "",
-  //     gh: "",
-  //     turno: "",
-  //     sexo: ""
-  //   }
-  //   this.state.employees.push(employee);
-  //   this.setState(this.state.employees);
-  // }
 
   handleProductTable(evt) {
     console.log("ará!")
@@ -155,20 +131,6 @@ componentWillUpdate = (nextProps) =>{
       {employees : JSON.parse(JSON.stringify(this.initialState.employeesInitial))},
       () => {
         document.getElementById("table-buttons").style.display = "none";    
-        // var qntd_ativos = this.state.employees.length - this.initialState.disableds; //descobrir a qntd de funcionarios ativos
-
-        // for(var i = 0; i < qntd_ativos-1; i++) {  //ao clicar em cancelar a edição eu removo a class "inactive" de todos os ultimos funcionarios 
-        //   document.getElementsByClassName("eachRow")[i].classList.remove("inactive");
-        // } 
-        
-        // for(var i = this.state.employees.length-1; i > qntd_ativos; i--) {  //ao clicar em cancelar a edição eu add a class "inactive" em todos os fultimos que estão inativos
-        //   document.getElementsByClassName("eachRow")[i].classList.add("inactive");
-        // }         
-
-        // var btns = document.getElementsByClassName("delete-buttons");
-        // for(var i = 0; i < btns.length; i++) {
-        //   btns[i].disabled = false;
-        // }
       }
     )    
   }
@@ -383,12 +345,3 @@ class EditableCell extends React.Component {
 
 export default TableFuncionarios2;
 
-/*
-(The MIT License)
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the 'Software'), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-*/

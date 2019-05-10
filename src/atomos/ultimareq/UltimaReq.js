@@ -1,5 +1,7 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
+
+import Button from '../button';
 import capacete from '../../capacete.png';
 import bota2 from '../../bota2.png';
 import abafador from '../../abafador.png';
@@ -45,17 +47,31 @@ class UltimaReq extends React.Component {
     )
   });
 
+  
+  // hahaha = () =>{
+  //   document.getElementById("noisx").onmouseover = function(){
+  //     console.log("foifff");
+  //   }
+  // }
+
+  // document.getElementById("ir-requisicoes").style.display = "flex";
+
   // Teste = () => {console.log(this.state);}
 
   render(){
+
+    // this.hahaha();
     return(
       <div className={this.props.size}>
 
 {/* <div onClick={this.Teste}>AQUI req</div> */}
 
         <div className={'UltimaReq panel ' + this.props.small}>
-          <div className="panel-heading thead-dark">
-            <h6 className="text-left mb-0"><i className="fa fa-check-square pr-2" aria-hidden="true"></i>Ultimas Requisições  </h6>
+          <div className="panel-heading thead-dark d-flex justify-content-between">
+            <h6 className="text-left mb-0"><i className="fa fa-check-square pr-2" aria-hidden="true"></i>Ultimas Requisições </h6>            
+            {/* <div id="noisx">
+              <i className="fa fa-plus fa-lg mr-2" aria-hidden="true" ></i>ir
+            </div> */}
           </div>
           <div className="panel-body">
             <table className="table m-0">
@@ -69,24 +85,6 @@ class UltimaReq extends React.Component {
               </thead>
               <tbody>                
                 {this.montarUltimasReqP()}
-                {/* <tr>
-                  <td scope="row"><div><img src={abafador} className="thumb" alt="logo" /></div></td>
-                  <td><div>125468</div></td>
-                  <td><div>195436</div></td>
-                  <td><div>Siemens</div></td>
-                </tr>
-                <tr>
-                  <td scope="row"><div><img src={capacete} className="thumb" alt="logo" /></div></td>
-                  <td><div>103254</div></td>
-                  <td><div>195436</div></td>
-                  <td><div>Votorantin</div></td>
-                </tr>
-                <tr>
-                  <td scope="row"><div><img src={bota2} className="thumb" alt="logo" /></div></td>
-                  <td><div>013256</div></td>
-                  <td><div>195436</div></td>
-                  <td><div>Helibras</div></td>
-                </tr> */}
               </tbody>
             </table>
           </div>
@@ -117,42 +115,6 @@ class UltimaReq extends React.Component {
               </thead>
               <tbody >
                   {this.montarUltimasReqG()}
-                {/* <tr>
-                  <td scope="row"><div><img src={abafador} className="thumb" alt="logo" /></div></td>
-                  <td><div>125468</div></td>
-                  <td><div>195436</div></td>
-                  <td><div>Siemens</div></td>
-                  <td><div>012345</div></td>
-                  <td><div>Obras</div></td>
-                  <td><div>Noturno</div></td>
-                  <td><div>Adriano Torres</div></td>
-                  <td><div>10/02/2018</div></td>
-                  <td><div>01</div></td>
-                </tr>
-                <tr>
-                  <td scope="row"><div><img src={capacete} className="thumb" alt="logo" /></div></td>
-                  <td><div>103254</div></td>
-                  <td><div>195436</div></td>
-                  <td><div>Votorantin</div></td>
-                  <td><div>012345</div></td>
-                  <td><div>Obras</div></td>
-                  <td><div>Noturno</div></td>
-                  <td><div>Lucas Andadre</div></td>
-                  <td><div>10/02/2018</div></td>
-                  <td><div>01</div></td>
-                </tr>
-                <tr>
-                  <td scope="row"><div><img src={bota2} className="thumb" alt="logo" /></div></td>
-                  <td><div>013256</div></td>
-                  <td><div>195436</div></td>
-                  <td><div>Helibras</div></td>
-                  <td><div>012345</div></td>
-                  <td><div>Obras</div></td>
-                  <td><div>Noturno</div></td>
-                  <td><div>Julio Faria</div></td>
-                  <td><div>10/02/2018</div></td>
-                  <td><div>01</div></td>
-                </tr> */}
               </tbody>
             </table>
           </div>
