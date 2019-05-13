@@ -298,11 +298,6 @@ class ConsultaCA extends React.Component {
   state = {
     epiSelecionado : ""
   }
-
-  test = () => {
-    console.log(this.state);
-  }
-
    
   selecionouEpi(epi) {
     this.setState({ epiSelecionado: epi });  
@@ -315,20 +310,20 @@ class ConsultaCA extends React.Component {
   render() {
     return (
     <div>
-      <div onClick={this.test}>STATE CONSULTACA</div> <SearchBar selecionouEpi={this.selecionouEpi.bind(this)}/> {/*onUserInput={this.handleUserInput.bind(this)} */}
+      <SearchBar selecionouEpi={this.selecionouEpi.bind(this)}/> {/*onUserInput={this.handleUserInput.bind(this)} */}
 
       {this.state.epiSelecionado !== "" &&
-      <div>
+      <div className="mt-4">
         <p className="d-flex justify-content-between align-items-center ">
           <div className="d-flex align-items-center">
-            <i className="fa fa-briefcase mr-3" style={{fontSize: '50px'}} ></i> {/*style={{padding: '10px', border: '2px solid red', borderRadius: '50px', width: '70px' + '!important' , height: '70px'}}*/}
+            <i className="fa fa-briefcase mr-3" style={{fontSize: '40px'}} ></i> {/*style={{padding: '10px', border: '2px solid red', borderRadius: '50px', width: '70px' + '!important' , height: '70px'}}*/}
             <div className="text-left">
-              <span className="lead font-weight-bold">{this.state.epiSelecionado.NomeEquipamento}</span><br />
+              <span className=" font-weight-bold">{this.state.epiSelecionado.NomeEquipamento}</span><br />
               {/* <span className="small">Proteção dos pés e pernas</span> */}
             </div>
           </div>
 
-          <div className="d-flex flex-column pl-2 pr-2 pt-1 pb-1" style={{border: '1px solid red', borderRadius: '3px', background:'white'}}>
+          <div className="d-flex flex-column pl-2 pr-2 pt-1 pb-1" style={{border: '1px solid #ced4da', borderRadius: '3px', background:'white'}}>
             <span className="small">Nº CA:</span>
             <span className="lead font-weight-bold">{this.state.epiSelecionado.NRRegistroCA}</span>
           </div>
@@ -343,15 +338,15 @@ class ConsultaCA extends React.Component {
         <p className="d-flex justify-content-between align-items-center ">
           <div>
             <span className="small">Situação:</span><br />
-            <span className="lead font-weight-bold">{this.state.epiSelecionado.Situacao}</span>
+            <span className=" font-weight-bold">{this.state.epiSelecionado.Situacao}</span>
           </div>  
           <div>
             <span className="small">Validade:</span><br />
-            <span className="lead font-weight-bold">{this.state.epiSelecionado.DataValidade}</span>
+            <span className=" font-weight-bold">{this.state.epiSelecionado.DataValidade}</span>
           </div>  
           <div>
             <span className="small">Nº Processo:</span><br />
-            <span className="lead font-weight-bold">{this.state.epiSelecionado.NRProcesso}</span>
+            <span className=" font-weight-bold">{this.state.epiSelecionado.NRProcesso}</span>
           </div>           
         </p>
 
@@ -456,17 +451,19 @@ class SearchBar extends React.Component {
     this.setState({ searchText: "" });  //limpar o campo de pesquisa qndo o usuario clicar em algum CA pesquisado
   }
   
-  test = () => {
-    console.log(this.props.selecionouEpi.BoundThis);
-    console.log(this.props);
-  }
+  // test = () => {
+  //   console.log(this.props.selecionouEpi.BoundThis);
+  //   console.log(this.props);
+  // }
 
   render() {
     return (
       <div>
-        <div onClick={this.test}>STATE Search</div>
-        <input className="form-control btn-sm" type="text" value={this.state.searchText} placeholder="Search..." onChange={this.handleChange.bind(this)}/>
-        {(this.state.listaCa !== "" && this.state.selecionouEpiBool === false && this.state.searchText !== "") && <Table linhas={this.state.listaCa} selecionouEpi={this.props.selecionouEpi} selecionouEpiBool={this.selecionouEpiBool.bind(this)}/>} {/*só monta a table se tem algum retorno da pesquisa e se o bool de seleção de CA pesquisado esta false */}
+        <div className="d-flex align-items-center">
+          <h3 className="m-0"><b>Consulta CA</b></h3>
+          <input style={{ zIndex: "10", position: "relative" }} className="ml-3 col-md-6 form-control btn-sm" type="text" value={this.state.searchText} placeholder="Search..." onChange={this.handleChange.bind(this)}/>
+        </div>
+        {(this.state.listaCa !== "" && this.state.selecionouEpiBool === false && this.state.searchText !== "") && <Table linhas={this.state.listaCa} selecionouEpi={this.props.selecionouEpi} selecionouEpiBool={this.selecionouEpiBool.bind(this)}/>} 
       </div>
     );
   }
@@ -480,18 +477,26 @@ class SearchBar extends React.Component {
 
 
 class Table extends React.Component {
-  test = () => {
-    console.log(this.props);
-  }
+
   render() {
     return (
-      <table border={1} style={{ width: "25%" }}>
-      
-      {/* <div onClick={this.test}>STATE TABLE</div> */}
-        <tbody>
-          {this.props.linhas.map(linha => <Row linha={linha} selecionouEpi={this.props.selecionouEpi} selecionouEpiBool={this.props.selecionouEpiBool} />)}
-        </tbody>
-      </table>
+      <div> 
+        <div style={{
+          opacity: "0.7",
+          position: "absolute",
+          top: "0px",
+          right: "0px",
+          bottom: "0px",
+          left: "0px",
+          zIndex: "5",
+          backgroundColor: "rgb(255, 255, 255)"
+        }}/>   
+        <table style={{ zIndex: "10", position: "absolute", boxShadow: "0 6px 12px rgba(0,0,0,.175)", left: "366px" }}>       
+          <tbody>
+            {this.props.linhas.map(linha => <Row linha={linha} selecionouEpi={this.props.selecionouEpi} selecionouEpiBool={this.props.selecionouEpiBool} />)}
+          </tbody>
+        </table>
+      </div>
     );
   }
 }
@@ -512,13 +517,12 @@ class Row extends React.Component {
   render() {
     
     return (
-      <tr onClick={this.selecionouEpi.bind(this)}>
-      
-        {/* <div onClick={this.test}>STATE ROW</div> */}
-        <td style={{ textAlign: "center" }}>{this.props.linha.NRRegistroCA}</td>
-        <td style={{ textAlign: "center" }}>{this.props.linha.NomeEquipamento}</td>
-        <td style={{ textAlign: "center" }}>{this.props.linha.DataValidade}</td>
-        <td style={{ textAlign: "center" }}>{this.props.linha.RazaoSocial}</td>
+      <tr style={{border: "1px solid #ced4da", borderRadius: "5px", backgroundColor: "white" }} className="align-items-start d-flex flex-column p-3" onClick={this.selecionouEpi.bind(this)}>
+
+        <span>CA: <b>{this.props.linha.NRRegistroCA}</b></span>
+        <span>EPI:  <b>{this.props.linha.NomeEquipamento}</b></span>
+        <span>Validade:  <b>{this.props.linha.DataValidade}</b></span>
+        <span>Fabricante:  <b>{this.props.linha.RazaoSocial}</b></span>
       </tr>
     );
   }
