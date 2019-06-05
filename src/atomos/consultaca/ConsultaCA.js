@@ -293,6 +293,7 @@
 
 import React from "react";
 import mte from '../../mte.jpg';
+import ModalCA from '../modalca';
 
 class ConsultaCA extends React.Component {
   state = {
@@ -303,6 +304,7 @@ class ConsultaCA extends React.Component {
     this.setState({ epiSelecionado: epi });  
   }
 
+  
     // handleUserInput(epiSelecionado) {
     //   this.setState({epiSelecionado: epiSelecionado});
     // };
@@ -329,7 +331,7 @@ class ConsultaCA extends React.Component {
           </div>
 
           <div>
-            <img src={mte}/>
+            <img src={mte} data-toggle="modal" data-target="#modal-ca"/>
           </div>
         </p>
       
@@ -391,6 +393,7 @@ class ConsultaCA extends React.Component {
 
       </div>}   
 
+      <ModalCA epiSelecionado={this.state.epiSelecionado}/>
       </div>
     );
   }
@@ -408,14 +411,14 @@ class SearchBar extends React.Component {
     listaCa : "",
     searchText: "",
     selecionouEpiBool: false
-
   } 
+  
   handleChange(event) {    
     var data = [
       {NRRegistroCA: "12345", DataValidade: "25/03/2015", Situacao: "VENCIDO", NRProcesso: "46017006322201064", CNPJ:"03032917000166", 
       RazaoSocial: "NEXUS E.P.I. INDUSTRIA E COMERCIO LTDA", Natureza:"Nacional", NomeEquipamento: "LUVA PARA PROTEÇÃO CONTRA AGENTES MECÂNICOS", 
       DescricaoEquipamento: "Luva de segurança confeccionada em grafatex, elástico no dorso, tira de reforço externo entre o dedo polegar e indicador, punho em malha de poliéster, ilhoses nos dedos polegar e indicador, fios de aço no dorso", 
-      MarcaCA: "NO CORPO DO EPI (ETIQUETA)", Situacao: "DA-36.100", Referencia: "Série PSS 100", Cor:"Amarela", 
+      MarcaCA: "NO CORPO DO EPI (ETIQUETA)", Referencia: "Série PSS 100", Cor:"Amarela", 
       AprovadoParaLaudo: "PROTEÇÃO DAS VIAS RESPIRATÓRIAS EM ATMOSFERAS IMEDIATAMENTE PERIGOSA À VIDA E A SAÚDE (IPVS) E PORCENTAGEM DE OXIGÊNCIO MENOR QUE 12,5 % AO NÍVEL DO MAR", 
       RestricaoLaudo:"Nenhuma", ObservacaoAnaliseLaudo: "PARA A ADEQUADA UTILIZAÇÃO DO EQUIPAMENTO DE PROTEÇÃO RESPIRATÓRIA, DEVEM SER OBSERVADAS AS RECOMENDAÇÕES DA FUNDAÇÃO JORGE DUPRAT FIGUEIREDO DE SEGURANÇA E MEDICINA DO TRABALHO -FUNDACENTRO, CONTIDAS NA PUBLICAÇÃO INTITULADA PROGRAMA DE PROTEÇÃO RESPIRATÓRIA - RECOMENDAÇÕES, SELEÇÃO E USO DE RESPIRADORES, ALÉM DO DISPOSTO NAS NORMAS REGULAMENTADORAS DE SEGURANÇA E SAÚDE NO TRABALHO", 
       CNPJLaboratorio: "62428073000136", RazaoSocialLaboratorio: "FUNDACENTRO - FUNDAÇÃO JORGE DUPRAT FIGUEIREDO DE SEG E MED DO TRABALHO", 
@@ -424,7 +427,7 @@ class SearchBar extends React.Component {
       {NRRegistroCA: "54321", DataValidade: "25/03/2015", Situacao: "VENCIDO", NRProcesso: "46017006322201064", CNPJ:"03032917000166", 
       RazaoSocial: "NEXUS E.P.I. INDUSTRIA E COMERCIO LTDA", Natureza:"Nacional", NomeEquipamento: "LUVA PARA PROTEÇÃO CONTRA AGENTES MECÂNICOS", 
       DescricaoEquipamento: "Luva de segurança confeccionada em grafatex, elástico no dorso, tira de reforço externo entre o dedo polegar e indicador, punho em malha de poliéster, ilhoses nos dedos polegar e indicador, fios de aço no dorso", 
-      MarcaCA: "NO CORPO DO EPI (ETIQUETA)", Situacao: "DA-36.100", Referencia: "Série PSS 100", Cor:"Amarela", 
+      MarcaCA: "NO CORPO DO EPI (ETIQUETA)", Referencia: "Série PSS 100", Cor:"Amarela", 
       AprovadoParaLaudo: "PROTEÇÃO DAS VIAS RESPIRATÓRIAS EM ATMOSFERAS IMEDIATAMENTE PERIGOSA À VIDA E A SAÚDE (IPVS) E PORCENTAGEM DE OXIGÊNCIO MENOR QUE 12,5 % AO NÍVEL DO MAR", 
       RestricaoLaudo:"Nenhuma", ObservacaoAnaliseLaudo: "PARA A ADEQUADA UTILIZAÇÃO DO EQUIPAMENTO DE PROTEÇÃO RESPIRATÓRIA, DEVEM SER OBSERVADAS AS RECOMENDAÇÕES DA FUNDAÇÃO JORGE DUPRAT FIGUEIREDO DE SEGURANÇA E MEDICINA DO TRABALHO -FUNDACENTRO, CONTIDAS NA PUBLICAÇÃO INTITULADA PROGRAMA DE PROTEÇÃO RESPIRATÓRIA - RECOMENDAÇÕES, SELEÇÃO E USO DE RESPIRADORES, ALÉM DO DISPOSTO NAS NORMAS REGULAMENTADORAS DE SEGURANÇA E SAÚDE NO TRABALHO", 
       CNPJLaboratorio: "62428073000136", RazaoSocialLaboratorio: "FUNDACENTRO - FUNDAÇÃO JORGE DUPRAT FIGUEIREDO DE SEG E MED DO TRABALHO", 
@@ -433,7 +436,7 @@ class SearchBar extends React.Component {
       {NRRegistroCA: "99877", DataValidade: "25/03/2015", Situacao: "VENCIDO", NRProcesso: "46017006322201064", CNPJ:"03032917000166", 
       RazaoSocial: "NEXUS E.P.I. INDUSTRIA E COMERCIO LTDA", Natureza:"Nacional", NomeEquipamento: "LUVA PARA PROTEÇÃO CONTRA AGENTES MECÂNICOS", 
       DescricaoEquipamento: "Luva de segurança confeccionada em grafatex, elástico no dorso, tira de reforço externo entre o dedo polegar e indicador, punho em malha de poliéster, ilhoses nos dedos polegar e indicador, fios de aço no dorso", 
-      MarcaCA: "NO CORPO DO EPI (ETIQUETA)", Situacao: "DA-36.100", Referencia: "Série PSS 100", Cor:"Amarela", 
+      MarcaCA: "NO CORPO DO EPI (ETIQUETA)", Referencia: "Série PSS 100", Cor:"Amarela", 
       AprovadoParaLaudo: "PROTEÇÃO DAS VIAS RESPIRATÓRIAS EM ATMOSFERAS IMEDIATAMENTE PERIGOSA À VIDA E A SAÚDE (IPVS) E PORCENTAGEM DE OXIGÊNCIO MENOR QUE 12,5 % AO NÍVEL DO MAR", 
       RestricaoLaudo:"Nenhuma", ObservacaoAnaliseLaudo: "PARA A ADEQUADA UTILIZAÇÃO DO EQUIPAMENTO DE PROTEÇÃO RESPIRATÓRIA, DEVEM SER OBSERVADAS AS RECOMENDAÇÕES DA FUNDAÇÃO JORGE DUPRAT FIGUEIREDO DE SEGURANÇA E MEDICINA DO TRABALHO -FUNDACENTRO, CONTIDAS NA PUBLICAÇÃO INTITULADA PROGRAMA DE PROTEÇÃO RESPIRATÓRIA - RECOMENDAÇÕES, SELEÇÃO E USO DE RESPIRADORES, ALÉM DO DISPOSTO NAS NORMAS REGULAMENTADORAS DE SEGURANÇA E SAÚDE NO TRABALHO", 
       CNPJLaboratorio: "62428073000136", RazaoSocialLaboratorio: "FUNDACENTRO - FUNDAÇÃO JORGE DUPRAT FIGUEIREDO DE SEG E MED DO TRABALHO", 

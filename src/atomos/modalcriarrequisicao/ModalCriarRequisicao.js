@@ -1,195 +1,262 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
-import InputMask from 'react-input-mask';
-import $ from 'jquery'; 
+
 
 
 class ModalCriarRequisicao extends React.Component {
   state = {
-    ca: '',
-    cod: '',
-    empresa: '',
-    cc: '',    
-    gh: '',
-    turno: '',
-    funcionario: '',
-    validade: '',
-    quantidade: '',
+    tipoReq: null
+  }
 
+  handleClick(event){
+    this.setState({ tipoReq: event.target.value });  
+  }
 
-    filterText : "",
-    employees: this.props.lista
-
-
-  };
-
-
-  // componentWillMount(){
-  //   this.initialState.employeesInitial = JSON.parse(JSON.stringify(this.props.lista));
-  // }
-  
-
-  // componentWillReceiveProps(nextProps){    
-  //   console.log('WILL RECEIVE PROPS');
-  //   if(this.state.employees !== nextProps.lista){
-  //     this.setState({ employees : nextProps.lista});   
-  //   }     
-  //   if(this.initialState.employeesInitial !== nextProps.lista){
-  //     this.initialState.employeesInitial = JSON.parse(JSON.stringify(nextProps.lista));
-  //   }
+  // handleResumo(handleResumo){
   // }
 
-
-  handleUserInput(filterText) {
-    this.setState({filterText: filterText});
-  };
-  
-  
-  onSubmit = e => {  
-    e.preventDefault(); 
-  $('#progress-bar').text('Empresa adicionada com sucesso!');
-    $('#progress-bar').fadeIn(2000);
-    setTimeout(function() {$('#progress-bar').fadeOut(2000);}, 2000); 
-  // e.preventDefault(); 
-  // fetch('http://192.168.10.30/v1/empresas', {
-  //   method: 'POST',
-  //   body: JSON.stringify(this.state),
-  //   headers: {
-  //     'content-type': 'application/json'
+  // componentWillReceiveProps(nextProps){
+  //   console.log("RECEIVE PROPS");
+  //   if(nextProps !== this.props){
+  //     this.handleResumo();
   //   }
-  // })
-  // .then(response => {
-  //   response.json().then(data => {
-  //     if (data.success === true) {
-  //       alert(data.message);
-  //       window.location.reload(true);
-  //     } 
-  //     else {
-  //       alert(data.message+' - '+data.data[0].message);
-  //     }
-  //   })
-  // })
-  // .catch(err => {
-  //   console.log('err');
-  //   this.setState({ logged: false });
-  // });
-};
+  // }
+  
+  fechar(fechar){
+    this.setState({ tipoReq: fechar }); 
+  }
+  
+  render(){
+    
+    return(
 
-render(){
-  return(
-    <div className="p-4">
-    <div className="modal fade" id="modal-criar-requisicao" tabIndex="-1" role="dialog" aria-labelledby="modal-criar-requisicao-label" >
-      <div className="modal-dialog " role="document">
-        <div className="modal-content z-9999">
-          <div className="modal-header d-flex justify-content-between align-items-center">
-            <div className="d-flex align-items-center">
-              <i className="fas fa-user-plus fa-lg pr-2" />
-              <h6 className="modal-title">Criar Nova Requisição</h6>
+
+      <div className="modal fade" id="modal-criar-requisicao" tabIndex="-1" role="dialog" aria-labelledby="modal-criar-requisicao" >
+        <div className="modal-dialog " role="document">
+          <div className="modal-content z-9999">
+            <div className="modal-header d-flex justify-content-between align-items-center">
+              <div className="d-flex align-items-center">
+                <i className="fas fa-user-plus fa-lg pr-2" />
+                <h6 className="modal-title">Criar Requisição</h6>
+              </div>
+              <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                <span >&times;</span>
+              </button>
             </div>
-            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-              <span >&times;</span>
-            </button>
+  
+  
+            <div className="modal-body text-left">
+
+
+                <div class="w-100 justify-content-center btn-group btn-group-toggle" data-toggle="buttons">
+                    <button className="btn btn-primary" onClick={this.handleClick.bind(this)} value="1" type="button">Por Funcionário</button>
+                    <button className="btn btn-primary" onClick={this.handleClick.bind(this)} value="2" type="button">Por Setor</button>
+                </div>
+
+                {this.state.tipoReq == 1 && (<AdicionarPorFuncionario fechar={this.fechar.bind(this)}/>)}
+                
+                  
+            </div>
+            
+    
+  
           </div>
-
-
-            <form id="form-usuario" onSubmit={this.onSubmit} className="" action=""> {/*method="post"*/}
-          <div className="modal-body text-left d-flex flex-wrap">
-           
-                <div className="p-3 col-md-6">
-                  <label htmlFor="input-ca"><i className="far fa-id-card fa-lg pr-2" ></i>CA</label>
-                  <input type="text" value={this.state.ca} onChange={e => this.setState({ ca: e.target.value })} className="form-control" id="input-ca" name="input-ca" aria-describedby="caHelp" required />
-                </div>
-                <div className="p-3 col-md-6">  
-                  <label htmlFor="input-cod"><i className="far fa-id-card fa-lg pr-2" ></i>Código</label>
-                  <input type="text" value={this.state.cod} onChange={e => this.setState({ cod: e.target.value })} className="form-control" id="input-cod" name="input-cod" aria-describedby="codHelp" required />
-                </div>
-                <div className="p-3 col-md-6">
-                    <label htmlFor="input-empresa"><i className="far fa-id-card fa-lg pr-2" ></i>Empresa</label>
-                    <input type="text" value={this.state.empresa} onChange={e => this.setState({ empresa: e.target.value })} className="form-control" id="input-empresa" name="input-empresa" aria-describedby="empresaHelp" required />
-                </div>
-                <div className="p-3 col-md-6">
-                    <label htmlFor="input-cc"><i className="far fa-id-card fa-lg pr-2" ></i>CC</label>
-                    <input type="text" value={this.state.cc} onChange={e => this.setState({ cc: e.target.value })} className="form-control" id="input-cc" name="input-cc" aria-describedby="ccHelp" required />
-                </div>
-
-                <div className="p-3 col-md-6">  
-                  <label htmlFor="input-cod"><i className="far fa-id-card fa-lg pr-2" ></i>CA</label>
-                  <input type="text" value={this.state.cod} onChange={e => this.setState({ cod: e.target.value })} className="form-control" id="input-cod" name="input-cod" aria-describedby="codHelp" required />
-                </div>
-
-
-
-
-
-                <div className="panel">        
-                    <div className="panel-heading d-flex justify-content-between align-items-center thead-dark">
-                      <h6 className="text-left mb-0"><i className="fa fa-user pr-2" aria-hidden="true"></i>TESTE TESTE</h6>
-                      
-                      <div className="d-nonin" id="table-buttons">      
-                        <button type="button" onClick={this.CancelarEditar} className="btn btn-danger mr-2" > {/*data-dismiss="modal"*/}
-                          <i className="fa fa-times pr-2 " aria-hidden="true" />Cancelar
-                        </button>
-                        <button onClick={this.SalvarEditar} type="submit" className="btn btn-primary" >
-                          <i className="fa fa-check pr-2 " aria-hidden="true"/>Salvar
-                        </button>
-                      </div>
-                      
-                      <div className="d-flex align-items-center">
-                        <i className="fas fa-search  mr-2"></i>
-                        <SearchBar filterText={this.state.filterText} onUserInput={this.handleUserInput.bind(this)}/>
-                      </div>
-                    </div>
-                    <div className="panel-body">
-                      <ProductTable onEmployeeTableUpdate={this.handleProductTable.bind(this)}  onRowDel={this.handleRowDel.bind(this)} employees={this.state.employees} filterText={this.state.filterText}/> {/*onRowAdd={this.handleAddEvent.bind(this)}*/}
-                    </div>
-                  </div>
-
-
-
-
-
-
-
-          </div>
-          <div className="modal-footer">
-            <button type="button" className="btn btn-danger mr-2" data-dismiss="modal">
-              <i className="fa fa-times fa-lg pr-2"  />Fechar
-            </button>
-            <button id="btn-conta" type="submit" className="btn btn-primary" >
-              <i className="fa fa-plus fa-lg pr-2" />Salvar 
-            </button>
-          </div>
-            </form>        
-
         </div>
       </div>
-    </div>
+  
+    );
+  };
+}
 
 
-  </div> 
 
-  );
+
+
+
+class AdicionarPorFuncionario extends React.Component {
+  state = {
+    funcionarioSelecionado : "",
+    localEntrega: "fitassul",
+    turnoEntrega: "vespertino",
+
+    episSelecionados: [],
+    resumoReq: ""
+  }
+  // componentDidUpdate(){
+  //   this.handleResumo();
+  // }
+  // componentWillUpdate(){
+  //   console.log("WILL UPADTE");
+  // }
+  // componentWillReceiveProps(nextProps){
+  //   console.log("RECEIVE PROPS");
+  //   if(nextProps !== this.props){
+  //     this.handleResumo();
+  //   }
+  // }
+
+  handleResumo(){
+    var resumo = [
+      this.state.funcionarioSelecionado,
+      this.state.localEntrega, 
+      this.state.turnoEntrega,
+      this.state.episSelecionados
+    ];
+    this.setState({ resumoReq: resumo });  
+  }
+
+    
+  selecionouFuncionario(func) {
+    this.setState({ funcionarioSelecionado: func });  
+  } 
+  selecionouEpi(epi) {
+    var episRequisitados = this.state.episSelecionados;
+    episRequisitados.push(epi);
+    this.setState({ episSelecionados: episRequisitados });  
+  }
+
+  onDelEvent(epi) {
+    var index = this.state.episSelecionados.indexOf(epi);
+    this.state.episSelecionados.splice(index, 1);    
+    this.setState({ episSelecionados: this.state.episSelecionados });  
+  }
+
+  finalizarPedido(){
+
+  }
+
+  render(){
+    return(
+      <div>
+        <div className="mt-4">
+          {this.state.resumoReq === "" && <SearchBarFuncionarios selecionouFuncionario={this.selecionouFuncionario.bind(this)}/>}
+          {(this.state.funcionarioSelecionado !== "" && this.state.resumoReq === "") && (
+            <div>
+              <div className="row mt-3">
+                <div className="col-md-6">
+                  <i className="far fa-user pr-2" ></i>Nome:
+                  <input type="text" value={this.state.funcionarioSelecionado.nome} className="form-control btn-sm" />
+                </div>
+
+                <div className="col-md-6">
+                  <i className="far fa-user pr-2" ></i>CC:
+                  <input type="text" value={this.state.funcionarioSelecionado.cc} className="form-control btn-sm" />
+                </div>
+              </div>
+
+              <div className="row mt-3">
+                <div className="col-md-6">
+                  <i className="far fa-user pr-2" ></i>Local Entrega:
+                  <select className="form-control btn-sm" onChange={e => this.setState({ localEntrega: e.target.value })}>
+                    <option>Retirar na loja Fitassul</option>      
+                    <option>Retirar na loja central</option>           
+                  </select>
+                </div>
+
+                <div className="col-md-6">
+                  <i className="far fa-user pr-2" ></i>Turno Entrega:
+                  <select className="form-control btn-sm" onChange={e => this.setState({ turnoEntrega: e.target.value })}>
+                    <option>Vespertino</option>      
+                    <option>Matutino</option>   
+                  </select>
+                </div>
+              </div>
+
+
+              {/* <SelecionarEpi/> */}
+              
+              <SearchBarEpis selecionouEpi={this.selecionouEpi.bind(this)}/>
+              {this.state.episSelecionados !== "" && (
+                
+                this.state.episSelecionados.map(epiSelecionado => 
+                  
+                  <div className="mt-3 row">
+                    <div className="col-md-6">
+                      <i className="far fa-user pr-2" ></i>Nome:
+                      <input type="text" value={epiSelecionado.nome} className="form-control btn-sm" />
+                    </div>
+
+                    <div className="col-md-3">
+                      <i className="far fa-user pr-2" ></i>CA:
+                      <input type="text" value={epiSelecionado.ca} className="form-control btn-sm" />
+                    </div>
+
+                    <div className="col-md-3">
+                      <i className="far fa-user pr-2" ></i>Qntd:
+                      <div className="d-flex align-items-center">
+                        <input type="text" value={epiSelecionado.qntd} style={{marginRight: "10px"}}className="form-control btn-sm" />
+                        <div onClick={() => this.onDelEvent(epiSelecionado)}>
+                          <i class="far fa-times-circle" ></i>
+                        </div>
+                      </div> 
+                    </div>
+                  </div>                  
+                )
+              
+              )}
+
+
+            </div>
+          )}
+          {this.state.resumoReq !== "" && <Resumo resumoReq={this.state.resumoReq} />}
+
+        </div>
+
+
+        <div className="modal-footer" style={{paddingBottom: "0px", marginTop: "15px"}}>
+          <button type="button" className="btn btn-danger mr-2" data-dismiss="modal" onClick={() => this.state.resumoReq !== "" ?  this.props.fechar(null) : this.finalizarPedido()}> 
+            <i className="fa fa-times pr-2"  />Fechar
+          </button>
+          <button id="btn-conta" type="submit" className="btn btn-primary" onClick={() => this.handleResumo()}>
+            <i className="fa fa-check pr-2" />{this.state.resumoReq !== "" ? "Finalizar" : "Salvar" }
+          </button>        
+        </div>
   
 
-}};
+      </div>
+    );
+  };
+};
 
 
 
 
+class SearchBarFuncionarios extends React.Component {
+  state = {
+    listaFuncionarios : "",
+    searchText: ""
 
-
-
-
-
-
-class SearchBar extends React.Component {
-  handleChange() {
-    this.props.onUserInput(this.refs.filterTextInput.value);
+  } 
+  handleChange(event) {    
+    var data = [
+      {nome: "Marcello Minchetti", rg: "16778405", cpf: "78970546617", email: "teste@gmail.com", gh: "123456", cc: "123456", 
+      turno: "vespertino", sexo: "Masculino"},
+      {nome: "Rodolfo  Augusto", rg: "16778405", cpf: "78970546617", email: "teste@gmail.com", gh: "123456", cc: "123456", 
+      turno: "vespertino", sexo: "Masculino"},
+      {nome: "Susi  Ribeiro", rg: "16778405", cpf: "78970546617", email: "teste@gmail.com", gh: "123456", cc: "123456", 
+      turno: "vespertino", sexo: "Masculino"}       
+    ];
+    // this.props.onUserInput(data);
+    this.setState({ searchText: event.target.value });
+    this.setState({ listaFuncionarios: data });
+    this.setState({ selecionouFuncionarioBool: false });
   }
+
+  selecionouFuncionarioBool(bool) {
+    this.setState({ selecionouFuncionarioBool: bool });   //se o usuario ja selecionou um CA na pesquisa some com a tabela de resultados da pesquisa
+    this.setState({ searchText: "" });  //limpar o campo de pesquisa qndo o usuario clicar em algum CA pesquisado
+  }
+  
   render() {
     return (
       <div>
-        <input className="form-control btn-sm" type="text" placeholder="Search..." value={this.props.filterText} ref="filterTextInput" onChange={this.handleChange.bind(this)}/>
+        <div className="row align-items-center">
+          <span className="col-md-5"><b>Pesquisa Funcionário</b></span>
+          <div className="col-md-7">
+            <input style={{ zIndex: "10", position: "relative" }} className="form-control btn-sm" type="text" value={this.state.searchText} placeholder="Search..." onChange={this.handleChange.bind(this)}/>
+          </div>
+        </div>
+        {(this.state.listaFuncionarios !== "" && this.state.selecionouFuncionarioBool === false && this.state.searchText !== "") 
+        && <Table linhas={this.state.listaFuncionarios} selecionouFuncionario={this.props.selecionouFuncionario} selecionouFuncionarioBool={this.selecionouFuncionarioBool.bind(this)}/>} 
       </div>
     );
   }
@@ -197,43 +264,67 @@ class SearchBar extends React.Component {
 
 
 
+class SearchBarEpis extends React.Component {
+  state = {
+    listaEpis : "",
+    searchText: ""
+  } 
+  handleChange(event) {    
+    var data = [
+      {cod: "13524", nome: "Cotoveleira BreakGlass1", descricao: "Cotoveleira para Obras", validade: "10/10/2025", ca: "0776584", cc: "123456", 
+      estoque: "20"},
+      {cod: "13524", nome: "Cotoveleira BreakGlass2", descricao: "Cotoveleira para Obras", validade: "10/10/2025", ca: "0776584", cc: "123456", 
+      estoque: "20"},
+      {cod: "13524", nome: "Cotoveleira BreakGlass3", descricao: "Cotoveleira para Obras", validade: "10/10/2025", ca: "0776584", cc: "123456", 
+      estoque: "20"}        
+    ];
 
-class ProductTable extends React.Component {
+    this.setState({ searchText: event.target.value });
+    this.setState({ listaEpis: data });
+    this.setState({ selecionouEpiBool: false });
+  }
+
+  selecionouEpiBool(bool) {
+    this.setState({ selecionouEpiBool: bool });   //se o usuario ja selecionou um CA na pesquisa some com a tabela de resultados da pesquisa
+    this.setState({ searchText: "" });  //limpar o campo de pesquisa qndo o usuario clicar em algum CA pesquisado
+  }
+  
 
   render() {
-
-    var onEmployeeTableUpdate = this.props.onEmployeeTableUpdate;
-    var rowDel = this.props.onRowDel;
-    var filterText = this.props.filterText;
-    var employee = this.props.employees.map(function(employee) {
-      if (employee.nome.indexOf(filterText) === -1 && employee.sexo.indexOf(filterText) === -1 && employee.rg.indexOf(filterText) === -1
-          && employee.cpf.indexOf(filterText) === -1 && employee.email.indexOf(filterText) === -1 && employee.gh.indexOf(filterText) === -1
-          && employee.cc.indexOf(filterText) === -1 && employee.turno.indexOf(filterText) === -1 ) {
-        return null;
-      }
-      return (<ProductRow  onEmployeeTableUpdate={onEmployeeTableUpdate} employee={employee} onDelEvent={rowDel.bind(this)} key={employee.id}/>)
-    });
     return (
-      <div>      
+      <div>
+        <div className="mt-4 row align-items-center">
+          <span className="col-md-5"><b>Pesquisa Epis</b></span>
+          <div className="col-md-7">
+            <input style={{ zIndex: "10", position: "relative" }} className="form-control btn-sm" type="text" value={this.state.searchText} placeholder="Search..." onChange={this.handleChange.bind(this)}/>
+          </div>
+        </div>
+        {(this.state.listaEpis !== "" && this.state.selecionouEpiBool === false && this.state.searchText !== "") 
+        && <Table2 linhas={this.state.listaEpis} selecionouEpi={this.props.selecionouEpi} selecionouEpiBool={this.selecionouEpiBool.bind(this)}/>} 
+      </div>
+    );
+  }
+}
 
-    {/* <button type="button" onClick={this.props.onRowAdd} className="btn btn-success pull-right">Add</button>  */}
-        <table id="table_funcionarios" className="w-100 mb-0">
-          <thead className="">
-            <tr>
-              <th>Nome</th>
-              <th>RG</th>
-              <th>CPF</th>
-              <th>Email</th>
-              <th>GH</th>
-              <th>CC</th>
-              <th>Turno</th>
-              <th>Sexo</th>
-              <th>Ativo</th>
-              <th></th>
-            </tr>
-          </thead>
+
+class Table extends React.Component {
+
+  render() {
+    return (
+      <div> 
+        <div style={{
+          opacity: "0.7",
+          position: "absolute",
+          top: "0px",
+          right: "0px",
+          bottom: "0px",
+          left: "0px",
+          zIndex: "5",
+          backgroundColor: "rgb(255, 255, 255)"
+        }}/>   
+        <table style={{ zIndex: "10", position: "absolute", boxShadow: "0 6px 12px rgba(0,0,0,.175)", left: "222px" }}>       
           <tbody>
-            {employee}
+            {this.props.linhas.map(linha => <Row linha={linha} selecionouFuncionario={this.props.selecionouFuncionario} selecionouFuncionarioBool={this.props.selecionouFuncionarioBool} />)}
           </tbody>
         </table>
       </div>
@@ -242,82 +333,75 @@ class ProductTable extends React.Component {
 }
 
 
+class Table2 extends React.Component {
 
-
-
-
-
-class ProductRow extends React.Component {
-  onDelEvent() {
-    this.props.onDelEvent(this.props.employee);
+  render() {
+    return (
+      <div> 
+        <div style={{
+          opacity: "0.7",
+          position: "absolute",
+          top: "0px",
+          right: "0px",
+          bottom: "0px",
+          left: "0px",
+          zIndex: "5",
+          backgroundColor: "rgb(255, 255, 255)"
+        }}/>   
+        <table style={{ zIndex: "10", position: "absolute", boxShadow: "0 6px 12px rgba(0,0,0,.175)", left: "222px" }}>       
+          <tbody>
+            {this.props.linhas.map(linha => 
+              <Row2 linha={linha} selecionouEpi={this.props.selecionouEpi} selecionouEpiBool={this.props.selecionouEpiBool} />)}
+          </tbody>
+        </table>
+      </div>
+    );
   }
+}
 
-  VerificarAtivosRow = () =>{  //verificar qndo o funcionarios vair ser ativo ou não, os não ativos colocar o css "inactive"
-      if(this.props.employee.ativo === false){
-        return "inactive";
-      }
-      else{
-        return "active";
-      }
-    }
-  
+
+class Row extends React.Component {
+  selecionouFuncionario() {
+    this.props.selecionouFuncionario(this.props.linha); //passar dados do CA selecionado na pesquisa para componente de cima por props
+    this.props.selecionouFuncionarioBool(true); 
+  }
   render() {
     
     return (
-      <tr className={"eachRow " + this.VerificarAtivosRow()}>
-        <EditableCell onEmployeeTableUpdate={this.props.onEmployeeTableUpdate} cellData={{
-          "type": "nome",
-          value: this.props.employee.nome,
-          id: this.props.employee.id
-        }}/>
-        <EditableCell onEmployeeTableUpdate={this.props.onEmployeeTableUpdate} cellData={{
-          type: "rg",
-          value: this.props.employee.rg,
-          id: this.props.employee.id
-        }}/>
-        <EditableCell onEmployeeTableUpdate={this.props.onEmployeeTableUpdate} cellData={{
-          type: "cpf",
-          value: this.props.employee.cpf,
-          id: this.props.employee.id
-        }}/>
-        <EditableCell onEmployeeTableUpdate={this.props.onEmployeeTableUpdate} cellData={{
-          type: "email",
-          value: this.props.employee.email,
-          id: this.props.employee.id
-        }}/>
-        <EditableCell onEmployeeTableUpdate={this.props.onEmployeeTableUpdate} cellData={{
-          type: "gh",
-          value: this.props.employee.gh,
-          id: this.props.employee.id
-        }}/>
-        <EditableCell onEmployeeTableUpdate={this.props.onEmployeeTableUpdate} cellData={{
-          type: "cc",
-          value: this.props.employee.cc,
-          id: this.props.employee.id
-        }}/>
-        <EditableCell onEmployeeTableUpdate={this.props.onEmployeeTableUpdate} cellData={{
-          type: "turno",
-          value: this.props.employee.turno,
-          id: this.props.employee.id
-        }}/>
-        <EditableCell onEmployeeTableUpdate={this.props.onEmployeeTableUpdate} cellData={{
-          type: "sexo",
-          value: this.props.employee.sexo,
-          id: this.props.employee.id
-        }}/>
-        <EditableCell onEmployeeTableUpdate={this.props.onEmployeeTableUpdate} cellData={{
-          type: "ativo",
-          value: this.props.employee.ativo,
-          id: this.props.employee.id
-        }}/>
-        <td className="del-cell">          
-          <div className="del-btn form-control c-pointer delete-buttons" onClick={this.onDelEvent.bind(this)}>
-            <i class="far fa-trash-alt"></i>
-          </div>
-          <div className="del-btn form-control c-pointer delete-buttons" onClick={this.onDelEvent.bind(this)}>
-            <i class="fas fa-user-plus"></i>
-          </div>
-        </td>
+      <tr style={{border: "1px solid #ced4da", borderRadius: "5px", backgroundColor: "white" }} className="align-items-start d-flex flex-column p-3" onClick={this.selecionouFuncionario.bind(this)}>
+
+        <span>Nome: <b>{this.props.linha.nome}</b></span>
+        <span>RG:  <b>{this.props.linha.rg}</b></span>
+        <span>CPF:  <b>{this.props.linha.cpf}</b></span>
+        <span>CC:  <b>{this.props.linha.cc}</b></span>
+      </tr>
+    );
+  }
+}
+
+
+class Row2 extends React.Component {
+  state = {
+    qntd: ""
+  }
+  
+  selecionouEpi() {
+    var props = this.props.linha;
+    props.qntd = this.state.qntd;
+
+    this.props.selecionouEpi(props); //passar dados do CA selecionado na pesquisa para componente de cima por props
+    this.props.selecionouEpiBool(true);
+  }
+  render() {
+    
+    return (
+      <tr style={{border: "1px solid #ced4da", borderRadius: "5px", backgroundColor: "white" }} className="align-items-center d-flex p-1">
+        <span className="d-flex p-2">Cod:  <b>{this.props.linha.cod}</b></span>
+        <span className="d-flex p-2">Nome: <b style={{width: "max-content"}}>{this.props.linha.nome}</b></span>
+        <span className="d-flex p-2">CA:  <b>{this.props.linha.ca}</b></span>
+        <span className="d-flex p-2">Validade:  <b>{this.props.linha.validade}</b></span>
+        <input style={{width: "auto"}} type="text" placeholder="qntd..." className="massAssign form-control m-2" size="3" value={this.state.qntd} onChange={e => this.setState({ qntd: e.target.value }) }></input>
+        <button onClick={this.selecionouEpi.bind(this)} className="btn w-100 btn-dark"><b>Adicionar</b></button> {/* onClick={this.onMassAssignEvent.bind(this)} */}
       </tr>
     );
   }
@@ -325,27 +409,26 @@ class ProductRow extends React.Component {
 
 
 
-
-
-
-
-class EditableCell extends React.Component {
+class Resumo extends React.Component {
+  state = {
+  }
+  
   render() {
+    // console.log(this.props.resumoReq);
+    // console.log(this.props.resumoReq[1]);
+    // console.log(this.props.resumoReq[0].nome);
     return (
-      <td>
-        <input className="form-control" type='text' name={this.props.cellData.type} id={this.props.cellData.id} value={this.props.cellData.value} onChange={this.props.onEmployeeTableUpdate}/>
-      </td>
+      <div>
+
+        <span><b>Nome Funcionário: </b></span><span>{this.props.resumoReq[0].nome}</span>
+        <span><b>CC Funcionário: </b></span><span>{this.props.resumoReq[0].cc}</span>
+        <span><b>Local de Entrega: </b></span><span>{this.props.resumoReq[1]}</span>
+        <span><b>Turno de Entrega: </b></span><span>{this.props.resumoReq[2]}</span> 
+
+      </div>
     );
   }
 }
-
-
-
-
-
-
-
-
 
 
 

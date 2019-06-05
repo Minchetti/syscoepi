@@ -112,7 +112,7 @@ class Request extends React.Component {
       
 
       <div id="request" className=""> 
-      <div onClick={this.Teste}>AQUI</div>
+      {/* <div onClick={this.Teste}>AQUI</div> */}
         <h4 className="position-absolute m-auto l-0 r-0 t-15 text-white"><i className="fa fa-clipboard" aria-hidden="true"></i> Requisições</h4>           
         <div className="row pb-3">
           
