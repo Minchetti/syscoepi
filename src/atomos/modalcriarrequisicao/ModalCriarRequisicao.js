@@ -6,6 +6,7 @@ class ModalCriarRequisicao extends React.Component {
   state = {
     tipoReq: null
   }
+  
 
   handleClick(event){
     this.setState({ tipoReq: event.target.value });  
@@ -15,9 +16,11 @@ class ModalCriarRequisicao extends React.Component {
   fechar(fechar){
     this.setState({ tipoReq: fechar }); 
   }
+
   
   render(){
     
+
     return(
 
 
@@ -43,7 +46,8 @@ class ModalCriarRequisicao extends React.Component {
                     <button className="btn btn-primary" onClick={this.handleClick.bind(this)} value="2" type="button">Por Setor</button>
                 </div>
 
-                {this.state.tipoReq == 1 && (<AdicionarPorFuncionario fechar={this.fechar.bind(this)}/>)}
+                {this.state.tipoReq == 1 && (<AdicionarPorFuncionario fechar={this.fechar.bind(this)}/>)} 
+                {this.state.tipoReq == 2 && (<AdicionarPorSetor fechar={this.fechar.bind(this)}/>)}
                 
                   
             </div>
@@ -98,7 +102,9 @@ class AdicionarPorFuncionario extends React.Component {
     return(
       <div>
         <div className="mt-4">
-          <SearchBar busca={"funcionarios"} selecionou={this.selecionouFunc.bind(this)}/>
+          {/* <h5>Requisição Individual</h5> */}
+
+          <SearchBar tipo={"funcionario"} busca={"funcionarios"} selecionou={this.selecionouFunc.bind(this)}/>
           {this.state.funcionarioSelecionado !== ""&& (
             <div>
               <div className="row mt-3">
@@ -134,7 +140,7 @@ class AdicionarPorFuncionario extends React.Component {
 
               {/* <SelecionarEpi/> */}
               <div className="mt-4">
-                <SearchBar busca={"epis"} selecionou={this.selecionouEpi.bind(this)}/>
+                <SearchBar selecionados={this.state.episSelecionados} tipo={"epis"} busca={"epis"} selecionou={this.selecionouEpi.bind(this)}/>
               </div>
               {this.state.episSelecionados !== "" && (
                 
@@ -181,11 +187,11 @@ class AdicionarPorFuncionario extends React.Component {
   };
 };
 
-
+/****************************************************************************************************************************/
 
 class AdicionarPorSetor extends React.Component { //editar
   state = {
-    funcionarioSelecionado : "",
+    funcionariosSelecionados : "",
     localEntrega: "fitassul",
     turnoEntrega: "vespertino",
 
@@ -193,7 +199,7 @@ class AdicionarPorSetor extends React.Component { //editar
   }
     
   selecionouFunc(func) {
-    this.setState({ funcionarioSelecionado: func });  
+    this.setState({ funcionariosSelecionados: func });  
   } 
   selecionouEpi(epi) {
     var episRequisitados = this.state.episSelecionados;
@@ -206,55 +212,76 @@ class AdicionarPorSetor extends React.Component { //editar
     this.state.episSelecionados.splice(index, 1);    
     this.setState({ episSelecionados: this.state.episSelecionados });  
   }
+  onDelEventF(func) {
+    var index = this.state.funcionariosSelecionados.funcionarios.indexOf(func);
+    this.state.funcionariosSelecionados.funcionarios.splice(index, 1);    
+    this.setState({ funcionariosSelecionados: this.state.funcionariosSelecionados });  
+  }
 
   finalizar(){
-    var requisicao = [ this.state.funcionarioSelecionado + this.state.localEntrega + this.state.turnoEntrega + this.state.episSelecionados ];
+    var requisicao = [ this.state.funcionariosSelecionados + this.state.localEntrega + this.state.turnoEntrega + this.state.episSelecionados ];
     console.log(requisicao);
 
   }
-
-
   render(){
     return(
       <div>
-        <div className="mt-4">
-          <SearchBar busca={"funcionarios"} selecionou={this.selecionouFunc.bind(this)}/>
-          {this.state.funcionarioSelecionado !== ""&& (
+        <div className="mt-4">          
+          {/* <h5>Requisição Setorial</h5> */}
+
+          <SearchBar tipo={"setor"} busca={"funcionarios"} selecionou={this.selecionouFunc.bind(this)}/>
+          {this.state.funcionariosSelecionados !== "" && (
             <div>
               <div className="row mt-3">
-                <div className="col-md-6">
-                  <i className="far fa-user pr-2" ></i>Nome:
-                  <input type="text" value={this.state.funcionarioSelecionado.nome} className="form-control btn-sm" />
+                <div className="col-md-4">
+                  <i className="far fa-user pr-2" ></i>Nome CC:
+                  <input type="text" value={this.state.funcionariosSelecionados.nomeCC} className="form-control btn-sm" />
                 </div>
 
-                <div className="col-md-6">
+                <div className="col-md-4">
                   <i className="far fa-user pr-2" ></i>CC:
-                  <input type="text" value={this.state.funcionarioSelecionado.cc} className="form-control btn-sm" />
+                  <input type="text" value={this.state.funcionariosSelecionados.cc} className="form-control btn-sm" />
+                </div>
+
+                <div className="col-md-4">
+                  <i className="far fa-user pr-2" ></i>Gestor:
+                  <input type="text" value={this.state.funcionariosSelecionados.gestor} className="form-control btn-sm" />
                 </div>
               </div>
-
               <div className="row mt-3">
-                <div className="col-md-6">
-                  <i className="far fa-user pr-2" ></i>Local Entrega:
-                  <select className="form-control btn-sm" onChange={e => this.setState({ localEntrega: e.target.value })}>
-                    <option>Retirar na loja Fitassul</option>      
-                    <option>Retirar na loja central</option>           
-                  </select>
-                </div>
-
-                <div className="col-md-6">
-                  <i className="far fa-user pr-2" ></i>Turno Entrega:
-                  <select className="form-control btn-sm" onChange={e => this.setState({ turnoEntrega: e.target.value })}>
-                    <option>Vespertino</option>      
-                    <option>Matutino</option>   
-                  </select>
+                <div className="col-md-12">
+                  <i className="far fa-user pr-2" ></i>Funcionários:
                 </div>
               </div>
+
+                
+              {this.state.funcionariosSelecionados.funcionarios.map(funcionario =>
+                <div className="mt-1 row">
+                  <div className="col-md-6">Nome:
+                    <input type="text" value={funcionario.nome} className="form-control btn-sm" />
+                  </div>
+
+                  <div className="col-md-3">RG:
+                    <input type="text" value={funcionario.rg} className="form-control btn-sm" />
+                  </div>
+
+                  <div className="col-md-3">CPF:
+                    <div className="d-flex align-items-center">
+                      <input type="text" value={funcionario.cpf} style={{marginRight: "10px"}}className="form-control btn-sm" />
+                      <div onClick={() => this.onDelEventF(funcionario)}>
+                        <i class="far fa-times-circle" ></i>
+                      </div>
+                    </div> 
+                  </div>
+                </div>  
+
+              )}
+
 
 
               {/* <SelecionarEpi/> */}
               <div className="mt-4">
-                <SearchBar busca={"epis"} selecionou={this.selecionouEpi.bind(this)}/>
+                <SearchBar selecionados={this.state.episSelecionados} tipo={"epis"} busca={"epis"} selecionou={this.selecionouEpi.bind(this)}/>
               </div>
               {this.state.episSelecionados !== "" && (
                 
@@ -301,121 +328,7 @@ class AdicionarPorSetor extends React.Component { //editar
   };
 };
 
-
-// class AdicionarPorSetor extends React.Component {
-//   state = {
-//     setorSelecionado : "",
-//     localEntrega: "fitassul",
-//     turnoEntrega: "vespertino",
-
-//     episSelecionados: []
-//   }
-    
-//   selecionouSetor(func) {
-//     this.setState({ funcionarioSelecionado: func });  
-//   } 
-//   selecionouEpi(epi) {
-//     var episRequisitados = this.state.episSelecionados;
-//     episRequisitados.push(epi);
-//     this.setState({ episSelecionados: episRequisitados });  
-//   }
-
-//   onDelEvent(epi) {
-//     var index = this.state.episSelecionados.indexOf(epi);
-//     this.state.episSelecionados.splice(index, 1);    
-//     this.setState({ episSelecionados: this.state.episSelecionados });  
-//   }
-
-
-//   render(){
-//     return(
-//       <div>
-//         <div className="mt-4">
-//           <SearchBar selecionou={this.selecionou.bind(this)}/>
-//           {this.state.funcionarioSelecionado !== ""&& (
-//             <div>
-//               <div className="row mt-3">
-//                 <div className="col-md-6">
-//                   <i className="far fa-user pr-2" ></i>Nome:
-//                   <input type="text" value={this.state.funcionarioSelecionado.nome} className="form-control btn-sm" />
-//                 </div>
-
-//                 <div className="col-md-6">
-//                   <i className="far fa-user pr-2" ></i>CC:
-//                   <input type="text" value={this.state.funcionarioSelecionado.cc} className="form-control btn-sm" />
-//                 </div>
-//               </div>
-
-//               <div className="row mt-3">
-//                 <div className="col-md-6">
-//                   <i className="far fa-user pr-2" ></i>Local Entrega:
-//                   <select className="form-control btn-sm" onChange={e => this.setState({ localEntrega: e.target.value })}>
-//                     <option>Retirar na loja Fitassul</option>      
-//                     <option>Retirar na loja central</option>           
-//                   </select>
-//                 </div>
-
-//                 <div className="col-md-6">
-//                   <i className="far fa-user pr-2" ></i>Turno Entrega:
-//                   <select className="form-control btn-sm" onChange={e => this.setState({ turnoEntrega: e.target.value })}>
-//                     <option>Vespertino</option>      
-//                     <option>Matutino</option>   
-//                   </select>
-//                 </div>
-//               </div>
-
-
-//               {/* <SelecionarEpi/> */}
-              
-//               <SearchBarEpis selecionouEpi={this.selecionouEpi.bind(this)}/>
-//               {this.state.episSelecionados !== "" && (
-                
-//                 this.state.episSelecionados.map(epiSelecionado => 
-                  
-//                   <div className="mt-3 row">
-//                     <div className="col-md-6">
-//                       <i className="far fa-user pr-2" ></i>Nome:
-//                       <input type="text" value={epiSelecionado.nome} className="form-control btn-sm" />
-//                     </div>
-
-//                     <div className="col-md-3">
-//                       <i className="far fa-user pr-2" ></i>CA:
-//                       <input type="text" value={epiSelecionado.ca} className="form-control btn-sm" />
-//                     </div>
-
-//                     <div className="col-md-3">
-//                       <i className="far fa-user pr-2" ></i>Qntd:
-//                       <div className="d-flex align-items-center">
-//                         <input type="text" value={epiSelecionado.qntd} style={{marginRight: "10px"}}className="form-control btn-sm" />
-//                         <div onClick={() => this.onDelEvent(epiSelecionado)}>
-//                           <i class="far fa-times-circle" ></i>
-//                         </div>
-//                       </div> 
-//                     </div>
-//                   </div>                  
-//                 )
-              
-//               )}
-
-
-//             </div>
-//           )}
-
-//         </div>
-
-
-//         <div className="modal-footer" style={{paddingBottom: "0px", marginTop: "15px"}}>
-//          <Buttons fechar={this.props.fechar}/>
-//         </div>
-  
-
-//       </div>
-//     );
-//   };
-// };
-
-
-
+/****************************************************************************************************************************/
 
 
 class Buttons extends React.Component {
@@ -441,27 +354,60 @@ class SearchBar extends React.Component {
   state = {
     lista : "",
     searchText: ""
+    // listaSelecionados: this.props.selecionados
   } 
   handleChange(event) {   
-    if (this.props.busca === "funcionarios"){
+    if (this.props.tipo === "funcionario"){
       var data = [
         {nome: "Marcello Minchetti", rg: "16778405", cpf: "78970546617", email: "teste@gmail.com", gh: "123456", cc: "123456", 
-        turno: "vespertino", sexo: "Masculino"},
+          turno: "vespertino", sexo: "Masculino"},
         {nome: "Rodolfo  Augusto", rg: "16778405", cpf: "78970546617", email: "teste@gmail.com", gh: "123456", cc: "123456", 
-        turno: "vespertino", sexo: "Masculino"},
+          turno: "vespertino", sexo: "Masculino"},
         {nome: "Susi  Ribeiro", rg: "16778405", cpf: "78970546617", email: "teste@gmail.com", gh: "123456", cc: "123456", 
-        turno: "vespertino", sexo: "Masculino"}       
+          turno: "vespertino", sexo: "Masculino"}       
+      ]
+    }
+    else if(this.props.tipo === "setor"){      
+      var data = [
+        {nomeCC: "Setor Informática", cc: "159487", gestor: "Leandro", funcionarios: [
+          {nome: "Marcello Minchetti", rg: "16778405", cpf: "78970546617", email: "teste@gmail.com", gh: "123456", cc: "123456", 
+            turno: "vespertino", sexo: "Masculino"},
+          {nome: "Rodolfo  Augusto", rg: "16778405", cpf: "78970546617", email: "teste@gmail.com", gh: "123456", cc: "123456", 
+            turno: "vespertino", sexo: "Masculino"},
+          {nome: "Susi  Ribeiro", rg: "16778405", cpf: "78970546617", email: "teste@gmail.com", gh: "123456", cc: "123456", 
+            turno: "vespertino", sexo: "Masculino"}      
+        ]}, 
+        {nomeCC: "Setor Estoque", cc: "321654", gestor: "Augusto", funcionarios: [
+          {nome: "Willian Coasta", rg: "16778405", cpf: "78970546617", email: "teste@gmail.com", gh: "123456", cc: "123456", 
+            turno: "vespertino", sexo: "Masculino"},
+          {nome: "Rodolfo  Augusto", rg: "16778405", cpf: "78970546617", email: "teste@gmail.com", gh: "123456", cc: "123456", 
+            turno: "vespertino", sexo: "Masculino"},
+          {nome: "Susi  Ribeiro", rg: "16778405", cpf: "78970546617", email: "teste@gmail.com", gh: "123456", cc: "123456", 
+            turno: "vespertino", sexo: "Masculino"}      
+        ]}    
       ]
     }
     else if(this.props.busca === "epis"){
       var data = [
         {cod: "13524", nome: "Cotoveleira BreakGlass1", descricao: "Cotoveleira para Obras", validade: "10/10/2025", ca: "0776584", cc: "123456", 
         estoque: "20"},
-        {cod: "13524", nome: "Cotoveleira BreakGlass2", descricao: "Cotoveleira para Obras", validade: "10/10/2025", ca: "0776584", cc: "123456", 
+        {cod: "13526", nome: "Cotoveleira BreakGlass2", descricao: "Cotoveleira para Obras", validade: "10/10/2025", ca: "0776584", cc: "123456", 
         estoque: "20"},
-        {cod: "13524", nome: "Cotoveleira BreakGlass3", descricao: "Cotoveleira para Obras", validade: "10/10/2025", ca: "0776584", cc: "123456", 
+        {cod: "13528", nome: "Cotoveleira BreakGlass3", descricao: "Cotoveleira para Obras", validade: "10/10/2025", ca: "0776584", cc: "123456", 
         estoque: "20"}        
       ]
+      
+      data.map((epi) => {
+        if(this.props.selecionados !== "" && this.props.selecionados !== [] && this.props.selecionados !== null){
+          this.props.selecionados.map((selecionado) => {
+            if(epi.cod === selecionado.cod ){
+              var index = data.indexOf(epi)
+               data.splice(index, 1);
+            }
+          })
+
+        } 
+      })
     }
 
     this.setState({ searchText: event.target.value });
@@ -478,9 +424,9 @@ class SearchBar extends React.Component {
     return (
       <div>
         <div className="row align-items-center">
-          <span className="col-md-5"><b>Pesquisa</b></span>
+          <span className="col-md-5"><b>Pesquisa {this.props.tipo}</b></span>
           <div className="col-md-7">
-            <input style={{ zIndex: "10", position: "relative" }} className="form-control btn-sm" type="text" value={this.state.searchText} placeholder="Search..." onChange={this.handleChange.bind(this)}/>
+            <input style={{ zIndex: "10", position: "relative" }} className="form-control btn-sm" type="text" value={this.state.searchText} placeholder={"Busca " +this.props.tipo+ "..."} onChange={this.handleChange.bind(this)}/>
           </div>
         </div>
         {(this.state.lista !== "" && this.state.selecionouBool === false && this.state.searchText !== "") 
@@ -512,7 +458,7 @@ class Table extends React.Component {
           zIndex: "5",
           backgroundColor: "rgb(255, 255, 255)"
         }}/>   
-        <table style={{ zIndex: "10", position: "absolute", boxShadow: "0 6px 12px rgba(0,0,0,.175)", left: "222px" }}>       
+        <table style={{ zIndex: "11", position: "absolute", boxShadow: "0 6px 12px rgba(0,0,0,.175)", left: "222px" }}>       
           <tbody>
             {this.props.row === "funcionarios" && this.props.linhas.map(linha => <SimpleRow linha={linha} selecionou={this.props.selecionou} selecionouBool={this.props.selecionouBool} />)}
             {this.props.row === "epis" && this.props.linhas.map(linha => <ComplexRow linha={linha} selecionou={this.props.selecionou} selecionouBool={this.props.selecionouBool} />)}
@@ -539,11 +485,14 @@ class SimpleRow extends React.Component {
     var linha = [];
 
     Object.keys(this.props.linha).map((campo) => 
-      linha.push(<span className="p-2"> {campo}: <b>{this.props.linha[campo]}</b></span>)
+      linha.push(<td className="p-3"> {campo}: <b>{typeof this.props.linha[campo] === 'object' 
+        ? "*"
+        : this.props.linha[campo]}</b></td>
+      )
     )   
 
     return (
-      <tr style={{border: "1px solid #ced4da", borderRadius: "5px", backgroundColor: "white" }} className="align-items-start d-flex flex-column p-3" onClick={this.selecionou.bind(this)}>
+      <tr style={{border: "1px solid #ced4da", borderRadius: "5px", backgroundColor: "white" }} className="align-items-start d-flex p-3" onClick={this.selecionou.bind(this)}>
         {linha}
       </tr>
     )    
@@ -579,11 +528,16 @@ class ComplexRow extends React.Component {
 
   
   render() {
+ 
+
     var linha = [];
 
     Object.keys(this.props.linha).map((campo) =>       
       linha.push(<span className="p-2"> {campo}: <b>{this.props.linha[campo]}</b></span>) 
     )   
+
+    
+    
     
     return (
       <tr style={{border: "1px solid #ced4da", borderRadius: "5px", backgroundColor: "white" }} className="align-items-center d-flex p-1">
