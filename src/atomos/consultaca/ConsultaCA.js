@@ -1,299 +1,10 @@
-// import React from 'react';
-// // import PropTypes from 'prop-types';
-// import mte from '../../mte.jpg';
-
-
-// // @flow
-
-// class ConsultaCA extends React.Component {
-
-//   state = {  
-//     searchText : "",
-//     listaCa: [],
-//     epiSelecionado: ""  
-//   };
-
-  
-
-//   handleUserInput(searchText) {
-//     this.setState({searchText: searchText});
-//   };
-
-//   handleUserInput2(listaCa) {
-//     this.setState({listaCa: listaCa});
-//   };
-
-//   tentativa(epiSelecionado) {
-//     this.setState({epiSelecionado: epiSelecionado});
-//   };
-
-    
-
-
-//   teste = () =>{
-//     console.log(this.state);
-//   }
-
-
-//   render() {   
-
-//     return ( 
-//       <div id="consultaca" className="">
-//         <h4 className="position-absolute m-auto l-0 r-0 t-15 text-white"><i className="fa fa-clipboard-list" aria-hidden="true"></i> Consulta CA</h4> 
-
-//         <div className="d-flex align-items-center">
-//           <i className="fas fa-search  mr-2"></i>
-//           <div onClick={this.teste}>TEST</div>
-//           <SearchBar searchText={this.state.searchText} onUserInput={this.handleUserInput.bind(this)} onUserInput2={this.handleUserInput2.bind(this)}  />
-//           <CATable tentativa={this.tentativa.bind(this)} onEmployeeTableUpdate={this.handleCATable.bind(this)}  listaCa={this.state.listaCa} searchText={this.state.searchText}/> {/*onRowAdd={this.handleAddEvent.bind(this)}*/}
-//         </div>
-
-
-//         <div>
-//           <p className="d-flex justify-content-between align-items-center ">
-//             <div className="d-flex align-items-center">
-//               <i className="fa fa-briefcase mr-3" style={{fontSize: '50px'}} ></i> {/*style={{padding: '10px', border: '2px solid red', borderRadius: '50px', width: '70px' + '!important' , height: '70px'}}*/}
-//               <div className="text-left">
-//                 <span className="lead font-weight-bold">CALÇADO TIPO BOTINA</span><br />
-//                 <span className="small">Proteção dos pés e pernas</span>
-//               </div>
-//             </div>
-
-//             <div className="d-flex flex-column pl-2 pr-2 pt-1 pb-1" style={{border: '1px solid red', borderRadius: '3px', background:'white'}}>
-//               <span className="small">Nº CA:</span>
-//               <span className="lead font-weight-bold">15435</span>
-//             </div>
-
-//             <div>
-//               <img src={mte}/>
-//             </div>
-//           </p>
-          
-
-          
-//           <p className="d-flex justify-content-between align-items-center ">
-//             <div>
-//               <span className="small">Situação:</span><br />
-//               <span className="lead font-weight-bold">VENCIDO</span>
-//             </div>  
-//             <div>
-//               <span className="small">Validade:</span><br />
-//               <span className="lead font-weight-bold">31/05/2010</span>
-//             </div>  
-//             <div>
-//               <span className="small">Nº Processo:</span><br />
-//               <span className="lead font-weight-bold">46000016776200484</span>
-//             </div>           
-//           </p>
-
-
-
-//           <p className="row d-flex justify-content-between align-items-center">
-//             <div className="col-md-4 d-flex flex-column text-left" >
-//               <span className="lead font-weight-bold">Descrição Completa:</span>
-//               <span className="small">BOTINA DE SEGURANÇA CANO CURTO CONFECCIONADA EM VAQUETA, SOLADO POLIURETANO MONODENSIDADE, FECHAMENTO EM ATACADOR, DORSO ACOLCHOADO, FABRICAÇÃO NO SISTEMA STROBEL E PALMILHA DE MONTAGEM EM COURO. REF.: BOTINA DE SEGURANÇA SETE LÉGUAS BSLA02.</span>
-//             </div> 
-
-//             <div className="col-md-2 d-flex flex-column text-left">
-//               <span className="lead font-weight-bold">Fabricante:</span>
-//               <div>
-//                 <span className="small font-weight-bold">CNPJ: </span>
-//                 <span className="small">61.079.117/0001-05</span>
-//               </div>
-//               <div>
-//                 <span className="small font-weight-bold">Razão Social: </span>
-//                 <span className="small">ALPARGATAS S.A.</span>
-//               </div>
-//               <div>                
-//                 <span className="small font-weight-bold">Cidade/UF: </span>
-//                 <span className="small">SAO PAULO/SP</span>
-//               </div>
-//             </div>  
-            
-//             <div className="col-md-3 d-flex flex-column text-left">
-//               <span className="lead font-weight-bold">Dados Complementares:</span>                 
-//               <span className="small font-weight-bold">Aprovado para: </span>    
-//               <span className="small">PROTEÇÃO DOS PÉS DO USUÁRIO EM LOCAIS ONDE NÃO HAJA RISCOS DE QUEDAS DE MATERIAIS E/OU OBJETOS PESADOS SOBRE OS ARTELHOS.</span>
-//             </div>
-
-//             <div className="col-md-3 d-flex flex-column text-left">
-//               <span className="lead font-weight-bold">Laudo:</span>
-//               <div>
-//                 <span className="small font-weight-bold">CNPJ do Laboratório: </span>
-//                 <span className="small">87.190.161/0001-73</span>
-//               </div>
-//               <div>
-//                 <span className="small font-weight-bold">Razão Social: </span>
-//                 <span className="small">IBTEC - INSTITUTO BRASILEIRO DE TECNOLOGIA DO COURO, CALCADO E ARTEFATOS</span>
-//               </div>
-//             </div>  
-//           </p>
-
-//         </div>       
-//       </div>
-
-
-//     );
-//   }
-// }
-
-
-
-// class SearchBar extends React.Component {
-
-//   state = {
-//     listaCa : []
-//   }
-  
-//   teste = () =>{
-//     console.log(this.state);
-//   }
-
-//   handleChange() {
-//     this.props.onUserInput(this.refs.searchTextInput.value);
-
-//     /*FETCH NO BANCO PARA PEGAR O CA CORRESPONDENTE */
-//     // var data = [
-//     //   {ca: "1123", epi: "capacete", validade: "05/05/2020", fabricante: "fitassul"},
-//     //   {ca: "2123", epi: "avental", validade: "05/05/2020", fabricante: "fitassul"},
-//     //   {ca: "3123", epi: "oculos", validade: "05/05/2020", fabricante: "fitassul"},
-//     //   {ca: "4123", epi: "luva", validade: "05/05/2020", fabricante: "mahle"},
-//     //   {ca: "5123", epi: "bota", validade: "05/05/2020", fabricante: "mahle"}  
-//     // ];
-
-//      var data = [
-//       {ca: "1123", epi: "capacete", validade: "05/05/2020", fabricante: "fitassul"}
-//       ];
-
-//       this.props.onUserInput2(data);
-      
-
-//   }
-//   render() {
-//     return (
-//       <div>
-//           <div onClick={this.teste}>TESTAAA</div>
-//         <input className="form-control btn-sm" type="text" placeholder="Search..." value={this.props.searchText} ref="searchTextInput" onChange={this.handleChange.bind(this)}/>
-//       </div>
-//     );
-//   }
-// }
-
-
-
-
-// class CATable extends React.Component {
- 
- 
-//   render() {
-
-//     var onEmployeeTableUpdate = this.props.onEmployeeTableUpdate;
-//     var searchText = this.props.searchText;
-//     var employee = this.props.listaCa.map(function(employee) {      
-//       return (<ProductRow tentativa={this.props.tentativa} onEmployeeTableUpdate={onEmployeeTableUpdate} employee={employee} key={employee.id}/>)
-//     })
-//     return (
-//       <div>      
-
-//         <table id="table_funcionarios" className="w-100 mb-0">
-//           <thead className="">
-//             <tr>
-//               <th>CA</th>
-//               <th>EPI</th>
-//               <th>Validade</th>
-//               <th>Fabricante</th>
-//             </tr>
-//           </thead>
-//           <tbody>
-//             {employee}
-//           </tbody>
-//         </table>
-//       </div>
-//     );
-//   }
-// }
-
-
-
-
-
-
-// class ProductRow extends React.Component {
-
-
-  
-//   render() {
-    
-//     return (
-//       <tr className={"eachRow "} onClick={() => this.props.tentativa(this.props.employee)}>
-//         <EditableCell onEmployeeTableUpdate={this.props.onEmployeeTableUpdate} cellData={{
-//           "type": "ca",
-//           value: this.props.employee.ca,
-//           id: this.props.employee.id
-//         }}/>
-//         <EditableCell onEmployeeTableUpdate={this.props.onEmployeeTableUpdate} cellData={{
-//           type: "epi",
-//           value: this.props.employee.epi,
-//           id: this.props.employee.id
-//         }}/>
-//         <EditableCell onEmployeeTableUpdate={this.props.onEmployeeTableUpdate} cellData={{
-//           type: "validade",
-//           value: this.props.employee.validade,
-//           id: this.props.employee.id
-//         }}/>
-//         <EditableCell onEmployeeTableUpdate={this.props.onEmployeeTableUpdate} cellData={{
-//           type: "email",
-//           value: this.props.employee.fabricante,
-//           id: this.props.employee.id
-//         }}/>
-//       </tr>
-//     );
-//   }
-// }
-
-
-
-
-// class EditableCell extends React.Component {
-  
-
-
-//   render() {
-//     return (
-//       <td >
-//         <input className="form-control" type='text' name={this.props.cellData.type} id={this.props.cellData.id} value={this.props.cellData.value} onChange={this.props.onEmployeeTableUpdate}/>
-//       </td>
-//     );
-//   }
-// }
-
-
-
-
-
-
-
-// // ConsultaCA.propTypes = {
-// //   text: PropTypes.string.isRequired,
-// // };
-
-// export default ConsultaCA;
-
-
-
-
-
-
-
-
-
- 
-
 
 
 import React from "react";
 import mte from '../../mte.jpg';
 import ModalCA from '../modalca';
+import html2canvas from 'html2canvas';
+import brasao from '../../brasao.gif';
 
 class ConsultaCA extends React.Component {
   state = {
@@ -304,12 +15,22 @@ class ConsultaCA extends React.Component {
     this.setState({ epiSelecionado: epi });  
   }
 
+  // Callback(){
+  //   console.log("FOI");  
+  //   html2canvas(gerar).then(canvas => {
+  //     console.log(canvas);
+  //     document.getElementById("gerar_aqui2").appendChild(canvas);
+  //   });
+  // }
+
   
     // handleUserInput(epiSelecionado) {
     //   this.setState({epiSelecionado: epiSelecionado});
     // };
 
   render() {
+
+
     return (
     <div>
       <SearchBar selecionouEpi={this.selecionouEpi.bind(this)}/> {/*onUserInput={this.handleUserInput.bind(this)} */}
@@ -391,9 +112,12 @@ class ConsultaCA extends React.Component {
           </div>  
         </p>
 
-      </div>}   
+        
 
-      <ModalCA epiSelecionado={this.state.epiSelecionado}/>
+        <ModalCA epiSelecionado={this.state.epiSelecionado}/>    
+      </div>
+      }   
+
       </div>
     );
   }
