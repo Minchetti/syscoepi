@@ -1,7 +1,9 @@
 import React from 'react';
-import $ from 'jquery'; 
+// import $ from 'jquery'; 
 // import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Link } from "react-router-dom";
+
+import FontAwesome from 'react-fontawesome';
 // import PropTypes from 'prop-types';
 
 // @flow
@@ -46,12 +48,14 @@ import { Link } from "react-router-dom";
       if (this.state.width === 180){
         this.setState({ width: 55 });
         this.setState({ display: 'none' });
-        $("#menu-arrow").css('transform', 'rotate(' + degree + 'deg)');
+        // $("#menu-arrow").css('transform', 'rotate(' + degree + 'deg)');
+        document.querySelector("#menu-arrow").style.transform = 'rotate(' + degree + 'deg)';
       }
       else{
         this.setState({ width: 180 });
         this.setState({ display: 'block' });
-        $("#menu-arrow").css('transform', 'rotate(' + degree + 'deg)');
+        // $("#menu-arrow").css('transform', 'rotate(' + degree + 'deg)');
+        document.querySelector("#menu-arrow").style.transform = 'rotate(' + degree + 'deg)';
       }
       
       degree += 180;  
@@ -65,8 +69,8 @@ import { Link } from "react-router-dom";
         <div className="nav-side-menu" style={{width: this.state.width}}>
           <div className="brand">
             <a id="menu-toggle" onClick={this.onClick} className="d-flex justify-content-between align-items-center p-3">
-              <span style={{display: this.state.display}}>Menu</span>
-              <i id="menu-arrow" className="fa fa-arrow-circle-left "></i>
+              <span style={{display: this.state.display}}>Menu</span>              
+              <FontAwesome id="menu-arrow" name="arrow-circle-left"/>
             </a>
           </div>      
           <div className="menu-list">      
@@ -74,26 +78,26 @@ import { Link } from "react-router-dom";
               <li>
                   <Link className="position-relative d-flex justify-content-between align-items-center p-3" to="/app/dashboard">
                     <span style={{display: this.state.display}}>Dashboard</span>
-                    <i className="fa fa-clipboard-list fa-lg"></i>                     
+                    <FontAwesome name="clipboard" className="fa-lg"/>                  
                   </Link>               
               </li>
               <li>
                   <Link className="position-relative d-flex justify-content-between align-items-center p-3" to="/app/request">
                     <span style={{display: this.state.display}}>Requisições</span> 
-                    <i className="fa fa-clipboard fa-lg"></i>                     
+                    <FontAwesome name="clipboard" className="fa-lg"/>                       
                   </Link>               
               </li>
               <li>
                   <Link className="position-relative d-flex justify-content-between align-items-center p-3" to="/app/consultaca">
-                    <span style={{display: this.state.display}}>Consulta CA</span> 
-                    <i className="fa fa-clipboard fa-lg"></i>                     
+                    <span style={{display: this.state.display}}>Consulta CA</span>
+                    <FontAwesome name="clipboard" className="fa-lg"/>                     
                   </Link>               
               </li>
               <li data-toggle="collapse" data-target="#sub-company" className="collapsed">
                   <Link className="position-relative d-flex justify-content-between align-items-center p-3" to="/app/company">
                     <span style={{display: this.state.display}}>Empresas</span> 
-                    <i className="fa fa-building fa-lg"></i>  
-                    <i className="arrow position-absolute fas fa-angle-down"></i>                   
+                    <FontAwesome name="building" className="fa-lg"/>    
+                    <FontAwesome name="angle-down" className="fa-lg arrow position-absolute"/>    
                   </Link>               
               </li>
               <ul className="sub-menu collapse" id="sub-company">
@@ -118,7 +122,7 @@ import { Link } from "react-router-dom";
               <li data-toggle="collapse" data-target="#new" className="collapsed">
                 <a  className="position-relative d-flex justify-content-between align-items-center p-3">
                   <span style={{display: this.state.display}}>Relatórios</span>
-                  <i className="fa fa-line-chart fa-lg" aria-hidden="true"></i>  
+                    <FontAwesome name="line-chart" className="fa-lg"/>    
                 </a>
               </li>
             </ul>

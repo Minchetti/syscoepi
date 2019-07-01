@@ -2,6 +2,9 @@ import React from 'react';
 import { PieChart, Pie, Sector, Cell, Legend } from 'recharts';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 
+import FontAwesome from 'react-fontawesome';
+
+
 
 
 class Acidentes extends React.Component {
@@ -43,7 +46,7 @@ class AreasAcidentes extends React.Component {
       <div className="col-md-4">    
         <div className="panel">
           <div className="panel-heading bg-dark text-white ">
-            <h6 className="text-left mb-0"><i className="fa fa-ambulance pr-2" aria-hidden="true"></i>Áreas com mais acidentes  </h6>
+            <h6 className="text-left mb-0"><FontAwesome name="ambulance"/> Áreas com mais acidentes  </h6>
           </div>
           <div className="panel-body">
             <PieChart width={350} height={200}>
@@ -77,7 +80,7 @@ class NumAcidentes extends React.Component {
       <div className="col-md-4">
         <div className="panel d-flex h-100 flex-column">
           <div className="panel-heading bg-dark  text-white ">
-            <h6 className="text-left mb-0"><i className="fa fa-ambulance pr-2" aria-hidden="true"></i>Número de acidentes  </h6>
+            <h6 className="text-left mb-0"><FontAwesome name="ambulance"/> Número de acidentes  </h6>
           </div>
           <div className="panel-body panel-body d-flex h-100 flex-column justify-content-around dozepx ">
 
@@ -137,7 +140,7 @@ class QntdAcidentes extends React.Component {
       <div className="col-md-4">
         <div className="panel">
           <div className="panel-heading bg-dark  text-white ">
-            <h6 className="text-left mb-0"><i className="fa fa-ambulance pr-2" aria-hidden="true"></i>Gráfico de acidentes  </h6>
+            <h6 className="text-left mb-0"><FontAwesome name="ambulance"/> Gráfico de acidentes  </h6>
           </div>
           <div className="panel-body">
             <AreaChart width={350} height={200} data={data} margin={{top: 10, right: 30, left: 0, bottom: 0}}>

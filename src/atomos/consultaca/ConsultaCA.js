@@ -6,6 +6,8 @@ import ModalCA from '../modalca';
 import html2canvas from 'html2canvas';
 import brasao from '../../brasao.gif';
 
+import FontAwesome from 'react-fontawesome';
+
 class ConsultaCA extends React.Component {
   state = {
     epiSelecionado : ""
@@ -39,7 +41,7 @@ class ConsultaCA extends React.Component {
       <div className="mt-4">
         <p className="d-flex justify-content-between align-items-center ">
           <div className="d-flex align-items-center">
-            <i className="fa fa-briefcase mr-3" style={{fontSize: '40px'}} ></i> {/*style={{padding: '10px', border: '2px solid red', borderRadius: '50px', width: '70px' + '!important' , height: '70px'}}*/}
+            <FontAwesome name="briefcase" style={{fontSize: '40px'}}/>
             <div className="text-left">
               <span className=" font-weight-bold">{this.state.epiSelecionado.NomeEquipamento}</span><br />
               {/* <span className="small">Proteção dos pés e pernas</span> */}

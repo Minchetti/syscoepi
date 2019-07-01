@@ -1,5 +1,5 @@
 import React from 'react';
-import $ from 'jquery';
+// import $ from 'jquery';
 // import PropTypes from 'prop-types';
 
 class PreviewFuncionarios extends React.Component {
@@ -30,7 +30,9 @@ class PreviewFuncionarios extends React.Component {
       //   alert(err);
       // });
       alert("Funcionarios adicionados!") ;
-      $('#previewfuncionarios').hide();
+
+      // $('#previewfuncionarios').hide(); 
+      document.querySelector("#previewfuncionarios").style.display = 'none';
     };
     
     
@@ -80,7 +82,7 @@ class PreviewFuncionarios extends React.Component {
         </div>  
 
         <div className=" ">
-          <button onClick={this.AddFuncionarios} className="btn btn-dark w-100 h-100 pb-2 pt-2" > <i className="fa fa-share-square pr-2"></i> Enviar Funcionarios </button>             
+          <button onClick={this.AddFuncionarios} className="btn btn-dark w-100 h-100 pb-2 pt-2" > <FontAwesome name="share-square"/> Enviar Funcionarios </button>             
         </div>                
       </div>
     )

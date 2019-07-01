@@ -2,6 +2,7 @@ import React from 'react';
 // import PropTypes from 'prop-types';
 import logo from '../../logo.svg';
 import ModalUsuario from '../modalusuario';
+import FontAwesome from 'react-fontawesome';
 
 import {
   BrowserRouter as Router,
@@ -21,7 +22,8 @@ import {
         // alert('flw fio');
         window.location.reload(true); //tirar isso e descobrir pq ele n muda a pagina depois de mudar a rota
       }}>
-        <i className="fa fa-sign-out-alt" aria-hidden="true"></i> Log Out
+        
+        <FontAwesome name="sign-out"/> Log Out
       </a>         
     )
   )
@@ -40,12 +42,12 @@ class Cabecalho extends React.Component {
         <span className="d-nonin msg-aviso"></span>
 
         <div className="d-flex text-white">
-          <div id="lnk-painel-usuario" className="mr-3 c-pointer"  data-toggle="modal" data-target="#modal-usuario">
-            <i className="fa fa-user-circle mr-2"></i> 
-            <span className="nome-usuario">{localStorage.getItem('name')}</span>
+          <div id="lnk-painel-usuario" className="mr-3 c-pointer"  data-toggle="modal" data-target="#modal-usuario">            
+            <FontAwesome name="user"/>
+            <span className="nome-usuario"> {localStorage.getItem('name')}</span>
           </div>          
-          <div className="mr-3">
-            <i className="fa fa-question-circle"></i> Ajuda
+          <div className="mr-3">            
+            <FontAwesome name="question-circle"/> Ajuda
           </div>
 
           <AuthButton/>

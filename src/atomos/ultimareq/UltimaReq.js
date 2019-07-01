@@ -68,7 +68,7 @@ class UltimaReq extends React.Component {
 
         <div className={'UltimaReq panel ' + this.props.small}>
           <div className="panel-heading thead-dark d-flex justify-content-between">
-            <h6 className="text-left mb-0"><i className="fa fa-check-square pr-2" aria-hidden="true"></i>Ultimas Requisições </h6>            
+            <h6 className="text-left mb-0"><FontAwesome name="check-square"/>Ultimas Requisições </h6>            
             {/* <div id="noisx">
               <i className="fa fa-plus fa-lg mr-2" aria-hidden="true" ></i>ir
             </div> */}
@@ -95,7 +95,7 @@ class UltimaReq extends React.Component {
           
         <div className={'UltimaReq panel mb-4 ' + this.props.big}>
           <div className="panel-heading thead-dark">
-            <h6 className="text-left mb-0"><i className="fa fa-check-square pr-2" aria-hidden="true"></i>Últimas Requisições</h6>
+            <h6 className="text-left mb-0"><FontAwesome name="check-square"/>Últimas Requisições</h6>
           </div>
           <div className="panel-body">
             <table className="table m-0">

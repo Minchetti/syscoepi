@@ -11,6 +11,7 @@ import ModalCriarEmpresa from '../modalcriarempresa';
 // import $ from 'jquery'; 
 // import IdUsuarioLogado from '../login/Login.js';
 import InputMask from 'react-input-mask';
+import FontAwesome from 'react-fontawesome';
 
 
 // CNPJ 28.061.033/0001-60
@@ -87,13 +88,13 @@ class Company extends React.Component {
 
           <div className="panel mt-3">        
             <div className="panel-heading d-flex justify-content-between align-items-center btn-dark">
-              <h6 className="text-left mb-0"><i className="fa fa-building pr-2" aria-hidden="true"></i>{this.state.nomeEmpresaSelecionada}</h6>
+              <h6 className="text-left mb-0"><FontAwesome name="building"/> {this.state.nomeEmpresaSelecionada}</h6>
               <div className="d-nonin ">
                 <button type="button" onClick={this.CancelarEditar} className="btn btn-danger mr-2" data-dismiss="modal">
-                  <i className="fa fa-times fa-lg pr-2" />Cancelar
+                <FontAwesome name="times"/> Cancelar
                 </button>
                 <button onClick={this.EditarEmpresa} id="editarEmpresa" type="submit" className="btn btn-primary" >
-                  <i className="fa fa-plus fa-lg pr-2" />Salvar
+                  <FontAwesome name="plus"/> Salvar
                 </button>
               </div>
             </div>
@@ -101,23 +102,23 @@ class Company extends React.Component {
               <form id="form-usuario" onSubmit={this.onSubmit} onChange={this.onChange} className="text-left d-flex flex-wrap" method="post" action="">
                 <div className="form-row w-100">
                   <div className="col-md-2 ">
-                    <label htmlFor="company-cnpj" className="pl-2"><i className="far fa-id-card pr-2" ></i>CNPJ</label>
+                    <label htmlFor="company-cnpj" className="pl-2"><FontAwesome name="card"/>CNPJ</label>
                     <InputMask mask="99.999.999/9999-99" type="text" value={this.state.cnpj} onChange={e => this.setState({ cnpj: e.target.value })} className="form-control btn-sm" id="company-cnpj" name="company-cnpj" aria-describedby="cnpjHelp" required />
                   </div>          
                   <div className="col-md-2 ">
-                      <label htmlFor="company-nome-amigavel" className="pl-2"><i className="far fa-user pr-2" ></i>Nome Amigável</label>
+                      <label htmlFor="company-nome-amigavel" className="pl-2"><FontAwesome name="user"/>Nome Amigável</label>
                     <input type="text" value={this.state.nomeAmigavel} onChange={e => this.setState({ nomeAmigavel: e.target.value })} className="form-control btn-sm" id="company-nome-amigavel" name="company-nome-amigavel" aria-describedby="nomeAmigavelHelp" required />
                   </div>
                   <div className="col-md-2">
-                    <label htmlFor="company-razao-social" className="pl-2"><i className="far fa-user pr-2" ></i>Razão Social</label>
+                    <label htmlFor="company-razao-social" className="pl-2"><FontAwesome name="user"/>Razão Social</label>
                     <input type="text" value={this.state.razaoSocial} onChange={e => this.setState({ razaoSocial: e.target.value })} className="form-control btn-sm" id="company-razao-social" name="company-razao-social" aria-describedby="razaoSocialHelp" required />
                   </div>
                   <div className="col-md-2">
-                    <label htmlFor="company-setor-atividade" className="pl-2"><i className="far fa-user pr-2" ></i>Setor Atividade</label>
+                    <label htmlFor="company-setor-atividade" className="pl-2"><FontAwesome name="user"/>Setor Atividade</label>
                     <input type="text" value={this.state.setorAtividade} onChange={e => this.setState({ setorAtividade: e.target.value })} className="form-control btn-sm" id="company-setor-atividade" name="company-setor-atividade" aria-describedby="setorAtividadeHelp" required />
                   </div>                
                   <div className="col-md-2 ">
-                    <label htmlFor="company-data-constituicao" className="pl-2"><i className="far fa-user pr-2" ></i>Data Constituição</label>
+                    <label htmlFor="company-data-constituicao" className="pl-2"><FontAwesome name="user"/>Data Constituição</label>
                     <input type="text" value={this.state.dataConstituicao} onChange={e => this.setState({ dataConstituicao: e.target.value })} className="form-control btn-sm" id="company-data-constituicao" name="company-data-constituicao" aria-describedby="dataConstituicaoHelp" required />
                   </div>
                   
@@ -205,7 +206,7 @@ class Company extends React.Component {
       <div id="company">
       {/* <div onClick={this.Teste}>AQUI</div> */}
 
-        <h4 className="position-absolute m-auto l-0 r-0 t-15 text-white"><i className="fa fa-building" aria-hidden="true"></i> Empresas</h4> 
+        <h4 className="position-absolute m-auto l-0 r-0 t-15 text-white"><FontAwesome name="building"/> Empresas</h4> 
         {this.state.arrayEmpresas === '' ? (this.PrimeiraEmpresa()) : (this.TemEmpresa())}
 
       <ModalCriarEmpresa/>        

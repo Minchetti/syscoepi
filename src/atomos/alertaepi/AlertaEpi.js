@@ -3,6 +3,7 @@ import React from 'react';
 import capacete from '../../capacete.png';
 import bota2 from '../../bota2.png';
 import abafador from '../../abafador.png';
+import FontAwesome from 'react-fontawesome';
 
 // @flow
 class AlertaEpi extends React.Component {
@@ -184,7 +185,9 @@ class AlertaEpi extends React.Component {
         <div className="col-md-5">
           <div className="AlertaEpi panel p-0 mb-4">
             <div className="panel-heading thead-dark">
-              <h6 className="text-left mb-0"><i className="fa fa-exclamation-triangle pr-2" aria-hidden="true"></i>Alerta em estoque </h6>
+              <h6 className="text-left mb-0">
+                <FontAwesome name="exclamation-triangle"/> Alerta em estoque 
+              </h6>
             </div>
             <div className="panel-body">
               <table className="table m-0">
@@ -213,7 +216,9 @@ class AlertaEpi extends React.Component {
         
           <div className="AlertaEpi panel p-0 mb-4">
             <div className="panel-heading thead-dark">
-              <h6 className="text-left mb-0"><i className="fa fa-exclamation-triangle pr-2" aria-hidden="true"></i>Alerta em uso  </h6>
+              <h6 className="text-left mb-0">
+                <FontAwesome name="exclamation-triangle"/> Alerta em uso  
+              </h6>
             </div>
             <div className="panel-body">
               <table className="table m-0">

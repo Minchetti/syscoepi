@@ -4,7 +4,8 @@ import ModalCriarConta from '../modalcriarconta';
 import './login.css';
 import { Redirect } from 'react-router-dom';
 import logo from '../../logo.svg';
-import $ from 'jquery'; 
+import FontAwesome from 'react-fontawesome';
+// import $ from 'jquery'; 
 
 // const Login = props => (
 
@@ -88,9 +89,11 @@ class Login extends React.Component {
           this.setState({ logged: true });
 
           // json msg boas vindas
-          $('.msg-aviso').text('Bem Vindo '+data.data.usuarios[0].nome);
-          $('.msg-aviso').fadeIn(2000);
-          setTimeout(function() {$('.msg-aviso').fadeOut(2000);}, 2000); 
+          // $('.msg-aviso').text('Bem Vindo '+data.data.usuarios[0].nome);          
+          document.querySelector(".msg-aviso").textContent = "Bem Vindo +data.data.usuarios[0].nome";
+
+          // $('.msg-aviso').fadeIn(2000);
+          // setTimeout(function() {$('.msg-aviso').fadeOut(2000);}, 2000); //arrumar aqui em vanilla
           
           // // json no link para painel do usuario
           // $('.nome-usuario').text(data.data.usuarios[0].nome.split(" ")[0]);
@@ -136,8 +139,8 @@ class Login extends React.Component {
           if (data.success === true) {
 
             // mostrar msg de confirmação de validação do email
-            $('#msg-validou').fadeIn(2000);
-            setTimeout(function() {$('#msg-validou').fadeOut(2000);}, 2000);                
+            // $('#msg-validou').fadeIn(2000);
+            // setTimeout(function() {$('#msg-validou').fadeOut(2000);}, 2000);        //arrumar aqui o js        
             
             window.location.href = 'http://localhost:3000/login';
           } 
@@ -169,7 +172,7 @@ class Login extends React.Component {
         <div id="Login" className="position-absolute col h-100 ">
           <div className="boxLogin pt-80 position-absolute t-30">
             <div className="t-0 l-0 r-0 position-absolute d-nonin" id="msg-validou">
-              <i className="fa fa-check"/> Email validado com sucesso. Faça seu login.
+              <FontAwesome name="check"/> Email validado com sucesso. Faça seu login.
             </div>
 
             <h1><img src={logo} className="App-logo"/>SCEPI</h1>
@@ -184,7 +187,7 @@ class Login extends React.Component {
                 <input value={this.state.senha} onChange={e => this.setState({ senha: e.target.value })} type="password" className="form-control" id="senha-login" placeholder="Digite a senha" /> {/*aria-describedby="emailHelp"*/}
               </div>
               <button type="submit" className="btn btn-primary btn-block mb-2">
-                <i className="fa fa-sign-in-alt fa-lg pr-2" />Entrar
+                <FontAwesome name="sign-in"/>Entrar
               </button>
               <div className="d-flex justify-content-between w-100">
                 <span className="c-pointer" data-toggle="modal" data-target="#modal-criar-conta" >Criar Conta</span>

@@ -1,7 +1,8 @@
 import React from 'react';
-import $ from 'jquery';
+// import $ from 'jquery';
 // import InputMask from 'react-input-mask';
 // import PropTypes from 'prop-types';
+import FontAwesome from 'react-fontawesome';
 
 class TableFuncionarios2 extends React.Component {
 initialState = {
@@ -144,9 +145,11 @@ componentWillUpdate = (nextProps) =>{
       btns[i].disabled = false;
     }
     
-    $('#progress-bar').text('Dados salvos com sucesso!');
-    $('#progress-bar').fadeIn(2000);
-    setTimeout(function() {$('#progress-bar').fadeOut(2000);}, 2000); 
+    // $('#progress-bar').text('Dados salvos com sucesso!');
+    document.querySelector("#progress-bar").textContent = "Dados salvos com sucesso!";
+
+    // $('#progress-bar').fadeIn(2000);
+    // setTimeout(function() {$('#progress-bar').fadeOut(2000);}, 2000); //arrumar js
   }
 
   
@@ -156,19 +159,19 @@ componentWillUpdate = (nextProps) =>{
     return (
       <div className="panel">        
         <div className="panel-heading d-flex justify-content-between align-items-center thead-dark">
-          <h6 className="text-left mb-0"><i className="fa fa-user pr-2" aria-hidden="true"></i>Funcionários({this.state.employees.length})</h6>
+          <h6 className="text-left mb-0"><FontAwesome name="user"/>Funcionários({this.state.employees.length})</h6>
           
           <div className="d-nonin" id="table-buttons">      
             <button type="button" onClick={this.CancelarEditar} className="btn btn-danger mr-2" > {/*data-dismiss="modal"*/}
-              <i className="fa fa-times pr-2 " aria-hidden="true" />Cancelar
+             <FontAwesome name="times"/>Cancelar
             </button>
             <button onClick={this.SalvarEditar} type="submit" className="btn btn-primary" >
-              <i className="fa fa-check pr-2 " aria-hidden="true"/>Salvar
+             <FontAwesome name="check"/>Salvar
             </button>
           </div>
           
           <div className="d-flex align-items-center">
-            <i className="fas fa-search  mr-2"></i>
+            <FontAwesome name="search"/>
             <SearchBar filterText={this.state.filterText} onUserInput={this.handleUserInput.bind(this)}/>
           </div>
         </div>
@@ -312,10 +315,10 @@ class ProductRow extends React.Component {
         }}/>
         <td className="del-cell">          
           <div className="del-btn form-control c-pointer delete-buttons" onClick={this.onDelEvent.bind(this)}>
-            <i class="far fa-trash-alt"></i>
+            <FontAwesome name="trash-alt"/>
           </div>
           <div className="del-btn form-control c-pointer delete-buttons" onClick={this.onDelEvent.bind(this)}>
-            <i class="fas fa-user-plus"></i>
+            <FontAwesome name="user-plus"/>
           </div>
         </td>
       </tr>

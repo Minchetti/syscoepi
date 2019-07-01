@@ -1,6 +1,6 @@
 import React from 'react';
 import InputMask from 'react-input-mask';
-import $ from 'jquery'; 
+// import $ from 'jquery'; 
 
 import ModalCriarSubConta from '../modalcriarsubconta';
  
@@ -176,9 +176,12 @@ class ModalUsuario extends React.Component {
     //   console.error('Failed retrieving information', err);
     //   alert(err);
     // });
-    $('#progress-bar').text('Dados alterados com sucesso!');
-    $('#progress-bar').fadeIn(2000);
-    setTimeout(function() {$('#progress-bar').fadeOut(2000);}, 2000); 
+
+    // $('#progress-bar').text('Dados alterados com sucesso!');
+    document.querySelector("#progress-bar").textContent = "Dados alterados com sucesso!";
+
+    // $('#progress-bar').fadeIn(2000);
+    // setTimeout(function() {$('#progress-bar').fadeOut(2000);}, 2000); //arrumar js
   }
  
   onChange = () =>{
@@ -277,12 +280,12 @@ class ModalUsuario extends React.Component {
             <div className="modal-content text-dark z-9999">
               <div className="modal-header d-flex justify-content-between align-items-center">
                 <div className="d-flex align-items-center">
-                  <i className="far fa-user-circle fa-lg pr-2" aria-hidden="true"/>
+                  <FontAwesome name="user-circle"/>
                   <h6 className="modal-title">Dados da Conta{/*props.name*/}</h6>
                 </div>                
                 <div className="ml-3">
                   <button type="submit" className="btn btn-secondary" data-toggle="modal" data-target="#modal-criar-sub-conta" >
-                    <i className="fa fa-plus pr-2 " aria-hidden="true"/>Criar Sub-Conta
+                    <FontAwesome name="plus"/>Criar Sub-Conta
                   </button>
                 </div>
                 <button type="button" className="close" data-dismiss="modal" aria-label="Close">
@@ -296,53 +299,53 @@ class ModalUsuario extends React.Component {
                 <form id="form-usuario" onSubmit={this.onSubmit} onChange={this.onChange} className="text-left d-flex flex-wrap" method="post" action="" role="form"> {/*data-toggle="validator"*/}
                   <p className="w-100">Dados Pessoais</p>
                   <div className=" p-2 col-md-4  d-flex align-items-center flex-wrap ">
-                    <label htmlFor="conta-nome"><i className="far fa-user pr-2" aria-hidden="true"></i>Nome</label>
+                    <label htmlFor="conta-nome"><FontAwesome name="user"/>Nome</label>
                     <input type="text" value={this.state.nome} onChange={e => this.setState({ nome: e.target.value })} className="form-control" id="conta-nome" aria-describedby="emailHelp" required />
                   </div>
                   <div className=" p-2 col-md-4  d-flex align-items-center flex-wrap">
-                    <label htmlFor="conta-email"><i className="fa fa-at pr-2" ></i>Email</label>
+                    <label htmlFor="conta-email"><FontAwesome name="user"/>Email</label>
                     <input type="text" value={this.state.email} onChange={e => this.setState({ email: e.target.value })} className="form-control" id="conta-email" name="conta-email" aria-describedby="emailHelp" required />
                   </div>         
                   <div className="p-2 col-md-4  d-flex align-items-center flex-wrap">
-                    <label htmlFor="conta-cpf"><i className="far fa-id-card pr-2" aria-hidden="true"></i>CPF</label>
+                    <label htmlFor="conta-cpf"><FontAwesome name="id-card"/>CPF</label>
                     <InputMask mask="999.999.999-99" type="text" value={this.state.cpf} onChange={e => this.setState({ cpf: e.target.value })} className="form-control" id="conta-cpf" name="conta-cpf" aria-describedby="emailHelp" data-minlength="14" required />
                   </div>
                   <div className=" p-2 col-md-4  d-flex align-items-center flex-wrap">
-                    <label htmlFor="conta-celular"><i className="fas fa-mobile-alt pr-2" ></i>Celular</label>
+                    <label htmlFor="conta-celular"><FontAwesome name="mobile"/>Celular</label>
                     <InputMask mask="(99)99999-9999" type="text" value={this.state.celular} onChange={e => this.setState({ celular: e.target.value })} className="form-control" id="conta-celular" name="conta-celular" aria-describedby="celularHelp" required />
                   </div>
 
                   <p className="mt-4 w-100">Dados Empresariais</p>
                   <div className=" p-2 col-md-4  d-flex align-items-center flex-wrap ">
-                    <label htmlFor="conta-nome-amigavel"><i className="far fa-id-card  pr-2" ></i>Nome Amigável</label>
+                    <label htmlFor="conta-nome-amigavel"><FontAwesome name="id-card"/>Nome Amigável</label>
                     <input type="text" value={this.state.nomeAmigavel} onChange={e => this.setState({ nomeAmigavel: e.target.value })} className="form-control" id="conta-nome-amigavel" name="conta-nome-amigavel" aria-describedby="nomeAmigavelHelp" required />
                   </div>        
                   <div className=" p-2 col-md-4  d-flex align-items-center flex-wrap ">
-                    <label htmlFor="conta-razao-social"><i className="far fa-id-card  pr-2" ></i>Razão Social</label>
+                    <label htmlFor="conta-razao-social"><FontAwesome name="id-card"/>Razão Social</label>
                     <input type="text" value={this.state.razaoSocial} onChange={e => this.setState({ razaoSocial: e.target.value })} className="form-control" id="conta-razao-social" name="conta-razao-social" aria-describedby="razaoSocialHelp" required />
                   </div>
                   <div className=" p-2 col-md-4  d-flex align-items-center flex-wrap ">
-                    <label htmlFor="conta-cnpj"><i className="fa fa-id-card-o pr-2" aria-hidden="true"></i>CNPJ</label>
+                    <label htmlFor="conta-cnpj"><FontAwesome name="id-card-o"/>CNPJ</label>
                     <InputMask mask="99.999.999/9999-99" type="text" value={this.state.cnpj} onChange={e => this.setState({ cnpj: e.target.value })} className="form-control" id="conta-cnpj" name="conta-cnpj" aria-describedby="emailHelp" data-minlength="14" required />
                   </div>
 
                   
                   <div className=" p-2 col-md-4  d-flex align-items-center flex-wrap">
-                    <label htmlFor="conta-codigo-atividade"><i className="fa fa-id-card-o pr-2" aria-hidden="true"></i>Código da Atividade</label>
+                    <label htmlFor="conta-codigo-atividade"><FontAwesome name="id-card-o"/>Código da Atividade</label>
                     <input type="text" value={this.state.codigoAtividade} onChange={e => this.setState({ codigoAtividade: e.target.value })} className="form-control" id="conta-codigo-atividade" name="conta-codigo-atividade" aria-describedby="emailHelp" data-minlength="14" required />
                   </div>
                   <div className=" p-2 col-md-4  d-flex align-items-center flex-wrap ">
-                    <label htmlFor="conta-website"><i className="fa fa-id-card-o pr-2" aria-hidden="true"></i>WebSite</label>
+                    <label htmlFor="conta-website"><FontAwesome name="id-card-o"/>WebSite</label>
                     <input type="text" value={this.state.website} onChange={e => this.setState({ website: e.target.value })} className="form-control" id="conta-website" name="conta-website" aria-describedby="emailHelp" data-minlength="14" required />
                   </div>
 
                 
                   <div className=" p-2 col-md-4  d-flex align-items-center flex-wrap ">
-                    <label htmlFor="conta-cep"><i className="far fa-address-card  pr-2"></i>CEP</label>
+                    <label htmlFor="conta-cep"><FontAwesome name="address-card"/>CEP</label>
                     <InputMask mask="99999-999" type="text" value={this.state.cep} onChange={e => this.setState({ cep: e.target.value })} className="form-control" id="conta-cep" name="conta-cep" aria-describedby="cepHelp" required />
                   </div> 
                   <div className=" p-2 col-md-4  d-flex align-items-center flex-wrap">
-                    <label htmlFor="conta-estado"><i className="fas fa-id-card  pr-2" ></i>Estado</label>
+                    <label htmlFor="conta-estado"><FontAwesome name="id-card"/>Estado</label>
                     <select id="conta-estado" className="form-control" value={this.state.estado} onChange={e => this.setState({ estado: e.target.value })}>
                       <option></option>
                       <option>SP</option>
@@ -355,31 +358,31 @@ class ModalUsuario extends React.Component {
                     </select>
                   </div>
                   <div className=" p-2 col-md-4  d-flex align-items-center flex-wrap">
-                    <label htmlFor="conta-cidade"><i className="fas fa-address-card  pr-2" ></i>Cidade</label>
+                    <label htmlFor="conta-cidade"><FontAwesome name="address-card"/>Cidade</label>
                     <input type="text" value={this.state.cidade} onChange={e => this.setState({ cidade: e.target.value })} className="form-control" id="conta-cidade" name="conta-cidade" aria-describedby="cidadeHelp" required />
                   </div> 
 
                   <div className=" p-2 col-md-4  d-flex align-items-center flex-wrap">
-                    <label htmlFor="conta-bairro"><i className="far fa-id-card  pr-2" ></i>Bairro</label>
+                    <label htmlFor="conta-bairro"><FontAwesome name="id-card"/>Bairro</label>
                     <input type="text" value={this.state.bairro} onChange={e => this.setState({ bairro: e.target.value })} className="form-control" id="conta-bairro" name="conta-bairro" aria-describedby="bairroHelp" required />
                   </div> 
                   <div className=" p-2 col-md-4  d-flex align-items-center flex-wrap">
-                    <label htmlFor="conta-rua"><i className="far fa-id-card  pr-2" ></i>Rua</label>
+                    <label htmlFor="conta-rua"><FontAwesome name="id-card"/>Rua</label>
                     <input type="text" value={this.state.rua} onChange={e => this.setState({ rua: e.target.value })} className="form-control" id="conta-rua" name="conta-rua" aria-describedby="ruaHelp" required />
                   </div> 
                   <div className=" p-2 col-md-4  d-flex align-items-center flex-wrap">
-                    <label htmlFor="conta-numero"><i className="far fa-id-card  pr-2" ></i>Numero</label>
+                    <label htmlFor="conta-numero"><FontAwesome name="id-card"/>Numero</label>
                     <input type="text" value={this.state.numero} onChange={e => this.setState({ numero: e.target.value })} className="form-control" id="conta-numero" name="conta-numero" aria-describedby="numeroHelp" required />
                   </div>
 
                 
                   <p className="mt-4 w-100">Segurança</p>
                   <div className=" p-2 col-md-4  d-flex align-items-center flex-wrap">
-                    <label htmlFor="conta-senha"><i className="fa fa-key pr-2" aria-hidden="true"></i>Senha</label>
+                    <label htmlFor="conta-senha"><FontAwesome name="key"/>Senha</label>
                     <input type="password" value={this.state.senha} onChange={e => this.setState({ senha: e.target.value })} className="form-control" id="conta-senha" aria-describedby="emailHelp" required/>
                   </div>
                   <div className=" p-2 col-md-4  d-flex align-items-center flex-wrap">
-                    <label htmlFor="conta-confirma-senha"><i className="fa fa-key pr-2" aria-hidden="true"></i>Confirma Senha</label>
+                    <label htmlFor="conta-confirma-senha"><FontAwesome name="key"/>Confirma Senha</label>
                     <input type="password" value={this.state.confirmaSenha} onChange={e => this.setState({ confirmaSenha: e.target.value })} className="form-control" id="conta-confirma-senha" aria-describedby="emailHelp" data-match="#conta-senha" data-match-error="Atenção! As senhas não estão iguais." required/> 
                   </div>
 
@@ -390,10 +393,10 @@ class ModalUsuario extends React.Component {
 
               <div className="d-nonin modal-footer">              
                 <button type="button" onClick={this.CancelarEditar} className="btn btn-danger mr-2" > {/*data-dismiss="modal"*/}
-                  <i className="fa fa-times pr-2 " aria-hidden="true" />Cancelar
+                 <FontAwesome name="times"/>Cancelar
                 </button>
                 <button onClick={this.EditarConta} id="editarConta" type="submit" className="btn btn-primary" >
-                  <i className="fa fa-check pr-2 " aria-hidden="true"/>Salvar
+                 <FontAwesome name="check"/>Salvar
                 </button>
               </div>
 

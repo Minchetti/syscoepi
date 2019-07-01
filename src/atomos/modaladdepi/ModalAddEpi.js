@@ -1,6 +1,7 @@
 import React from 'react';
+import FontAwesome from 'react-fontawesome';
 // import InputMask from 'react-input-mask';
-import $ from 'jquery'; 
+// import $ from 'jquery'; 
 // import PropTypes from 'prop-types';
 
 
@@ -52,9 +53,11 @@ class ModalAddEpi extends React.Component {
   onSubmit = e => {
     e.preventDefault();
 
-    $('#progress-bar').text('Funcionário adicionado com sucesso!');
-    $('#progress-bar').fadeIn(2000);
-    setTimeout(function() {$('#progress-bar').fadeOut(2000);}, 2000); 
+    // $('#progress-bar').text('Funcionário adicionado com sucesso!');
+    document.querySelector("#progress-bar").textContent = "Funcionário adicionado com sucesso!";
+    
+    // $('#progress-bar').fadeIn(2000);
+    // setTimeout(function() {$('#progress-bar').fadeOut(2000);}, 2000);  /arrumar js
     
 
     var dados = {      
@@ -108,7 +111,7 @@ class ModalAddEpi extends React.Component {
             <div className="modal-content z-9999">
               <div className="modal-header d-flex justify-content-between align-items-center">
                 <div className="d-flex align-items-center">
-                  <i className="fa fa-user-plus fa-lg pr-2" />
+                  <FontAwesome name="user-plus"/>
                   <h6 className="modal-title">Adicionar Epi</h6>
                   <div onClick={this.Teste}>AQUI</div>
                 </div>
@@ -122,36 +125,36 @@ class ModalAddEpi extends React.Component {
               <div className="modal-body ">
                   <div className="form-row">
                     <div className="form-group col-md-6">
-                      <label htmlFor="input-cod"><i className="far fa-user pr-2" ></i>Cod</label>
+                      <label htmlFor="input-cod"><FontAwesome name="user"/>Cod</label>
                       <input type="text" value={this.state.cod} onChange={e => this.setState({ cod: e.target.value })} className="form-control" id="input-cod" name="input-cod" aria-describedby="codHelp" required />
                     </div>
                     <div className="form-group col-md-6">
-                      <label htmlFor="input-nome"><i className="far fa-user pr-2" ></i>Nome</label>
+                      <label htmlFor="input-nome"><FontAwesome name="user"/>Nome</label>
                       <input type="text" value={this.state.nome} onChange={e => this.setState({ nome: e.target.value })} className="form-control" id="input-nome" name="input-nome" aria-describedby="nomeHelp" required />
                       <div className="valid-tooltip">Looks good!</div><div className="invalid-tooltip">Looks bad!</div>
                     </div>                    
                     <div className="form-group col-md-6">
-                      <label htmlFor="input-descricao"><i className="far fa-user pr-2" ></i>Descrição</label>
+                      <label htmlFor="input-descricao"><FontAwesome name="user"/>Descrição</label>
                       <input type="text" value={this.state.descricao} onChange={e => this.setState({ descricao: e.target.value })} className="form-control" id="input-descricao" name="input-descricao" aria-describedby="descricaoHelp" required />
                     </div>                    
                     <div className="form-group col-md-6">
-                      <label htmlFor="input-validade"><i className="far fa-user pr-2" ></i>Validade</label>
+                      <label htmlFor="input-validade"><FontAwesome name="user"/>Validade</label>
                       <input type="text" value={this.state.validade} onChange={e => this.setState({ validade: e.target.value })} className="form-control" id="input-validade" name="input-validade" aria-describedby="validadeHelp" required />
                     </div>
                     <div className="form-group col-md-6">
-                      <label htmlFor="input-minEstoque"><i className="far fa-user pr-2" ></i>Min Estoque</label>
+                      <label htmlFor="input-minEstoque"><FontAwesome name="user"/>Min Estoque</label>
                       <input type="text" value={this.state.minEstoque} onChange={e => this.setState({ minEstoque: e.target.value })} className="form-control" id="input-minEstoque" name="input-minEstoque" aria-describedby="minEstoqueHelp" required />
                     </div>
                     <div className="form-group col-md-6">
-                      <label htmlFor="input-estoque"><i className="far fa-user pr-2" ></i>Estoque</label>
+                      <label htmlFor="input-estoque"><FontAwesome name="user"/>Estoque</label>
                       <input type="text" value={this.state.estoque} onChange={e => this.setState({ estoque: e.target.value })} className="form-control" id="input-estoque" name="input-estoque" aria-describedby="estoqueHelp" required />
                     </div>
                     <div className="form-group col-md-6">
-                      <label htmlFor="input-maxEstoque"><i className="far fa-user pr-2" ></i>Max Estoque</label>
+                      <label htmlFor="input-maxEstoque"><FontAwesome name="user"/>Max Estoque</label>
                       <input type="text" value={this.state.maxEstoque} onChange={e => this.setState({ maxEstoque: e.target.value })} className="form-control" id="input-maxEstoque" name="input-maxEstoque" aria-describedby="maxEstoqueHelp" required />
                     </div>
                     <div className="form-group col-md-6">
-                      <label htmlFor="input-ca"><i className="far fa-user pr-2" ></i>CA</label>
+                      <label htmlFor="input-ca"><FontAwesome name="user"/>CA</label>
                       <input type="text" value={this.state.ca} onChange={e => this.setState({ ca: e.target.value })} className="form-control" id="input-ca" name="input-ca" aria-describedby="caHelp" required />
                     </div>
                     
@@ -168,17 +171,17 @@ class ModalAddEpi extends React.Component {
                       <input type="email" value={this.state.email} onChange={e => this.setState({ email: e.target.value })} className="form-control" id="input-email" name="input-email" aria-describedby="emailHelp" required/>
                     </div> */}
                     {/* <div className="form-group col-md-6">
-                      <label htmlFor="input-gh"><i className="far fa-envelope  pr-2" ></i>GH</label>
+                      <label htmlFor="input-gh"><FontAwesome name="envelope"/>GH</label>
                       <input type="email" value={this.state.gh} onChange={e => this.setState({ gh: e.target.value })} className="form-control" id="input-gh" name="input-gh" aria-describedby="emailHelp" required/>
                     </div>                    */}
                   </div>
               </div>
               <div className="modal-footer">
                 <button type="button" className="btn btn-danger mr-2" data-dismiss="modal">
-                  <i className="fa fa-times pr-2"/>Fechar
+                  <FontAwesome name="times"/> Fechar
                 </button>
                 <button id="btn-conta" type="submit" className="btn btn-primary" >
-                  <i className="fa fa-plus pr-2"/>Salvar
+                  <FontAwesome name="plus"/> Salvar
                 </button>
               </div>
                 </form>        

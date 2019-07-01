@@ -3,6 +3,7 @@ import React from 'react';
 import capacete from '../../capacete.png';
 import bota2 from '../../bota2.png';
 import abafador from '../../abafador.png';
+import FontAwesome from 'react-fontawesome';
 
 // @flow
 class ReqAberta extends React.Component {
@@ -50,7 +51,7 @@ class ReqAberta extends React.Component {
 
         <div className={'panel ' + this.props.small}>
           <div className="panel-heading thead-dark">
-            <h6 className="text-left mb-0"><i className="fa fa-folder-open pr-2" aria-hidden="true"></i>Requisições em Aberto  </h6>
+            <h6 className="text-left mb-0"><FontAwesome name="fold-open"/>Requisições em Aberto  </h6>
           </div>
           <div className="panel-body">
             <table className="table m-0">
@@ -73,7 +74,7 @@ class ReqAberta extends React.Component {
         
         <div className={'ReqAberta2 panel mb-4 ' + this.props.big}>
           <div className="panel-heading thead-dark">
-            <h6 className="text-left mb-0"><i className="fa fa-folder-open pr-2" aria-hidden="true"></i>Requisições em Aberto  </h6>
+            <h6 className="text-left mb-0"><FontAwesome name="fold-open"/>Requisições em Aberto  </h6>
           </div>
           <div className="panel-body">
             <table className="table m-0">

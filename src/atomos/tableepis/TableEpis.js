@@ -90,10 +90,10 @@ SalvarEditar = () =>{
           
           <div className="d-nonin" id="table-buttons">      
             <button type="button" onClick={this.CancelarEditar} className="btn btn-danger mr-2" > {/*data-dismiss="modal"*/}
-              <i className="fa fa-times pr-2 " aria-hidden="true" />Cancelar
+             <FontAwesome name="times"/>Cancelar
             </button>
             <button onClick={this.SalvarEditar} type="submit" className="btn btn-primary" >
-              <i className="fa fa-check pr-2 " aria-hidden="true"/>Salvar
+             <FontAwesome name="check"/>Salvar
             </button>
           </div>
           

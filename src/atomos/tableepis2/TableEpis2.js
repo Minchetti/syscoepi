@@ -1,8 +1,9 @@
 
 
 import React from 'react';
+import FontAwesome from 'react-fontawesome';
 
-import $ from 'jquery'; 
+// import $ from 'jquery'; 
  
 // import PropTypes from 'prop-types';
 
@@ -501,9 +502,11 @@ SalvarEditarD = () =>{
     //   alert(err);
     // });
     
-    $('#progress-bar').text('Dados salvos com sucesso!');
-    $('#progress-bar').fadeIn(2000);
-    setTimeout(function() {$('#progress-bar').fadeOut(2000);}, 2000); 
+    // $('#progress-bar').text('Dados salvos com sucesso!');
+    document.querySelector("#progress-bar").textContent = "Dados salvos com sucesso!";
+    
+    // $('#progress-bar').fadeIn(2000);
+    // setTimeout(function() {$('#progress-bar').fadeOut(2000);}, 2000); //arrumar js
 }
 
 SalvarEditarA = () =>{
@@ -533,9 +536,11 @@ SalvarEditarA = () =>{
     //   alert(err);
     // });
     
-    $('#progress-bar').text('Dados salvos com sucesso!');
-    $('#progress-bar').fadeIn(2000);
-    setTimeout(function() {$('#progress-bar').fadeOut(2000);}, 2000); 
+    // $('#progress-bar').text('Dados salvos com sucesso!');
+    document.querySelector("#progress-bar").textContent = "Dados salvos com sucesso!";
+
+    // $('#progress-bar').fadeIn(2000);
+    // setTimeout(function() {$('#progress-bar').fadeOut(2000);}, 2000); //arrumar js
 }
 
 // onMassAssignEvent () {  
@@ -551,20 +556,20 @@ teste = () =>{
 
         <div className="panel">        
           <div className="panel-heading d-flex justify-content-between align-items-center thead-dark">
-            <h6 className="text-left mb-0"><i className="fa fa-user pr-2" aria-hidden="true"></i>Epi's Atribuidos ({this.state.episAtribuidos.length}) - {this.state.empresaSelecionada}</h6>
+            <h6 className="text-left mb-0"><FontAwesome name="user"/> Epi's Atribuidos ({this.state.episAtribuidos.length}) - {this.state.empresaSelecionada}</h6>
             <div onClick={this.teste}>TEST</div>
             
             <div className="d-nonin" id="table-buttonsA">      
               <button type="button" onClick={this.CancelarEditarA} className="btn btn-danger mr-2" > {/*data-dismiss="modal"*/}
-                <i className="fa fa-times pr-2 " aria-hidden="true" />Cancelar A
+              <FontAwesome name="times"/>Cancelar A
               </button>
               <button onClick={this.SalvarEditarA} type="submit" className="btn btn-primary" >
-                <i className="fa fa-check pr-2 " aria-hidden="true"/>Salvar A
+              <FontAwesome name="ckeck"/>Salvar A
               </button>
             </div>
             
             <div className="d-flex align-items-center">
-              <i class="fas fa-search mr-2"></i>
+              <FontAwesome name="seach"/>
               <SearchBar filterText={this.state.filterTextA} onUserInput={this.handleUserInputA.bind(this)}/>
             </div>
           </div>
@@ -575,19 +580,19 @@ teste = () =>{
 
         <div className="tableDisponiveis panel mt-4">        
           <div className="panel-heading d-flex justify-content-between align-items-center thead-dark">
-            <h6 className="text-left mb-0"><i className="fa fa-user pr-2" aria-hidden="true"></i>Epi's Disponíveis({this.state.episDisponiveis.length})</h6>
+            <h6 className="text-left mb-0"><FontAwesome name="user"/>Epi's Disponíveis({this.state.episDisponiveis.length})</h6>
 
             <div className="d-nonin" id="table-buttonsD">      
               <button type="button" onClick={this.CancelarEditarD} className="btn btn-danger mr-2" > {/*data-dismiss="modal"*/}
-                <i className="fa fa-times pr-2 " aria-hidden="true" />Cancelar D
+                <FontAwesome name="times"/>Cancelar D
               </button>
               <button onClick={this.SalvarEditarD} type="submit" className="btn btn-primary" >
-                <i className="fa fa-check pr-2 " aria-hidden="true"/>Salvar D
+              <FontAwesome name="check"/>Salvar D
               </button>
             </div>
             
             <div className="d-flex align-items-center">
-              <i class="fas fa-search mr-2"></i>
+              <FontAwesome name="search"/>
               <SearchBar filterText={this.state.filterTextD} onUserInput={this.handleUserInputD.bind(this)}/>
             </div>
           </div>
@@ -674,7 +679,7 @@ class EpisTable extends React.Component {
         </div>
         <div className=""> {/*MASS ASSIGN*/}
           <button className="btn w-100 btn-dark" onClick={this.onMassAssignEvent.bind(this)}>        
-            <i className="fas fa-arrow-down fa-lg mr-2"></i><b>Atribuir</b>
+            <FontAwesome name="arrow-down"/><b>Atribuir</b>
           </button>
         </div>
       </div>
@@ -769,7 +774,7 @@ class TableRow extends React.Component {
         }}/> */}
         <td>
           <div className="del-btn form-control" onClick={this.onDelEvent.bind(this)}>
-            <i class="far fa-trash-alt"></i>
+            <FontAwesome name="trash"/>
           </div>
         </td>
         {/* <td>  comentar só pq n to usando mas eh a outra logica de assing

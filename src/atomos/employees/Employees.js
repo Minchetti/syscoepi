@@ -8,7 +8,7 @@ import Button from '../button';
 import PreviewFuncionarios from '../previewfuncionarios';
 import ModalAddFuncionario from '../modaladdfuncionario';
 import * as Papa from 'papaparse';
-import $ from 'jquery'; 
+// import $ from 'jquery'; 
 // import IdUsuarioLogado from '../login/Login.js';
 
 // var data;
@@ -52,7 +52,9 @@ class Employees extends React.Component {
         this.setState({ csv });
         console.log(csv);
         
-      $('#previewfuncionarios').show();
+      // $('#previewfuncionarios').show();
+      document.querySelector("#previewfuncionarios").style.display = 'block';
+
         // PreviewComponent = <PreviewFuncionarios lista={csv}/> 
       }.bind(this)
       });
@@ -228,7 +230,7 @@ class Employees extends React.Component {
       <div id="Employees">
       {/* <div onClick={this.Teste}>AQUI</div> */}
       
-        <h4 className="position-absolute m-auto l-0 r-0 t-15 text-white "><i className="fa fa-users mr-2" aria-hidden="true"></i>Funcionários</h4>  
+        <h4 className="position-absolute m-auto l-0 r-0 t-15 text-white "><FontAwesome name="users"/>Funcionários</h4>  
                
         {this.PrimeiroFuncionario()}
         {/* <Modal2/>    */}

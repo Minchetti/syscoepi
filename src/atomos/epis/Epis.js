@@ -11,6 +11,7 @@ import TableEpis2 from '../tableepis2';
 import ModalAddEpi from '../modaladdepi';
 // import $ from 'jquery'; 
 // import IdUsuarioLogado from '../login/Login.js';
+import FontAwesome from 'react-fontawesome';
 
 
 
@@ -352,7 +353,9 @@ class Epis extends React.Component {
       
       <div id="Epis">
       
-        <h4 className="position-absolute m-auto l-0 r-0 t-15 text-white"><i className="fas fa-shield-alt mr-2" aria-hidden="true"></i>Epi's</h4>  
+        <h4 className="position-absolute m-auto l-0 r-0 t-15 text-white">
+          <FontAwesome name="shield"/> Epi's
+        </h4>  
                
       {/* <div onClick={this.Teste}>STATE</div> */}
         {this.PrimeiroEpi()}

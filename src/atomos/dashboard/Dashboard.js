@@ -6,7 +6,7 @@ import UltimaReq from '../ultimareq';
 import ReqAberta from '../reqaberta';
 import ReqCancelada from '../reqcancelada';
 import Acidentes from '../acidentes';
-
+import FontAwesome from 'react-fontawesome';
 
 // @flow
 
@@ -119,10 +119,11 @@ class Dashboard extends React.Component {
 
     return ( 
       <div id="dashboard" className="">
-        <h4 className="position-absolute m-auto l-0 r-0 t-15 text-white"><i className="fa fa-clipboard-list" aria-hidden="true"></i> Dashboard</h4> 
+        <h4 className="position-absolute m-auto l-0 r-0 t-15 text-white"><FontAwesome name="clipboard"/> Dashboard</h4> 
         {this.MontarSelect()}
         {/* {this.state} */}
 
+        {/* <FontAwesome name="user"/> */}
         <AlertaEpi listaAlertasEstoque={this.state.alertasEstoque} listaAlertasUso={this.state.alertasUso}/> 
         <div className="justify-content-between row mb-4">
           <UltimaReq size="col-4" big="d-none" listaRequisicoesUltimas={this.state.requisicoesUltimas}/>

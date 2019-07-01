@@ -139,10 +139,10 @@ class TableFuncionarios extends React.Component {
         <td>{i}
           <div className="d-nonin">
             <button type="button" onClick={this.CancelarEditar} className="btn btn-danger mr-2" > {/*data-dismiss="modal"*/}
-              <i className="fa fa-times pr-2 " aria-hidden="true" />
+             <FontAwesome name="times"/>
             </button>
             <button onClick={this.EditarConta} id="editarFuncionario" type="submit" className="btn btn-primary" >
-              <i className="fa fa-check pr-2 " aria-hidden="true"/>
+             <FontAwesome name="check"/>
             </button>
           </div>
         </td>

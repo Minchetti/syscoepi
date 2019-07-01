@@ -67,7 +67,7 @@ teste = () =>{
             <div className="modal-content z-9999">
               <div className="modal-header d-flex justify-content-between align-items-center">
                 <div className="d-flex align-items-center">
-                  <i className="fa fa-clipboard-list fa-lg pr-2" />
+                  <FontAwesome name="clipboard"/>
                   <h6 className="modal-title">Imprimir CA</h6>
       <div onClick={this.teste}>AQUI</div>
                 </div>

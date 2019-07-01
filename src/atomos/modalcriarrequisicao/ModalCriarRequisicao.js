@@ -29,7 +29,7 @@ class ModalCriarRequisicao extends React.Component {
           <div className="modal-content z-9999">
             <div className="modal-header d-flex justify-content-between align-items-center">
               <div className="d-flex align-items-center">
-                <i className="fas fa-user-plus fa-lg pr-2" />
+               <FontAwesome name="user-plus"/>
                 <h6 className="modal-title">Criar Requisição</h6>
               </div>
               <button type="button" className="close" data-dismiss="modal" aria-label="Close">
@@ -109,19 +109,19 @@ class AdicionarPorFuncionario extends React.Component {
             <div>
               <div className="row mt-3">
                 <div className="col-md-6">
-                  <i className="far fa-user pr-2" ></i>Nome:
+                  <FontAwesome name="user"/>Nome:
                   <input type="text" value={this.state.funcionarioSelecionado.nome} className="form-control btn-sm" />
                 </div>
 
                 <div className="col-md-6">
-                  <i className="far fa-user pr-2" ></i>CC:
+                  <FontAwesome name="user"/>CC:
                   <input type="text" value={this.state.funcionarioSelecionado.cc} className="form-control btn-sm" />
                 </div>
               </div>
 
               <div className="row mt-3">
                 <div className="col-md-6">
-                  <i className="far fa-user pr-2" ></i>Local Entrega:
+                  <FontAwesome name="user"/>Local Entrega:
                   <select className="form-control btn-sm" onChange={e => this.setState({ localEntrega: e.target.value })}>
                     <option>Retirar na loja Fitassul</option>      
                     <option>Retirar na loja central</option>           
@@ -129,7 +129,7 @@ class AdicionarPorFuncionario extends React.Component {
                 </div>
 
                 <div className="col-md-6">
-                  <i className="far fa-user pr-2" ></i>Turno Entrega:
+                  <FontAwesome name="user"/>Turno Entrega:
                   <select className="form-control btn-sm" onChange={e => this.setState({ turnoEntrega: e.target.value })}>
                     <option>Vespertino</option>      
                     <option>Matutino</option>   
@@ -148,21 +148,21 @@ class AdicionarPorFuncionario extends React.Component {
                   
                   <div className="mt-3 row">
                     <div className="col-md-6">
-                      <i className="far fa-user pr-2" ></i>Nome:
+                      <FontAwesome name="user"/>Nome:
                       <input type="text" value={epiSelecionado.nome} className="form-control btn-sm" />
                     </div>
 
                     <div className="col-md-3">
-                      <i className="far fa-user pr-2" ></i>CA:
+                      <FontAwesome name="user"/>CA:
                       <input type="text" value={epiSelecionado.ca} className="form-control btn-sm" />
                     </div>
 
                     <div className="col-md-3">
-                      <i className="far fa-user pr-2" ></i>Qntd:
+                      <FontAwesome name="user"/>Qntd:
                       <div className="d-flex align-items-center">
                         <input type="text" value={epiSelecionado.qntd} style={{marginRight: "10px"}}className="form-control btn-sm" />
                         <div onClick={() => this.onDelEvent(epiSelecionado)}>
-                          <i class="far fa-times-circle" ></i>
+                          <FontAwesome name="times-circle"/>
                         </div>
                       </div> 
                     </div>
@@ -234,23 +234,23 @@ class AdicionarPorSetor extends React.Component { //editar
             <div>
               <div className="row mt-3">
                 <div className="col-md-4">
-                  <i className="far fa-user pr-2" ></i>Nome CC:
+                  <FontAwesome name="user"/>Nome CC:
                   <input type="text" value={this.state.funcionariosSelecionados.nomeCC} className="form-control btn-sm" />
                 </div>
 
                 <div className="col-md-4">
-                  <i className="far fa-user pr-2" ></i>CC:
+                  <FontAwesome name="user"/>CC:
                   <input type="text" value={this.state.funcionariosSelecionados.cc} className="form-control btn-sm" />
                 </div>
 
                 <div className="col-md-4">
-                  <i className="far fa-user pr-2" ></i>Gestor:
+                  <FontAwesome name="user"/>Gestor:
                   <input type="text" value={this.state.funcionariosSelecionados.gestor} className="form-control btn-sm" />
                 </div>
               </div>
               <div className="row mt-3">
                 <div className="col-md-12">
-                  <i className="far fa-user pr-2" ></i>Funcionários:
+                  <FontAwesome name="user"/>Funcionários:
                 </div>
               </div>
 
@@ -269,7 +269,7 @@ class AdicionarPorSetor extends React.Component { //editar
                     <div className="d-flex align-items-center">
                       <input type="text" value={funcionario.cpf} style={{marginRight: "10px"}}className="form-control btn-sm" />
                       <div onClick={() => this.onDelEventF(funcionario)}>
-                        <i class="far fa-times-circle" ></i>
+                        <FontAwesome name="times-circle"/>
                       </div>
                     </div> 
                   </div>
@@ -289,21 +289,21 @@ class AdicionarPorSetor extends React.Component { //editar
                   
                   <div className="mt-3 row">
                     <div className="col-md-6">
-                      <i className="far fa-user pr-2" ></i>Nome:
+                      <FontAwesome name="user"/>Nome:
                       <input type="text" value={epiSelecionado.nome} className="form-control btn-sm" />
                     </div>
 
                     <div className="col-md-3">
-                      <i className="far fa-user pr-2" ></i>CA:
+                      <FontAwesome name="user"/>CA:
                       <input type="text" value={epiSelecionado.ca} className="form-control btn-sm" />
                     </div>
 
                     <div className="col-md-3">
-                      <i className="far fa-user pr-2" ></i>Qntd:
+                      <FontAwesome name="user"/>Qntd:
                       <div className="d-flex align-items-center">
                         <input type="text" value={epiSelecionado.qntd} style={{marginRight: "10px"}}className="form-control btn-sm" />
                         <div onClick={() => this.onDelEvent(epiSelecionado)}>
-                          <i class="far fa-times-circle" ></i>
+                          <FontAwesome name="times-circle"/>
                         </div>
                       </div> 
                     </div>
@@ -337,10 +337,10 @@ class Buttons extends React.Component {
     return (
       <div>
         <button type="button" className="btn btn-danger mr-2" data-dismiss="modal" onClick={() => this.props.fechar(null)}> 
-          <i className="fa fa-times pr-2"/>Fechar
+          <FontAwesome name="times"/>Fechar
         </button>
         <button id="btn-conta" type="submit" className="btn btn-primary" onClick={() => this.props.finalizar()}>
-          <i className="fa fa-check pr-2"/>Finalizar
+          <FontAwesome name="check"/>Finalizar
         </button>        
       </div>
     );
