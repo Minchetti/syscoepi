@@ -1,7 +1,7 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 import InputMask from 'react-input-mask';
-// import $ from 'jquery'; 
+import FontAwesome from 'react-fontawesome';
 
 
 class ModalCriarEmpresa extends React.Component {

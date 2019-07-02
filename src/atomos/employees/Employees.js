@@ -8,7 +8,8 @@ import Button from '../button';
 import PreviewFuncionarios from '../previewfuncionarios';
 import ModalAddFuncionario from '../modaladdfuncionario';
 import * as Papa from 'papaparse';
-// import $ from 'jquery'; 
+
+import FontAwesome from 'react-fontawesome';
 // import IdUsuarioLogado from '../login/Login.js';
 
 // var data;

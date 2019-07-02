@@ -5,6 +5,9 @@ import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 
     
+import FontAwesome from 'react-fontawesome';
+
+
 class ModalCA extends React.Component {
   state = {
     epiSelecionado: this.props.epiSelecionado

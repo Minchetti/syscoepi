@@ -1,6 +1,7 @@
 import React from 'react';
 
 
+import FontAwesome from 'react-fontawesome';
 
 class ModalCriarRequisicao extends React.Component {
   state = {

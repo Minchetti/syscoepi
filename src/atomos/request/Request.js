@@ -4,7 +4,8 @@ import ReqAberta from '../reqaberta';
 import ReqCancelada from '../reqcancelada';
 import UltimaReq from '../ultimareq';
 
-import Button from '../button';
+// import Button from '../button';
+import { Button } from 'react-bootstrap';
 
 import ModalCriarRequisicao from '../modalcriarrequisicao';
 
@@ -61,7 +62,11 @@ class Request extends React.Component {
     if(localStorage.getItem('permissoes') == 3 || localStorage.getItem('permissoes') == 2){
       return(
         <div className="col-md-6 align-items-center">        
-          <Button class="btn-dark w-100 h-100" icon="fa-plus fa-lg mr-2" text="Cadastrar Requisição" target="#modal-criar-requisicao"/>
+          {/* <Button class="btn-dark w-100 h-100" icon="plus" text="Cadastrar Requisição" target="#modal-criar-requisicao"/> */}
+          
+          <Button bsStyle="dark">Dark</Button>
+          <Button bsStyle="primary">asdads</Button>
+
         </div>  
       )
     }

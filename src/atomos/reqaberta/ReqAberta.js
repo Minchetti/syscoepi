@@ -51,7 +51,7 @@ class ReqAberta extends React.Component {
 
         <div className={'panel ' + this.props.small}>
           <div className="panel-heading thead-dark">
-            <h6 className="text-left mb-0"><FontAwesome name="fold-open"/>Requisições em Aberto  </h6>
+            <h6 className="text-left mb-0"><FontAwesome name="user"/> Requisições em Aberto  </h6>
           </div>
           <div className="panel-body">
             <table className="table m-0">
@@ -74,7 +74,7 @@ class ReqAberta extends React.Component {
         
         <div className={'ReqAberta2 panel mb-4 ' + this.props.big}>
           <div className="panel-heading thead-dark">
-            <h6 className="text-left mb-0"><FontAwesome name="fold-open"/>Requisições em Aberto  </h6>
+            <h6 className="text-left mb-0"><FontAwesome name="user"/> Requisições em Aberto </h6>
           </div>
           <div className="panel-body">
             <table className="table m-0">

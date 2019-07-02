@@ -1,7 +1,7 @@
 import React from 'react';
 import InputMask from 'react-input-mask';
 import FontAwesome from 'react-fontawesome';
-// import $ from 'jquery'; 
+//   
 // import PropTypes from 'prop-types';
 
 

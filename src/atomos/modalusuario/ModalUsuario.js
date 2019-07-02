@@ -1,8 +1,11 @@
 import React from 'react';
 import InputMask from 'react-input-mask';
-// import $ from 'jquery'; 
+//   
 
 import ModalCriarSubConta from '../modalcriarsubconta';
+
+
+import FontAwesome from 'react-fontawesome';
  
 // import PropTypes from 'prop-types';
 

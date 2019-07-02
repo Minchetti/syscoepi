@@ -1,9 +1,10 @@
 import React from 'react';
 // import TableFuncionarios from '../tablefuncionarios/TableFuncionarios';
 import InputMask from 'react-input-mask';
-// import $ from 'jquery'; 
+//   
 // import PropTypes from 'prop-types';
 
+import FontAwesome from 'react-fontawesome';
 
 
 // habilitar botao para cadastro e edição

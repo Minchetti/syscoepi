@@ -1,14 +1,10 @@
 import React from 'react';
-// import TableFuncionarios from '../tablefuncionarios';
-// import Table2 from '../table2';
-// import Table3 from '../table3';
-// import Modal2 from '../modal1';
 import Button from '../button';
 // import PreviewFuncionarios from '../previewfuncionarios';
 import ModalCriarEmpresa from '../modalcriarempresa';
 // import ModalAddFuncionario from '../modaladdfuncionario';
 // import * as Papa from 'papaparse';
-// import $ from 'jquery'; 
+//   
 // import IdUsuarioLogado from '../login/Login.js';
 import InputMask from 'react-input-mask';
 import FontAwesome from 'react-fontawesome';

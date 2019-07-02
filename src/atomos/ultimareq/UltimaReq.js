@@ -1,5 +1,6 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
+import FontAwesome from 'react-fontawesome';
 
 import Button from '../button';
 import capacete from '../../capacete.png';
@@ -95,7 +96,7 @@ class UltimaReq extends React.Component {
           
         <div className={'UltimaReq panel mb-4 ' + this.props.big}>
           <div className="panel-heading thead-dark">
-            <h6 className="text-left mb-0"><FontAwesome name="check-square"/>Últimas Requisições</h6>
+            <h6 className="text-left mb-0"><FontAwesome name="check-square"/> Últimas Requisições</h6>
           </div>
           <div className="panel-body">
             <table className="table m-0">

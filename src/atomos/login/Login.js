@@ -5,7 +5,7 @@ import './login.css';
 import { Redirect } from 'react-router-dom';
 import logo from '../../logo.svg';
 import FontAwesome from 'react-fontawesome';
-// import $ from 'jquery'; 
+//   
 
 // const Login = props => (
 

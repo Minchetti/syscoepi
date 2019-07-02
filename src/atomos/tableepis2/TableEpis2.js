@@ -3,7 +3,7 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 
-// import $ from 'jquery'; 
+//   
  
 // import PropTypes from 'prop-types';
 

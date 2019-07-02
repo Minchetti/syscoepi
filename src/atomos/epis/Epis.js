@@ -9,7 +9,7 @@ import TableEpis2 from '../tableepis2';
 // import PreviewFuncionarios from '../previewfuncionarios';
 // import ModalCriarEmpresa from '../modalcriarempresa';
 import ModalAddEpi from '../modaladdepi';
-// import $ from 'jquery'; 
+//   
 // import IdUsuarioLogado from '../login/Login.js';
 import FontAwesome from 'react-fontawesome';
 

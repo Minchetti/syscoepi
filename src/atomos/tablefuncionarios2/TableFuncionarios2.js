@@ -1,5 +1,5 @@
 import React from 'react';
-// import $ from 'jquery';
+//  
 // import InputMask from 'react-input-mask';
 // import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
