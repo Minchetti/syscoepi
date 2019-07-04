@@ -4,6 +4,9 @@ import ReqAberta from '../reqaberta';
 import ReqCancelada from '../reqcancelada';
 import UltimaReq from '../ultimareq';
 
+
+import FontAwesome from 'react-fontawesome';
+
 // import Button from '../button';
 import { Button } from 'react-bootstrap';
 
@@ -28,17 +31,20 @@ class Request extends React.Component {
     validade:  this.props.listaEmpresas[0].validade,
     quantidade:  this.props.listaEmpresas[0].quantidade,
 
-    dadosIniciaisEmpresa:  this.props.listaEmpresas[0]
+    dadosIniciaisEmpresa:  this.props.listaEmpresas[0],
 
-
+ 
+    show: false
   }
 
 
-  // MontarSelect = () => this.state.arrayEmpresas.map((value) => { //.data
-  //   return (
-  //     <option>{value.nomeAmigavel}</option>
-  //   )
-  // });
+  /*modal*/  
+  handleShow = () => {
+    this.setState({ show: true });
+  }
+
+
+
  
   MontarSelect = () =>{
 
@@ -64,8 +70,7 @@ class Request extends React.Component {
         <div className="col-md-6 align-items-center">        
           {/* <Button class="btn-dark w-100 h-100" icon="plus" text="Cadastrar Requisição" target="#modal-criar-requisicao"/> */}
           
-          <Button bsStyle="dark">Dark</Button>
-          <Button bsStyle="primary">asdads</Button>
+          <Button variant="dark" onClick={this.handleShow}><FontAwesome name="plus"/>Adicionar Requisição</Button>
 
         </div>  
       )
@@ -135,7 +140,7 @@ class Request extends React.Component {
           <ReqCancelada size="col-md-12" small="d-none" listaRequisicoesCanceladas={this.state.requisicoesCanceladas} /> 
         </div> 
         
-      <ModalCriarRequisicao/> 
+      <ModalCriarRequisicao show={this.state.show}/> 
       </div>      
     )
   }

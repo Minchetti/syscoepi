@@ -78,6 +78,10 @@ header.App-header {
 .overflow-x {overflow-x: scroll;}
 .overflow-h {overflow: hidden;}
 
+/*Classes provisórias até arrumar bootstrap*/
+/* .d-flex {display: flex;} */
+/* .justify-content-between {justify-content: space-between;}
+.align-items-center {align-items: center;} */
 
 
 

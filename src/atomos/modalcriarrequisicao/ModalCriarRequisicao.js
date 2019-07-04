@@ -3,19 +3,30 @@ import React from 'react';
 
 import FontAwesome from 'react-fontawesome';
 
+
+import { Button, Modal } from 'react-bootstrap';
+
 class ModalCriarRequisicao extends React.Component {
   state = {
-    tipoReq: null
+    tipoReq: null,
+    show: this.props.show
   }
   
-
   handleClick(event){
     this.setState({ tipoReq: event.target.value });  
+  }
+
+  componentWillReceiveProps(props){    
+    this.setState({ show: props }); 
   }
 
   
   fechar(fechar){
     this.setState({ tipoReq: fechar }); 
+  }
+
+  handleHide = () => {
+    this.setState({ show: false }); 
   }
 
   
@@ -24,40 +35,66 @@ class ModalCriarRequisicao extends React.Component {
 
     return(
 
+              <Modal show={this.state.show} onHide={this.handleHide}>
 
-      <div className="modal fade" id="modal-criar-requisicao" tabIndex="-1" role="dialog" aria-labelledby="modal-criar-requisicao" >
-        <div className="modal-dialog " role="document">
-          <div className="modal-content z-9999">
-            <div className="modal-header d-flex justify-content-between align-items-center">
-              <div className="d-flex align-items-center">
-               <FontAwesome name="user-plus"/>
-                <h6 className="modal-title">Criar Requisição</h6>
-              </div>
-              <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                <span >&times;</span>
-              </button>
-            </div>
+                <Modal.Header closeButton>
+                  <Modal.Title><FontAwesome name="user-plus"/> Criar Requisição</Modal.Title>
+                </Modal.Header>
+
+                <Modal.Body>
+                  <div className="w-100 justify-content-center btn-group btn-group-toggle" data-toggle="buttons">
+                    <Button variant="primary" onClick={this.handleClick.bind(this)} value="1">Por Funcionário</Button>
+                    <Button variant="primary" onClick={this.handleClick.bind(this)} value="2">Por Setor</Button>
+                    {/* <button className="btn btn-primary" onClick={this.handleClick.bind(this)} value="1" type="button">Por Funcionário</button>
+                    <button className="btn btn-primary" onClick={this.handleClick.bind(this)} value="2" type="button">Por Setor</button> */}
+                  </div>
+
+                  {this.state.tipoReq == 1 && (<AdicionarPorFuncionario fechar={this.fechar.bind(this)}/>)} 
+                  {this.state.tipoReq == 2 && (<AdicionarPorSetor fechar={this.fechar.bind(this)}/>)}
+                </Modal.Body>
+
+                {/* <Modal.Footer>
+                  <Button>Close</Button>
+                  <Button variant="primary">Save changes</Button>
+                </Modal.Footer> */}
+              </Modal>
+          
+
+
+
+      // <div className="modal fade" id="modal-criar-requisicao" tabIndex="-1" role="dialog" aria-labelledby="modal-criar-requisicao" >
+      //   <div className="modal-dialog " role="document">
+      //     <div className="modal-content z-9999">
+      //       <div className="modal-header d-flex justify-content-between align-items-center">
+      //         <div className="d-flex align-items-center">
+      //          <FontAwesome name="user-plus"/>
+      //           <h6 className="modal-title">Criar Requisição</h6>
+      //         </div>
+      //         <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+      //           <span >&times;</span>
+      //         </button>
+      //       </div>
   
   
-            <div className="modal-body text-left">
+      //       <div className="modal-body text-left">
 
 
-                <div class="w-100 justify-content-center btn-group btn-group-toggle" data-toggle="buttons">
-                    <button className="btn btn-primary" onClick={this.handleClick.bind(this)} value="1" type="button">Por Funcionário</button>
-                    <button className="btn btn-primary" onClick={this.handleClick.bind(this)} value="2" type="button">Por Setor</button>
-                </div>
+      //           <div class="w-100 justify-content-center btn-group btn-group-toggle" data-toggle="buttons">
+      //             <button className="btn btn-primary" onClick={this.handleClick.bind(this)} value="1" type="button">Por Funcionário</button>
+      //             <button className="btn btn-primary" onClick={this.handleClick.bind(this)} value="2" type="button">Por Setor</button>
+      //           </div>
 
-                {this.state.tipoReq == 1 && (<AdicionarPorFuncionario fechar={this.fechar.bind(this)}/>)} 
-                {this.state.tipoReq == 2 && (<AdicionarPorSetor fechar={this.fechar.bind(this)}/>)}
+      //           {this.state.tipoReq == 1 && (<AdicionarPorFuncionario fechar={this.fechar.bind(this)}/>)} 
+      //           {this.state.tipoReq == 2 && (<AdicionarPorSetor fechar={this.fechar.bind(this)}/>)}
                 
                   
-            </div>
+      //       </div>
             
     
   
-          </div>
-        </div>
-      </div>
+      //     </div>
+      //   </div>
+      // </div>
   
     );
   };
