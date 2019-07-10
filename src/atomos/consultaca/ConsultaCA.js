@@ -78,9 +78,8 @@ class ConsultaCA extends React.Component {
 class SearchBar extends React.Component {
   state = {
     listaCa : "",
-    searchText: "",
-    selecionouBool: false
-  } 
+    searchText: ""
+  }
   
   handleChange(event) {    
     var data = [
@@ -115,11 +114,9 @@ class SearchBar extends React.Component {
     // this.props.onUserInput(data);
     this.setState({ searchText: event.target.value });
     this.setState({ listaCa: data });
-    this.setState({ selecionouBool: false });
   }
 
-  selecionouBool(bool) {
-    this.setState({ selecionouBool: bool });   //se o usuario ja selecionou um CA na pesquisa some com a tabela de resultados da pesquisa
+  selecionouBool() {
     this.setState({ searchText: "" });  //limpar o campo de pesquisa qndo o usuario clicar em algum CA pesquisado
   }
   
@@ -151,7 +148,8 @@ class SearchBar extends React.Component {
           <h3 className="m-0"><b>Consulta CA</b></h3>
           <input style={{ zIndex: "10", position: "relative" }} className="ml-3 col-md-6 form-control btn-sm" type="text" value={this.state.searchText} placeholder="Search..." onChange={this.handleChange.bind(this)}/>
         </div>
-        {(this.state.listaCa !== "" && this.state.selecionouBool === false && this.state.searchText !== "") && <Table linhas={this.state.listaCa} selecionouEpi={this.props.selecionouEpi} selecionouBool={this.selecionouBool.bind(this)}/>} 
+        {(this.state.listaCa !== "" && this.state.searchText !== "") 
+        && <Table linhas={this.state.listaCa} selecionouEpi={this.props.selecionouEpi} selecionouBool={this.selecionouBool.bind(this)}/>} 
       </div>
     );
   }
@@ -200,7 +198,7 @@ class TableRow extends React.Component {
   }
   selecionouEpi() {
     this.props.selecionouEpi(this.props.linha); //passar dados do CA selecionado na pesquisa para componente de cima por props
-    this.props.selecionouBool(true); 
+    this.props.selecionouBool(); 
   }
   render() {
     
