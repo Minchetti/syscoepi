@@ -7,6 +7,8 @@ import html2canvas from 'html2canvas';
 import brasao from '../../brasao.gif';
 
 import FontAwesome from 'react-fontawesome';
+import { Image, Row, Col, Container } from 'react-bootstrap';
+
 
 class ConsultaCA extends React.Component {
   state = {
@@ -17,110 +19,51 @@ class ConsultaCA extends React.Component {
     this.setState({ epiSelecionado: epi });  
   }
 
-  // Callback(){
-  //   console.log("FOI");  
-  //   html2canvas(gerar).then(canvas => {
-  //     console.log(canvas);
-  //     document.getElementById("gerar_aqui2").appendChild(canvas);
-  //   });
-  // }
-
-  
-    // handleUserInput(epiSelecionado) {
-    //   this.setState({epiSelecionado: epiSelecionado});
-    // };
 
   render() {
 
 
     return (
-    <div>
-      <SearchBar selecionouEpi={this.selecionouEpi.bind(this)}/> {/*onUserInput={this.handleUserInput.bind(this)} */}
 
-      {this.state.epiSelecionado !== "" &&
-      <div className="mt-4">
-        <p className="d-flex justify-content-between align-items-center ">
-          <div className="d-flex align-items-center">
-            <FontAwesome name="briefcase" style={{fontSize: '40px'}}/>
-            <div className="text-left">
-              <span className=" font-weight-bold">{this.state.epiSelecionado.NomeEquipamento}</span><br />
-              {/* <span className="small">Proteção dos pés e pernas</span> */}
-            </div>
-          </div>
-
-          <div className="d-flex flex-column pl-2 pr-2 pt-1 pb-1" style={{border: '1px solid #ced4da', borderRadius: '3px', background:'white'}}>
-            <span className="small">Nº CA:</span>
-            <span className="lead font-weight-bold">{this.state.epiSelecionado.NRRegistroCA}</span>
-          </div>
-
+      <Container>
+        <SearchBar selecionouEpi={this.selecionouEpi.bind(this)}/>
+        {this.state.epiSelecionado !== "" &&
           <div>
-            <img src={mte} data-toggle="modal" data-target="#modal-ca"/>
+            <Row className="align-items-center mt-3 text-left">
+              <Col md={6}>
+                <FontAwesome name="briefcase"/><b> {this.state.epiSelecionado.NomeEquipamento}</b>
+              </Col>
+              <Col md={3}>
+                Nº CA: <b>{this.state.epiSelecionado.NRRegistroCA}</b>
+              </Col>
+              <Col md={3}>
+                <Image src={mte}/>
+              </Col>
+            </Row>
+            <Row className="mt-4 text-left">
+              <Col>Situação: <b>{this.state.epiSelecionado.Situacao}</b></Col>
+              <Col>Data Validade: <b>{this.state.epiSelecionado.DataValidade}</b></Col>
+              <Col>Nº Processo: <b>{this.state.epiSelecionado.NRProcesso}</b></Col>
+            </Row>
+            <Row className="mt-4 text-left">
+              <Col>Descrição: <b>{this.state.epiSelecionado.DescricaoEquipamento}</b></Col>
+              <Col className="d-flex flex-column">
+                <span>Fabricante:</span>
+                <span>CNPJ: <b>{this.state.epiSelecionado.CNPJ}</b></span>
+                <span>Razão Social: <b>{this.state.epiSelecionado.RazaoSocial}</b></span>        
+              </Col>
+              <Col>Aprovado Para: <b>{this.state.epiSelecionado.AprovadoParaLaudo}</b></Col>
+              <Col className="d-flex flex-column">
+                <span>Laboratório:</span>
+                <span>CNPJ: <b>{this.state.epiSelecionado.CNPJLaboratorio}</b></span>
+                <span>Razão Social: <b>{this.state.epiSelecionado.RazaoSocialLaboratorio}</b></span>            
+              </Col>
+            </Row>
+            <ModalCA epiSelecionado={this.state.epiSelecionado}/>  
           </div>
-        </p>
-      
+        }
+      </Container>
 
-      
-        <p className="d-flex justify-content-between align-items-center ">
-          <div>
-            <span className="small">Situação:</span><br />
-            <span className=" font-weight-bold">{this.state.epiSelecionado.Situacao}</span>
-          </div>  
-          <div>
-            <span className="small">Validade:</span><br />
-            <span className=" font-weight-bold">{this.state.epiSelecionado.DataValidade}</span>
-          </div>  
-          <div>
-            <span className="small">Nº Processo:</span><br />
-            <span className=" font-weight-bold">{this.state.epiSelecionado.NRProcesso}</span>
-          </div>           
-        </p>
-
-
-
-        <p className="row d-flex justify-content-between align-items-center">
-          <div className="col-md-4 d-flex flex-column text-left" >
-            <span className="lead font-weight-bold">Descrição Completa:</span>
-            <span className="small">{this.state.epiSelecionado.DescricaoEquipamento}</span>
-          </div> 
-
-          <div className="col-md-2 d-flex flex-column text-left">
-            <span className="lead font-weight-bold">Fabricante:</span>
-            <div>
-              <span className="small font-weight-bold">CNPJ: </span>
-              <span className="small">{this.state.epiSelecionado.CNPJ}</span>
-            </div>
-            <div>
-              <span className="small font-weight-bold">Razão Social: </span>
-              <span className="small">{this.state.epiSelecionado.RazaoSocial}</span>
-            </div>
-          </div>  
-        
-          <div className="col-md-3 d-flex flex-column text-left">
-            <span className="lead font-weight-bold">Dados Complementares:</span>                 
-            <span className="small font-weight-bold">Aprovado para: </span>    
-            <span className="small">{this.state.epiSelecionado.AprovadoParaLaudo}</span>
-          </div>
-
-          <div className="col-md-3 d-flex flex-column text-left">
-            <span className="lead font-weight-bold">Laudo:</span>
-            <div>
-              <span className="small font-weight-bold">CNPJ do Laboratório: </span>
-              <span className="small">{this.state.epiSelecionado.CNPJLaboratorio}</span>
-            </div>
-            <div>
-              <span className="small font-weight-bold">Razão Social: </span>
-              <span className="small">{this.state.epiSelecionado.RazaoSocialLaboratorio}</span>
-            </div>
-          </div>  
-        </p>
-
-        
-
-        <ModalCA epiSelecionado={this.state.epiSelecionado}/>    
-      </div>
-      }   
-
-      </div>
     );
   }
 }
@@ -136,7 +79,7 @@ class SearchBar extends React.Component {
   state = {
     listaCa : "",
     searchText: "",
-    selecionouEpiBool: false
+    selecionouBool: false
   } 
   
   handleChange(event) {    
@@ -172,11 +115,11 @@ class SearchBar extends React.Component {
     // this.props.onUserInput(data);
     this.setState({ searchText: event.target.value });
     this.setState({ listaCa: data });
-    this.setState({ selecionouEpiBool: false });
+    this.setState({ selecionouBool: false });
   }
 
-  selecionouEpiBool(bool) {
-    this.setState({ selecionouEpiBool: bool });   //se o usuario ja selecionou um CA na pesquisa some com a tabela de resultados da pesquisa
+  selecionouBool(bool) {
+    this.setState({ selecionouBool: bool });   //se o usuario ja selecionou um CA na pesquisa some com a tabela de resultados da pesquisa
     this.setState({ searchText: "" });  //limpar o campo de pesquisa qndo o usuario clicar em algum CA pesquisado
   }
   
@@ -187,12 +130,28 @@ class SearchBar extends React.Component {
 
   render() {
     return (
+
+      // <div>
+      //   <Form.Row>
+      //     <Form.Group as={Col} md="5">
+      //       <b>Consulta CA</b>                        
+      //     </Form.Group>
+      //     <Form.Group as={Col} md="7">
+      //       <Form.Control as="input" style={{ zIndex: "10", position: "relative" }} value={this.state.searchText} placeholder={"Busca CA"} onChange={this.handleChange.bind(this)}/>  
+      //     </Form.Group>
+      //   </Form.Row> 
+      //   {(this.state.listaCa !== "" && this.state.selecionouBool === false && this.state.searchText !== "") &&
+      //    <Table linhas={this.state.listaCa} selecionouEpi={this.props.selecionouEpi} selecionouBool={this.selecionouBool.bind(this)}/>}
+      // </div>
+
+
+
       <div>
         <div className="d-flex align-items-center">
           <h3 className="m-0"><b>Consulta CA</b></h3>
           <input style={{ zIndex: "10", position: "relative" }} className="ml-3 col-md-6 form-control btn-sm" type="text" value={this.state.searchText} placeholder="Search..." onChange={this.handleChange.bind(this)}/>
         </div>
-        {(this.state.listaCa !== "" && this.state.selecionouEpiBool === false && this.state.searchText !== "") && <Table linhas={this.state.listaCa} selecionouEpi={this.props.selecionouEpi} selecionouEpiBool={this.selecionouEpiBool.bind(this)}/>} 
+        {(this.state.listaCa !== "" && this.state.selecionouBool === false && this.state.searchText !== "") && <Table linhas={this.state.listaCa} selecionouEpi={this.props.selecionouEpi} selecionouBool={this.selecionouBool.bind(this)}/>} 
       </div>
     );
   }
@@ -222,7 +181,7 @@ class Table extends React.Component {
         }}/>   
         <table style={{ zIndex: "10", position: "absolute", boxShadow: "0 6px 12px rgba(0,0,0,.175)", left: "366px" }}>       
           <tbody>
-            {this.props.linhas.map(linha => <Row linha={linha} selecionouEpi={this.props.selecionouEpi} selecionouEpiBool={this.props.selecionouEpiBool} />)}
+            {this.props.linhas.map(linha => <TableRow linha={linha} selecionouEpi={this.props.selecionouEpi} selecionouBool={this.props.selecionouBool} />)}
           </tbody>
         </table>
       </div>
@@ -235,13 +194,13 @@ class Table extends React.Component {
 
 
 
-class Row extends React.Component {
+class TableRow extends React.Component {
   test = () => {
     console.log(this.state);
   }
   selecionouEpi() {
     this.props.selecionouEpi(this.props.linha); //passar dados do CA selecionado na pesquisa para componente de cima por props
-    this.props.selecionouEpiBool(true); 
+    this.props.selecionouBool(true); 
   }
   render() {
     

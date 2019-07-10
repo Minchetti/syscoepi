@@ -172,12 +172,6 @@ class Employees extends React.Component {
       this.setState({ listaFuncionarios: data3 });   
     }
 
-
-    // var data = null;
-
-    // if(data != null){
-    //   this.setState({ listaFuncionarios : data });
-    // }  
   };
 
 

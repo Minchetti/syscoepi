@@ -1,10 +1,7 @@
 import React from 'react';
-
-
 import FontAwesome from 'react-fontawesome';
+import { Button, Modal, ButtonGroup, Form, Row, Col, Table } from 'react-bootstrap';
 
-
-import { Button, Modal } from 'react-bootstrap';
 
 class ModalCriarRequisicao extends React.Component {
   state = {
@@ -31,70 +28,28 @@ class ModalCriarRequisicao extends React.Component {
 
   
   render(){
-    
-
     return(
 
-              <Modal show={this.state.show} onHide={this.handleHide}>
+        <Modal show={this.state.show} onHide={this.handleHide}>
 
-                <Modal.Header closeButton>
-                  <Modal.Title><FontAwesome name="user-plus"/> Criar Requisição</Modal.Title>
-                </Modal.Header>
+          <Modal.Header closeButton>
+            <Modal.Title><FontAwesome name="user-plus"/> Criar Requisição</Modal.Title>
+          </Modal.Header>
 
-                <Modal.Body>
-                  <div className="w-100 justify-content-center btn-group btn-group-toggle" data-toggle="buttons">
-                    <Button variant="primary" onClick={this.handleClick.bind(this)} value="1">Por Funcionário</Button>
-                    <Button variant="primary" onClick={this.handleClick.bind(this)} value="2">Por Setor</Button>
-                    {/* <button className="btn btn-primary" onClick={this.handleClick.bind(this)} value="1" type="button">Por Funcionário</button>
-                    <button className="btn btn-primary" onClick={this.handleClick.bind(this)} value="2" type="button">Por Setor</button> */}
-                  </div>
+          <Modal.Body>
+            <ButtonGroup className="w-100">
+              <Button variant="primary" onClick={this.handleClick.bind(this)} value="1">Por Funcionário</Button>
+              <Button variant="primary" onClick={this.handleClick.bind(this)} value="2">Por Setor</Button>
+            </ButtonGroup>
 
-                  {this.state.tipoReq == 1 && (<AdicionarPorFuncionario fechar={this.fechar.bind(this)}/>)} 
-                  {this.state.tipoReq == 2 && (<AdicionarPorSetor fechar={this.fechar.bind(this)}/>)}
-                </Modal.Body>
+            {this.state.tipoReq == 1 && (<AdicionarPorFuncionario fechar={this.fechar.bind(this)}/>)} 
+            {this.state.tipoReq == 2 && (<AdicionarPorSetor fechar={this.fechar.bind(this)}/>)}
+          </Modal.Body>
 
-                {/* <Modal.Footer>
-                  <Button>Close</Button>
-                  <Button variant="primary">Save changes</Button>
-                </Modal.Footer> */}
-              </Modal>
+          {/* <Modal.Footer>
+          </Modal.Footer> */}
+        </Modal>
           
-
-
-
-      // <div className="modal fade" id="modal-criar-requisicao" tabIndex="-1" role="dialog" aria-labelledby="modal-criar-requisicao" >
-      //   <div className="modal-dialog " role="document">
-      //     <div className="modal-content z-9999">
-      //       <div className="modal-header d-flex justify-content-between align-items-center">
-      //         <div className="d-flex align-items-center">
-      //          <FontAwesome name="user-plus"/>
-      //           <h6 className="modal-title">Criar Requisição</h6>
-      //         </div>
-      //         <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-      //           <span >&times;</span>
-      //         </button>
-      //       </div>
-  
-  
-      //       <div className="modal-body text-left">
-
-
-      //           <div class="w-100 justify-content-center btn-group btn-group-toggle" data-toggle="buttons">
-      //             <button className="btn btn-primary" onClick={this.handleClick.bind(this)} value="1" type="button">Por Funcionário</button>
-      //             <button className="btn btn-primary" onClick={this.handleClick.bind(this)} value="2" type="button">Por Setor</button>
-      //           </div>
-
-      //           {this.state.tipoReq == 1 && (<AdicionarPorFuncionario fechar={this.fechar.bind(this)}/>)} 
-      //           {this.state.tipoReq == 2 && (<AdicionarPorSetor fechar={this.fechar.bind(this)}/>)}
-                
-                  
-      //       </div>
-            
-    
-  
-      //     </div>
-      //   </div>
-      // </div>
   
     );
   };
@@ -138,93 +93,79 @@ class AdicionarPorFuncionario extends React.Component {
 
   render(){
     return(
-      <div>
-        <div className="mt-4">
-          {/* <h5>Requisição Individual</h5> */}
-
-          <SearchBar tipo={"funcionario"} busca={"funcionarios"} selecionou={this.selecionouFunc.bind(this)}/>
-          {this.state.funcionarioSelecionado !== ""&& (
-            <div>
-              <div className="row mt-3">
-                <div className="col-md-6">
-                  <FontAwesome name="user"/>Nome:
-                  <input type="text" value={this.state.funcionarioSelecionado.nome} className="form-control btn-sm" />
-                </div>
-
-                <div className="col-md-6">
-                  <FontAwesome name="user"/>CC:
-                  <input type="text" value={this.state.funcionarioSelecionado.cc} className="form-control btn-sm" />
-                </div>
-              </div>
-
-              <div className="row mt-3">
-                <div className="col-md-6">
-                  <FontAwesome name="user"/>Local Entrega:
-                  <select className="form-control btn-sm" onChange={e => this.setState({ localEntrega: e.target.value })}>
-                    <option>Retirar na loja Fitassul</option>      
-                    <option>Retirar na loja central</option>           
-                  </select>
-                </div>
-
-                <div className="col-md-6">
-                  <FontAwesome name="user"/>Turno Entrega:
-                  <select className="form-control btn-sm" onChange={e => this.setState({ turnoEntrega: e.target.value })}>
-                    <option>Vespertino</option>      
-                    <option>Matutino</option>   
-                  </select>
-                </div>
-              </div>
+      <Form className="mt-4">
+        <SearchBar tipo={"funcionario"} busca={"funcionarios"} selecionou={this.selecionouFunc.bind(this)}/>
+        {this.state.funcionarioSelecionado !== "" && (
+          
+        <div>
+          <Form.Row className="mt-3"> 
+            <Form.Group as={Col}>
+              <Form.Label><FontAwesome name="user"/> Nome</Form.Label>
+              <Form.Control type="text" value={this.state.funcionarioSelecionado.nome}/>                
+            </Form.Group>   
+            <Form.Group as={Col}>
+              <Form.Label><FontAwesome name="user"/> CC</Form.Label>
+              <Form.Control type="text" value={this.state.funcionarioSelecionado.cc}/>                
+            </Form.Group>
+          </Form.Row>
+          <Form.Row>
+            <Form.Group as={Col}>
+              <Form.Label><FontAwesome name="user"/> Local Entrega</Form.Label>
+              <Form.Control as="select" onChange={e => this.setState({ localEntrega: e.target.value })}>  
+                <option>Retirar na loja Fitassul</option>      
+                <option>Retirar na loja central</option>               
+              </Form.Control>
+            </Form.Group>
+            <Form.Group as={Col}>
+              <Form.Label><FontAwesome name="user"/> Turno Entrega</Form.Label>
+              <Form.Control as="select" onChange={e => this.setState({ turnoEntrega: e.target.value })}>  
+                <option>Vespertino</option>      
+                <option>Matutino</option>               
+              </Form.Control>
+            </Form.Group>
+          </Form.Row>
 
 
-              {/* <SelecionarEpi/> */}
-              <div className="mt-4">
-                <SearchBar selecionados={this.state.episSelecionados} tipo={"epis"} busca={"epis"} selecionou={this.selecionouEpi.bind(this)}/>
-              </div>
-              {this.state.episSelecionados !== "" && (
-                
-                this.state.episSelecionados.map(epiSelecionado => 
-                  
-                  <div className="mt-3 row">
-                    <div className="col-md-6">
-                      <FontAwesome name="user"/>Nome:
-                      <input type="text" value={epiSelecionado.nome} className="form-control btn-sm" />
-                    </div>
+             
+          <SearchBar selecionados={this.state.episSelecionados} tipo={"epis"} busca={"epis"} selecionou={this.selecionouEpi.bind(this)}/>
+            
+          {this.state.episSelecionados.length > 0 && (
 
-                    <div className="col-md-3">
-                      <FontAwesome name="user"/>CA:
-                      <input type="text" value={epiSelecionado.ca} className="form-control btn-sm" />
-                    </div>
-
-                    <div className="col-md-3">
-                      <FontAwesome name="user"/>Qntd:
-                      <div className="d-flex align-items-center">
-                        <input type="text" value={epiSelecionado.qntd} style={{marginRight: "10px"}}className="form-control btn-sm" />
-                        <div onClick={() => this.onDelEvent(epiSelecionado)}>
-                          <FontAwesome name="times-circle"/>
-                        </div>
-                      </div> 
-                    </div>
-                  </div>                  
-                )
-              
+            <div className="mt-3">
+              {this.state.episSelecionados.map(epiSelecionado =>             
+                <Form.Row>
+                  <Form.Group as={Col} md="6">
+                    <Form.Label><FontAwesome name="user"/> Nome</Form.Label>
+                    <Form.Control type="text" value={epiSelecionado.nome}/>                
+                  </Form.Group>
+                  <Form.Group as={Col} md="3">
+                    <Form.Label><FontAwesome name="user"/> CA</Form.Label>
+                    <Form.Control type="text" value={epiSelecionado.ca}/>                
+                  </Form.Group>
+                  <Form.Group as={Col} md="2">
+                    <Form.Label><FontAwesome name="user"/> Qtd</Form.Label>
+                    <Form.Control type="text" value={epiSelecionado.qntd}/>                
+                  </Form.Group>
+                  <Form.Group as={Col} md="1">
+                    <FontAwesome name="times-circle" onClick={() => this.onDelEvent(epiSelecionado)}/>               
+                  </Form.Group>
+                </Form.Row>
               )}
-
+              <Buttons fechar={this.props.fechar} finalizar={this.finalizar.bind(this)}/>
             </div>
           )}
 
         </div>
+        )}
 
 
-        <div className="modal-footer" style={{paddingBottom: "0px", marginTop: "15px"}}>
-          <Buttons fechar={this.props.fechar} finalizar={this.finalizar.bind(this)}/>
-        </div>
-  
 
-      </div>
+
+      
+      </Form>
     );
   };
 };
-
 /****************************************************************************************************************************/
 
 class AdicionarPorSetor extends React.Component { //editar
@@ -263,108 +204,89 @@ class AdicionarPorSetor extends React.Component { //editar
   }
   render(){
     return(
-      <div>
-        <div className="mt-4">          
-          {/* <h5>Requisição Setorial</h5> */}
 
-          <SearchBar tipo={"setor"} busca={"funcionarios"} selecionou={this.selecionouFunc.bind(this)}/>
-          {this.state.funcionariosSelecionados !== "" && (
-            <div>
-              <div className="row mt-3">
-                <div className="col-md-4">
-                  <FontAwesome name="user"/>Nome CC:
-                  <input type="text" value={this.state.funcionariosSelecionados.nomeCC} className="form-control btn-sm" />
-                </div>
+      <Form className="mt-4">
+        <SearchBar tipo={"setor"} busca={"funcionarios"} selecionou={this.selecionouFunc.bind(this)}/>
+        {this.state.funcionariosSelecionados !== "" && (
+          <div>
+            <Form.Row className="mt-3">
+              <Form.Group as={Col}>
+                <Form.Label><FontAwesome name="user"/> Nome CC</Form.Label>
+                <Form.Control type="text" value={this.state.funcionariosSelecionados.nomeCC}/>                
+              </Form.Group>
+              <Form.Group as={Col}>
+                <Form.Label><FontAwesome name="user"/> CC</Form.Label>
+                <Form.Control type="text" value={this.state.funcionariosSelecionados.cc}/>                
+              </Form.Group>
+              <Form.Group as={Col}>
+                <Form.Label><FontAwesome name="user"/> Gestor</Form.Label>
+                <Form.Control type="text" value={this.state.funcionariosSelecionados.gestor}/>                
+              </Form.Group>
+            </Form.Row>
 
-                <div className="col-md-4">
-                  <FontAwesome name="user"/>CC:
-                  <input type="text" value={this.state.funcionariosSelecionados.cc} className="form-control btn-sm" />
-                </div>
+            {this.state.funcionariosSelecionados.funcionarios.map(funcionario =>
 
-                <div className="col-md-4">
-                  <FontAwesome name="user"/>Gestor:
-                  <input type="text" value={this.state.funcionariosSelecionados.gestor} className="form-control btn-sm" />
-                </div>
-              </div>
-              <div className="row mt-3">
-                <div className="col-md-12">
-                  <FontAwesome name="user"/>Funcionários:
-                </div>
-              </div>
+              <Form.Row>
+                <Form.Group as={Col} md="6">
+                  <Form.Label><FontAwesome name="user"/> Nome</Form.Label>
+                  <Form.Control type="text" value={funcionario.nome}/>                
+                </Form.Group>
+                <Form.Group as={Col} md="3">
+                  <Form.Label><FontAwesome name="user"/> CPF</Form.Label>
+                  <Form.Control type="text" value={funcionario.cpf}/>                
+                </Form.Group>
+                <Form.Group as={Col} md="2">
+                  <Form.Label><FontAwesome name="user"/> RG</Form.Label>
+                  <Form.Control type="text" value={funcionario.rg}/>                
+                </Form.Group>
+                <Form.Group as={Col} md="1">
+                  <FontAwesome name="times-circle" onClick={() => this.onDelEventF(funcionario)}/>           
+                </Form.Group>
+              </Form.Row>
+            )}
+            
+            <SearchBar selecionados={this.state.episSelecionados} tipo={"epis"} busca={"epis"} selecionou={this.selecionouEpi.bind(this)}/>
 
-                
-              {this.state.funcionariosSelecionados.funcionarios.map(funcionario =>
-                <div className="mt-1 row">
-                  <div className="col-md-6">Nome:
-                    <input type="text" value={funcionario.nome} className="form-control btn-sm" />
-                  </div>
-
-                  <div className="col-md-3">RG:
-                    <input type="text" value={funcionario.rg} className="form-control btn-sm" />
-                  </div>
-
-                  <div className="col-md-3">CPF:
-                    <div className="d-flex align-items-center">
-                      <input type="text" value={funcionario.cpf} style={{marginRight: "10px"}}className="form-control btn-sm" />
-                      <div onClick={() => this.onDelEventF(funcionario)}>
-                        <FontAwesome name="times-circle"/>
-                      </div>
-                    </div> 
-                  </div>
-                </div>  
-
-              )}
-
-
-
-              {/* <SelecionarEpi/> */}
-              <div className="mt-4">
-                <SearchBar selecionados={this.state.episSelecionados} tipo={"epis"} busca={"epis"} selecionou={this.selecionouEpi.bind(this)}/>
-              </div>
-              {this.state.episSelecionados !== "" && (
-                
-                this.state.episSelecionados.map(epiSelecionado => 
-                  
-                  <div className="mt-3 row">
-                    <div className="col-md-6">
-                      <FontAwesome name="user"/>Nome:
-                      <input type="text" value={epiSelecionado.nome} className="form-control btn-sm" />
-                    </div>
-
-                    <div className="col-md-3">
-                      <FontAwesome name="user"/>CA:
-                      <input type="text" value={epiSelecionado.ca} className="form-control btn-sm" />
-                    </div>
-
-                    <div className="col-md-3">
-                      <FontAwesome name="user"/>Qntd:
-                      <div className="d-flex align-items-center">
-                        <input type="text" value={epiSelecionado.qntd} style={{marginRight: "10px"}}className="form-control btn-sm" />
-                        <div onClick={() => this.onDelEvent(epiSelecionado)}>
-                          <FontAwesome name="times-circle"/>
-                        </div>
-                      </div> 
-                    </div>
-                  </div>                  
-                )
-              
-              )}
-
+            {this.state.episSelecionados.length > 0 && ( 
+              <div className="mt-3">               
+                {this.state.episSelecionados.map(epiSelecionado => 
+                  <Form.Row>
+                    <Form.Group as={Col} md="6">
+                      <Form.Label><FontAwesome name="user"/> Nome</Form.Label>
+                      <Form.Control type="text" value={epiSelecionado.nome}/>                
+                    </Form.Group>
+                    <Form.Group as={Col} md="3">
+                      <Form.Label><FontAwesome name="user"/> CA</Form.Label>
+                      <Form.Control type="text" value={epiSelecionado.ca}/>                
+                    </Form.Group>
+                    <Form.Group as={Col} md="2">
+                      <Form.Label><FontAwesome name="user"/> Qtd</Form.Label>
+                      <Form.Control type="text" value={epiSelecionado.qntd}/>                
+                    </Form.Group>
+                    <Form.Group as={Col} md="1">
+                      <FontAwesome name="times-circle" onClick={() => this.onDelEvent(epiSelecionado)}/>           
+                    </Form.Group>
+                  </Form.Row>
+                )}
+              <Buttons fechar={this.props.fechar} finalizar={this.finalizar.bind(this)}/>
             </div>
-          )}
+            )}
+          </div>
+        )}
+                      
+  </Form>
 
-        </div>
+    )
+  }
+}
 
 
-        <div className="modal-footer" style={{paddingBottom: "0px", marginTop: "15px"}}>
-          <Buttons fechar={this.props.fechar} finalizar={this.finalizar.bind(this)}/>
-        </div>
-  
 
-      </div>
-    );
-  };
-};
+
+
+
+
+
 
 /****************************************************************************************************************************/
 
@@ -373,14 +295,25 @@ class Buttons extends React.Component {
   render() {
     
     return (
-      <div>
-        <button type="button" className="btn btn-danger mr-2" data-dismiss="modal" onClick={() => this.props.fechar(null)}> 
-          <FontAwesome name="times"/>Fechar
-        </button>
-        <button id="btn-conta" type="submit" className="btn btn-primary" onClick={() => this.props.finalizar()}>
-          <FontAwesome name="check"/>Finalizar
-        </button>        
-      </div>
+      <ButtonGroup>
+        <Button variant="danger" onClick={() => this.props.fechar(null)}>
+          <FontAwesome name="times"/> Fechar
+        </Button>
+        <Button variant="primary" onClick={() => this.props.finalizar()} >
+          <FontAwesome name="check"/> Finalizar
+        </Button>
+      </ButtonGroup>
+
+
+
+      // <div>
+      //   <button type="button" className="btn btn-danger mr-2" data-dismiss="modal" onClick={() => this.props.fechar(null)}> 
+      //     <FontAwesome name="times"/> Fechar
+      //   </button>
+      //   <button id="btn-conta" type="submit" className="btn btn-primary" onClick={() => this.props.finalizar()}>
+      //     <FontAwesome name="check"/>Finalizar
+      //   </button>        
+      // </div>
     );
   }
 }
@@ -460,16 +393,20 @@ class SearchBar extends React.Component {
   
   render() {
     return (
-      <div>
-        <div className="row align-items-center">
-          <span className="col-md-5"><b>Pesquisa {this.props.tipo}</b></span>
-          <div className="col-md-7">
-            <input style={{ zIndex: "10", position: "relative" }} className="form-control btn-sm" type="text" value={this.state.searchText} placeholder={"Busca " +this.props.tipo+ "..."} onChange={this.handleChange.bind(this)}/>
-          </div>
-        </div>
-        {(this.state.lista !== "" && this.state.selecionouBool === false && this.state.searchText !== "") 
-        && <Table row={this.props.busca} linhas={this.state.lista} selecionou={this.props.selecionou} selecionouBool={this.selecionouBool.bind(this)}/>} 
-      </div>
+    <div>
+      <Form.Row>
+        <Form.Group as={Col} md="5">
+          <b>Pesquisa {this.props.tipo}</b>                        
+        </Form.Group>
+        <Form.Group as={Col} md="7">
+          <Form.Control as="input" style={{ zIndex: "10", position: "relative" }} value={this.state.searchText} placeholder={"Busca " +this.props.tipo+ "..."} onChange={this.handleChange.bind(this)}/>  
+        </Form.Group>
+      </Form.Row> 
+      {(this.state.lista !== "" && this.state.selecionouBool === false && this.state.searchText !== "") 
+        && <Tabela row={this.props.busca} linhas={this.state.lista} selecionou={this.props.selecionou} selecionouBool={this.selecionouBool.bind(this)}/>} 
+    </div>
+
+     
     );
   }
 }
@@ -481,7 +418,7 @@ class SearchBar extends React.Component {
 
 
 
-class Table extends React.Component {
+class Tabela extends React.Component {
 
   render() {
     return (
@@ -496,12 +433,12 @@ class Table extends React.Component {
           zIndex: "5",
           backgroundColor: "rgb(255, 255, 255)"
         }}/>   
-        <table style={{ zIndex: "11", position: "absolute", boxShadow: "0 6px 12px rgba(0,0,0,.175)", left: "222px" }}>       
+        <Table style={{ zIndex: "11", position: "absolute", boxShadow: "0 6px 12px rgba(0,0,0,.175)", left: "222px" }}>       
           <tbody>
             {this.props.row === "funcionarios" && this.props.linhas.map(linha => <SimpleRow linha={linha} selecionou={this.props.selecionou} selecionouBool={this.props.selecionouBool} />)}
             {this.props.row === "epis" && this.props.linhas.map(linha => <ComplexRow linha={linha} selecionou={this.props.selecionou} selecionouBool={this.props.selecionouBool} />)}
           </tbody>
-        </table>
+        </Table>
       </div>
     );
   }
@@ -553,8 +490,12 @@ class ComplexRow extends React.Component {
   }
   
   selecionou() {
+    console.log(this.props.linha.estoque);
+    console.log(this.state.qntd);
 
     if(this.props.linha.estoque >= this.state.qntd){
+      console.log("ENTROU");
+  
 
       var props = this.props.linha;
       props.qntd = this.state.qntd;
@@ -573,15 +514,12 @@ class ComplexRow extends React.Component {
     Object.keys(this.props.linha).map((campo) =>       
       linha.push(<span className="p-2"> {campo}: <b>{this.props.linha[campo]}</b></span>) 
     )   
-
-    
-    
     
     return (
       <tr style={{border: "1px solid #ced4da", borderRadius: "5px", backgroundColor: "white" }} className="align-items-center d-flex p-1">
         {linha}
-        <input style={{width: "auto"}} type="text" placeholder="qntd..." className="massAssign form-control m-2" size="3" value={this.state.qntd} onChange={e => this.setState({ qntd: e.target.value }) }></input>
-        <button onClick={this.selecionou.bind(this)} className="disable btn w-100 btn-dark"><b>Adicionar</b></button> 
+        <Form.Control as="input" style={{width: "auto"}} value={this.state.qntd} placeholder="qntd..." onChange={e => this.setState({ qntd: e.target.value })}/>  
+        <Button variant="primary" onClick={this.selecionou.bind(this)} >Adicionar</Button>           
       </tr>
     );
   }

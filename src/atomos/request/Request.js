@@ -8,7 +8,7 @@ import UltimaReq from '../ultimareq';
 import FontAwesome from 'react-fontawesome';
 
 // import Button from '../button';
-import { Button } from 'react-bootstrap';
+import { Button, Form, Col } from 'react-bootstrap';
 
 import ModalCriarRequisicao from '../modalcriarrequisicao';
 
@@ -50,16 +50,18 @@ class Request extends React.Component {
 
     if(localStorage.getItem('permissoes') == 3){
       return (        
-        <div className="col-md-6 ">
-          <select id="select-empresas" className="form-control btn-sm btn-dark" onChange={e => this.setState({ nomeEmpresaSelecionada: e.target.value }, this.CarregarRequisicoes)}>
-            <option>GERAL</option>
+
+        <Form.Group as={Col} md="6">
+          <Form.Control as="select" onChange={e => this.setState({ nomeEmpresaSelecionada: e.target.value }, this.CarregarRequisicoes)}>  
+            <option>Geral</option>      
             {this.state.arrayEmpresas.map((value) => { 
               return (
                 <option>{value.nomeAmigavel}</option>
               )
-            })}
-          </select>
-        </div>
+            })}             
+          </Form.Control>       
+        </Form.Group>
+
       )
     }
   }
@@ -67,12 +69,9 @@ class Request extends React.Component {
   MontarAddRequest = () =>{    
     if(localStorage.getItem('permissoes') == 3 || localStorage.getItem('permissoes') == 2){
       return(
-        <div className="col-md-6 align-items-center">        
-          {/* <Button class="btn-dark w-100 h-100" icon="plus" text="Cadastrar Requisição" target="#modal-criar-requisicao"/> */}
-          
-          <Button variant="dark" onClick={this.handleShow}><FontAwesome name="plus"/>Adicionar Requisição</Button>
-
-        </div>  
+        <Form.Group as={Col} md="6">
+          <Button className="w-100 h-100" variant="dark" onClick={this.handleShow}><FontAwesome name="plus"/> Adicionar Requisição</Button>
+        </Form.Group> 
       )
     }
   }
@@ -110,7 +109,6 @@ class Request extends React.Component {
 
   componentWillMount(){    
     this.CarregarRequisicoes();
-    // this.MontarSelect();   
   }
   
   
@@ -118,36 +116,26 @@ class Request extends React.Component {
 
   render() {
     return (
-      
-      
-
-      <div id="request" className=""> 
-      {/* <div onClick={this.Teste}>AQUI</div> */}
-        <h4 className="position-absolute m-auto l-0 r-0 t-15 text-white"><i className="fa fa-clipboard" aria-hidden="true"></i> Requisições</h4>           
-        <div className="row pb-3">
+            
+      <Form>
+        <h4 className="position-absolute m-auto l-0 r-0 t-15 text-white"><FontAwesome name="clipboard"/> Requisições</h4>           
+        <Form.Row className="mb-2"> 
           
         {this.MontarSelect()}
         {this.MontarAddRequest()}
 
+        </Form.Row>
 
-
-
-        </div>
-        
-        <div className="row"> 
+        <Form.Row className="">
           <UltimaReq size="col-md-12" small="d-none" listaRequisicoesUltimas={this.state.requisicoesUltimas} /> 
           <ReqAberta size="col-md-12" small="d-none" listaRequisicoesAbertas={this.state.requisicoesAbertas} /> 
           <ReqCancelada size="col-md-12" small="d-none" listaRequisicoesCanceladas={this.state.requisicoesCanceladas} /> 
-        </div> 
+        </Form.Row>
         
-      <ModalCriarRequisicao show={this.state.show}/> 
-      </div>      
+        <ModalCriarRequisicao show={this.state.show}/> 
+      </Form>    
     )
   }
 }
-
-// Request.propTypes = {
-//   text: PropTypes.string.isRequired,
-// };
 
 export default Request;
